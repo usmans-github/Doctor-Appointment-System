@@ -1,9 +1,13 @@
 const express = require("express")
 const dotenv = require("dotenv")
+const connectDb = require("./config/db")
 
 
 //Config
 dotenv.config()
+
+//Mongodb connection
+connectDb()
 
 //Express App
 const app = express()

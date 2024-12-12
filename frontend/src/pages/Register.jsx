@@ -1,6 +1,25 @@
+"use client"
 import React from 'react'
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 const Register = () => {
+    const navigate = useNavigate();
+
+    const {
+        register,
+        handleSubmit,
+        watch,
+        formState: { errors },
+      } = useForm();
+    
+    
+      const onSubmit = async(data) => {
+        
+        console.log(data);
+        };
+
   return (
     <>
      <div>
@@ -18,7 +37,7 @@ const Register = () => {
                 Create an account
               </h1>
               <form
-                // onSubmit={handleSubmit(onSubmit)}
+                onSubmit={handleSubmit(onSubmit)}
                 className="space-y-4 md:space-y-6"
                 action="/api/user"
               >
@@ -32,7 +51,7 @@ const Register = () => {
                   </label>
                   <input
                     defaultValue=""
-                    // {...register("name",  { required: true, minLength: 3, maxLength:20, })}
+                    {...register("name",  { required: true, minLength: 3, maxLength:20, })}
                     type="name"
                     name="name"
                     id="name"
@@ -51,7 +70,7 @@ const Register = () => {
                   </label>
                   <input
                     defaultValue=""
-                    // {...register("email")}
+                    {...register("email")}
                     type="email"
                     name="email"
                     id="email"
@@ -70,7 +89,7 @@ const Register = () => {
                   </label>
                   <input
                     defaultValue=""
-                    // {...register("password")}
+                    {...register("password")}
                     type="password"
                     name="password"
                     id="password"
@@ -88,7 +107,7 @@ const Register = () => {
                     Your Role
                   </label>
                   <select
-                    // {...register("role")}
+                    {...register("role")}
                     id="role"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   >
@@ -106,7 +125,7 @@ const Register = () => {
                   Create an account
                 </button>
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                  Already have an account?{" "}
+                  <Link to="/login">Already have an account?{" "}</Link> 
                   <a
                     href="/login"
                     className="font-medium text-zinc-600 hover:underline dark:text-primary-500"
