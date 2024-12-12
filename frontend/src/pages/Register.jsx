@@ -23,7 +23,18 @@ const Register = () => {
           const res = await axios.post("http://localhost:3000/api/user/register", data)
           
           if(res.data.success) {
-            console.log("Registered succcessfuly"); 
+            console.log("Registered succcessfuly and response.message is ", res.data.message); 
+            toast.success('user created succcessfuly!', {
+              position: "top-center",
+              autoClose: 2000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+              transition: Bounce,
+              });
             navigate("/login")
           } else {
             toast.error('user already exists!', {

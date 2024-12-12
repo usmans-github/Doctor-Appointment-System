@@ -2,6 +2,7 @@ const express = require("express")
 const dotenv = require("dotenv")
 const connectDb = require("./config/db")
 const cors = require("cors")
+const cookieParser = require("cookie-parser")
 
 //Express App
 const app = express()
@@ -21,6 +22,7 @@ connectDb()
 app.use(express.json())
 app.use(cors())
 app.use(express.urlencoded({ extended: true }))
+app.use(cookieParser())
     
 
 //routes
