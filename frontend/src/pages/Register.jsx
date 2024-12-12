@@ -1,11 +1,13 @@
 "use client"
 import React from 'react'
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom"
-import { Link } from "react-router-dom"
+import axios from "axios"; 
+import { Bounce, ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { Link, useNavigate } from "react-router-dom"
 
 const Register = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate()
 
     const {
         register,
@@ -16,12 +18,50 @@ const Register = () => {
     
     
       const onSubmit = async(data) => {
-        
-        console.log(data);
+        try {
+          
+          const res = await axios.post("http://localhost:3000/api/user/register", data)
+          
+          if(res.data.success) {
+            console.log("Registered succcessfuly"); 
+            navigate("/login")
+          } else {
+            toast.error('user already exists!', {
+              position: "top-center",
+              autoClose: 2000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+              transition: Bounce,
+              });
+              console.log("user already exists", res.data);
+          }
+        } catch (error) {
+          console.log("register page error onsubmit", error);
+          console.log("something went wrong");
+          
+      }
         };
 
   return (
     <>
+ <ToastContainer
+position="top-center"
+autoClose={1000}
+hideProgressBar
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="light"
+transition={Bounce}
+/>
+  
      <div>
       <section className="bg-gray-50 dark:bg-gray-900">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -98,7 +138,7 @@ const Register = () => {
                     required=""
                   />
                 </div>
-                {/* Role */}
+                {/* Role
                 <div>
                   <label
                     htmlFor="role"
@@ -116,7 +156,7 @@ const Register = () => {
                     <option>Nurse</option>
                     <option>Admin</option>
                   </select>
-                </div>
+                </div> */}
 
                 <button
                   type="submit"

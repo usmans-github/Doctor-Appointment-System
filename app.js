@@ -1,28 +1,36 @@
 const express = require("express")
 const dotenv = require("dotenv")
 const connectDb = require("./config/db")
-
-
-//Config
-dotenv.config()
-
-//Mongodb connection
-connectDb()
+const cors = require("cors")
 
 //Express App
 const app = express()
 
+//Config
+dotenv.config()
+
+
+//Mongodb connection
+connectDb()
+
+
+
+
+
 //Middlewares
 app.use(express.json())
+app.use(cors())
 app.use(express.urlencoded({ extended: true }))
     
 
 //routes
+app.use("/api/user", require("./routes/user-route"))
+
+
+    
 app.get("/", (req, res) => {
-    res.send("Hello World")
+    res.send("Hello World") 
 })
-
-
 
 
 
