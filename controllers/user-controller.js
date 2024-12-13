@@ -26,8 +26,8 @@ const register = async (req, res) => {
           success: true,
           message: "User registered successfully",
           data: newUser,
-          token,
         });
+       
       });
     });
   } catch (error) {
@@ -52,13 +52,15 @@ const login = async (req, res) => {
       if (!result)
         return res  
           .status(200)
-          .send({ success: false, message: "Invalid password" });
+          .send({ success: false, message: "Invalid Credentials" });
           const token = jwt.sign({ id: loggedInUser._id }, process.env.JWT_SECRET, {
             expiresIn: "1d",
           });
+          
           res
             .status(200)
             .send({ success: true, message: "Login successfuly", token });
+          
     });
    
   } catch (error) {
@@ -68,6 +70,8 @@ const login = async (req, res) => {
       .send({ message: `Error in Login controller ${error.message}` });
   }
 };
+
+
 
 module.exports = {
   register,

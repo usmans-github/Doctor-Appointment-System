@@ -12,6 +12,7 @@ const Register = () => {
     const {
         register,
         handleSubmit,
+        reset,
         watch,
         formState: { errors },
       } = useForm();
@@ -149,25 +150,6 @@ transition={Bounce}
                     required=""
                   />
                 </div>
-                {/* Role
-                <div>
-                  <label
-                    htmlFor="role"
-                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                  >
-                    Your Role
-                  </label>
-                  <select
-                    {...register("role")}
-                    id="role"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  >
-                    <option>Patient</option>
-                    <option>Doctor</option>
-                    <option>Nurse</option>
-                    <option>Admin</option>
-                  </select>
-                </div> */}
 
                 <button
                   type="submit"

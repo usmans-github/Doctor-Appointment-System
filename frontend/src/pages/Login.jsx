@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import axios from "axios";
+import Cookies from 'js-cookie';
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { Bounce, ToastContainer, toast } from "react-toastify";
@@ -17,9 +18,12 @@ const Login = () => {
         data
       );
       if (res.data.success) {
+        // Set the cookie
+        Cookies.set('token', res.data.token)
         localStorage.setItem("token", res.data.token);
         console.log("Login successfuly");
-     
+        
+        
         navigate("/");
       } else {
         console.log(res.data.message);
@@ -38,7 +42,6 @@ const Login = () => {
       }
     } catch (error) {
       console.log(error);
-
     }
   };
 
