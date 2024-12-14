@@ -3,6 +3,8 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 import Hero from '../components/Hero'
 import Specialties from '../components/Specialities'
+import TopDoctors from '../components/TopDoctors'
+import Cta from '../components/Cta'
 
 const HomePage = () => {
   const getUserData = async () => {
@@ -27,6 +29,8 @@ const HomePage = () => {
     <>
    <Hero />
    <Specialties />
+   <TopDoctors />
+   <Cta />
     </>
   )
 }

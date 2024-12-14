@@ -2,7 +2,7 @@ import React from 'react'
 
 const Hero = () => {
   return (
-    <section className="bg-indigo-500 mx-10 px-20 md:px-20 py-12 min-h-[70vh]">
+    <section className="bg-indigo-500 mx-10 lg:px-20 md:px-20 py-12 min-h-[70vh]">
     <div className="flex flex-col md:flex-row items-center justify-between">
       <div className="text-white mb-8 md:mb-0 md:max-w-xl">
         <h1 className="text-4xl md:text-5xl font-bold mb-4">
@@ -19,7 +19,7 @@ const Hero = () => {
         font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Book appointment →</button>
       </div>
       <div className="relative w-full md:w-1/2  md:h-[400px]">
-      <img src="/doctors.png" alt="" className='h-[63.7vh]'/>
+      <img src="/doctors.png" alt="" className=' md:h-[63.7vh]'/>
       </div>
     </div>
   </section>

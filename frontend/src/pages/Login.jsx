@@ -52,7 +52,7 @@ const Login = () => {
           draggable: true,
           progress: undefined,
           theme: "light",
-          transition: "bounce"
+          transition: "Bounce"
         });
       }
     } catch (error) {
@@ -76,15 +76,9 @@ const Login = () => {
         theme="light"
         transition={Bounce} 
       />
-      <section className="bg-gray-50 dark:bg-gray-900">
+      <section className="bg-indigo-500">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-          <a
-            href="#"
-            className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
-          >
-            {/* <img className="w-8 h-8 mr-2" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg" alt="logo"> */}
-            Hospital Management
-          </a>
+         
           <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
@@ -132,15 +126,15 @@ const Login = () => {
 
                 <button
                   type="submit"
-                  className="w-full text-white bg-black hover:bg-zinc-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                  className="w-full text-white bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                 >
                   Login
                 </button>
-                <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+                <p className="text-sm font-normal text-black dark:text-gray-400">
                   Don’t have an account yet?
                   <Link
                     to="/register"
-                    className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                    className="text-indigo-500 ml-2 font-medium text-primary-600 hover:underline dark:text-primary-500"
                   >
                     Create account
                   </Link>
