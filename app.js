@@ -28,6 +28,8 @@ app.use(cookieParser())
 //routes
 app.use("/api/user", require("./routes/user-route"))
 
+//admin routes
+app.use("/api/admin", require("./routes/admin-route"))
 
     
 app.get("/", (req, res) => {

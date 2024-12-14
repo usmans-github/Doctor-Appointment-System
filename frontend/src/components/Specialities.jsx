@@ -29,7 +29,7 @@ const specialties = [
 
 export default function Specialties() {
   return (
-    <section className="pb-8 px-6 md:px-20">
+    <section className="py-16  px-6 md:px-20">
       <div className="text-center mb-12">
         <h2 className="text-2xl font-bold mb-2 text-white">Find by Speciality</h2>
         <p className="text-white">

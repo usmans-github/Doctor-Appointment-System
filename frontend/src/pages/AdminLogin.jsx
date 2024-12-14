@@ -8,59 +8,18 @@ import { useDispatch } from "react-redux";
 import { hideLoading, showLoading } from "../redux/features/alertSlice";
 import { Bounce, toast, ToastContainer } from "react-toastify";
 
-const Login = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { register,  handleSubmit } = useForm();
 
-  const onSubmit = async (data) => {
-    try {
-      dispatch(showLoading());
-      const res = await axios.post(
-        "http://localhost:3000/api/user/login",
-        data
-      );
-      dispatch(hideLoading());
-      if (res.data.success) {
-       
-        // Set the cookie
-        Cookies.set("token", res.data.token);
-        console.log("Login successfuly");
-        toast.success("Login successfuly!", {
-          position: "top-center",
-          autoClose: 1000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: "Bounce"
-        });
-        setTimeout(() => {
-          Cookies.set("token", res.data.token);
-          navigate("/");
-      }, 1000); 
-      } else {
-        console.log(res.data.message);
-        toast.error("Invalid credentials!", {
-          position: "top-center",
-          autoClose: 2000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: "Bounce"
-        });
-      }
-    } catch (error) {
-      dispatch(hideLoading());
-      console.log(error);
+
+const AdminLogin = () => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const { register,  handleSubmit } = useForm();
+
+    const onSubmit =  () => {
+      console.log("dkned");
+      
     }
-  };
-
+    
   return (
     <div>
       <ToastContainer
@@ -74,20 +33,21 @@ const Login = () => {
         draggable
         pauseOnHover
         theme="light"
-        transition={Bounce} 
+        transition={Bounce}
       />
       <section className="bg-indigo-500">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-[70vh] lg:py-0">
-         
           <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                Login to your account
+                Login as Admin
               </h1>
               <form
                 onSubmit={handleSubmit(onSubmit)}
                 className="space-y-4 md:space-y-6"
+                action="#"
               >
+                {/* email */}
                 <div>
                   <label
                     htmlFor="email"
@@ -101,10 +61,11 @@ const Login = () => {
                     name="email"
                     id="email"
                     className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-indigo-600 focus:border-indigo-500 block w-full p-2.5 "
-                    placeholder="name@company.com"
+                    placeholder="admin@admin.com"
                     required=""
                   />
                 </div>
+                {/* password */}
                 <div>
                   <label
                     htmlFor="password"
@@ -130,12 +91,12 @@ const Login = () => {
                   Login
                 </button>
                 <p className="text-sm font-normal text-black dark:text-gray-400">
-                  Don’t have an account yet?
+                  Doctor login ?
                   <Link
-                    to="/register"
+                    to="/doctor-login"
                     className="text-indigo-500 ml-2 font-medium text-primary-600 hover:underline dark:text-primary-500"
                   >
-                    Create account
+                    Click here
                   </Link>
                 </p>
               </form>
@@ -147,4 +108,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default AdminLogin;

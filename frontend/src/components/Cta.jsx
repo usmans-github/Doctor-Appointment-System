@@ -19,7 +19,6 @@ const Cta = () => {
         <img
           src="/placeholder.svg?height=400&width=500"
           alt="Doctor"
-          fill
           className="object-contain"
         />
       </div>

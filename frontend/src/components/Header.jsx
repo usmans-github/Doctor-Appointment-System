@@ -9,7 +9,7 @@ export default function Header() {
       <nav className="py-4 px-6 md:px-20 flex justify-between items-center">
         {/* Logo */}
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-indigo-600 rounded"></div>
+         
           <a href="/">
             <span className="text-2xl cursor-pointer text-white font-bold">
               HealthCare
@@ -31,8 +31,8 @@ export default function Header() {
           <a href="/contact" className="text-sm font-medium">
             CONTACT
           </a>
-          <a href="/admin" className="text-sm font-medium">
-            Admin Portal
+          <a href="/admin-login" className="text-sm font-medium">
+            Admin Panel
           </a>
         </div>
 
@@ -49,10 +49,10 @@ export default function Header() {
           </a>
           <div className="hidden md:flex items-center text-white gap-2 cursor-pointer">
             <img
-              src="/placeholder.svg?height=32&width=32"
+              src="https://www.shutterstock.com/image-vector/young-smiling-man-avatar-brown-600nw-2261401207.jpg"
               alt="User"
-              width={32}
-              height={32}
+              width={40}
+              height={40}
               className="rounded-full"
             />
             <ChevronDown className="w-4 h-4 text-white" />
@@ -75,8 +75,8 @@ export default function Header() {
         } transition-transform duration-300 ease-in-out z-50`}
       >
         {/* Sidebar Header */}
-        <div className="flex items-center justify-between px-6 py-4 bg-indigo-700">
-          <span className="text-2xl font-bold">Menu</span>
+        <div className="flex items-center justify-between px-6 py-4 bg-indigo-600">
+          <span className="text-2xl font-bold">Healthcare</span>
           <button onClick={() => setIsSidebarOpen(false)}>
             <X className="w-6 h-6 text-white" />
           </button>
@@ -96,13 +96,14 @@ export default function Header() {
           <a href="/contact" className="text-sm font-medium hover:text-indigo-300">
             CONTACT
           </a>
-          <a href="/admin" className="text-sm font-medium hover:text-indigo-300">
-            Admin Portal
+          <a href="/admin-login" className="text-sm font-medium hover:text-indigo-300">
+            Admin Panel
           </a>
           <a href="/register">
             <button
               type="button"
-              className="w-full text-indigo-500 bg-white hover:bg-indigo-50 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 mt-4"
+              className="w-full text-indigo-500 bg-white hover:bg-indigo-50 focus:ring-4 focus:ring-indigo-300 
+              font-medium rounded-lg text-sm px-5 py-2.5 mt-4"
             >
               Create account
             </button>
