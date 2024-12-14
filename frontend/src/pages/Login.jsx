@@ -1,33 +1,48 @@
 "use client";
 import React from "react";
 import axios from "axios";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import { Bounce, ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { useDispatch } from "react-redux";
+import { hideLoading, showLoading } from "../redux/features/alertSlice";
+import { Bounce, toast, ToastContainer } from "react-toastify";
 
 const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
 
   const onSubmit = async (data) => {
     try {
+      dispatch(showLoading());
       const res = await axios.post(
         "http://localhost:3000/api/user/login",
         data
       );
+      dispatch(hideLoading());
       if (res.data.success) {
+       
         // Set the cookie
-        Cookies.set('token', res.data.token)
-        localStorage.setItem("token", res.data.token);
+        Cookies.set("token", res.data.token);
         console.log("Login successfuly");
-        
-        
-        navigate("/");
+        toast.success("Login successfuly!", {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: "Bounce"
+        });
+        setTimeout(() => {
+          Cookies.set("token", res.data.token);
+          navigate("/");
+      }, 1000); 
       } else {
         console.log(res.data.message);
-        
         toast.error("Invalid credentials!", {
           position: "top-center",
           autoClose: 2000,
@@ -37,10 +52,11 @@ const Login = () => {
           draggable: true,
           progress: undefined,
           theme: "light",
-          transition: Bounce,
+          transition: "bounce"
         });
       }
     } catch (error) {
+      dispatch(hideLoading());
       console.log(error);
     }
   };
@@ -49,8 +65,8 @@ const Login = () => {
     <div>
       <ToastContainer
         position="top-center"
-        autoClose={1000}
-        hideProgressBar
+        autoClose={5000}
+        hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
         rtl={false}
@@ -58,7 +74,7 @@ const Login = () => {
         draggable
         pauseOnHover
         theme="light"
-        transition={Bounce}
+        transition={Bounce} 
       />
       <section className="bg-gray-50 dark:bg-gray-900">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">

@@ -2,11 +2,14 @@
 import React from 'react'
 import { useForm } from "react-hook-form";
 import axios from "axios"; 
+import {useDispatch} from "react-redux";
+import { showLoading, hideLoading } from '../redux/features/alertSlice';
 import { Bounce, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link, useNavigate } from "react-router-dom"
 
 const Register = () => {
+  const dispatch = useDispatch()
   const navigate = useNavigate()
 
     const {
@@ -20,23 +23,25 @@ const Register = () => {
     
       const onSubmit = async(data) => {
         try {
-          
+          dispatch(showLoading())
           const res = await axios.post("http://localhost:3000/api/user/register", data)
-          
+          dispatch(hideLoading())
           if(res.data.success) {
             console.log("Registered succcessfuly and response.message is ", res.data.message); 
             toast.success('user created succcessfuly!', {
               position: "top-center",
-              autoClose: 2000,
+              autoClose: 1000,
               hideProgressBar: true,
               closeOnClick: true,
               pauseOnHover: true,
               draggable: true,
               progress: undefined,
               theme: "light",
-              transition: Bounce,
+              transition: "Bounce",
               });
-            navigate("/login")
+              setTimeout(() => {
+               navigate("/login")
+              }, 1000);
           } else {
             toast.error('user already exists!', {
               position: "top-center",
@@ -47,11 +52,12 @@ const Register = () => {
               draggable: true,
               progress: undefined,
               theme: "light",
-              transition: Bounce,
+              transition: "Bounce",
               });
               console.log("user already exists", res.data);
           }
         } catch (error) {
+          dispatch(hideLoading())
           console.log("register page error onsubmit", error);
           console.log("something went wrong");
           
