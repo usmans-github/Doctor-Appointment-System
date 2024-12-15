@@ -17,10 +17,6 @@ const doctorSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    address: {
-        type: String,
-        required: true
-    },
     specialization: {
         type: String,
         required: true
@@ -40,3 +36,5 @@ const doctorSchema = new mongoose.Schema({
 }, {
     timestamps: true
 })
+
+module.exports = mongoose.model("doctors", doctorSchema)

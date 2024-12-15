@@ -22,13 +22,15 @@ const AddDoctor = () => {
       
       
         const onSubmit = async(data) => {
+            console.log(data);
+            
           try {
             dispatch(showLoading())
             const res = await axios.post("http://localhost:3000/api/admin/add-doctor", data)
             dispatch(hideLoading())
             if(res.data.success) {
-              console.log("Registered succcessfuly and response.message is ", res.data.message); 
-              toast.success('user created succcessfuly!', {
+              console.log("Doctor addded successfuly", res.data.message); 
+              toast.success(res.data.message, {
                 position: "top-center",
                 autoClose: 1000,
                 hideProgressBar: true,
@@ -40,10 +42,10 @@ const AddDoctor = () => {
                 transition: Bounce,
                 });
                 setTimeout(() => {
-                 navigate("/login")
+                 navigate("/admin/dashboard")
                 }, 1000);
             } else {
-              toast.error('user already exists!', {
+              toast.error('Doctor already exists!', {
                 position: "top-center",
                 autoClose: 2000,
                 hideProgressBar: true,
@@ -54,126 +56,200 @@ const AddDoctor = () => {
                 theme: "light",
                 transition: Bounce,
                 });
-                console.log("user already exists", res.data);
+                console.log("doctor already exists", res.data.message);
             }
           } catch (error) {
             dispatch(hideLoading())
-            console.log("register page error onsubmit", error);
+            console.log("addDoctor page error onsubmit", error);
             console.log("something went wrong");
             
         }
           };
   return (
     <>
-    <ToastContainer
-      position="top-center"
-      autoClose={1000}
-      hideProgressBar
-      newestOnTop={false}
-      closeOnClick
-      rtl={false}
-      pauseOnFocusLoss
-      draggable
-      pauseOnHover
-      theme="light"
-      transition={Bounce}
-    />
-    
-        <section className="">
-          <div className="flex flex-col items-center justify-center px-6 py-4 mx-auto md:h-[80vh] lg:py-0">
-           
-            <div className="w-full bg-white  rounded-lg shadow  md:mt-0 sm:max-w-md xl:p-0">
-              <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-                <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
-                 Add a Doctor 
-                </h1>
-                <form
-                  onSubmit={handleSubmit(onSubmit)}
-                  className="space-y-4 md:space-y-6"
-                  action="/api/user"
+  <ToastContainer
+    position="top-center"
+    autoClose={1000}
+    hideProgressBar
+    newestOnTop={false}
+    closeOnClick
+    rtl={false}
+    pauseOnFocusLoss
+    draggable
+    pauseOnHover
+    theme="light"
+    transition={Bounce}
+  />
+
+  <section className="py-6 px-4 sm:px-8 lg:px-16">
+    <div className="flex flex-col items-center justify-center mx-auto">
+      <div className="w-full max-w-4xl bg-white rounded-lg shadow-md">
+        <div className="p-6 space-y-6 sm:p-8">
+          <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
+            Add a Doctor
+          </h1>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="grid grid-cols-1 md:grid-cols-2 gap-6"
+          >
+            {/* Left Column */}
+            <div className="space-y-4">
+              {/* Name */}
+              <div>
+                <label
+                  htmlFor="name"
+                  className="block mb-2 text-sm font-medium text-gray-900"
                 >
-                 {/* Name */}
-                  <div>
-                    <label
-                      htmlFor="name"
-                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                    >
-                    Name
-                    </label>
-                    <input
-                      defaultValue=""
-                      {...register("name",  { required: true, minLength: 3, maxLength:20, })}
-                      type="name"
-                      name="name"
-                      id="name"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600
-                      dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      placeholder="John Doe"
-                      required={true}
-                    />
-                  </div>
-                  {/* Email */}
-                  <div>
-                    <label
-                      htmlFor="email"
-                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                    >
-                       Email
-                    </label>
-                    <input
-                      defaultValue=""
-                      {...register("email")}
-                      type="email"
-                      name="email"
-                      id="email"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      placeholder="name@company.com"
-                      required={true}
-                    />
-                  </div>
-                  {/* Password */}
-                  <div>
-                    <label
-                      htmlFor="password"
-                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                    >
-                      Password
-                    </label>
-                    <input
-                      defaultValue=""
-                      {...register("password")}
-                      type="password"
-                      name="password"
-                      id="password"
-                      placeholder="••••••••"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      required=""
-                    />
-                  </div>
-  
-                  <button
-                    type="submit"
-                    className="w-full text-white bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-                  >
-                    Add a Doctor
-                  </button>
-                  <p className="text-sm font-normal text-black dark:text-gray-400">
-                    Back to dashboard ?{" "}
-                    <a
-                      href="/admin/dashboard"
-                      className="font-medium text-indigo-500 ml-2 hover:underline dark:text-primary-500"
-                    >
-                      Click here
-                    </a>
-                  </p>
-                </form>
+                  Name
+                </label>
+                <input
+                  {...register("name", {
+                    required: true,
+                    minLength: 3,
+                    maxLength: 20,
+                  })}
+                  type="text"
+                  id="name"
+                  className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 p-2.5"
+                  placeholder="John Doe"
+                  required
+                />
+              </div>
+              {/* Email */}
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block mb-2 text-sm font-medium text-gray-900"
+                >
+                  Email
+                </label>
+                <input
+                  {...register("email")}
+                  type="email"
+                  id="email"
+                  className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 p-2.5"
+                  placeholder="name@company.com"
+                  required
+                />
+              </div>
+              {/* Password */}
+              <div>
+                <label
+                  htmlFor="password"
+                  className="block mb-2 text-sm font-medium text-gray-900"
+                >
+                  Password
+                </label>
+                <input
+                  {...register("password")}
+                  type="password"
+                  id="password"
+                  placeholder="••••••••"
+                  className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 p-2.5"
+                  required
+                />
               </div>
             </div>
-          </div>
-        </section>
-     
+
+            {/* Right Column */}
+            <div className="space-y-4">
+              {/* Phone */}
+              <div>
+                <label
+                  htmlFor="phone"
+                  className="block mb-2 text-sm font-medium text-gray-900"
+                >
+                  Phone
+                </label>
+                <input
+                  {...register("phone")}
+                  type="number"
+                  id="phone"
+                  placeholder="0000000000"
+                  className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 p-2.5"
+                  required
+                />
+              </div>
+              {/* Specialization */}
+              <div>
+                <label
+                  htmlFor="specialization"
+                  className="block mb-2 text-sm font-medium text-gray-900"
+                >
+                  Specialization
+                </label>
+                <input
+                  {...register("specialization")}
+                  type="text"
+                  id="specialization"
+                  placeholder="Specialize In"
+                  className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 p-2.5"
+                  required
+                />
+              </div>
+              {/* Experience */}
+              <div>
+                <label
+                  htmlFor="experience"
+                  className="block mb-2 text-sm font-medium text-gray-900"
+                >
+                  Experience
+                </label>
+                <input
+                  {...register("experience")}
+                  type="text"
+                  id="experience"
+                  placeholder="Experience"
+                  className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 p-2.5"
+                  required
+                />
+              </div>
+              {/* Fee */}
+              <div>
+                <label
+                  htmlFor="fee"
+                  className="block mb-2 text-sm font-medium text-gray-900"
+                >
+                  Fee
+                </label>
+                <input
+                  {...register("fee")}
+                  type="number"
+                  id="fee"
+                  placeholder="0000"
+                  className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 p-2.5"
+                  required
+                />
+              </div>
+            </div>
+
+            {/* Submit Button */}
+            <div className="col-span-1 md:col-span-2 mt-4">
+              <button
+                type="submit"
+                className="w-full text-white bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+              >
+                Add a Doctor
+              </button>
+              <p className="text-sm font-normal text-black mt-2 text-center">
+                Back to dashboard?{" "}
+                <a
+                  href="/admin/dashboard"
+                  className="font-medium text-indigo-500 hover:underline"
+                >
+                  Click here
+                </a>
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</>
+
   
-      </>
+  
   )
 }
 

@@ -1,5 +1,5 @@
 const express = require("express")
-const {login} = require("../controllers/admin-controller")
+const {login, addDoctor} = require("../controllers/admin-controller")
 
 
 const router = express.Router()
@@ -8,7 +8,7 @@ const router = express.Router()
 router.post("/login", login)
 
 //Admin Add Doctor
-router.post("/add-doctor", )
+router.post("/add-doctor",addDoctor )
 
 
 
