@@ -32,7 +32,13 @@ export default function Header() {
             CONTACT
           </a>
           <a href="/admin-login" className="text-sm font-medium">
-            Admin Panel
+          <button
+              type="button"
+              className="text-white hover:text-indigo-500 border border-white hover:bg-indigo-50 focus:ring-4 focus:ring-indigo-300
+              font-medium rounded-lg text-sm px-5 py-2.5"
+            >
+              Admin
+            </button>
           </a>
         </div>
 

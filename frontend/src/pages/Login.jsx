@@ -35,7 +35,7 @@ const Login = () => {
           draggable: true,
           progress: undefined,
           theme: "light",
-          transition: "Bounce"
+          transition: Bounce
         });
         setTimeout(() => {
           Cookies.set("token", res.data.token);
@@ -52,7 +52,7 @@ const Login = () => {
           draggable: true,
           progress: undefined,
           theme: "light",
-          transition: "Bounce"
+          transition: Bounce
         });
       }
     } catch (error) {

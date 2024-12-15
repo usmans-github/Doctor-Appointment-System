@@ -37,7 +37,7 @@ const Register = () => {
               draggable: true,
               progress: undefined,
               theme: "light",
-              transition: "Bounce",
+              transition: Bounce,
               });
               setTimeout(() => {
                navigate("/login")
@@ -52,7 +52,7 @@ const Register = () => {
               draggable: true,
               progress: undefined,
               theme: "light",
-              transition: "Bounce",
+              transition: Bounce,
               });
               console.log("user already exists", res.data);
           }

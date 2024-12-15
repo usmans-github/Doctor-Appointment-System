@@ -9,7 +9,7 @@ import { hideLoading, showLoading } from "../redux/features/alertSlice";
 import { Bounce, toast, ToastContainer } from "react-toastify";
 
 const AdminLogin =  () => {
-      // const navigate = useNavigate();
+      const navigate = useNavigate();
       const dispatch = useDispatch();
       const { register, handleSubmit } = useForm();
 
@@ -32,12 +32,13 @@ const AdminLogin =  () => {
           draggable: true,
           progress: undefined,
           theme: "light",
-          transition: "Bounce",
+          transition: Bounce,
         });
         // setTimeout(() => {
         //   // Set the cookie
         //   Cookies.set("atoken", res.data.atoken);
         // }, 1000);
+        navigate("/admin/dashboard");
       } else {
         console.log(res.data.message);
         toast.error("Invalid credentials!", {
@@ -49,7 +50,7 @@ const AdminLogin =  () => {
           draggable: true,
           progress: undefined,
           theme: "light",
-          transition: "Bounce",
+          transition: Bounce,
         });
       }
     } catch (error) {

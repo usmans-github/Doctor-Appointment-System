@@ -26,6 +26,15 @@ const login = async (req, res) => {
  
  }
 
+ //Admin add doctor controller
+ const addDoctor = async (req, res) => {
+    try {
+        
+    } catch (error) {
+        console.log(error);
+        
+    }
+ }
 
 module.exports = {
     login
