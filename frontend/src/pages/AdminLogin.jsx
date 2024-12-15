@@ -8,22 +8,60 @@ import { useDispatch } from "react-redux";
 import { hideLoading, showLoading } from "../redux/features/alertSlice";
 import { Bounce, toast, ToastContainer } from "react-toastify";
 
+const AdminLogin =  () => {
+      // const navigate = useNavigate();
+      const dispatch = useDispatch();
+      const { register, handleSubmit } = useForm();
 
-
-const AdminLogin = () => {
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
-    const { register,  handleSubmit } = useForm();
-
-    const onSubmit =  () => {
-      console.log("dkned");
-      
+  const onSubmit = async (data) => {
+    try {
+      dispatch(showLoading());
+      const res = await axios.post(
+        "http://localhost:3000/api/admin/login",
+        data
+      );
+      dispatch(hideLoading());
+      if (res.data.success) {
+        console.log("Admin Login successfuly");
+        toast.success(res.data.message, {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: "Bounce",
+        });
+        // setTimeout(() => {
+        //   // Set the cookie
+        //   Cookies.set("atoken", res.data.atoken);
+        // }, 1000);
+      } else {
+        console.log(res.data.message);
+        toast.error("Invalid credentials!", {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: "Bounce",
+        });
+      }
+    } catch (error) {
+      dispatch(hideLoading());
+      console.log(error);
     }
-    
+  };
+
   return (
     <div>
       <ToastContainer
-        position="top-center"
+      position="top-center"
         autoClose={5000}
         hideProgressBar={false}
         newestOnTop={false}
@@ -33,7 +71,7 @@ const AdminLogin = () => {
         draggable
         pauseOnHover
         theme="light"
-        transition={Bounce}
+      transition={Bounce}
       />
       <section className="bg-indigo-500">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-[70vh] lg:py-0">
@@ -47,7 +85,6 @@ const AdminLogin = () => {
                 className="space-y-4 md:space-y-6"
                 action="#"
               >
-                {/* email */}
                 <div>
                   <label
                     htmlFor="email"
@@ -65,7 +102,6 @@ const AdminLogin = () => {
                     required=""
                   />
                 </div>
-                {/* password */}
                 <div>
                   <label
                     htmlFor="password"

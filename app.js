@@ -1,48 +1,65 @@
-const express = require("express")
-const dotenv = require("dotenv")
-const connectDb = require("./config/db")
-const cors = require("cors")
-const cookieParser = require("cookie-parser")
+const express = require("express");
+const dotenv = require("dotenv");
+const connectDb = require("./config/db");
+const cors = require("cors");
+const cookieParser = require("cookie-parser");
 
 //Express App
-const app = express()
+const app = express();
 
 //Config
-dotenv.config()
-
+dotenv.config();
 
 //Mongodb connection
-connectDb()
-
-
-
-
+connectDb();
 
 //Middlewares
-app.use(express.json())
-app.use(cors())
-app.use(express.urlencoded({ extended: true }))
-app.use(cookieParser())
-    
+app.use(express.json());
+app.use(cors());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 //routes
-app.use("/api/user", require("./routes/user-route"))
+app.use("/api/user", require("./routes/user-route"));
 
 //admin routes
-app.use("/api/admin", require("./routes/admin-route"))
+app.use("/api/admin", require("./routes/admin-route"));
 
-    
+
+
 app.get("/", (req, res) => {
-    res.send("Hello World") 
+  res.send("Hello World!");
 })
 
 
+// Temporary Route
+// app.get("/", async (req, res) => {
+//         const password = "superadmin";
+//         bcrypt.genSalt(10, function (err, salt) {
+//             bcrypt.hash(password, salt, async function (err, hash) {
+//             // Store hash in your password DB.
 
-
-
+//                     const superadmin = await adminModel.create({
+//                         name: "superadmin",
+//                         email: "superadmin@superadmin.com",
+//                         password: hash,
+//                     });
+//                     superadmin.save()
+//                     res.status(201).send({
+//                         success: true,
+//                         message: "superadmin created successfully",
+//                         data: superadmin,
+//                       });
+//             });
+//         });
+// });
 
 //listen
-const port = process.env.PORT || 3000
+
+
+
+
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
-    console.log(`Server is running on port: ${port} `)
-})
+  console.log(`Server is running on port: ${port} `);
+});

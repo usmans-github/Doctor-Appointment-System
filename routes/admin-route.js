@@ -1,11 +1,10 @@
-const express = require('express');
-const { login, register, authController } = require('../controllers/user-controller');
-const authMiddleware = require("../middlewares/authMiddleware")
+const express = require("express")
+const {login} = require("../controllers/admin-controller")
+
 
 const router = express.Router()
 
-//Admin login
-router.post("/login", )
+router.post("/login", login)
 
 
 
