@@ -40,7 +40,7 @@ const login = async (req, res) => {
             res.status(200).send({success: true, message: "Doctor added successfully!", })
        
     } catch (error) {
-        console.log("admin controller addDoctor Error: ",error);
+        console.log("admin controller addDoctor Error: ", error);
         
     }
  }
