@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken")
 const bcrypt = require("bcrypt")
 const adminModel = require("../models/admin-model")
 const doctorModel = require("../models/doctor-model")
+const statsModel = require("../models/stats-model")
 
 
 
@@ -45,7 +46,26 @@ const login = async (req, res) => {
     }
  }
 
+//ADmin get Stats
+const getStats = async (req, res) => {
+    try {
+        const stats = await statsModel.find({})
+        if(stats){ res.status(200).send({success: true, message: "Stats fetched successfully!", stats})}
+        res.status(201).send({success: false, message: "Stats not found!"})
+
+    } catch (error) {
+        console.log("admin controller getStats Error: ", error);
+
+    }
+ }
+
+
+
+
+
+
 module.exports = {
     login,
-    addDoctor
+    addDoctor,
+    getStats
 }

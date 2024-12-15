@@ -1,5 +1,6 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from "axios"
 import { 
   ChartBarIcon, 
   UserIcon, 
@@ -10,13 +11,12 @@ import {
 } from '@heroicons/react/24/solid'
 import { Link } from 'react-router-dom'
 
-
-
 // Mock data (replace with actual data fetching in a real application)
+
 const mockStats = [
-  { name: 'Total Patients', value: 1234, icon: UserIcon },
-  { name: 'Total Doctors', value: 56, icon: UserIcon },
-  { name: 'Appointments Today', value: 28, icon: CalendarIcon }
+  { name: 'Total Patients', value: 1234 },
+  { name: 'Total Doctors', value: 56},
+  { name: 'Appointments', value: 28}
 ] 
 
 const mockAppointments = [
@@ -26,7 +26,36 @@ const mockAppointments = [
 ]
 
 const Page = () => {
+
+  const [stats, setstats] = useState([])
   const [sidebarOpen, setSidebarOpen] = useState(false)
+
+
+  const fetchStats = async () => {
+    try {
+      
+      const res = await axios.get("http://localhost:3000/api/admin/stats")
+      if(res.data.success){
+          setstats(res.data.stats)  
+      }
+      else{
+        return res.data.message
+   
+      }
+    } catch (error) {
+      console.log("Admin dashboard  Page error in fetchStats", error);
+      
+    }
+  }
+  
+  useEffect(() => { 
+    fetchStats()
+  }, [])
+
+
+
+
+
   return (
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar */}
@@ -38,7 +67,7 @@ const Page = () => {
           </button>
         </div>
         <nav className="mt-8">
-          <a href="#" className="block py-2 px-4 text-black hover:bg-indigo-500 hover:text-white">Dashboard</a>
+          <a href="/admin/dashboard" className="block py-2 px-4 text-black hover:bg-indigo-500 hover:text-white">Dashboard</a>
           <a href="#" className="block py-2 px-4 text-black hover:bg-indigo-500 hover:text-white">Doctors</a>
           <a href="#" className="block py-2 px-4 text-black hover:bg-indigo-500 hover:text-white">Patients</a>
           <a href="#" className="block py-2 px-4 text-black hover:bg-indigo-500 hover:text-white">Appointments</a>
@@ -49,7 +78,7 @@ const Page = () => {
       {/* Main Content */}
       <div className="flex-1 overflow-x-hidden overflow-y-auto">
         {/* Top bar */}
-        <header className="bg-white shadow-sm">
+        {/* <header className="bg-white shadow-sm"> */}
           <div className="flex items-center justify-between px-4 py-3">
             <button onClick={() => setSidebarOpen(true)} className="text-gray-500 focus:outline-none focus:text-gray-700 lg:hidden">
               <MenuIcon className="h-6 w-6" />
@@ -61,7 +90,7 @@ const Page = () => {
               </button>
             </div> */}
           </div>
-        </header>
+        {/* </header> */}
 
         {/* Dashboard content */}
         <main className="p-6">
@@ -69,7 +98,7 @@ const Page = () => {
           
           {/* Stats */}
           <div className="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-3">
-            {mockStats.map((stat, index) => (
+            {stats.map((stat, index) => (
               <div key={index} className="bg-white rounded-lg shadow-sm p-6">
                 <div className="flex items-center">
                   <div className="p-3 rounded-full bg-indigo-500 bg-opacity-75">

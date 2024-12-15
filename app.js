@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 const connectDb = require("./config/db");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
+const statsModel = require("./models/stats-model");
 
 //Express App
 const app = express();
@@ -24,13 +25,13 @@ app.use("/api/user", require("./routes/user-route"));
 
 //admin routes
 app.use("/api/admin", require("./routes/admin-route"));
-app.use("/api/admin", require("./routes/admin-route"));
 
 
-
-app.get("/", (req, res) => {
+ 
+app.get("/",  async(req, res) => {
   res.send("Hello World!");
-})
+  })
+
 
 
 // Temporary Route
@@ -41,21 +42,19 @@ app.get("/", (req, res) => {
 //             // Store hash in your password DB.
 
 //                     const superadmin = await adminModel.create({
-//                         name: "superadmin",
-//                         email: "superadmin@superadmin.com",
+//                         name: "",
+//                         email: "",
 //                         password: hash,
 //                     });
 //                     superadmin.save()
 //                     res.status(201).send({
 //                         success: true,
-//                         message: "superadmin created successfully",
+//                         message: "",
 //                         data: superadmin,
 //                       });
 //             });
 //         });
 // });
-
-//listen
 
 
 
