@@ -1,6 +1,6 @@
 "use client"
 import React from 'react'
-import { Form, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import axios from "axios"; 
 import {useDispatch} from "react-redux";
 import { showLoading, hideLoading } from '../redux/features/alertSlice';
@@ -62,7 +62,7 @@ const AddDoctor = () => {
             dispatch(hideLoading())
             console.log("addDoctor page error onsubmit", error);
             console.log("something went wrong");
-            
+            reset()
         }
           };
   return (
@@ -163,7 +163,6 @@ const AddDoctor = () => {
                  className='w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 p-2.5'
                  type="file"
                  name="picture"
-                 required={true}
                  id="picture" /> 
               </div>
             </div>

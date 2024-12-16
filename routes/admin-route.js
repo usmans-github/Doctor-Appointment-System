@@ -8,7 +8,7 @@ const router = express.Router()
 router.post("/login", login)
 
 //Admin Add Doctor
-router.post("/add-doctor",addDoctor )
+router.post("/add-doctor", addDoctor)
 
 
 //Admin Get Stats

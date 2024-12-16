@@ -13,6 +13,10 @@ const doctorSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    profilePicture: {
+        type: String, // Cloudinary url
+        required: true
+    },
     phone: {
         type: String,
         required: true

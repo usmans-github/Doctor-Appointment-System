@@ -34,12 +34,22 @@ const login = async (req, res) => {
  //Admin add doctor controller
  const addDoctor = async (req, res) => {
     try {
-        const { name, email, password, phone, specialization, experience, fee   }  = req.body
-
+        const { name, email, password, phone, specialization, experience, fee }  = req.body
+        const  file = req.file
+        if(!file) return res.status(201).send({success: false, message: "Please upload a file"})
+            res.status(200).send({success: true, message: "File uploaded successfully!"})
         const exists  = await doctorModel.findOne({email:email, password:password})
             if(exists) return res.status(201).send({success: false, message: "Doctor already exists"})
 
-            const doctor =  await doctorModel.create({name, email, password, phone, specialization, experience, fee})
+            const doctor =  await doctorModel.create({
+                name,
+                email, 
+                password, 
+                phone, 
+                specialization,
+                experience,
+                fee
+            })
             await doctor.save()
             res.status(200).send({success: true, message: "Doctor added successfully!", })
        
