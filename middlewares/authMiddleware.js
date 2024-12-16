@@ -2,11 +2,14 @@ const jwt = require("jsonwebtoken")
 
 module.exports = async (req, res, next ) => {
 try {
-    const atoken = req.headers.cookie.token
-    if(!atoken){
+
+    
+    const { admin_token } = req.cookies
+    
+    if(!admin_token){
         return res.send({success: false, message: "Not Authorized"})
     }
-    const decode_token = jwt.verify(atoken, process.env.JWT_SECRET)
+    const decode_token = jwt.verify(admin_token, process.env.JWT_SECRET)
     if(decode_token !== process.env.ADMIN_EMAIL + process.env.ADMIN_PASSWORD){
         return res.send({success: false, message: "Not Authorized"})
     }

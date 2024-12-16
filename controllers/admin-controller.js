@@ -12,8 +12,8 @@ const login = async (req, res) => {
   try {
     const { email, password } =req.body
     if(email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD){
-        const token = jwt.sign(email+password, process.env.JWT_SECRET)
-        res.send({success: true, message: "Admin logged in successfully!", token})
+        const admin_token = jwt.sign(email+password, process.env.JWT_SECRET)
+        res.send({success: true, message: "Admin logged in successfully!", admin_token})
         
         
     }else{
@@ -32,16 +32,17 @@ const login = async (req, res) => {
  const addDoctor = async (req, res) => {
     try {
         const { name, email, password, phone, specialization, experience, fee }  = req.body
-        console.log(req.file)
-        const avatarLocalPath = req.file?.path;
-        if(!avatarLocalPath){
-            res.status(400).send("Avatar file is required")
-        }
-        const picture = await uploadOnCloudinary(avatarLocalPath)
-        if(!file) return res.status(201).send({success: false, message: "Please upload a file"})
-            res.status(200).send({success: true, message: "File uploaded successfully!"})
-        const exists  = await doctorModel.findOne({email:email, password:password})
-            if(exists) return res.status(201).send({success: false, message: "Doctor already exists"})
+        const imageFile = req.file
+        console.log({name, email, password, phone, specialization, experience, fee}, imageFile)
+        // const avatarLocalPath = req.file?.path;
+        // if(!avatarLocalPath){
+        //     res.status(400).send("Avatar file is required")
+        // }
+        // const picture = await uploadOnCloudinary(avatarLocalPath)
+        // if(!file) return res.status(201).send({success: false, message: "Please upload a file"})
+        //     res.status(200).send({success: true, message: "File uploaded successfully!"})
+        // const exists  = await doctorModel.findOne({email:email, password:password})
+            // if(exists) return res.status(201).send({success: false, message: "Doctor already exists"})
 
             const doctor =  await doctorModel.create({
                 name,
@@ -51,7 +52,7 @@ const login = async (req, res) => {
                 specialization,
                 experience,
                 fee,
-                picture: picture.url
+                picture: imageFile
 
             })
             await doctor.save()

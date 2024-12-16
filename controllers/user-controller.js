@@ -53,13 +53,13 @@ const login = async (req, res) => {
         return res
           .status(200)
           .send({ success: false, message: "Invalid Credentials" });
-      const token = jwt.sign({ id: loggedInUser._id }, process.env.JWT_SECRET, {
+      const user_token = jwt.sign({ id: loggedInUser._id }, process.env.JWT_SECRET, {
         expiresIn: "1d",
       });
 
       res
         .status(200)
-        .send({ success: true, message: "Login successfuly", token });
+        .send({ success: true, message: "Login successfuly", user_token });
     });
   } catch (error) {
     console.log(error);

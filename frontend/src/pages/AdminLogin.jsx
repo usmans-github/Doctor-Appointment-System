@@ -31,7 +31,7 @@ const AdminLogin =  () => {
         });
         setTimeout(() => {
           // Set the cookie
-          Cookies.set("token", res.data.token);
+          Cookies.set("admin_token", res.data.admin_token);
         }, 1000);
         navigate("/admin/dashboard");
       } else {

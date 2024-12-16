@@ -17,7 +17,7 @@ const Cta = () => {
       </div>
       <div className="relative w-full md:w-1/2 h-[300px] md:h-[400px]">
         <img
-          src="../public/doctors.png"
+          src=" /doctors.png"
           alt="Doctor"
           className="object-contain"
         />

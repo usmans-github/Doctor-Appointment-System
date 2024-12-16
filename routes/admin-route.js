@@ -11,7 +11,7 @@ const router = express.Router()
 router.post("/login", login)
 
 //Admin Add Doctor
-router.post("/add-doctor", authMiddleware, upload.single("image"),  addDoctor)
+router.post("/add-doctor", authMiddleware, upload.single("file"),  addDoctor)
 
 
 //Admin Get Stats
