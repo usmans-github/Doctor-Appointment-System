@@ -30,6 +30,20 @@ const Page = () => {
   const [stats, setstats] = useState([])
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
+  const getAdminData = async () => {
+    
+    try {
+      const res = await axios.post("http://localhost:3000/api/user/getAdminData", {}, {
+        headers: {
+          Authorization: `Bearer ${Cookies.get("token")}` 
+        }
+        
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
 
   const fetchStats = async () => {
     try {
@@ -49,7 +63,8 @@ const Page = () => {
   }
   
   useEffect(() => { 
-    fetchStats()
+    fetchStats(),
+    getAdminData()
   }, [])
 
 

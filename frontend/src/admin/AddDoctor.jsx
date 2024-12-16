@@ -1,9 +1,9 @@
 "use client"
 import React from 'react'
-import { useForm } from "react-hook-form";
+import { Form, useForm } from "react-hook-form";
 import axios from "axios"; 
 import {useDispatch} from "react-redux";
-import { showLoading, hideLoading } from '../../redux/features/alertSlice';
+import { showLoading, hideLoading } from '../redux/features/alertSlice';
 import { Bounce, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {  useNavigate } from "react-router-dom"
@@ -19,7 +19,6 @@ const AddDoctor = () => {
           watch,
           formState: { errors },
         } = useForm();
-      
       
         const onSubmit = async(data) => {
             console.log(data);
@@ -57,6 +56,7 @@ const AddDoctor = () => {
                 transition: Bounce,
                 });
                 console.log("doctor already exists", res.data.message);
+                reset()
             }
           } catch (error) {
             dispatch(hideLoading())
@@ -89,8 +89,10 @@ const AddDoctor = () => {
             Add a Doctor
           </h1>
           <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="grid grid-cols-1 md:grid-cols-2 gap-6"
+          method='post'
+          encType='multipart/form-data'
+          onSubmit={handleSubmit(onSubmit)}
+          className="grid grid-cols-1 md:grid-cols-2 gap-6"
           >
             {/* Left Column */}
             <div className="space-y-4">
@@ -112,7 +114,6 @@ const AddDoctor = () => {
                   id="name"
                   className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 p-2.5"
                   placeholder="John Doe"
-                  required
                 />
               </div>
               {/* Email */}
@@ -129,7 +130,7 @@ const AddDoctor = () => {
                   id="email"
                   className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 p-2.5"
                   placeholder="name@company.com"
-                  required
+                  required={true}
                 />
               </div>
               {/* Password */}
@@ -146,8 +147,24 @@ const AddDoctor = () => {
                   id="password"
                   placeholder="••••••••"
                   className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 p-2.5"
-                  required
+                  required={true}
                 />
+              </div>
+              {/* Picture  */}
+              <div>
+              <label
+                  htmlFor="picture"
+                  className="block mb-2 text-sm font-medium text-gray-900"
+                >
+                  Upload Picture
+                </label>
+                <input
+                 {...register("picture")}
+                 className='w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 p-2.5'
+                 type="file"
+                 name="picture"
+                 required={true}
+                 id="picture" /> 
               </div>
             </div>
 

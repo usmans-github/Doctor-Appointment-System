@@ -1,6 +1,7 @@
 const userModel = require("../models/user-model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const doctorModel = require("../models/doctor-model");
 
 //user register
 const register = async (req, res) => {
@@ -68,6 +69,18 @@ const login = async (req, res) => {
   }
 };
 
+//doctor data 
+const getData = async (req, res) => {
+  try {
+    const doctors = await doctorModel.find({})
+    if(!doctors) res.status(201).send({success: false, message: "Failed loading doctors"})
+      res.status(201).send({success: true, message: "Doctors loaded successfully", data:doctors})
+  } catch (error) {
+    console.log("user controller getData error", error);
+    
+  }
+}
+
 //Auth
 const authController = async (req, res) => {
       try {
@@ -97,8 +110,11 @@ const authController = async (req, res) => {
       }
 }
 
+
+
 module.exports = {
   register,
   login,
-  authController
+  authController,
+  getData 
 };

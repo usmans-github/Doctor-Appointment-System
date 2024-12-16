@@ -11,7 +11,7 @@ import { Bounce, toast, ToastContainer } from "react-toastify";
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { register,  handleSubmit } = useForm();
+  const { register,  handleSubmit, reset } = useForm();
 
   const onSubmit = async (data) => {
     try {
@@ -54,10 +54,12 @@ const Login = () => {
           theme: "light",
           transition: Bounce
         });
+      reset()
       }
     } catch (error) {
       dispatch(hideLoading());
       console.log(error);
+      reset()
     }
   };
 

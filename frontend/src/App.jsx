@@ -6,8 +6,9 @@ import Register from "./pages/Register";
 import Spinner from "./components/Spinner";
 import AdminLogin from "./pages/AdminLogin";
 import DoctorLogin from "./pages/DoctorLogin";
-import Page from "./admin/dashboard/Page";
-import AddDoctor from "./admin/dashboard/AddDoctor";
+import Page from "./admin/Page";
+import AddDoctor from "./admin/AddDoctor";
+import BookAppointment from "./patient/BookAppointment";
 
 function App() {
   const { loading } = useSelector((state) => state.alerts);
@@ -16,15 +17,16 @@ function App() {
     <>
       <BrowserRouter>
       {loading? <Spinner />:(
-
+        
           <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/user/book-appointment" element={<BookAppointment />} />
           <Route path="/doctor-login" element={<DoctorLogin />} />
           <Route path="/admin-login" element={<AdminLogin />} />
           <Route path="/register" element={<Register />} />
           <Route path="/admin/add-doctor" element={<AddDoctor />} />
-          <Route path="/admin/dashboard" element={<Page />} />
+          <Route path="/admin/dashboard" element={<Page  />} />
 
         </Routes>
         )}

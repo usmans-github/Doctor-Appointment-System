@@ -12,8 +12,8 @@ const Cta = () => {
           <br />
           Doctors
         </h2>
-        <button type="button" className="text-indigo-500 bg-white hover:bg-indigo-50 focus:ring-4 focus:ring-blue-300 
-        font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Create Account</button>
+        <a href="/register"><button type="button" className="text-indigo-500 bg-white hover:bg-indigo-50 focus:ring-4 focus:ring-blue-300 
+        font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Create Account</button></a>
       </div>
       <div className="relative w-full md:w-1/2 h-[300px] md:h-[400px]">
         <img

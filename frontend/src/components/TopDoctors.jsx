@@ -52,17 +52,17 @@ const TopDoctors = () => {
     },
   ];
   return (
-    <section className="py-16 px-6 md:px-20">
+    <section className="py-16 px-6 md:px-20 bg-white">
       <div className="text-center mb-12">
-        <h2 className="text-2xl font-bold mb-2 text-white">Top Doctors to Book</h2>
-        <p className="text-white">
+        <h2 className="text-2xl font-bold mb-2 text-indigo-500">Top Doctors to Book</h2>
+        <p className="text-indigo-500">
           Simply browse through our extensive list of trusted doctors.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8 justify-items-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8 justify-items-center">
         {doctors.map((doctor, index) => (
-          <div key={index} className="bg-white rounded-lg p-4 shadow-sm border w-60">
+          <div key={index} className="bg-indigo-500 rounded-lg p-4 shadow-sm border w-60">
             <div className="relative w-full h-48 mb-4">
               <img
                 src={doctor.image}
@@ -70,24 +70,26 @@ const TopDoctors = () => {
                 className="object-cover rounded-lg"
               />
             </div>
-            <div className="flex items-center gap-2 mb-2">
+            <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-green-500"></div>
-              <span className="text-green-500 text-sm">Available</span>
+              <span className="text-green-400 text-sm">Available</span>
             </div>
-            <h3 className="font-bold mb-1">{doctor.name}</h3>
-            <p className="text-white text-sm">{doctor.specialty}</p>
+            <h3 className="font-bold text-white">{doctor.name}</h3>
+            <p className="text-white text-sm">{doctor.specialization}</p>
           </div>
         ))}
       </div>
 
       <div className="text-center">
-        <button
-          type="button"
-          className="text-indigo-500 bg-white hover:bg-indigo-50 focus:ring-4 focus:ring-blue-300 
-        font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-        >
-          more
-        </button>
+      <a href="/admin-login" className="text-sm font-medium">
+          <button
+              type="button"
+              className="text-white bg-indigo-500 hover:text-indigo-500 border hover:border-indigo-500 hover:bg-indigo-50 focus:ring-4 focus:ring-indigo-300
+              font-medium rounded-lg text-sm px-5 py-2.5"
+            >
+              more
+            </button>
+          </a>
       </div>
     </section>
   );

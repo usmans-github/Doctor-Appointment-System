@@ -34,10 +34,10 @@ const AdminLogin =  () => {
           theme: "light",
           transition: Bounce,
         });
-        // setTimeout(() => {
-        //   // Set the cookie
-        //   Cookies.set("atoken", res.data.atoken);
-        // }, 1000);
+        setTimeout(() => {
+          // Set the cookie
+          Cookies.set("token", res.data.token);
+        }, 1000);
         navigate("/admin/dashboard");
       } else {
         console.log(res.data.message);

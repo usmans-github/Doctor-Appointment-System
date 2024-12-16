@@ -14,5 +14,7 @@ router.post("/add-doctor",addDoctor )
 //Admin Get Stats
 router.get("/stats", getStats)
 
+//Admin Auth
+// router.post("/getAdminData", authMiddleware,  authController)
 
 module.exports = router

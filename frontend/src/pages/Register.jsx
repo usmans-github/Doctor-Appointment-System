@@ -55,11 +55,13 @@ const Register = () => {
               transition: Bounce,
               });
               console.log("user already exists", res.data);
+              reset()
           }
         } catch (error) {
           dispatch(hideLoading())
           console.log("register page error onsubmit", error);
           console.log("something went wrong");
+          reset()
           
       }
         };

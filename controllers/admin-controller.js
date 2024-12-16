@@ -3,7 +3,9 @@ const bcrypt = require("bcrypt")
 const adminModel = require("../models/admin-model")
 const doctorModel = require("../models/doctor-model")
 const statsModel = require("../models/stats-model")
-
+const multer = require("multer")
+const upload = multer({ dest: 'uploads/' })
+    
 
 
 
@@ -15,8 +17,11 @@ const login = async (req, res) => {
         const admin = await adminModel.findOne({email: email})
         bcrypt.compare(password, admin.password, (err, result) => {
             if(err) return res.status(201).send({success: false, message: "Access denied, Admins Only!"})
+            const token = jwt.sign({ id: admin._id }, process.env.JWT_SECRET, {
+                    expiresIn: "1d",
+                  });
             
-            res.status(200).send({success: true, message: "Admin login successfuly", })
+            res.status(200).send({success: true, message: "Admin login successfuly", token})
         })
     } catch (error) {
         console.log(error);
@@ -50,8 +55,9 @@ const login = async (req, res) => {
 const getStats = async (req, res) => {
     try {
         const stats = await statsModel.find({})
-        if(stats){ res.status(200).send({success: true, message: "Stats fetched successfully!", stats})}
-        res.status(201).send({success: false, message: "Stats not found!"})
+        if(!stats)res.status(201).send({success: false, message: "Stats not found!"})
+        res.status(200).send({success: true, message: "Stats fetched successfully!", stats})
+        
 
     } catch (error) {
         console.log("admin controller getStats Error: ", error);
