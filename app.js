@@ -33,6 +33,11 @@ app.get("/",  async(req, res) => {
   res.send("Hello World!");
   })
 
+  
+app.get("/",  async(req, res) => {
+  res.send("Hello World!");
+  })
+
 
 
 // Temporary Route

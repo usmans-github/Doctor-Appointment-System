@@ -6,7 +6,10 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      "/server" : 'http://localhost:3000'
+      "/server" : {
+        target: "http://localhost:3000",
+        rewrite: (path) => path.replace(/^\/server/, "")
+      }
     }
   }
   

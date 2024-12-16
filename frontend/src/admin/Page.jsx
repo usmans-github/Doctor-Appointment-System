@@ -33,7 +33,7 @@ const Page = () => {
   const getAdminData = async () => {
     
     try {
-      const res = await axios.post("http://localhost:3000/api/user/getAdminData", {}, {
+      const res = await axios.post("/server/api/user/getAdminData", {}, {
         headers: {
           Authorization: `Bearer ${Cookies.get("token")}` 
         }
@@ -48,7 +48,7 @@ const Page = () => {
   const fetchStats = async () => {
     try {
       
-      const res = await axios.get("http://localhost:3000/api/admin/stats")
+      const res = await axios.get("server/api/admin/stats")
       if(res.data.success){
           setstats(res.data.stats)  
       }

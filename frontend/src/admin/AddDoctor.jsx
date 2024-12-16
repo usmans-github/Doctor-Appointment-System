@@ -30,7 +30,7 @@ const AddDoctor = () => {
             }
           try {
             
-            const res = await axios.post("http://localhost:3000/api/admin/add-doctor", data)
+            const res = await axios.post("/server/api/admin/add-doctor", data)
             setloading(false)
             if(res.data.success) {
               console.log("Doctor addded successfuly", res.data.message); 

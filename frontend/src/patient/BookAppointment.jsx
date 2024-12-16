@@ -26,7 +26,7 @@ const timeSlots = [
 const BookAppointment = () => {
   const [doctors, setdoctors] = useState([])
       const getDoctorData = async () => {
-        const res = await axios.post("http://localhost:3000/api/user/getData")
+        const res = await axios.post("/server/api/user/getData")
         if(res.success){
           setdoctors(res.data.doctors)
           console.log(res.data.message);

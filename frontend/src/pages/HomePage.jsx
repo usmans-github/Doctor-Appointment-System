@@ -10,7 +10,7 @@ const HomePage = () => {
   const getUserData = async () => {
     
     try {
-      const res = await axios.post("http://localhost:3000/api/user/getUserData", {}, {
+      const res = await axios.post("/server/api/user/getUserData", {}, {
         headers: {
           Authorization: `Bearer ${Cookies.get("token")}` 
         }

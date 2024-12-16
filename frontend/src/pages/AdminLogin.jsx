@@ -17,7 +17,7 @@ const AdminLogin =  () => {
     try {
       dispatch(showLoading());
       const res = await axios.post(
-        "http://localhost:3000/api/admin/login",
+        "/server/api/admin/login",
         data
       );
       dispatch(hideLoading());

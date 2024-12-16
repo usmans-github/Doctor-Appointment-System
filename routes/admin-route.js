@@ -10,7 +10,7 @@ const router = express.Router()
 router.post("/login", login)
 
 //Admin Add Doctor
-router.post("/add-doctor", upload.single("image"),  addDoctor)
+// router.post("/add-doctor", upload.single("image"),  addDoctor)
 
 
 //Admin Get Stats
