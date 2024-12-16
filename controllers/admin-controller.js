@@ -3,9 +3,7 @@ const bcrypt = require("bcrypt")
 const adminModel = require("../models/admin-model")
 const doctorModel = require("../models/doctor-model")
 const statsModel = require("../models/stats-model")
-const multer = require("multer")
-const upload = multer({ dest: 'uploads/' })
-    
+
 
 
 
