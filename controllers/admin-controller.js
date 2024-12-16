@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt")
 const adminModel = require("../models/admin-model")
 const doctorModel = require("../models/doctor-model")
 const statsModel = require("../models/stats-model")
+const { uploadOnCloudinary } = require("../utils/cloudinary")
 
 
 
@@ -35,7 +36,12 @@ const login = async (req, res) => {
  const addDoctor = async (req, res) => {
     try {
         const { name, email, password, phone, specialization, experience, fee }  = req.body
-        const  file = req.file
+        console.log(req.file);
+        const avatarLocalPath = req.files?.avatar[0]?.path;
+        if(!avatarLocalPath){
+            res.status(400).send("Avatar file is required")
+        }
+        const avatar = await uploadOnCloudinary(avatarLocalPath)
         if(!file) return res.status(201).send({success: false, message: "Please upload a file"})
             res.status(200).send({success: true, message: "File uploaded successfully!"})
         const exists  = await doctorModel.findOne({email:email, password:password})
@@ -48,7 +54,9 @@ const login = async (req, res) => {
                 phone, 
                 specialization,
                 experience,
-                fee
+                fee,
+                avatar: avatar.url
+
             })
             await doctor.save()
             res.status(200).send({success: true, message: "Doctor added successfully!", })

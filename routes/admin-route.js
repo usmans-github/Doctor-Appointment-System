@@ -1,5 +1,7 @@
 const express = require("express")
 const {login, addDoctor, getStats} = require("../controllers/admin-controller")
+const { upload } = require("../middlewares/multerMiddleware")
+
 
 
 const router = express.Router()
@@ -8,7 +10,7 @@ const router = express.Router()
 router.post("/login", login)
 
 //Admin Add Doctor
-router.post("/add-doctor", addDoctor)
+router.post("/add-doctor", upload.single("avatar"),  addDoctor)
 
 
 //Admin Get Stats
