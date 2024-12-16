@@ -1,6 +1,5 @@
 const jwt = require("jsonwebtoken")
 const bcrypt = require("bcrypt")
-const adminModel = require("../models/admin-model")
 const doctorModel = require("../models/doctor-model")
 const statsModel = require("../models/stats-model")
 const { uploadOnCloudinary } = require("../utils/cloudinary")
@@ -10,25 +9,22 @@ const { uploadOnCloudinary } = require("../utils/cloudinary")
 
 //Admin login controller
 const login = async (req, res) => {
-    try {
+  try {
+    const { email, password } =req.body
+    if(email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD){
+        const token = jwt.sign(email+password, process.env.JWT_SECRET)
+        res.send({success: true, message: "Admin logged in successfully!", token})
         
-        const { email, password } = req.body
-        const admin = await adminModel.findOne({email: email})
-        bcrypt.compare(password, admin.password, (err, result) => {
-            if(err) return res.status(201).send({success: false, message: "Access denied, Admins Only!"})
-            const token = jwt.sign({ id: admin._id }, process.env.JWT_SECRET, {
-                    expiresIn: "1d",
-                  });
-            
-            res.status(200).send({success: true, message: "Admin login successfuly", token})
-        })
-    } catch (error) {
-        console.log(error);
-        res
-        .status(500)
-        .send({ message: `Error in Admin controller ${error.message}` });
         
+    }else{
+        res.status(201).send({success: false, message:"Invalid Credentials"})
     }
+    
+  } catch (error) {
+    console.log(error);
+    res.status(401).send({ success: false, message: error.message })
+    
+  }
  
  }
 

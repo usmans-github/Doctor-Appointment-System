@@ -4,23 +4,18 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { hideLoading, showLoading } from "../redux/features/alertSlice";
 import { Bounce, toast, ToastContainer } from "react-toastify";
 
-const AdminLogin =  () => {
+const AdminLogin =  () => { 
       const navigate = useNavigate();
-      const dispatch = useDispatch();
       const { register, handleSubmit } = useForm();
 
   const onSubmit = async (data) => {
     try {
-      dispatch(showLoading());
       const res = await axios.post(
         "/server/api/admin/login",
         data
       );
-      dispatch(hideLoading());
       if (res.data.success) {
         console.log("Admin Login successfuly");
         toast.success(res.data.message, {
@@ -54,7 +49,6 @@ const AdminLogin =  () => {
         });
       }
     } catch (error) {
-      dispatch(hideLoading());
       console.log(error);
     }
   };
@@ -86,6 +80,7 @@ const AdminLogin =  () => {
                 className="space-y-4 md:space-y-6"
                 action="#"
               >
+                {/* email */}
                 <div>
                   <label
                     htmlFor="email"
@@ -103,6 +98,7 @@ const AdminLogin =  () => {
                     required=""
                   />
                 </div>
+                {/* password */}
                 <div>
                   <label
                     htmlFor="password"
