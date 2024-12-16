@@ -80,17 +80,7 @@ const TopDoctors = () => {
         ))}
       </div>
 
-      <div className="text-center">
-      <a href="/admin-login" className="text-sm font-medium">
-          <button
-              type="button"
-              className="text-white bg-indigo-500 hover:text-indigo-500 border hover:border-indigo-500 hover:bg-indigo-50 focus:ring-4 focus:ring-indigo-300
-              font-medium rounded-lg text-sm px-5 py-2.5"
-            >
-              more
-            </button>
-          </a>
-      </div>
+      
     </section>
   );
 };
