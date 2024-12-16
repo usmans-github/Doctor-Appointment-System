@@ -1,26 +1,25 @@
 "use client";
-import React from "react";
+import React, { useContext } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { hideLoading, showLoading } from "../redux/features/alertSlice";
 import { Bounce, toast, ToastContainer } from "react-toastify";
+import LoadingContext from "../context/LoadingProvider";
 
 const Login = () => {
+  const {loading, setloading} = useContext(LoadingContext)
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const { register,  handleSubmit, reset } = useForm();
 
   const onSubmit = async (data) => {
     try {
-      dispatch(showLoading());
+      setloading(true);
       const res = await axios.post(
         "http://localhost:3000/api/user/login",
         data
       );
-      dispatch(hideLoading());
+      setloading(false);
       if (res.data.success) {
        
         // Set the cookie
@@ -38,8 +37,10 @@ const Login = () => {
           transition: Bounce
         });
         setTimeout(() => {
+          setloading(true)
           Cookies.set("token", res.data.token);
           navigate("/");
+          setloading(false)
       }, 1000); 
       } else {
         console.log(res.data.message);
@@ -57,7 +58,6 @@ const Login = () => {
       reset()
       }
     } catch (error) {
-      dispatch(hideLoading());
       console.log(error);
       reset()
     }

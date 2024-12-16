@@ -1,15 +1,14 @@
 "use client"
-import React from 'react'
+import React, { useContext } from 'react'
 import { useForm } from "react-hook-form";
 import axios from "axios"; 
-import {useDispatch} from "react-redux";
-import { showLoading, hideLoading } from '../redux/features/alertSlice';
 import { Bounce, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {  useNavigate } from "react-router-dom"
-
+import LoadingContext from '../context/LoadingProvider';
 const AddDoctor = () => {
-    const dispatch = useDispatch()
+  const {loading, setloading} = useContext(LoadingContext)
+
     const navigate = useNavigate()
   
       const {
@@ -22,11 +21,17 @@ const AddDoctor = () => {
       
         const onSubmit = async(data) => {
             console.log(data);
-            
+            const formData = new FormData();
+            if(data.picture && data.picture[0]){
+              formData.append("picture", data.picture[0]);
+            }
+            if(data.picture){
+              console.log(data.picture);
+            }
           try {
-            dispatch(showLoading())
+            
             const res = await axios.post("http://localhost:3000/api/admin/add-doctor", data)
-            dispatch(hideLoading())
+            setloading(false)
             if(res.data.success) {
               console.log("Doctor addded successfuly", res.data.message); 
               toast.success(res.data.message, {
@@ -41,7 +46,9 @@ const AddDoctor = () => {
                 transition: Bounce,
                 });
                 setTimeout(() => {
+                  setloading(true)
                  navigate("/admin/dashboard")
+                 setloading(false)
                 }, 1000);
             } else {
               toast.error('Doctor already exists!', {
@@ -56,13 +63,13 @@ const AddDoctor = () => {
                 transition: Bounce,
                 });
                 console.log("doctor already exists", res.data.message);
-                reset()
+               
             }
           } catch (error) {
-            dispatch(hideLoading())
+            setloading(false)
             console.log("addDoctor page error onsubmit", error);
             console.log("something went wrong");
-            reset()
+            
         }
           };
   return (
@@ -162,8 +169,8 @@ const AddDoctor = () => {
                  {...register("picture")}
                  className='w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 p-2.5'
                  type="file"
-                 name="picture"
-                 id="picture" /> 
+                 name="image"
+                 id="image" /> 
               </div>
             </div>
 

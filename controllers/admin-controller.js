@@ -36,12 +36,12 @@ const login = async (req, res) => {
  const addDoctor = async (req, res) => {
     try {
         const { name, email, password, phone, specialization, experience, fee }  = req.body
-        console.log(req.file);
-        const avatarLocalPath = req.files?.avatar[0]?.path;
+        console.log(req.file)
+        const avatarLocalPath = req.file?.path;
         if(!avatarLocalPath){
             res.status(400).send("Avatar file is required")
         }
-        const avatar = await uploadOnCloudinary(avatarLocalPath)
+        const picture = await uploadOnCloudinary(avatarLocalPath)
         if(!file) return res.status(201).send({success: false, message: "Please upload a file"})
             res.status(200).send({success: true, message: "File uploaded successfully!"})
         const exists  = await doctorModel.findOne({email:email, password:password})
@@ -55,7 +55,7 @@ const login = async (req, res) => {
                 specialization,
                 experience,
                 fee,
-                avatar: avatar.url
+                picture: picture.url
 
             })
             await doctor.save()

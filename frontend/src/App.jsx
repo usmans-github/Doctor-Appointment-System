@@ -9,26 +9,31 @@ import DoctorLogin from "./pages/DoctorLogin";
 import Page from "./admin/Page";
 import AddDoctor from "./admin/AddDoctor";
 import BookAppointment from "./patient/BookAppointment";
+import { useContext } from "react";
+import LoadingContext from "./context/LoadingProvider";
 
 function App() {
-  const { loading } = useSelector((state) => state.alerts);
+  const {loading, setloading} = useContext(LoadingContext)
 
   return (
     <>
       <BrowserRouter>
-      {loading? <Spinner />:(
-        
+        {loading ? (
+          <Spinner />
+        ) : (
           <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/user/book-appointment" element={<BookAppointment />} />
-          <Route path="/doctor-login" element={<DoctorLogin />} />
-          <Route path="/admin-login" element={<AdminLogin />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/admin/add-doctor" element={<AddDoctor />} />
-          <Route path="/admin/dashboard" element={<Page  />} />
-
-        </Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<Login />} />
+            <Route
+              path="/user/book-appointment"
+              element={<BookAppointment />}
+            />
+            <Route path="/doctor-login" element={<DoctorLogin />} />
+            <Route path="/admin-login" element={<AdminLogin />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/admin/add-doctor" element={<AddDoctor />} />
+            <Route path="/admin/dashboard" element={<Page />} />
+          </Routes>
         )}
       </BrowserRouter>
     </>

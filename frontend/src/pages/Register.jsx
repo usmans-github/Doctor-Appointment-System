@@ -1,15 +1,16 @@
 "use client"
-import React from 'react'
+import React, { useContext } from 'react'
 import { useForm } from "react-hook-form";
 import axios from "axios"; 
-import {useDispatch} from "react-redux";
-import { showLoading, hideLoading } from '../redux/features/alertSlice';
 import { Bounce, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link, useNavigate } from "react-router-dom"
+import LoadingContext from '../context/LoadingProvider';
 
 const Register = () => {
-  const dispatch = useDispatch()
+  
+  const {loading, setloading} = useContext(LoadingContext)
+
   const navigate = useNavigate()
 
     const {
@@ -23,12 +24,13 @@ const Register = () => {
     
       const onSubmit = async(data) => {
         try {
-          dispatch(showLoading())
+          
           const res = await axios.post("http://localhost:3000/api/user/register", data)
-          dispatch(hideLoading())
+         console.log(res.data.success);
+         
           if(res.data.success) {
             console.log("Registered succcessfuly and response.message is ", res.data.message); 
-            toast.success('user created succcessfuly!', {
+            toast.success('Registered  succcessfuly!', {
               position: "top-center",
               autoClose: 1000,
               hideProgressBar: true,
@@ -40,7 +42,9 @@ const Register = () => {
               transition: Bounce,
               });
               setTimeout(() => {
+              setloading(true)
                navigate("/login")
+               setloading(false)  
               }, 1000);
           } else {
             toast.error('user already exists!', {
@@ -58,10 +62,10 @@ const Register = () => {
               reset()
           }
         } catch (error) {
-          dispatch(hideLoading())
           console.log("register page error onsubmit", error);
           console.log("something went wrong");
           reset()
+          // setloading(false)
           
       }
         };
