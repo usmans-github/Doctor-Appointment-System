@@ -8,12 +8,12 @@ const register = async (req, res) => {
   const { email, password, name } = req.body;
 
   try {
-    const existingUser = await userModel.findOne({ email: email });
+    const existingUser = await userModel.findOne({ email: email, password: password });
     if (existingUser)
       return res
         .status(200)
         .send({ success: false, message: "User already exists" });
-
+ 
     bcrypt.genSalt(10, function (err, salt) {
       bcrypt.hash(password, salt, async function (err, hash) {
         // Store hash in your password DB.
@@ -43,7 +43,7 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   const { email, password } = req.body;
   try {
-    const loggedInUser = await userModel.findOne({ email: email });
+    const loggedInUser = await userModel.findOne({ email: email});
     if (!loggedInUser)
       return res
         .status(200)

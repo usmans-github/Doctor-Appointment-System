@@ -6,10 +6,12 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { Bounce, toast, ToastContainer } from "react-toastify";
 import LoadingContext from "../context/LoadingProvider";
+import { AppContext } from "../context/AppContext";
 
 
 
 const Login = () => {
+  const { token,  settoken } = useContext(AppContext)
   const {loading, setloading} = useContext(LoadingContext)
   const navigate = useNavigate();
   const { register,  handleSubmit, reset } = useForm();
@@ -37,13 +39,15 @@ const Login = () => {
         });
         setTimeout(() => {
           setloading(true)
+          settoken(res.data.user_token)
           Cookies.set("user_token", res.data.user_token);
           navigate("/");
           setloading(false)
       }, 1000); 
       } else {
+        
         console.log(res.data.message);
-        toast.error("Invalid credentials!", {
+        toast.error(res.data.message, {
           position: "top-center",
           autoClose: 2000,
           hideProgressBar: true,

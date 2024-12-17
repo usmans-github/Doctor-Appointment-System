@@ -9,6 +9,8 @@ router.post("/register", register)
 //Login
 router.post("/login", login)
 
+
+
 //Get Doctors Data
 router.post("/getData", getData)
     

@@ -8,7 +8,6 @@ import { Link, useNavigate } from "react-router-dom"
 import LoadingContext from '../context/LoadingProvider';
 
 const Register = () => {
-  
   const {loading, setloading} = useContext(LoadingContext)
 
   const navigate = useNavigate()
@@ -47,7 +46,7 @@ const Register = () => {
                setloading(false)  
               }, 1000);
           } else {
-            toast.error('user already exists!', {
+            toast.error(res.data.message, {
               position: "top-center",
               autoClose: 2000,
               hideProgressBar: true,
