@@ -34,15 +34,16 @@ const login = async (req, res) => {
         const { name, email, password, phone, specialization, experience, fee }  = req.body
         const imageFile = req.file
         console.log({name, email, password, phone, specialization, experience, fee}, imageFile)
-        // const avatarLocalPath = req.file?.path;
-        // if(!avatarLocalPath){
-        //     res.status(400).send("Avatar file is required")
-        // }
-        // const picture = await uploadOnCloudinary(avatarLocalPath)
-        // if(!file) return res.status(201).send({success: false, message: "Please upload a file"})
-        //     res.status(200).send({success: true, message: "File uploaded successfully!"})
-        // const exists  = await doctorModel.findOne({email:email, password:password})
-            // if(exists) return res.status(201).send({success: false, message: "Doctor already exists"})
+        const exists  = await doctorModel.findOne({email:email, password:password})
+        if(exists) return res.status(201).send({success: false, message: "Doctor already exists"})
+        const imageLocalPath = req.file?.path;
+        if(!imageLocalPath){
+            res.status(400).send("Picture file is required")
+        }
+        const picture = await uploadOnCloudinary(imageLocalPath)
+        if(!imageFile) return res.status(201).send({success: false, message: "Please upload a file"})
+            res.status(200).send({success: true, message: "File uploaded successfully!"})
+        
 
             const doctor =  await doctorModel.create({
                 name,
@@ -52,7 +53,7 @@ const login = async (req, res) => {
                 specialization,
                 experience,
                 fee,
-                picture: imageFile
+                picture: picture.secure_url 
 
             })
             await doctor.save()

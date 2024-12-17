@@ -7,6 +7,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { Bounce, toast, ToastContainer } from "react-toastify";
 import LoadingContext from "../context/LoadingProvider";
 
+
+
 const Login = () => {
   const {loading, setloading} = useContext(LoadingContext)
   const navigate = useNavigate();
@@ -21,9 +23,6 @@ const Login = () => {
       );
       setloading(false);
       if (res.data.success) {
-       
-        // Set the cookie
-        Cookies.set("token", res.data.token);
         console.log("Login successfuly");
         toast.success("Login successfuly!", {
           position: "top-center",
@@ -38,7 +37,7 @@ const Login = () => {
         });
         setTimeout(() => {
           setloading(true)
-          Cookies.set("token", res.data.token);
+          Cookies.set("user_token", res.data.user_token);
           navigate("/");
           setloading(false)
       }, 1000); 
