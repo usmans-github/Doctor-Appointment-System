@@ -33,6 +33,10 @@ const doctorSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    available : {
+        type: Boolean,
+        default: true
+    },
     appointments: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "appointments"

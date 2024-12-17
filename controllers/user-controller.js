@@ -2,6 +2,7 @@ const userModel = require("../models/user-model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const doctorModel = require("../models/doctor-model");
+const appointmentModel = require("../models/appointment-model");
 
 //user register
 const register = async (req, res) => {
@@ -96,10 +97,59 @@ const getDoctorsData = async (req, res) => {
   }
 }
 
+//Api to book appointment
+const bookAppointment = async (req, res) => {
+  try {
+    const { userId, docId, slotDate, slotTime } = req.body
+    const docData = await doctorModel.findById(docId).select("-password")
+    // if(!docData.available){
+    //   return res.status(201).send({succes: false, message: "Doctor not available"})
+    // }
+    let slots_booked = docData.slots_booked
+    //Check for availablw slot
+    if(slots_booked[slotDate]){
+      if(slots_booked[slotDate].includes(slotTime)){
+        return res.status(201).send({succes: false, message: "Slot not available"})
+      }else {
+        slots_booked[slotDate].push(slotTime)
+      }
+    }else{
+      slots_booked[slotDate] = []
+      slots_booked[slotDate].push(slotTime)
+    }
+
+    const userData = await userModel.findById(userId).select("-password")
+      
+    delete docData.slots_booked
+
+    const appointmentData = {
+      userId,
+      docId,
+      userData,
+      amount: docData.fee,
+      slotTime,
+      slotDate,
+      date: Date.now()
+    }
+
+    const newAppointment  = await appointmentModel.create(appointmentData)
+    await newAppointment.save()
+
+    //Save  new slotData in docData
+    await doctorModel.findByIdAndUpdate(docId, {slots_booked})
+    res.status(200).send({success: true, message: "Appointment Booked"})
+
+  } catch (error) {
+    console.log(error);
+    res.send({success: false, message: error.message})
+  }
+}
+
 
 module.exports = {
   register,
   login,
   getUserProfile,
-  getDoctorsData 
+  getDoctorsData,
+  bookAppointment 
 };

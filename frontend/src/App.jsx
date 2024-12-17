@@ -28,7 +28,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<Login />} />
             {token &&  <Route path="/patient/profile" element={<Profile />} />}
-            {token &&  <Route path="/patient/book-appointment" element={<BookAppointment />} />}
+            {!token &&  <Route path="/patient/book-appointment" element={<BookAppointment />} />}
             <Route path="/all-doctors" element={<AllDoctors />} />
             <Route path="/doctor-login" element={<DoctorLogin />} />
             <Route path="/admin-login" element={<AdminLogin />} />

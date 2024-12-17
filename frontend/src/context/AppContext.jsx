@@ -26,12 +26,12 @@ const AppContextProvider = (props) => {
     }
  
     //Get all doctors
-    const [data, setdata] = useState([])
+    const [doctors, setdoctors] = useState([])
   
     const doctorData = async () => {
         try {
             const res = await axios.get("/server/api/user/getData")
-            setdata(res.data.doctors)
+            setdoctors(res.data.doctors)
             
             
         } catch (error) {
@@ -54,8 +54,8 @@ const AppContextProvider = (props) => {
         userData,
         setuserData,
         userProfileData,
-        data,
-        setdata
+        doctors,
+        setdoctors,
      }
     return (
         <AppContext.Provider value={value}>

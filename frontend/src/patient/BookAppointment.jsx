@@ -1,40 +1,36 @@
 "use client"
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useForm } from "react-hook-form";
-import axios from "axios"; 
-import { Bounce, ToastContainer, toast } from 'react-toastify';
+ import { Bounce, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useParams } from "react-router-dom"
+import { AppContext } from '../context/AppContext';
 
 
 
-// Mock data for available doctors
-// const doctors = [
-//   { id: "1", name: "Dr. John Doe", specialization: "Cardiology" },
-//   { id: "2", name: "Dr. Jane Smith", specialization: "Neurology" },
-//   { id: "3", name: "Dr. Mike Johnson", specialization: "Orthopedics" },
-// ]
-
-// Mock data for available time slots
+// // Mock data for available time slots
 const timeSlots = [
-  "09:00 AM", "10:00 AM", "11:00 AM", "02:00 PM", "03:00 PM", "04:00 PM"
+  "09:00 AM", "10:00 AM", "11:00 AM", "01:00 PM", "02:00 PM", "03:00 PM", "04:00 PM"
 ]
 
 
 const BookAppointment = () => {
-  const [doctors, setdoctors] = useState([])
-      const getDoctorData = async () => {
-        const res = await axios.post("/server/api/user/getData")
-        if(res.success){
-          setdoctors(res.data.doctors)
-          console.log(res.data.message);
-          
-        }else{
-          setdoctors([])
-          console.log(res.data.message);
-          
-        }
-      }
+  const { docId } = useParams()
+  const { doctors, setDoctors } = useContext(AppContext)
+  console.log(doctors);
   
+  const [docinfo, setdocinfo] = useState(null)
+  const [docslots, setdocslots] = useState([])
+  const [slotId, setslotId] = useState(0)
+  const [timeslot, settimeslot] = useState("")
+
+
+
+  const fetchDocInfo = async () => {
+    const docinfo = doctors.find(doc => doc._id === docId) 
+    setdocinfo(docinfo) 
+  }
+      
       const {
           register,
           handleSubmit,
@@ -44,12 +40,20 @@ const BookAppointment = () => {
         } = useForm();
 
     const onSubmit  = async (data) => {
-      console.log(data);
+      const BookAppointment = async () => {
+        if(!token){
+          //warn
+        }
+      }
       
     }     
     useEffect(() => {
-      getDoctorData()
+      fetchDocInfo()
     }, [])
+
+    useEffect(() => {
+      fetchDocInfo()
+    }, [doctors, docId])
     
   return (
     <>

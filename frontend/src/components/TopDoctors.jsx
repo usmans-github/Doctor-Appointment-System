@@ -3,11 +3,8 @@ import { AppContext } from "../context/AppContext";
 
 
 
-
-
-
 const TopDoctors = () => {
-  const {data, setData } = useContext(AppContext)
+  const {doctors, setdoctors} = useContext(AppContext)
   
   return (
     <section className="py-16 px-6 md:px-20 bg-white">
@@ -19,7 +16,7 @@ const TopDoctors = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8 justify-items-center">
-        {data.map((doctor, index) => (
+        {doctors.map((doctor, index) => (
           <div key={index} className="bg-indigo-500 rounded-lg p-4 shadow-sm border w-60">
             <div className="relative w-full h-48 mb-4">
               <img
