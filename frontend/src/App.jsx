@@ -10,6 +10,7 @@ import AddDoctor from "./admin/AddDoctor";
 import BookAppointment from "./patient/BookAppointment";
 import { useContext } from "react";
 import LoadingContext from "./context/LoadingProvider";
+import AllDoctors from "./pages/AllDoctors";
 
 function App() {
   const {loading, setloading} = useContext(LoadingContext)
@@ -27,6 +28,7 @@ function App() {
               path="/user/book-appointment"
               element={<BookAppointment />}
             />
+            <Route path="/all-doctors" element={<AllDoctors />} />
             <Route path="/doctor-login" element={<DoctorLogin />} />
             <Route path="/admin-login" element={<AdminLogin />} />
             <Route path="/register" element={<Register />} />

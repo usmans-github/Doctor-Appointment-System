@@ -24,7 +24,7 @@ export default function Header() {
           <a href="/" className="text-sm font-medium">
             HOME
           </a>
-          <a href="/doctors" className="text-sm font-medium">
+          <a href="/all-doctors" className="text-sm font-medium">
             ALL DOCTORS
           </a>
           <a href="/about" className="text-sm font-medium">
@@ -103,7 +103,7 @@ export default function Header() {
           <a href="/" className="text-sm font-medium hover:text-indigo-300">
             HOME
           </a>
-          <a href="/doctors" className="text-sm font-medium hover:text-indigo-300">
+          <a href="/all-doctors" className="text-sm font-medium hover:text-indigo-300">
             ALL DOCTORS
           </a>
           <a href="/about" className="text-sm font-medium hover:text-indigo-300">

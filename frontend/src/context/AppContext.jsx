@@ -21,7 +21,7 @@ const AppContextProvider = (props) => {
       console.log(res.data.doctors);
       
     }
-    useEffect(() => {
+    useEffect(() => { 
      doctorData()
     }, [])
 
