@@ -105,7 +105,7 @@ const bookAppointment = async (req, res) => {
     // if(!docData.available){
     //   return res.status(201).send({succes: false, message: "Doctor not available"})
     // }
-    let slots_booked = JSON.parse(docData.slots_booked)
+    let slots_booked = docData.slots_booked
     //Check for availablw slot
     if(slots_booked[slotDate]){
       if(slots_booked[slotDate].includes(slotTime)){
