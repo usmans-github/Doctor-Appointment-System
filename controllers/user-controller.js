@@ -43,17 +43,17 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   const { email, password } = req.body;
   try {
-    const loggedInUser = await userModel.findOne({ email: email});
-    if (!loggedInUser)
+    const user = await userModel.findOne({ email: email});
+    if (!user)
       return res
         .status(200)
         .send({ success: false, message: "User not found" });
-    bcrypt.compare(password, loggedInUser.password, function (err, result) {
+    bcrypt.compare(password, user.password, function (err, result) {
       if (!result)
         return res
           .status(200)
           .send({ success: false, message: "Invalid Credentials" });
-      const user_token = jwt.sign({ id: loggedInUser._id }, process.env.JWT_SECRET, {
+      const user_token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
         expiresIn: "1d",
       });
 
@@ -70,38 +70,22 @@ const login = async (req, res) => {
 };
 
 
-//Auth
-const authController = async (req, res) => {
-      try {
-        const user = await userModel.findOne({ _id: req.body.userId });
-        if (!user) {
-          return res.status(200).send({
-            message: "user not found",
-            success: false,
-          });
-        } else {
-          res.status(200).send({
-            success: true,
-            data: {
-              name: user.name,
-              email: user.email,
-             },
-          });
-        }
-      } catch (error) {
-        console.log(error);
-        res.status(500).send({
-          success: false,
-          message: "auth error",
-          error,
-        });
-        
-      }
+//user data 
+const getUserProfile = async(req, res) => {
+  try {
+    
+    const { userId } = req.body
+    console.log(req.body);
+    const userData = await userModel.findById(userId).select("-password")
+    res.status(200).send({success: true, userData})
+  } catch (error) {
+    console.log(error);
+    res.status(401).send({ success: false, message: error.message })
+  }
 }
 
-
 //doctor data 
-const getData = async (req, res) => {
+const getDoctorsData = async (req, res) => {
   try {
     const doctors = await doctorModel.find({})
     if(!doctors) return res.status(201).send({success: false, message: "Failed loading doctors"})
@@ -116,6 +100,6 @@ const getData = async (req, res) => {
 module.exports = {
   register,
   login,
-  authController,
-  getData 
+  getUserProfile,
+  getDoctorsData 
 };

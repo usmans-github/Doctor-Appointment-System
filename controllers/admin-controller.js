@@ -42,7 +42,7 @@ const login = async (req, res) => {
         }
         const picture = await uploadOnCloudinary(imageLocalPath)
         if(!imageFile) return res.status(201).send({success: false, message: "Please upload a file"})
-            res.status(200).send({success: true, message: "File uploaded successfully!"})
+            res.status(200).send({success: true, message: "Doctor added successfully!"})
         
 
             const doctor =  await doctorModel.create({
@@ -57,7 +57,7 @@ const login = async (req, res) => {
 
             })
             await doctor.save()
-            res.status(200).send({success: true, message: "Doctor added successfully!", })
+            res.status(200).send({success: true, message: "Doctor added successfully!" })
        
     } catch (error) {
         console.log("admin controller addDoctor Error: ", error);

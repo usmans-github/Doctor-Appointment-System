@@ -27,7 +27,7 @@ const patientData = {
   ],
 }
 
-const Profile = () => {
+const Profile = ({params}) => {
   const navigate = useNavigate()
   const [activeTab, setActiveTab] = useState('personal')
 
