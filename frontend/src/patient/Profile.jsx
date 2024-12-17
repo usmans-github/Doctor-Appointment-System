@@ -1,6 +1,51 @@
-import React from 'react'
+'use client'
+
+import React, { useState } from 'react'
+
+// Mock data for the patient profile
+const patientData = {
+  name: "John Doe",
+  age: 35,
+  gender: "Male",
+  bloodType: "A+",
+  email: "john.doe@example.com",
+  phone: "(123) 456-7890",
+  address: "123 Main St, Anytown, USA",
+  emergencyContact: "Jane Doe (Wife) - (987) 654-3210",
+  medicalHistory: [
+    { condition: "Hypertension", diagnosedDate: "2018-03-15" },
+    { condition: "Type 2 Diabetes", diagnosedDate: "2019-07-22" },
+  ],
+  medications: [
+    { name: "Lisinopril", dosage: "10mg", frequency: "Once daily" },
+    { name: "Metformin", dosage: "500mg", frequency: "Twice daily" },
+  ],
+  upcomingAppointments: [
+    { id: 1, date: "2023-06-15", time: "10:00 AM", doctor: "Dr. Smith", department: "Cardiology", status: "Confirmed" },
+    { id: 2, date: "2023-07-02", time: "2:30 PM", doctor: "Dr. Johnson", department: "Endocrinology", status: "Pending" },
+  ],
+}
 
 const Profile = () => {
+  const [activeTab, setActiveTab] = useState('personal')
+
+  const handleBookAppointment = () => {
+    // In a real application, this would navigate to the appointment booking page
+    alert("Navigating to appointment booking page...")
+  }
+
+  const getStatusColor = (status) => {
+    switch (status.toLowerCase()) {
+      case 'confirmed':
+        return 'bg-green-100 text-green-800'
+      case 'pending':
+        return 'bg-yellow-100 text-yellow-800'
+      case 'cancelled':
+        return 'bg-red-100 text-red-800'
+      default:
+        return 'bg-gray-100 text-gray-800'
+    }
+  }
   return (
     <>
     <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
