@@ -69,17 +69,6 @@ const login = async (req, res) => {
   }
 };
 
-//doctor data 
-const getData = async (req, res) => {
-  try {
-    const doctors = await doctorModel.find({})
-    if(!doctors) res.status(201).send({success: false, message: "Failed loading doctors"})
-      res.status(201).send({success: true, message: "Doctors loaded successfully", data:doctors})
-  } catch (error) {
-    console.log("user controller getData error", error);
-    
-  }
-}
 
 //Auth
 const authController = async (req, res) => {
@@ -110,6 +99,18 @@ const authController = async (req, res) => {
       }
 }
 
+
+//doctor data 
+const getData = async (req, res) => {
+  try {
+    const doctors = await doctorModel.find({})
+    if(!doctors) return res.status(201).send({success: false, message: "Failed loading doctors"})
+    res.status(201).send({success: true, message: "Doctors loaded successfully", doctors})
+  } catch (error) {
+    console.log("user controller getData error", error);
+    
+  }
+}
 
 
 module.exports = {

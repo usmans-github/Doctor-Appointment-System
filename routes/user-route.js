@@ -12,7 +12,7 @@ router.post("/login", login)
 
 
 //Get Doctors Data
-router.post("/getData", getData)
+router.get("/getData", getData)
     
 
 

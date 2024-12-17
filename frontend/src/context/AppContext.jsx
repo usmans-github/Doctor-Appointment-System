@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import axios from "axios"
 
 
@@ -10,11 +10,27 @@ const AppContextProvider = (props) => {
 
 
     const [token, settoken] = useState("")
-    // const getUserData = async() =>{
-    //     const res = await axios.post("/server/api/user/getUserData")
-    // }
+    
 
-    const value = { token, settoken }
+    //Get all doctors
+    const [data, setdata] = useState([])
+  
+    const doctorData = async () => {
+      const res = await axios.get("/server/api/user/getData")
+      setdata(res.data.doctors)
+      console.log(res.data.doctors);
+      
+    }
+    useEffect(() => {
+     doctorData()
+    }, [])
+
+    const value = {
+        token,
+        settoken,
+        data,
+        setdata
+     }
     return (
         <AppContext.Provider value={value}>
             {props.children}

@@ -7,17 +7,7 @@ import TopDoctors from '../components/TopDoctors'
 import Cta from '../components/Cta'
 
 const HomePage = () => {
-  const getUserData = async () => {
-    
-    try {
-      const res = await axios.post("/server/api/user/getUserData")
-    } catch (error) {
-      console.log(error);
-    }
-  }
-  useEffect(() => {
-    getUserData();
-  }, [])
+
 
 
   return (
