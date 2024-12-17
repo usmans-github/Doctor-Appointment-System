@@ -173,9 +173,9 @@ const BookAppointment = () => {
                       Book Appointment
                     </button>
                     <p className="text-sm font-normal text-black dark:text-gray-400">
-                     Back to dashboard?{" "} 
+                     Back to Profile?{" "} 
                       <a
-                        href="/user/dashboard"
+                        href="/patient/profile"
                         className="font-medium text-indigo-500 ml-2 hover:underline dark:text-primary-500"
                       >
                         Click here

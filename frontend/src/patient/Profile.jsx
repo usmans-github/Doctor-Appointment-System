@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 
 // Mock data for the patient profile
 const patientData = {
@@ -27,12 +28,10 @@ const patientData = {
 }
 
 const Profile = () => {
+  const navigate = useNavigate()
   const [activeTab, setActiveTab] = useState('personal')
 
-  const handleBookAppointment = () => {
-    // In a real application, this would navigate to the appointment booking page
-    alert("Navigating to appointment booking page...")
-  }
+  
 
   const getStatusColor = (status) => {
     switch (status.toLowerCase()) {
@@ -59,13 +58,14 @@ const Profile = () => {
               <p className="mt-1 max-w-2xl text-sm text-gray-500">
                 Personal details and medical information.
               </p>
-            </div>
-            <button
-              onClick={handleBookAppointment}
-              className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-            >
+            </div> 
+            <Link to="/patient/book-appointment">
+            <button 
+             className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+             >
               Book Appointment
             </button>
+              </Link> 
           </div>
           <div className="border-t border-gray-200">
             <div className="bg-gray-50 px-4 py-5 sm:px-6">

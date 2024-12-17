@@ -58,7 +58,7 @@ export default function Header() {
           {/* //User logged in  */}
           {token ? 
           <div className="hidden md:flex items-center text-white gap-2 cursor-pointer">
-            <a href="/patient/${token}/profile"><img
+            <a href="/patient/profile"><img
               src="https://www.shutterstock.com/image-vector/young-smiling-man-avatar-brown-600nw-2261401207.jpg"
               alt="User"
               width={40}
