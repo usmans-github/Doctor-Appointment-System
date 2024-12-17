@@ -1,5 +1,4 @@
 const jwt = require("jsonwebtoken")
-const bcrypt = require("bcrypt")
 const doctorModel = require("../models/doctor-model")
 const statsModel = require("../models/stats-model")
 const { uploadOnCloudinary } = require("../utils/cloudinary")

@@ -13,7 +13,6 @@ import LoadingContext from "./context/LoadingProvider";
 import AllDoctors from "./pages/AllDoctors";
 import Profile from "./patient/Profile";
 import { AppContext } from "./context/AppContext";
-import Header from "./components/Header";
 
 function App() {
   const {loading, setloading} = useContext(LoadingContext)
@@ -33,7 +32,7 @@ function App() {
             <Route path="/doctor-login" element={<DoctorLogin />} />
             <Route path="/admin-login" element={<AdminLogin />} />
             <Route path="/register" element={<Register />} />
-            {token &&  <Route path="/admin/add-doctor" element={<AddDoctor />} />}
+            {!token &&  <Route path="/admin/add-doctor" element={<AddDoctor />} />}
             <Route path="/admin/dashboard" element={<Page />} />
           </Routes>
         )}

@@ -105,22 +105,22 @@ const bookAppointment = async (req, res) => {
     // if(!docData.available){
     //   return res.status(201).send({succes: false, message: "Doctor not available"})
     // }
-    let slots_booked = docData.slots_booked
+    let slots_booked = JSON.parse(docData.slots_booked)
     //Check for availablw slot
     if(slots_booked[slotDate]){
       if(slots_booked[slotDate].includes(slotTime)){
         return res.status(201).send({succes: false, message: "Slot not available"})
       }else {
-        slots_booked[slotDate].push(slotTime)
+        slots_booked[slotDate].push(slotTime) 
       }
-    }else{
+    }else{  
       slots_booked[slotDate] = []
       slots_booked[slotDate].push(slotTime)
     }
 
     const userData = await userModel.findById(userId).select("-password")
       
-    delete docData.slots_booked
+    // delete docData.slots_booked
 
     const appointmentData = {
       userId,
@@ -145,6 +145,8 @@ const bookAppointment = async (req, res) => {
   }
 }
 
+//But in database i amstoring doctor like this 
+// slots_booked : { type: Object, default: {}},
 
 module.exports = {
   register,

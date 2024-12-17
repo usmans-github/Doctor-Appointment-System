@@ -13,7 +13,6 @@ const AppContextProvider = (props) => {
     const [userData, setuserData] = useState(false)
     const userProfileData = async() => {
         try {
-            
             const {data} = await axios.get("/server/api/user/get-profile", {Headers: token})
             if(data.success){
                 setuserData(data.userData)

@@ -7,7 +7,7 @@ const doctorSchema = new mongoose.Schema({
     },
     email: {
         type: String,
-        required: true
+        required: true  
     },
     password: {
         type: String,
@@ -37,12 +37,13 @@ const doctorSchema = new mongoose.Schema({
         type: Boolean,
         default: true
     },
+    slots_booked : { type: Object, default: {}},
     appointments: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "appointments"
     }]
-}, {
-    timestamps: true
-})
+},
+{timestamps: true}
+)
 
 module.exports = mongoose.model("doctors", doctorSchema)

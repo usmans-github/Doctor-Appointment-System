@@ -99,7 +99,7 @@ const BookAppointment = () => {
                       <option value="">Select a Doctor</option>
                       {
                         doctors.map((doctor)=> (
-                            <option key={doctor.id} value={doctor.id}>
+                            <option key={doctor._id} value={doctor.id}>
                               {doctor.name} - {doctor.specialization}
                             </option>
                         ))
