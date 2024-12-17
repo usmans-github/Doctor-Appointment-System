@@ -27,10 +27,10 @@ const AllDoctors = () => {
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                  <span className="text-green-400 text-sm">Available</span>
+                  <span className="text-green-400 text-sm">{doctor.specialization}</span>
                 </div>
                 <h3 className="font-bold text-white">{doctor.name}</h3>
-                <p className="text-white text-sm">{doctor.specialization}</p>
+                <p className="text-white text-sm">Fee Rs: {doctor.fee}</p>
                 
               </div>
             ))}

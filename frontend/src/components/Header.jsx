@@ -1,10 +1,15 @@
 import { useContext, useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { AppContext } from "../context/AppContext";
+import cookies from "cookie"
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Header() {
-  const { token, settoken} = useContext(AppContext)
+  
+  const { token, settoken } = useContext(AppContext)
+  const { userData, setuserData } = useContext(AppContext)
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  
 
   return (
     <header className="bg-indigo-500">
@@ -56,19 +61,18 @@ export default function Header() {
             </button>
           </a>
           {/* //User logged in  */}
-          {token ? 
-          <div className="hidden md:flex items-center text-white gap-2 cursor-pointer">
-            <a href={`/patient:${token}/profile`}><img
+          {token && userData ? 
+          <a href="/patient/profile"><div className="hidden md:flex items-center text-white gap-2 cursor-pointer">
+            <img
               src="https://www.shutterstock.com/image-vector/young-smiling-man-avatar-brown-600nw-2261401207.jpg"
               alt="User"
               width={40}
               height={40}
               className="rounded-full"
               />
-              </a>
             {/* <ChevronDown className="w-4 h-4 text-white" /> */}
-          </div>
-            : <a href="/login"><button
+          </div></a>
+          : <a href="/login"><button
             
             className="w-full text-white bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
           >

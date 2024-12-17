@@ -1,9 +1,9 @@
 'use client'
+import React, { useContext, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { AppContext } from '../context/AppContext'
 
-import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-
-// Mock data for the patient profile
+// // Mock data for the patient profile
 const patientData = {
   name: "John Doe",
   age: 35,
@@ -27,11 +27,12 @@ const patientData = {
   ],
 }
 
-const Profile = ({params}) => {
-  const navigate = useNavigate()
-  const [activeTab, setActiveTab] = useState('personal')
-
+const Profile = () => {
+  // const { token, settoken } = useContext(AppContext)
+  const { userData, setUserData } = useContext(AppContext)
+  console.log(userData);
   
+  const [activeTab, setActiveTab] = useState('personal')
 
   const getStatusColor = (status) => {
     switch (status.toLowerCase()) {
@@ -45,7 +46,9 @@ const Profile = ({params}) => {
         return 'bg-gray-100 text-gray-800'
     }
   }
-  return (
+
+
+  return  userData && ( 
     <>
     <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto">
@@ -61,7 +64,9 @@ const Profile = ({params}) => {
             </div> 
             <Link to="/patient/book-appointment">
             <button 
-             className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+             className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md
+              shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2
+               focus:ring-blue-500"
              >
               Book Appointment
             </button>

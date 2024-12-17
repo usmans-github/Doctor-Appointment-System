@@ -41,7 +41,7 @@ const Login = () => {
           setloading(true)
           settoken(res.data.user_token)
           Cookies.set("user_token", res.data.user_token);
-          navigate("/");
+          navigate("/patient/profile");
           setloading(false)
       }, 1000); 
       } else {

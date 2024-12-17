@@ -1,6 +1,4 @@
-import React, { useEffect } from 'react'
-import axios from 'axios'
-import Cookies from 'js-cookie'
+import React from 'react'
 import Hero from '../components/Hero'
 import Specialties from '../components/Specialities'
 import TopDoctors from '../components/TopDoctors'
