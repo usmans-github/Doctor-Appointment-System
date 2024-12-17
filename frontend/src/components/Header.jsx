@@ -58,14 +58,15 @@ export default function Header() {
           {/* //User logged in  */}
           {token ? 
           <div className="hidden md:flex items-center text-white gap-2 cursor-pointer">
-            <img
+            <a href="/patient/${token}/profile"><img
               src="https://www.shutterstock.com/image-vector/young-smiling-man-avatar-brown-600nw-2261401207.jpg"
               alt="User"
               width={40}
               height={40}
               className="rounded-full"
               />
-            <ChevronDown className="w-4 h-4 text-white" />
+              </a>
+            {/* <ChevronDown className="w-4 h-4 text-white" /> */}
           </div>
             : <a href="/login"><button
             
