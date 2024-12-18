@@ -1,5 +1,5 @@
 const express = require("express")
-const {login, addDoctor, getStats} = require("../controllers/admin-controller")
+const {login, addDoctor} = require("../controllers/admin-controller")
 const  upload = require("../middlewares/multerMiddleware.js")
 const authAdmin = require("../middlewares/authAdmin.js")
 
@@ -14,10 +14,11 @@ router.post("/login", login)
 router.post("/add-doctor", authAdmin, upload.single("file"),  addDoctor)
 
 
-//Admin Get Stats
-router.get("/stats", getStats)
 
 //Admin Auth
-// router.post("/getAdminData", authMiddleware,  authController)
+router.post("/getAdminData", authAdmin,  )
+
+
+
 
 module.exports = router

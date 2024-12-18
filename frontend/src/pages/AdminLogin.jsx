@@ -1,12 +1,14 @@
 "use client";
-import React from "react";
+import React, { useContext } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { Bounce, toast, ToastContainer } from "react-toastify";
+import { AdminContext } from "../context/AdminContext";
 
 const AdminLogin =  () => { 
+      const {admin_token, setadmin_token} = useContext(AdminContext)
       const navigate = useNavigate();
       const { register, handleSubmit } = useForm();
 
@@ -32,8 +34,11 @@ const AdminLogin =  () => {
         setTimeout(() => {
           // Set the cookie
           Cookies.set("admin_token", res.data.admin_token);
+          setadmin_token(res.data.admin_token)
         }, 1000);
         navigate("/admin/dashboard");
+        console.log(admin_token);
+        
       } else {
         console.log(res.data.message);
         toast.error("Invalid credentials!", {

@@ -12,11 +12,9 @@ import { useContext } from "react";
 import LoadingContext from "./context/LoadingProvider";
 import AllDoctors from "./pages/AllDoctors";
 import Profile from "./patient/Profile";
-import { AppContext } from "./context/AppContext";
 
 function App() {
   const {loading, setloading} = useContext(LoadingContext)
-  const { token, settoken } = useContext(AppContext)
   return (
     <>
       <BrowserRouter>
@@ -26,13 +24,13 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<Login />} />
-            {token &&  <Route path="/patient/profile" element={<Profile />} />}
-            {!token &&  <Route path="/patient/book-appointment" element={<BookAppointment />} />}
+            <Route path="/patient/profile" element={<Profile />} />
+            <Route path="/patient/book-appointment" element={<BookAppointment />} />
             <Route path="/all-doctors" element={<AllDoctors />} />
             <Route path="/doctor-login" element={<DoctorLogin />} />
             <Route path="/admin-login" element={<AdminLogin />} />
             <Route path="/register" element={<Register />} />
-            {!token &&  <Route path="/admin/add-doctor" element={<AddDoctor />} />}
+            <Route path="/admin/add-doctor" element={<AddDoctor />} />
             <Route path="/admin/dashboard" element={<Page />} />
           </Routes>
         )}

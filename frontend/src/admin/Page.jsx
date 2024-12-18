@@ -1,15 +1,12 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import axios from "axios"
 import { 
-  ChartBarIcon, 
-  UserIcon, 
-  CalendarIcon, 
-  Cog6ToothIcon as CogIcon,
   Bars3Icon as MenuIcon,
   XMarkIcon as XIcon
 } from '@heroicons/react/24/solid'
 import { Link } from 'react-router-dom'
+import { AdminContext } from '../context/AdminContext'
 
 // Mock data (replace with actual data fetching in a real application)
 
@@ -27,51 +24,18 @@ const mockAppointments = [
 
 const Page = () => {
 
-  const [stats, setstats] = useState([])
+  const { admin_token, setadmin_token } = useContext(AdminContext)
+
+  console.log(admin_token);
+
   const [sidebarOpen, setSidebarOpen] = useState(false)
-
-  const getAdminData = async () => {
-    
-    try {
-      const res = await axios.post("/server/api/user/getAdminData", {}, {
-        headers: {
-          Authorization: `Bearer ${Cookies.get("token")}` 
-        }
-        
-      })
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-
-  const fetchStats = async () => {
-    try {
-      
-      const res = await axios.get("server/api/admin/stats")
-      if(res.data.success){
-          setstats(res.data.stats)  
-      }
-      else{
-        return res.data.message
-   
-      }
-    } catch (error) {
-      console.log("Admin dashboard  Page error in fetchStats", error);
-      
-    }
-  }
   
-  useEffect(() => { 
-    fetchStats(),
-    getAdminData()
-  }, [])
 
 
 
 
 
-  return (
+  return admin_token && (
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar */}
       <div className={`${sidebarOpen ? 'block' : 'hidden'} fixed inset-y-0 left-0 z-50 w-64 bg-white  text-black transition-all duration-300 lg:relative lg:block`}>
@@ -98,14 +62,8 @@ const Page = () => {
             <button onClick={() => setSidebarOpen(true)} className="text-gray-500 focus:outline-none focus:text-gray-700 lg:hidden">
               <MenuIcon className="h-6 w-6" />
             </button>
-            {/* <div className="flex items-center">
-              <span className="text-gray-700 text-sm mr-4">Welcome, Admin</span>
-              <button className="text-gray-500 focus:outline-none focus:text-gray-700">
-                <CogIcon className="h-6 w-6" />
-              </button>
-            </div> */}
+         
           </div>
-        {/* </header> */}
 
         {/* Dashboard content */}
         <main className="p-6">
@@ -113,7 +71,7 @@ const Page = () => {
           
           {/* Stats */}
           <div className="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-3">
-            {stats.map((stat, index) => (
+            {mockStats.map((stat, index) => (
               <div key={index} className="bg-white rounded-lg shadow-sm p-6">
                 <div className="flex items-center">
                   <div className="p-3 rounded-full bg-indigo-500 bg-opacity-75">

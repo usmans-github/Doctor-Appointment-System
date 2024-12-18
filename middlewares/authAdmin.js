@@ -4,15 +4,16 @@ module.exports = async (req, res, next ) => {
 try {
 
     
-    const { admin_token } = req.cookies
+    const { admin_token } = req.headers
     
     if(!admin_token){
         return res.send({success: false, message: "Not Authorized"})
     }
-    const decode_token = jwt.verify(admin_token, process.env.JWT_SECRET)
-    if(decode_token !== process.env.ADMIN_EMAIL + process.env.ADMIN_PASSWORD){
+    const decode = jwt.verify(admin_token, process.env.JWT_SECRET)
+    if(decode !== process.env.ADMIN_EMAIL + process.env.ADMIN_PASSWORD){
         return res.send({success: false, message: "Not Authorized"})
     }
+    req.body.adminId = decode.id
     next()
     
 } catch (error) {

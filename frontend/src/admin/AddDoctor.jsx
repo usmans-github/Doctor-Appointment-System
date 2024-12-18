@@ -38,17 +38,7 @@ const AddDoctor = () => {
       setloading(false);
       if (res.data.success) {
         console.log("Doctor addded successfuly", res.data.message);
-        toast.success(res.data.message, {
-          position: "top-center",
-          autoClose: 1000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce,
-        });
+        toast.success(res.data.message);
         setTimeout(() => {
           setloading(true);
           navigate("/admin/dashboard");
