@@ -4,7 +4,7 @@ import {
   Bars3Icon as MenuIcon,
   XMarkIcon as XIcon
 } from '@heroicons/react/24/solid'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { AdminContext } from '../context/AdminContext'
 
 // Mock data (replace with actual data fetching in a real application)
@@ -22,7 +22,7 @@ const mockAppointments = [
 ]
 
 const Page = () => {
-
+  const navigate = useNavigate()
   const { admin_token, setadmin_token, doctors, setdoctors, getStats } = useContext(AdminContext)
   const [sidebarOpen, setSidebarOpen] = useState(false)
   

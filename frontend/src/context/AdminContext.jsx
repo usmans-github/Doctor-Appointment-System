@@ -5,7 +5,6 @@ import {  createContext, useEffect, useState } from "react";
 export const AdminContext = createContext()
 
 const AdminContextProvider = (props) => {
-
   const [admin_token, setadmin_token] = useState("")
   //All data for admin
   const [doctors, setdoctors] = useState([])

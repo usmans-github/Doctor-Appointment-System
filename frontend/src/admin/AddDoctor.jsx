@@ -5,8 +5,8 @@ import axios from "axios";
 import { Bounce, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link, useNavigate } from "react-router-dom";
-import LoadingContext from "../context/LoadingProvider";
 import { AdminContext } from "../context/AdminContext";
+import { LoadingContext } from "../context/LoadingContext";
 
 
 

@@ -8,22 +8,16 @@ import DoctorLogin from "./pages/DoctorLogin";
 import Page from "./admin/Page";
 import AddDoctor from "./admin/AddDoctor";
 import BookAppointment from "./patient/BookAppointment";
-import { useContext } from "react";
-import LoadingContext from "./context/LoadingProvider";
 import AllDoctors from "./pages/AllDoctors";
 import Profile from "./patient/Profile";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Doctors from "./admin/Doctors";
 
 function App() {
-  const {loading, setloading} = useContext(LoadingContext)
   return (
     <>
       
       
-        {loading ? (
-          <Spinner />
-        ) : (
           <Routes>
 
             <Route path="/" element={<HomePage />} />
@@ -38,7 +32,7 @@ function App() {
             <Route path="/admin/doctors" element={<Doctors />} />
             <Route path="/admin/dashboard" element={<Page />} />
           </Routes>
-        )}
+       
       
     </>
   );
