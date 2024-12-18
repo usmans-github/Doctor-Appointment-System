@@ -16,10 +16,15 @@ router.post("/add-doctor",    authAdmin, upload.single("file"),  addDoctor)
 //Get All Data Stats
 router.get("/getStats",  getStats)
 
-//Admin Auth
-router.post("/getAdminData",      )
 
 
+
+
+
+
+
+// //Admin Auth
+// router.post("/getAdminData")
 
 
 module.exports = router

@@ -78,7 +78,7 @@ const getStats = async (req, res) => {
         const doctorsData = await doctorModel.find({})
         const usersData = await userModel.find({})
     res.status(201).send({success: true, message: "All Doctors data loaded successfuly", doctorsData, usersData})
-    console.log(doctorsData);
+    
 
     
     } catch (error) {
