@@ -32,17 +32,24 @@ const login = async (req, res) => {
     try {
         const { name, email, password, phone, specialization, experience, fee }  = req.body
         const imageFile = req.file
-        console.log({name, email, password, phone, specialization, experience, fee}, imageFile)
+        if(!imageFile){
+            return res.status(400).send({success: false, message: "Please upload a file"})
+        }
+        // console.log({name, email, password, phone, specialization, experience, fee}, imageFile)
         const exists  = await doctorModel.findOne({email:email, password:password})
-        if(exists) return res.status(201).send({success: false, message: "Doctor already exists"})
+        if(exists) {
+            return res.status(400).send({success: false, message: "Doctor already exists"})
+        }
         const imageLocalPath = req.file?.path;
         if(!imageLocalPath){
-            res.status(400).send("Picture file is required")
+            return res.status(400).send("Picture file is required")
         }
         const picture = await uploadOnCloudinary(imageLocalPath)
-        if(!imageFile) return res.status(201).send({success: false, message: "Please upload a file"})
-            res.status(200).send({success: true, message: "Doctor added successfully!"})
+        if(!picture) {
+            return res.status(500).send({success: false, message: "Try Again, Cloudinary issue"})
+        }
         
+            //Otherwise 
 
             const doctor =  await doctorModel.create({
                 name,
@@ -56,7 +63,7 @@ const login = async (req, res) => {
 
             })
             await doctor.save()
-            res.status(200).send({success: true, message: "Doctor added successfully!" })
+            return res.status(200).send({success: true, message: "Doctor added successfully!" })
        
     } catch (error) {
         console.log("admin controller addDoctor Error: ", error);

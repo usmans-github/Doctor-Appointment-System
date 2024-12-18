@@ -18,7 +18,7 @@ const AllDoctors = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8 justify-items-center">
             {doctors.map((doctor, index) => (
               <div key={index} className="bg-indigo-500 rounded-lg p-4 shadow-sm border w-60">
-                <div className="relative w-full h-48 mb-4">
+                <div className="relative w-full h-50 mb-4">
                   <img
                     src={doctor.picture}
                     alt={doctor.name}

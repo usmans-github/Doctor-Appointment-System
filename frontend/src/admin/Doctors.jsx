@@ -5,14 +5,14 @@ import { PencilIcon, TrashIcon } from '@heroicons/react/24/solid'
 import { Link } from 'react-router-dom'
 
 const mockDoctors = [
-  { id: 1, name: 'Dr. John Doe', specialization: 'Cardiology', email: 'john.doe@example.com', phone: '(123) 456-7890' },
-  { id: 2, name: 'Dr. Jane Smith', specialization: 'Neurology', email: 'jane.smith@example.com', phone: '(234) 567-8901' },
-  { id: 3, name: 'Dr. Mike Johnson', specialization: 'Orthopedics', email: 'mike.johnson@example.com', phone: '(345) 678-9012' },
-  { id: 4, name: 'Dr. Sarah Williams', specialization: 'Pediatrics', email: 'sarah.williams@example.com', phone: '(456) 789-0123' },
-  { id: 5, name: 'Dr. David Brown', specialization: 'Dermatology', email: 'david.brown@example.com', phone: '(567) 890-1234' },
-]
+    { id: 1, name: 'Dr. John Doe', specialization: 'Cardiology', email: 'john.doe@example.com', phone: '(123) 456-7890' },
+    { id: 2, name: 'Dr. Jane Smith', specialization: '  ', email: 'jane.smith@example.com', phone: '(234) 567-8901' },
+    { id: 3, name: 'Dr. Mike Johnson', specialization: 'Orthopedics', email: 'mike.johnson@example.com', phone: '(345) 678-9012' },
+    { id: 4, name: 'Dr. Sarah Williams', specialization: 'Pediatrics', email: 'sarah.williams@example.com', phone: '(456) 789-0123' },
+    { id: 5, name: 'Dr. David Brown', specialization: 'Dermatology', email: 'david.brown@example.com', phone: '(567) 890-1234' },
+  ]
 
-export default function Doctors() {
+  export default function Doctors() {
   const [searchTerm, setSearchTerm] = useState('')
 
   const filteredDoctors = mockDoctors.filter(doctor =>
@@ -23,7 +23,7 @@ export default function Doctors() {
   return (
     <div className="container mx-auto max-w-4xl px-4 py-8">
       {/* Back to Dashboard Button */}
-      <div className="mb-4">
+      <div className="mb-4">  
         <Link to="/admin/dashboard">
         <button
             className="  text-white bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:outline-none

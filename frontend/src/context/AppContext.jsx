@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import axios from "axios"
+import { toast } from "react-toastify";
 
 
 
@@ -20,6 +21,7 @@ const AppContextProvider = (props) => {
                 data.message
             }
         } catch (error) {
+            toast.error(error.message)
             console.log(error.nessage);
         }
     }
@@ -34,6 +36,7 @@ const AppContextProvider = (props) => {
             
             
         } catch (error) {
+            toast.error(error.message)
             console.log(error.nessage);
             
         }

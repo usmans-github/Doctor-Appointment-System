@@ -92,10 +92,13 @@ const getUserProfile = async(req, res) => {
 const getDoctorsData = async (req, res) => {
   try {
     const doctors = await doctorModel.find({})
-    if(!doctors) return res.status(201).send({success: false, message: "Failed loading doctors"})
-    res.status(201).send({success: true, message: "Doctors loaded successfully", doctors})
+    if(!doctors) {
+      return res.status(400).send({success: false, message: "Failed loading doctors"})
+    }
+    return res.status(200).send({success: true, message: "Doctors loaded successfully", doctors})
   } catch (error) {
     console.log("user controller getData error", error);
+    res.status(400).send({success: false, message:"error.message"})
     
   }
 }

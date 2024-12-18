@@ -16,7 +16,7 @@ const AdminLogin =  () => {
     try {
       const res = await axios.post(
         "/server/api/admin/login",
-        data
+        data,admin_token
       );
       if (res.data.success) {
         console.log("Admin Login successfuly");
@@ -54,6 +54,7 @@ const AdminLogin =  () => {
         });
       }
     } catch (error) {
+      toast.error(error.message)
       console.log(error);
     }
   };

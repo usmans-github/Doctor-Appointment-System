@@ -62,6 +62,7 @@ const Register = () => {
               reset()
           }
         } catch (error) {
+          toast.error(error.message)
           console.log("register page error onsubmit", error);
           console.log("something went wrong");
           reset()

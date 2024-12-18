@@ -14,7 +14,6 @@ import { LoadingContext } from "../context/LoadingContext";
 const AddDoctor = () => {
   const { admin_token, setadmin_token } = useContext(AdminContext)
   const { loading, setloading } = useContext(LoadingContext);
-
   const navigate = useNavigate();
 
   const {
@@ -22,7 +21,6 @@ const AddDoctor = () => {
     handleSubmit,
     reset,
     watch,
-    formState: { errors },
   } = useForm();
 
   const onSubmit = async (data) => {
@@ -36,38 +34,28 @@ const AddDoctor = () => {
     formData.append("fee", data.fee);
     formData.append("file", data.file[0]);
     try {
-      console.log(formData.file);
+      // console.log("form data is:", formData.data);
       const res = await axios.post(
-        "/server/api/admin/add-doctor",
-        formData
-      );
+        "/server/api/admin/add-doctor", {Headers: {admin_token}},
+        formData);
       setloading(false);
       if (res.data.success) {
         console.log("Doctor addded successfuly", res.data.message);
-        toast.success(res.data.message);
+        
         setTimeout(() => {
           setloading(true);
+          toast.success(res.data.message);
           navigate("/admin/dashboard");
           setloading(false);
         }, 1000);
       } else {
-        toast.error(res.data.message, {
-          position: "top-center",
-          autoClose: 2000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce,
-        });
+        toast.error(res.data.message);
         console.log(res.data.message);
       }
     } catch (error) {
+      toast.error(error.message)
       setloading(false);
       console.log(error);
-      console.log("something went wrong");
     }
   };
   
