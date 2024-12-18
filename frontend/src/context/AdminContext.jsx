@@ -9,11 +9,11 @@ const AdminContextProvider = (props) => {
   //All data for admin
   const [doctors, setdoctors] = useState([])
   const getStats = async () => {
-    const docdata = await axios.get("/server/api/admin/getStats")
+    const docdata = await axios.get("/server/api/admin/getStats", admin_token)
     setdoctors(docdata.data.doctorsData)
-   
   }
  
+  //All Patients data
   
   
   const value = {

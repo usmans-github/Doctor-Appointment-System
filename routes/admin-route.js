@@ -11,10 +11,10 @@ const router = express.Router()
 router.post("/login", login)
 
 //Admin Add Doctor
-router.post("/add-doctor",    authAdmin, upload.single("file"),  addDoctor)
+router.post("/add-doctor",    upload.single("file"),  addDoctor)
 
 //Get All Data Stats
-router.get("/getStats",  getStats)
+router.get("/getStats",  authAdmin, getStats)
 
 
 

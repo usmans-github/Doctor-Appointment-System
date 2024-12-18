@@ -36,7 +36,7 @@ const AddDoctor = () => {
     try {
       // console.log("form data is:", formData.data);
       const res = await axios.post(
-        "/server/api/admin/add-doctor", {Headers: {admin_token}},
+        "/server/api/admin/add-doctor", {Headers:admin_token},
         formData);
       setloading(false);
       if (res.data.success) {
