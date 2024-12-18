@@ -129,9 +129,9 @@ const AdminLogin =  () => {
                   Login
                 </button>
                 <p className="text-sm font-normal text-black dark:text-gray-400">
-                  Doctor login ?
+                  User login ?
                   <Link
-                    to="/doctor-login"
+                    to="/login"
                     className="text-indigo-500 ml-2 font-medium text-primary-600 hover:underline dark:text-primary-500"
                   >
                     Click here

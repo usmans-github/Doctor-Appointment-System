@@ -113,7 +113,7 @@ const bookAppointment = async (req, res) => {
     if(slots_booked[slotDate]){
       if(slots_booked[slotDate].includes(slotTime)){
         return res.status(201).send({succes: false, message: "Slot not available"})
-      }else {
+      }else { 
         slots_booked[slotDate].push(slotTime) 
       }
     }else{  

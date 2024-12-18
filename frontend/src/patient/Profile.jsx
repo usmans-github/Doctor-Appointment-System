@@ -85,7 +85,7 @@ const Profile = () => {
                 >
                   Personal Info
                 </button>
-                <button
+                {/* <button
                   className={`px-3 py-2 font-medium text-sm rounded-md ${
                     activeTab === 'medical'
                       ? 'bg-blue-100 text-blue-800'
@@ -94,7 +94,7 @@ const Profile = () => {
                   onClick={() => setActiveTab('medical')}
                 >
                   Medical History
-                </button>
+                </button> */}
                 <button
                   className={`px-3 py-2 font-medium text-sm rounded-md ${
                     activeTab === 'appointments'
@@ -122,10 +122,10 @@ const Profile = () => {
                     <dt className="text-sm font-medium text-gray-500">Gender</dt>
                     <dd className="mt-1 text-sm text-gray-900">{patientData.gender}</dd>
                   </div>
-                  <div className="sm:col-span-1">
+                  {/* <div className="sm:col-span-1">
                     <dt className="text-sm font-medium text-gray-500">Blood type</dt>
                     <dd className="mt-1 text-sm text-gray-900">{patientData.bloodType}</dd>
-                  </div>
+                  </div> */}
                   <div className="sm:col-span-1">
                     <dt className="text-sm font-medium text-gray-500">Email address</dt>
                     <dd className="mt-1 text-sm text-gray-900">{patientData.email}</dd>
@@ -134,14 +134,14 @@ const Profile = () => {
                     <dt className="text-sm font-medium text-gray-500">Phone number</dt>
                     <dd className="mt-1 text-sm text-gray-900">{patientData.phone}</dd>
                   </div>
-                  <div className="sm:col-span-2">
+                  {/* <div className="sm:col-span-2">
                     <dt className="text-sm font-medium text-gray-500">Address</dt>
                     <dd className="mt-1 text-sm text-gray-900">{patientData.address}</dd>
                   </div>
                   <div className="sm:col-span-2">
                     <dt className="text-sm font-medium text-gray-500">Emergency contact</dt>
                     <dd className="mt-1 text-sm text-gray-900">{patientData.emergencyContact}</dd>
-                  </div>
+                  </div> */}
                 </dl>
               )}
               {activeTab === 'medical' && (

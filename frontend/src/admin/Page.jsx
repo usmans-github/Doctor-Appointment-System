@@ -137,7 +137,7 @@ const Page = () => {
               <Link>
               <button className="flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md
                text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
-                Schedule Appointment
+                Total Patients
               </button>
               </Link>
               <Link>
@@ -149,7 +149,7 @@ const Page = () => {
               <Link>
               <button className="flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md
                text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
-                Manage Inventory
+                All Doctors
               </button>
                  </Link>
             </div>
