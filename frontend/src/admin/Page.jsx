@@ -1,6 +1,5 @@
 'use client'
 import React, { useContext, useEffect, useState } from 'react'
-import axios from "axios"
 import { 
   Bars3Icon as MenuIcon,
   XMarkIcon as XIcon
@@ -24,18 +23,20 @@ const mockAppointments = [
 
 const Page = () => {
 
-  const { admin_token, setadmin_token } = useContext(AdminContext)
-
-  console.log(admin_token);
-
+  const { admin_token, setadmin_token, doctors, setdoctors, getStats } = useContext(AdminContext)
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  
+  console.log(doctors);
+  
+
+  useEffect(() => {
+    getStats()
+  }, [])
   
 
 
 
-
-
-  return admin_token && (
+  if(admin_token) {return  (
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar */}
       <div className={`${sidebarOpen ? 'block' : 'hidden'} fixed inset-y-0 left-0 z-50 w-64 bg-white  text-black transition-all duration-300 lg:relative lg:block`}>
@@ -46,11 +47,11 @@ const Page = () => {
           </button>
         </div>
         <nav className="mt-8">
-          <a href="/admin/dashboard" className="block py-2 px-4 text-black hover:bg-indigo-500 hover:text-white">Dashboard</a>
-          <a href="#" className="block py-2 px-4 text-black hover:bg-indigo-500 hover:text-white">Doctors</a>
-          <a href="#" className="block py-2 px-4 text-black hover:bg-indigo-500 hover:text-white">Patients</a>
-          <a href="#" className="block py-2 px-4 text-black hover:bg-indigo-500 hover:text-white">Appointments</a>
-          <a href="#" className="block py-2 px-4 text-black hover:bg-indigo-500 hover:text-white">Settings</a>
+          <Link to="/admin/dashboard" className="block py-2 px-4 text-black hover:bg-indigo-500 hover:text-white">Dashboard</Link>
+          <Link to="/admin/doctors" className="block py-2 px-4 text-black hover:bg-indigo-500 hover:text-white">Doctors</Link>
+          <Link to="#" className="block py-2 px-4 text-black hover:bg-indigo-500 hover:text-white">Patients</Link>
+          <Link to="#" className="block py-2 px-4 text-black hover:bg-indigo-500 hover:text-white">Appointments</Link>
+          <Link to="#" className="block py-2 px-4 text-black hover:bg-indigo-500 hover:text-white">Settings</Link>
         </nav>
       </div>
 
@@ -156,7 +157,7 @@ const Page = () => {
         </main>
       </div>
     </div>
-  )
+  )}
 }
 
 export default Page

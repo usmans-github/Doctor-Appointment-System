@@ -1,4 +1,4 @@
-import {  Routes, Route, useNavigate } from "react-router-dom";
+import {  Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -12,11 +12,10 @@ import { useContext } from "react";
 import LoadingContext from "./context/LoadingProvider";
 import AllDoctors from "./pages/AllDoctors";
 import Profile from "./patient/Profile";
-import { AppContext } from "./context/AppContext";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Doctors from "./admin/Doctors";
 
 function App() {
-  const navigate = useNavigate()
-  const { user_token, setuser_token } = useContext(AppContext)
   const {loading, setloading} = useContext(LoadingContext)
   return (
     <>
@@ -29,13 +28,14 @@ function App() {
 
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/patient/profile" element={<Profile />} />
-            <Route path="/patient/book-appointment" element={<BookAppointment />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/patient/profile" element={<ProtectedRoute element={<Profile />} />} />
+            <Route path="/patient/book-appointment" element={<ProtectedRoute element={<BookAppointment />} />} />
             <Route path="/all-doctors" element={<AllDoctors />} />
             <Route path="/doctor-login" element={<DoctorLogin />} />
             <Route path="/admin-login" element={<AdminLogin />} />
-            <Route path="/register" element={<Register />} />
             <Route path="/admin/add-doctor" element={<AddDoctor />} />
+            <Route path="/admin/doctors" element={<Doctors />} />
             <Route path="/admin/dashboard" element={<Page />} />
           </Routes>
         )}

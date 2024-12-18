@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken")
 const doctorModel = require("../models/doctor-model")
 const { uploadOnCloudinary } = require("../utils/cloudinary")
+const userModel = require("../models/user-model")
 
 
 
@@ -63,7 +64,22 @@ const login = async (req, res) => {
     }
  }
 
-//Auth admin
+//Get Stats 
+
+const getStats = async (req, res) => {
+    try {
+        const doctorsData = await doctorModel.find({})
+        const usersData = await userModel.find({})
+    res.status(201).send({success: true, message: "All Doctors data loaded successfuly", doctorsData, usersData})
+    console.log(doctorsData);
+
+    
+    } catch (error) {
+        console.log(error);
+        
+    }
+    
+}
 
 
 
@@ -73,5 +89,5 @@ const login = async (req, res) => {
 module.exports = {
     login,
     addDoctor,
-    
+    getStats
 }

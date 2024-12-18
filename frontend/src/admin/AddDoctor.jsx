@@ -4,9 +4,15 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { Bounce, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LoadingContext from "../context/LoadingProvider";
+import { AdminContext } from "../context/AdminContext";
+
+
+
+
 const AddDoctor = () => {
+  const { admin_token, setadmin_token } = useContext(AdminContext)
   const { loading, setloading } = useContext(LoadingContext);
 
   const navigate = useNavigate();
@@ -64,7 +70,8 @@ const AddDoctor = () => {
       console.log("something went wrong");
     }
   };
-  return (
+  
+  if(admin_token) {return  (
     <>
       <ToastContainer
         position="top-center"
@@ -249,12 +256,12 @@ const AddDoctor = () => {
                   </button>
                   <p className="text-sm font-normal text-black mt-2 text-center">
                     Back to dashboard?{" "}
-                    <a
-                      href="/admin/dashboard"
+                    <Link
+                     to="/admin/dashboard"
                       className="font-medium text-indigo-500 hover:underline"
                     >
                       Click here
-                    </a>
+                    </Link>
                   </p>
                 </div>
               </form>
@@ -263,7 +270,7 @@ const AddDoctor = () => {
         </div>
       </section>
     </>
-  );
+  );}
 };
 
 export default AddDoctor;

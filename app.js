@@ -4,7 +4,6 @@ const connectDb = require("./config/db");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const path = require("path");
-const statsModel = require("./models/stats-model");
 
 //Express App
 const app = express();

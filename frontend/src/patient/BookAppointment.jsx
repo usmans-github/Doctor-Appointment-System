@@ -1,10 +1,10 @@
 "use client"
 import React, { useContext, useEffect, useState } from 'react'
 import { useForm } from "react-hook-form";
- import { Bounce, ToastContainer, toast } from 'react-toastify';
+ import { Bounce, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useParams } from "react-router-dom"
 import { AppContext } from '../context/AppContext';
+import { Link } from 'react-router-dom';
 
 
 
@@ -15,47 +15,43 @@ const timeSlots = [
 
 
 const BookAppointment = () => {
-  const { docId } = useParams()
-  const { doctors, setDoctors } = useContext(AppContext)
-  console.log(doctors);
-  
-  const [docinfo, setdocinfo] = useState(null)
-  const [docslots, setdocslots] = useState([])
-  const [slotId, setslotId] = useState(0)
-  const [timeslot, settimeslot] = useState("")
+        const { user_token, setuser_token } = useContext(AppContext)
+        const { doctors, setDoctors } = useContext(AppContext)
+        console.log(doctors);
+        
+        const [docinfo, setdocinfo] = useState(null)
+        const [docslots, setdocslots] = useState([])
+        const [slotId, setslotId] = useState(0)
+        const [timeslot, settimeslot] = useState("")
 
 
 
-  const fetchDocInfo = async () => {
-    const docinfo = doctors.find(doc => doc._id === docId) 
-    setdocinfo(docinfo) 
-  }
-      
-      const {
-          register,
-          handleSubmit,
-          reset,
-          watch,
-          formState: { errors },
-        } = useForm();
-
-    const onSubmit  = async (data) => {
-      const BookAppointment = async () => {
-        if(!token){
-          //warn
+        const fetchDocInfo = async () => {
+          const docinfo = doctors.find(doc => doc._id === docId) 
+          setdocinfo(docinfo) 
         }
-      }
-      
-    }     
-    useEffect(() => {
-      fetchDocInfo()
-    }, [])
+            
+            const {
+                register,
+                handleSubmit,
+                reset,
+                watch,
+                formState: { errors },
+              } = useForm();
 
-    useEffect(() => {
-      fetchDocInfo()
-    }, [doctors, docId])
+          const onSubmit  = async (data) => {
+            console.log(data);
+            
+          }     
+          useEffect(() => {
+            fetchDocInfo()
+          }, [])
+
+          useEffect(() => {
+            fetchDocInfo()
+          }, [doctors])
     
-  return (
+  if(user_token) return (
     <>
       <ToastContainer
         position="top-center"
@@ -178,12 +174,12 @@ const BookAppointment = () => {
                     </button>
                     <p className="text-sm font-normal text-black dark:text-gray-400">
                      Back to Profile?{" "} 
-                      <a
-                        href="/patient/profile"
+                      <Link
+                       to="/patient/profile"
                         className="font-medium text-indigo-500 ml-2 hover:underline dark:text-primary-500"
                       >
                         Click here
-                      </a>
+                      </Link>
                     </p>
                   </form>
                 </div>

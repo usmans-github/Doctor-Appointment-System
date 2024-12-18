@@ -6,7 +6,7 @@ const appointmentModel = require("../models/appointment-model");
 
 //user register
 const register = async (req, res) => {
-  const { email, password, name } = req.body;
+  const { email, password, name, phone, age,  gender } = req.body;
 
   try {
     const existingUser = await userModel.findOne({ email: email, password: password });
@@ -22,6 +22,9 @@ const register = async (req, res) => {
           name: name,
           email: email,
           password: hash,
+          phone,
+          age,
+          gender
         });
         newUser.save();
         res.status(201).send({
