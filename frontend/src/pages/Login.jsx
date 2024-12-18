@@ -11,7 +11,7 @@ import { AppContext } from "../context/AppContext";
 
 
 const Login = () => {
-  const { token,  settoken } = useContext(AppContext)
+  const { user_token,  setuser_token } = useContext(AppContext)
   const {loading, setloading} = useContext(LoadingContext)
   const navigate = useNavigate();
   const { register,  handleSubmit, reset } = useForm();
@@ -39,7 +39,7 @@ const Login = () => {
         });
         setTimeout(() => {
           setloading(true)
-          settoken(res.data.user_token)
+          setuser_token(res.data.user_token)
           Cookies.set("user_token", res.data.user_token);
           navigate("/patient/profile");
           setloading(false)

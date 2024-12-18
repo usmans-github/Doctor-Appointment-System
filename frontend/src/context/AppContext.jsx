@@ -7,13 +7,13 @@ export const AppContext = createContext()
 
 
 const AppContextProvider = (props) => {
-    // Get cookie for homepage
-    const [token, settoken] = useState("")
+    // Get user_token 
+    const [user_token, setuser_token] = useState("")
     //Get userData for user Profile
     const [userData, setuserData] = useState(false)
     const userProfileData = async() => {
         try {
-            const {data} = await axios.get("/server/api/user/get-profile", {Headers: token})
+            const {data} = await axios.get("/server/api/user/get-profile", {Headers: user_token})
             if(data.success){
                 setuserData(data.userData)
             }else{
@@ -39,17 +39,21 @@ const AppContextProvider = (props) => {
         }
     
     }
+
+
+
+    
+    useEffect(() => { 
+     userProfileData()
+    }, [])
     useEffect(() => { 
      doctorData()
     }, [])
 
-    useEffect(() => { 
-     userProfileData()
-    }, [token])
 
     const value = {
-        token,
-        settoken,
+        user_token,
+        setuser_token,
         userData,
         setuserData,
         userProfileData,

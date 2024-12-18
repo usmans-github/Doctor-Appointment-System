@@ -28,7 +28,7 @@ const patientData = {
 }
 
 const Profile = () => {
-  // const { token, settoken } = useContext(AppContext)
+  const { user_token, setuser_token } = useContext(AppContext)
   const { userData, setUserData } = useContext(AppContext)
   console.log(userData);
   
@@ -48,7 +48,7 @@ const Profile = () => {
   }
 
 
-  return  userData && ( 
+  return  ( 
     <>
     <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto">
@@ -201,6 +201,8 @@ const Profile = () => {
       </div>
     </div>
     </>
+            
+   
   )
 }
 

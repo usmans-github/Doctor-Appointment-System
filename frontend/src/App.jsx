@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {  Routes, Route, useNavigate } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -12,16 +12,21 @@ import { useContext } from "react";
 import LoadingContext from "./context/LoadingProvider";
 import AllDoctors from "./pages/AllDoctors";
 import Profile from "./patient/Profile";
+import { AppContext } from "./context/AppContext";
 
 function App() {
+  const navigate = useNavigate()
+  const { user_token, setuser_token } = useContext(AppContext)
   const {loading, setloading} = useContext(LoadingContext)
   return (
     <>
-      <BrowserRouter>
+      
+      
         {loading ? (
           <Spinner />
         ) : (
           <Routes>
+
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/patient/profile" element={<Profile />} />
@@ -34,7 +39,7 @@ function App() {
             <Route path="/admin/dashboard" element={<Page />} />
           </Routes>
         )}
-      </BrowserRouter>
+      
     </>
   );
 }

@@ -1,14 +1,14 @@
 import { useContext, useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { AppContext } from "../context/AppContext";
-import cookies from "cookie"
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Header() {
+  const navigate = useNavigate()
   
-  const { token, settoken } = useContext(AppContext)
-  const { userData, setuserData } = useContext(AppContext)
+  const { user_token, setuser_token } = useContext(AppContext)
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
   
 
   return (
@@ -17,28 +17,28 @@ export default function Header() {
         {/* Logo */}
         <div className="flex items-center gap-2">
          
-          <a href="/">
+          <Link to="/">
             <span className="text-2xl cursor-pointer text-white font-bold">
               HealthCare
             </span>
-          </a>
+          </Link>
         </div>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-8 text-white">
-          <a href="/" className="text-sm font-medium">
+          <Link to="/" className="text-sm font-medium">
             HOME
-          </a>
-          <a href="/all-doctors" className="text-sm font-medium">
+          </Link>
+          <Link to="/all-doctors" className="text-sm font-medium">
             ALL DOCTORS
-          </a>
-          <a href="/about" className="text-sm font-medium">
+          </Link>
+          <Link to="/about" className="text-sm font-medium">
             ABOUT
-          </a>
-          <a href="/contact" className="text-sm font-medium">
+          </Link>
+          <Link to="/contact" className="text-sm font-medium">
             CONTACT
-          </a>
-          <a href="/admin-login" className="text-sm font-medium">
+          </Link>
+          <Link to="/admin-login" className="text-sm font-medium">
           <button
               type="button"
               className="text-white hover:text-indigo-500 border border-white hover:bg-indigo-50 focus:ring-4 focus:ring-indigo-300
@@ -46,12 +46,12 @@ export default function Header() {
             >
               Admin
             </button>
-          </a>
+          </Link>
         </div>
 
         {/* Account and User Section */}
         <div className="flex items-center gap-2">
-          <a href="/register" className="hidden md:inline">
+          <Link to="/register" className="hidden md:inline">
             <button
               type="button"
               className="text-indigo-500 bg-white hover:bg-indigo-50 focus:ring-4 focus:ring-indigo-300
@@ -59,25 +59,28 @@ export default function Header() {
             >
               Create account
             </button>
-          </a>
+          </Link>
           {/* //User logged in  */}
-          {token && userData ? 
-          <a href="/patient/profile"><div className="hidden md:flex items-center text-white gap-2 cursor-pointer">
+          {user_token   ? 
+          <div className="hidden md:flex items-center text-white gap-2 cursor-pointer">
+            <Link  to="/patient/profile">
+            
             <img
               src="https://www.shutterstock.com/image-vector/young-smiling-man-avatar-brown-600nw-2261401207.jpg"
               alt="User"
               width={40}
               height={40}
               className="rounded-full"
-              />
+              /></Link>
             {/* <ChevronDown className="w-4 h-4 text-white" /> */}
-          </div></a>
-          : <a href="/login"><button
-            
-            className="w-full text-white bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+          </div>
+          : <Link to="/login"><button
+            className="w-full text-white bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:outline-none
+             focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600
+              dark:hover:bg-primary-700 dark:focus:ring-primary-800"
           >
            Login
-          </button></a>}
+          </button></Link>}
 
           {/* Hamburger Menu */}
           <button
@@ -105,22 +108,22 @@ export default function Header() {
 
         {/* Sidebar Links */}
         <div className="flex flex-col px-6 space-y-4 mt-4">
-          <a href="/" className="text-sm font-medium hover:text-indigo-300">
+          <Link to="/" className="text-sm font-medium hover:text-indigo-300">
             HOME
-          </a>
-          <a href="/all-doctors" className="text-sm font-medium hover:text-indigo-300">
+          </Link>
+          <Link to="/all-doctors" className="text-sm font-medium hover:text-indigo-300">
             ALL DOCTORS
-          </a>
-          <a href="/about" className="text-sm font-medium hover:text-indigo-300">
+          </Link>
+          <Link to="/about" className="text-sm font-medium hover:text-indigo-300">
             ABOUT
-          </a>
-          <a href="/contact" className="text-sm font-medium hover:text-indigo-300">
+          </Link>
+          <Link to="/contact" className="text-sm font-medium hover:text-indigo-300">
             CONTACT
-          </a>
-          <a href="/admin-login" className="text-sm font-medium hover:text-indigo-300">
+          </Link>
+          <Link to="/admin-login" className="text-sm font-medium hover:text-indigo-300">
             Admin Panel
-          </a>
-          <a href="/register">
+          </Link>
+          <Link to="/register">
             <button
               type="button"
               className="w-full text-indigo-500 bg-white hover:bg-indigo-50 focus:ring-4 focus:ring-indigo-300 
@@ -128,7 +131,7 @@ export default function Header() {
             >
               Create account
             </button>
-          </a>
+          </Link>
         </div>
       </div>
 
@@ -138,7 +141,7 @@ export default function Header() {
           className="fixed inset-0 bg-black bg-opacity-50 z-40"
           onClick={() => setIsSidebarOpen(false)}
         ></div>
-      )}``
+      )}
     </header>
   );
 }
