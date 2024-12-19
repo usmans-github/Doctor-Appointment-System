@@ -11,7 +11,7 @@ const AppContextProvider = (props) => {
     // Get user_token 
     const [user_token, setuser_token] = useState("")
     //Get userData for user Profile
-    const [userData, setuserData] = useState(false)
+    const [userData, setuserData] = useState({})
     const userProfileData = async() => {
         try {
             const {data} = await axios.get("/server/api/user/get-profile", {Headers: user_token})

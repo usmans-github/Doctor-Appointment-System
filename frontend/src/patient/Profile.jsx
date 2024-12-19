@@ -1,10 +1,10 @@
 'use client'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AppContext } from '../context/AppContext'
 
 // // Mock data for the patient profile
-const patientData = {
+const userData = {
   name: "John Doe",
   age: 35,
   gender: "Male",
@@ -17,10 +17,6 @@ const patientData = {
     { condition: "Hypertension", diagnosedDate: "2018-03-15" },
     { condition: "Type 2 Diabetes", diagnosedDate: "2019-07-22" },
   ],
-  medications: [
-    { name: "Lisinopril", dosage: "10mg", frequency: "Once daily" },
-    { name: "Metformin", dosage: "500mg", frequency: "Twice daily" },
-  ],
   upcomingAppointments: [
     { id: 1, date: "2023-06-15", time: "10:00 AM", doctor: "Dr. Smith", department: "Cardiology", status: "Confirmed" },
     { id: 2, date: "2023-07-02", time: "2:30 PM", doctor: "Dr. Johnson", department: "Endocrinology", status: "Pending" },
@@ -29,7 +25,7 @@ const patientData = {
 
 const Profile = () => {
   const { user_token, setuser_token } = useContext(AppContext)
-  const { userData, setUserData } = useContext(AppContext)
+  const { userData, setUserData, userProfileData } = useContext(AppContext)
   console.log(userData);
   
   const [activeTab, setActiveTab] = useState('personal')
@@ -47,8 +43,11 @@ const Profile = () => {
     }
   }
 
-
-  return  ( 
+  useEffect(() => {
+    userProfileData()
+  }, [userData, setUserData])
+  
+  if(user_token){ return  ( 
     <>
     <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto">
@@ -91,16 +90,6 @@ const Profile = () => {
                 >
                   Personal Info
                 </button>
-                {/* <button
-                  className={`px-3 py-2 font-medium text-sm rounded-md ${
-                    activeTab === 'medical'
-                      ? 'bg-blue-100 text-blue-800'
-                      : 'text-gray-600 hover:text-gray-800'
-                  }`}
-                  onClick={() => setActiveTab('medical')}
-                >
-                  Medical History
-                </button> */}
                 <button
                   className={`px-3 py-2 font-medium text-sm rounded-md ${
                     activeTab === 'appointments'
@@ -118,71 +107,31 @@ const Profile = () => {
                 <dl className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
                   <div className="sm:col-span-1">
                     <dt className="text-sm font-medium text-gray-500">Full name</dt>
-                    <dd className="mt-1 text-sm text-gray-900">{patientData.name}</dd>
+                    <dd className="mt-1 text-sm text-gray-900">{userData.name}</dd>
                   </div>
                   <div className="sm:col-span-1">
                     <dt className="text-sm font-medium text-gray-500">Age</dt>
-                    <dd className="mt-1 text-sm text-gray-900">{patientData.age}</dd>
+                    <dd className="mt-1 text-sm text-gray-900">{userData.age}</dd>
                   </div>
                   <div className="sm:col-span-1">
                     <dt className="text-sm font-medium text-gray-500">Gender</dt>
-                    <dd className="mt-1 text-sm text-gray-900">{patientData.gender}</dd>
+                    <dd className="mt-1 text-sm text-gray-900">{userData.gender}</dd>
                   </div>
-                  {/* <div className="sm:col-span-1">
-                    <dt className="text-sm font-medium text-gray-500">Blood type</dt>
-                    <dd className="mt-1 text-sm text-gray-900">{patientData.bloodType}</dd>
-                  </div> */}
                   <div className="sm:col-span-1">
                     <dt className="text-sm font-medium text-gray-500">Email address</dt>
-                    <dd className="mt-1 text-sm text-gray-900">{patientData.email}</dd>
+                    <dd className="mt-1 text-sm text-gray-900">{userData.email}</dd>
                   </div>
                   <div className="sm:col-span-1">
                     <dt className="text-sm font-medium text-gray-500">Phone number</dt>
-                    <dd className="mt-1 text-sm text-gray-900">{patientData.phone}</dd>
+                    <dd className="mt-1 text-sm text-gray-900">{userData.phone}</dd>
                   </div>
-                  {/* <div className="sm:col-span-2">
-                    <dt className="text-sm font-medium text-gray-500">Address</dt>
-                    <dd className="mt-1 text-sm text-gray-900">{patientData.address}</dd>
-                  </div>
-                  <div className="sm:col-span-2">
-                    <dt className="text-sm font-medium text-gray-500">Emergency contact</dt>
-                    <dd className="mt-1 text-sm text-gray-900">{patientData.emergencyContact}</dd>
-                  </div> */}
                 </dl>
-              )}
-              {activeTab === 'medical' && (
-                <div>
-                  <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4">Medical Conditions</h3>
-                  <ul className="divide-y divide-gray-200">
-                    {patientData.medicalHistory.map((condition, index) => (
-                      <li key={index} className="py-4">
-                        <div className="flex justify-between">
-                          <p className="text-sm font-medium text-gray-900">{condition.condition}</p>
-                          <p className="text-sm text-gray-500">{condition.diagnosedDate}</p>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                  <h3 className="text-lg leading-6 font-medium text-gray-900 mt-8 mb-4">Current Medications</h3>
-                  <ul className="divide-y divide-gray-200">
-                    {patientData.medications.map((medication, index) => (
-                      <li key={index} className="py-4">
-                        <div>
-                          <p className="text-sm font-medium text-gray-900">{medication.name}</p>
-                          <p className="text-sm text-gray-500">
-                            {medication.dosage} - {medication.frequency}
-                          </p>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
               )}
               {activeTab === 'appointments' && (
                 <div>
                   <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4">Upcoming Appointments</h3>
                   <ul className="divide-y divide-gray-200">
-                    {patientData.upcomingAppointments.map((appointment) => (
+                    {userData.upcomingAppointments.map((appointment) => (
                       <li key={appointment.id} className="py-4">
                         <div className="flex justify-between items-center">
                           <div>
@@ -209,7 +158,7 @@ const Profile = () => {
     </>
             
    
-  )
+  )}
 }
 
 export default Profile

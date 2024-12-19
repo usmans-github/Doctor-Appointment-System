@@ -4,7 +4,7 @@ module.exports = async (req, res, next ) => {
 try {
 
     
-    const { user_token } = req.headers
+    const { user_token } = req.cookies
     
     if(!user_token){
         return res.send({success: false, message: "Not Authorized"})
