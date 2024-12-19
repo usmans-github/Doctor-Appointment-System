@@ -6,56 +6,38 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { Bounce, toast, ToastContainer } from "react-toastify";
 import { AdminContext } from "../context/AdminContext";
+import { LoadingContext } from "../context/LoadingContext";
 
 const AdminLogin =  () => { 
+      const { loading, setloading } = useContext(LoadingContext)
       const {admin_token, setadmin_token} = useContext(AdminContext)
       const navigate = useNavigate();
       const { register, handleSubmit } = useForm();
 
   const onSubmit = async (data) => {
     try {
+      setloading(true)
       const res = await axios.post(
         "/server/api/admin/login",
         data,admin_token
       );
       if (res.data.success) {
-        console.log("Admin Login successfuly");
-        toast.success(res.data.message, {
-          position: "top-center",
-          autoClose: 1000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce,
-        });
+        console.log(res.data.message);
+        toast.success(res.data.message);
         setTimeout(() => {
           // Set the cookie
           Cookies.set("admin_token", res.data.admin_token);
           setadmin_token(res.data.admin_token)
+          navigate("/admin/dashboard");
         }, 1000);
-        navigate("/admin/dashboard");
-        console.log(admin_token);
-        
       } else {
         console.log(res.data.message);
-        toast.error("Invalid credentials!", {
-          position: "top-center",
-          autoClose: 2000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce,
-        });
+        toast.error("Invalid credentials!");
       }
     } catch (error) {
       toast.error(error.message)
-      console.log(error);
+    }finally{
+      setloading(false)
     }
   };
 
