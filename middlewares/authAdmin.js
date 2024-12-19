@@ -5,7 +5,6 @@ try {
 
     
     const  {admin_token}  = req.cookies
-    console.log(admin_token);
     
     if(!admin_token)  {
         return res.send({success: false, message: "Access denied. Admin token is required."})

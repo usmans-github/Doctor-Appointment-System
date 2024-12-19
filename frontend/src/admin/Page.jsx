@@ -23,15 +23,15 @@ const mockAppointments = [
 
 const Page = () => {
   const navigate = useNavigate()
-  const { admin_token, setadmin_token, doctors, setdoctors, getStats } = useContext(AdminContext)
+  const { admin_token, setadmin_token, stats, setstats } = useContext(AdminContext)
   const [sidebarOpen, setSidebarOpen] = useState(false)
   
-  console.log(doctors);
+  console.log(stats);
   
 
-  useEffect(() => {
-    getStats()
-  }, [])
+  // useEffect(() => {
+  //   getStats()
+  // }, [])
   
 
 

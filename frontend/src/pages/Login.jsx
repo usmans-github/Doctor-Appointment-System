@@ -5,14 +5,14 @@ import Cookies from "js-cookie";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { Bounce, toast, ToastContainer } from "react-toastify";
-import LoadingContext from "../context/LoadingContext";
+import {LoadingContext} from "../context/LoadingContext";
 import { AppContext } from "../context/AppContext";
 
 
 
 const Login = () => {
+  const { loading, setloading } = useContext(LoadingContext)
   const { user_token,  setuser_token } = useContext(AppContext)
-  const {loading, setloading} = useContext(LoadingContext)
   const navigate = useNavigate();
   const { register,  handleSubmit, reset } = useForm();
 
@@ -23,30 +23,16 @@ const Login = () => {
         "/server/api/user/login",
         data
       );
-      setloading(false);
       if (res.data.success) {
         console.log("Login successfuly");
-        toast.success("Login successfuly!", {
-          position: "top-center",
-          autoClose: 1000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce
-        });
+        toast.success("Login successfuly!");
         setTimeout(() => {
-          setloading(true)
+          // setloading(true)
           setuser_token(res.data.user_token)
           Cookies.set("user_token", res.data.user_token);
-          reset()
-          setloading(false)
           navigate("/patient/profile");
       }, 1000); 
       } else {
-        
         console.log(res.data.message);
         toast.error(res.data.message);
       reset()
@@ -54,6 +40,8 @@ const Login = () => {
     } catch (error) {
       console.log(error);
       reset()
+    }finally{
+      setloading(false)
     }
   };
 

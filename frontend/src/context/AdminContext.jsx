@@ -7,21 +7,24 @@ export const AdminContext = createContext()
 const AdminContextProvider = (props) => {
   const [admin_token, setadmin_token] = useState("")
   //All data for admin
-  const [doctors, setdoctors] = useState([])
+  const [stats, setstats] = useState([])
   const getStats = async () => {
-    const docdata = await axios.get("/server/api/admin/getStats", admin_token)
-    setdoctors(docdata.data.doctorsData)
+    const stats = await axios.get("/server/api/admin/getStats", admin_token)
+    setstats(stats.data)
   }
  
   //All Patients data
+
+  useEffect(() => {
+    getStats()
+  }, [])
   
   
   const value = {
     admin_token,
     setadmin_token,
-    doctors,
-    setdoctors,
-    getStats
+    stats,
+    setstats
   }
 
   return <AdminContext.Provider value={value}>

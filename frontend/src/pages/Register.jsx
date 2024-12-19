@@ -8,7 +8,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { LoadingContext } from '../context/LoadingContext';
 
 const Register = () => {
-  const {loading, setloading} = useContext(LoadingContext)
+  const { loading, setloading } = useContext(LoadingContext)
 
   const navigate = useNavigate()
 
@@ -23,51 +23,28 @@ const Register = () => {
     
       const onSubmit = async(data) => {
         try {
+          setloading(true)
           console.log(data);
-          
           const res = await axios.post("/server/api/user/register", data)
-         console.log(res.data.success);
-         
+          console.log(res.data.success);
           if(res.data.success) {
             console.log("Registered succcessfuly and response.message is ", res.data.message); 
-            toast.success('Registered  succcessfuly!', {
-              position: "top-center",
-              autoClose: 1000,
-              hideProgressBar: true,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
-              transition: Bounce,
-              });
+            toast.success(res.data.message);
               setTimeout(() => {
-              setloading(true)
                navigate("/login")
-               setloading(false)  
               }, 1000);
           } else {
-            toast.error(res.data.message, {
-              position: "top-center",
-              autoClose: 2000,
-              hideProgressBar: true,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
-              transition: Bounce,
-              });
-              console.log("user already exists", res.data);
-              reset()
+            toast.error(res.data.message);
+            console.log("user already exists", res.data);
+            reset()
           }
         } catch (error) {
           toast.error(error.message)
           console.log("register page error onsubmit", error);
-          console.log("something went wrong");
           reset()
-          // setloading(false)
           
+      }finally{
+        setloading(false)
       }
         };
 
