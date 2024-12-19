@@ -38,7 +38,7 @@ const Login = () => {
       reset()
       }
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
       reset()
     }finally{
       setloading(false)

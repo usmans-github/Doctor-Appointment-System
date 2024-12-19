@@ -87,7 +87,7 @@ const getUserProfile = async(req, res) => {
   }
 }
 
-//doctor data 
+//doctor data "Should be made in common route"
 const getDoctorsData = async (req, res) => {
   try {
     const doctors = await doctorModel.find({})
@@ -152,10 +152,35 @@ const bookAppointment = async (req, res) => {
 }
 
 
+  //Api to get upComingAppointments
+  const upComingAppointments = async (req, res) => {
+    try {
+    const { userId } = req.body
+    const userappointments = await appointmentModel.find({userId});
+    return res.status(200).send({success: true, message: "userappointments loaded successfuly", userappointments})
+    } catch (error) {
+      console.log(error.message)
+    }
+    
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
 module.exports = {
   register,
   login,
   getUserProfile,
   getDoctorsData,
-  bookAppointment 
+  bookAppointment,
+  upComingAppointments
 };

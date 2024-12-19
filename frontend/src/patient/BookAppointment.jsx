@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { Bounce, toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AppContext } from '../context/AppContext';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { LoadingContext } from '../context/LoadingContext';
 
@@ -17,6 +17,7 @@ const timeSlots = [
 
 
 const BookAppointment = () => {
+        const navigate = useNavigate()
         const { loading, setloading } = useContext(LoadingContext)
         const { user_token, setuser_token } = useContext(AppContext)
         const { doctors, setDoctors, doctorsData } = useContext(AppContext)
@@ -45,6 +46,9 @@ const BookAppointment = () => {
               console.log(res.data.message)
               if(res.data.success){
               toast.success(res.data.message)
+              setTimeout(() => {
+                navigate("/patient/profile")
+              }, 500);
             }else{
               toast.error(res.data.message)
             }

@@ -22,7 +22,7 @@ const appointmentSchema = new mongoose.Schema({
         required: true
     },
     docData: {
-        type: String,
+        type: Object,
         required: true
     },
     Status : {

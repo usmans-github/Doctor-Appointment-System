@@ -1,5 +1,5 @@
 const express = require('express');
-const { login, register, getDoctorsData, getUserProfile, bookAppointment } = require('../controllers/user-controller');
+const { login, register, getDoctorsData, getUserProfile, bookAppointment, upComingAppointments } = require('../controllers/user-controller');
 const authUser = require('../middlewares/authUser');
 
 const router = express.Router()
@@ -20,6 +20,7 @@ router.get("/getData", getDoctorsData)
 //Book new Appointment
 router.post("/book-new-appointment", authUser, bookAppointment)
     
-
+//Get Upcoming appointments for user
+router.get("/user-appointments", authUser, upComingAppointments)
 
 module.exports = router

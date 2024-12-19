@@ -32,7 +32,7 @@ const AdminLogin =  () => {
         }, 1000);
       } else {
         console.log(res.data.message);
-        toast.error("Invalid credentials!");
+        toast.error(res.data.message);
       }
     } catch (error) {
       toast.error(error.message)
