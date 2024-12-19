@@ -28,8 +28,7 @@ const AppContextProvider = (props) => {
  
     //Get all doctors
     const [doctors, setdoctors] = useState([])
-  
-    const doctorData = async () => {
+    const doctorsData = async () => {
         try {
             const res = await axios.get("/server/api/user/getData")
             setdoctors(res.data.doctors)
@@ -49,8 +48,10 @@ const AppContextProvider = (props) => {
     useEffect(() => { 
      userProfileData()
     }, [])
+
+
     useEffect(() => { 
-     doctorData()
+     doctorsData()
     }, [])
 
 
@@ -62,6 +63,7 @@ const AppContextProvider = (props) => {
         userProfileData,
         doctors,
         setdoctors,
+        doctorsData
      }
     return (
         <AppContext.Provider value={value}>

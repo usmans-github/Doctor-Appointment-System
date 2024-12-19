@@ -33,10 +33,10 @@ const doctorSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    available : {
-        type: Boolean,
-        default: true
-    },
+    // available : {
+    //     type: Boolean,
+    //     default: true
+    // },
     slots_booked : { type: Object, default: {}},
     appointments: [{
         type: mongoose.Schema.Types.ObjectId,

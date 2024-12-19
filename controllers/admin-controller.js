@@ -51,7 +51,6 @@ const login = async (req, res) => {
         }
         
             //Otherwise 
-
             const doctor =  await doctorModel.create({
                 name,
                 email, 
@@ -60,6 +59,7 @@ const login = async (req, res) => {
                 specialization,
                 experience,
                 fee,
+                slots_booked,
                 picture: picture.secure_url 
 
             })
@@ -86,7 +86,6 @@ const getStats = async (req, res) => {
     }
     
 }
-
 
 
 

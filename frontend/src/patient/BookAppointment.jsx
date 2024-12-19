@@ -1,55 +1,63 @@
 "use client"
 import React, { useContext, useEffect, useState } from 'react'
 import { useForm } from "react-hook-form";
- import { Bounce, ToastContainer } from 'react-toastify';
+ import { Bounce, toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AppContext } from '../context/AppContext';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { LoadingContext } from '../context/LoadingContext';
 
 
 
-// // Mock data for available time slots
+//  Available time slots
 const timeSlots = [
-  "09:00 AM", "10:00 AM", "11:00 AM", "01:00 PM", "02:00 PM", "03:00 PM", "04:00 PM"
+  "09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM","01:00 PM", "02:00 PM", "03:00 PM", "04:00 PM"
 ]
 
 
 const BookAppointment = () => {
+        const { loading, setloading } = useContext(LoadingContext)
         const { user_token, setuser_token } = useContext(AppContext)
-        const { doctors, setDoctors } = useContext(AppContext)
-        console.log(doctors);
+        const { doctors, setDoctors, doctorsData } = useContext(AppContext)
+        // console.log(doctors);
         
-        const [docinfo, setdocinfo] = useState(null)
+
         const [docslots, setdocslots] = useState([])
         const [slotId, setslotId] = useState(0)
         const [timeslot, settimeslot] = useState("")
 
-
-
-        const fetchDocInfo = async () => {
-          const docinfo = doctors.find(doc => doc._id === docId) 
-          setdocinfo(docinfo) 
-        }
+        const {
+          register,
+          handleSubmit,
+          reset,
+          watch,
+          formState: { errors },
+        } = useForm();
             
-            const {
-                register,
-                handleSubmit,
-                reset,
-                watch,
-                formState: { errors },
-              } = useForm();
+           
 
           const onSubmit  = async (data) => {
-            console.log(data);
+            try {
+              setloading(true)
+              console.log(data);
+              const res = await axios.post("/server/api/user/book-new-appointment",  )
+              if(res.data.success){
+              console.log(res.data)
+              return toast.success(res.data.message)
+            }
+            } catch (error) {
+              console.log(error.message)
+              toast.error(error.message)
+            }finally{
+              setloading(false)
+            }
             
           }     
-          useEffect(() => {
-            fetchDocInfo()
-          }, [])
 
           useEffect(() => {
-            fetchDocInfo()
-          }, [doctors])
+            doctorsData()
+          }, [doctors, setDoctors, doctorsData])
     
   if(user_token) return (
     <>
@@ -87,15 +95,15 @@ const BookAppointment = () => {
                     <label htmlFor="selectdoctor" className="block text-sm font-medium text-gray-700 mb-1">Select Doctor</label>
              
                     <select
-                     name="selectdoctor"
-                     id="selectdoctor"
-                     {...register("selectdoctor")}
+                     name="docId"
+                     id="docId"
+                     {...register("docId")}
                      className='w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
                     >
                       <option value="">Select a Doctor</option>
                       {
                         doctors.map((doctor)=> (
-                            <option key={doctor._id} value={doctor.id}>
+                            <option key={doctor._id} value={doctor._id}>
                               {doctor.name} - {doctor.specialization}
                             </option>
                         ))
@@ -103,20 +111,20 @@ const BookAppointment = () => {
 
                     </select>
                     </div>
-                    {/* Date */}
-                    <div>
+                    {/* Appointment Date */}
+                    <div> 
                       <label
-                        htmlFor="date"
+                        htmlFor="slotDate"
                         className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                       >
                         Appointment Date
                       </label>
                       <input
                         defaultValue=""
-                        {...register("date")}
+                        {...register("slotDate")}
                         type="date"
-                        name="date"
-                        id="date"
+                        name="slotDate"
+                        id="slotDate"
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="name@company.com"
                         required={true}
@@ -125,15 +133,15 @@ const BookAppointment = () => {
                     {/* Time */}
                     <div>
                       <label
-                        htmlFor="time"
+                        htmlFor="slotTime"
                         className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                       >
                         Appointment Time
                       </label>
                       <select
-                     name="selecttime"
-                     id="selecttime"
-                     {...register("time")}
+                     name="slotTime"
+                     id="slotTime"
+                     {...register("slotTime")}
                      className='w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
                     >
                       <option value="">Select a time slot</option>

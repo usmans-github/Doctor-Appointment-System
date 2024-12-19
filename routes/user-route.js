@@ -18,7 +18,7 @@ router.get("/get-profile", authUser, getUserProfile)
 router.get("/getData", getDoctorsData)
 
 //Book new Appointment
-router.post("/book-new-appointment", bookAppointment)
+router.post("/book-new-appointment", authUser, bookAppointment)
     
 
 

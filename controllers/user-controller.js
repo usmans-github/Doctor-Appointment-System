@@ -112,7 +112,7 @@ const bookAppointment = async (req, res) => {
     //   return res.status(201).send({succes: false, message: "Doctor not available"})
     // }
     let slots_booked = docData.slots_booked
-    //Check for availablw slot
+    //Check for available slot
     if(slots_booked[slotDate]){
       if(slots_booked[slotDate].includes(slotTime)){
         return res.status(201).send({succes: false, message: "Slot not available"})
@@ -132,6 +132,7 @@ const bookAppointment = async (req, res) => {
       userId,
       docId,
       userData,
+      // available: docData.available,
       amount: docData.fee,
       slotTime,
       slotDate,

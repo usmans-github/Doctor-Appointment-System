@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { AppContext } from '../context/AppContext'
 
 // // Mock data for the patient profile
-const userData = {
+const PatientData = {
   name: "John Doe",
   age: 35,
   gender: "Male",
@@ -26,7 +26,7 @@ const userData = {
 const Profile = () => {
   const { user_token, setuser_token } = useContext(AppContext)
   const { userData, setUserData, userProfileData } = useContext(AppContext)
-  console.log(userData);
+  
   
   const [activeTab, setActiveTab] = useState('personal')
 
@@ -131,7 +131,7 @@ const Profile = () => {
                 <div>
                   <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4">Upcoming Appointments</h3>
                   <ul className="divide-y divide-gray-200">
-                    {userData.upcomingAppointments.map((appointment) => (
+                    {PatientData.upcomingAppointments.map((appointment) => (
                       <li key={appointment.id} className="py-4">
                         <div className="flex justify-between items-center">
                           <div>
