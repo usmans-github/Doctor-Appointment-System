@@ -24,7 +24,8 @@ const AdminContextProvider = (props) => {
     admin_token,
     setadmin_token,
     stats,
-    setstats
+    setstats,
+    getStats
   }
 
   return <AdminContext.Provider value={value}>

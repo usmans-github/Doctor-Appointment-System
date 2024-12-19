@@ -1,19 +1,25 @@
 'use client'
-
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { PencilIcon, TrashIcon } from '@heroicons/react/24/solid'
 import { Link } from 'react-router-dom'
 import { AdminContext } from '../context/AdminContext'
 
 
 export default function Doctors() {
-  const { admin_token, setadmin_token, stats, setstats } = useContext(AdminContext)
+  const { admin_token, setadmin_token, stats, setstats, getStats } = useContext(AdminContext)
   const [searchTerm, setSearchTerm] = useState('')
+  console.log(stats);
+
+
+
+  // const filteredDoctors = stats.doctorsData.filter(doctor =>
+  //   doctor.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+  //   doctor.specialization.toLowerCase().includes(searchTerm.toLowerCase())
+  // )
+  useEffect(() => {
+      getStats()
+  }, [stats.doctorsData])
   
-  const filteredDoctors = mockDoctors.filter(doctor =>
-    doctor.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    doctor.specialization.toLowerCase().includes(searchTerm.toLowerCase())
-  )
 
   if(admin_token){ return (
     <div className="container mx-auto max-w-4xl px-4 py-8">
@@ -62,8 +68,8 @@ export default function Doctors() {
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            {filteredDoctors.map((doctor) => (
-              <tr key={doctor.id}>
+            {stats.doctorsData.map((doctor) => (
+              <tr key={doctor._id}>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <div className="text-sm font-medium text-gray-900">{doctor.name}</div>
                 </td>
@@ -91,8 +97,8 @@ export default function Doctors() {
 
         {/* Card layout for smaller screens */}
         <div className="sm:hidden">
-          {filteredDoctors.map((doctor) => (
-            <div key={doctor.id} className="border-b last:border-none py-4 px-4">
+          {stats.doctorsData.map((doctor) => (
+            <div key={doctor._id} className="border-b last:border-none py-4 px-4">
               <div className="flex justify-between">
                 <div>
                   <h3 className="text-lg font-medium text-gray-900">{doctor.name}</h3>

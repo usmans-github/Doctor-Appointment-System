@@ -17,7 +17,7 @@ const mockAppointments = [
 const Page = () => {
 
   const navigate = useNavigate()
-  const { admin_token, setadmin_token, stats, setstats } = useContext(AdminContext)
+  const { admin_token, setadmin_token, stats, setstats, getStats } = useContext(AdminContext)
   const [sidebarOpen, setSidebarOpen] = useState(false)
   
 
@@ -27,7 +27,9 @@ const Page = () => {
     { name: 'Appointments', value: stats.appointmentData.length}
   ] 
   console.log(stats);
-
+    useEffect(() => {
+        getStats()
+    }, [stats.doctorsData, stats.usersData, stats.appointmentData ])
 
   if(admin_token) {return  (
     <div className="flex h-screen bg-gray-100">
