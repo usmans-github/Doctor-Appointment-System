@@ -1,19 +1,21 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { PencilIcon, TrashIcon } from '@heroicons/react/24/solid'
 import { Link } from 'react-router-dom'
+import { AdminContext } from '../context/AdminContext'
 
 
-  export default function Doctors() {
+export default function Doctors() {
+  const { admin_token, setadmin_token, stats, setstats } = useContext(AdminContext)
   const [searchTerm, setSearchTerm] = useState('')
-
+  
   const filteredDoctors = mockDoctors.filter(doctor =>
     doctor.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     doctor.specialization.toLowerCase().includes(searchTerm.toLowerCase())
   )
 
-  return (
+  if(admin_token){ return (
     <div className="container mx-auto max-w-4xl px-4 py-8">
       {/* Back to Dashboard Button */}
       <div className="mb-4">  
@@ -112,5 +114,5 @@ import { Link } from 'react-router-dom'
         </div>
       </div>
     </div>
-  )
+  )}
 }

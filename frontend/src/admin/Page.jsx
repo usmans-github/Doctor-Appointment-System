@@ -7,13 +7,6 @@ import {
 import { Link, useNavigate } from 'react-router-dom'
 import { AdminContext } from '../context/AdminContext'
 
-// Mock data (replace with actual data fetching in a real application)
-
-const mockStats = [
-  { name: 'Total Patients', value: 1234 },
-  { name: 'Total Doctors', value: 56},
-  { name: 'Appointments', value: 28}
-] 
 
 const mockAppointments = [
   { id: 1, patient: 'John Doe', doctor: 'Dr. Smith', time: '09:00 AM', status: 'Confirmed' },
@@ -22,18 +15,18 @@ const mockAppointments = [
 ]
 
 const Page = () => {
+
   const navigate = useNavigate()
   const { admin_token, setadmin_token, stats, setstats } = useContext(AdminContext)
   const [sidebarOpen, setSidebarOpen] = useState(false)
   
+
+  const Stats = [
+    { name: 'Total Patients', value: stats.usersData.length },
+    { name: 'Total Doctors', value: stats.doctorsData.length},
+    { name: 'Appointments', value: stats.appointmentData.length}
+  ] 
   console.log(stats);
-  
-
-  // useEffect(() => {
-  //   getStats()
-  // }, [])
-  
-
 
 
   if(admin_token) {return  (
@@ -70,9 +63,9 @@ const Page = () => {
         <main className="p-6">
           <h1 className="text-3xl font-semibold text-gray-800 mb-6">Dashboard Overview</h1>
           
-          {/* Stats */}
+         {/*  Stats */}
           <div className="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-3">
-            {mockStats.map((stat, index) => (
+            {Stats.map((stat, index) => (
               <div key={index} className="bg-white rounded-lg shadow-sm p-6">
                 <div className="flex items-center">
                   <div className="p-3 rounded-full bg-indigo-500 bg-opacity-75">
