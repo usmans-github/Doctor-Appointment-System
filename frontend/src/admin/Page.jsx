@@ -20,17 +20,17 @@ const Page = () => {
   const { admin_token, setadmin_token, stats, setstats, getStats } = useContext(AdminContext)
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
-   const Stats = [
-    { name: 'Total Patients', value: 1 },
-    { name: 'Total Doctors', value: 2},
-    { name: 'Appointments', value: 3}
-  ] 
-
-  // const Stats = [
-  //   { name: 'Total Patients', value: stats.usersData.length },
-  //   { name: 'Total Doctors', value: stats.doctorsData.length},
-  //   { name: 'Appointments', value: stats.appointmentData.length}
+  //  const Stats = [
+  //   { name: 'Total Patients', value: 1 },
+  //   { name: 'Total Doctors', value: 2},
+  //   { name: 'Appointments', value: 3}
   // ] 
+
+  const Stats = [
+    { name: 'Total Patients', value: stats.usersData.length },
+    { name: 'Total Doctors', value: stats.doctorsData.length},
+    { name: 'Appointments', value: stats.appointmentData.length}
+  ] 
     useEffect(() => {
         getStats()
     }, [stats.doctorsData, stats.usersData, stats.appointmentData ])

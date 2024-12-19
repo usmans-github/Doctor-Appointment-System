@@ -12,9 +12,9 @@ const TopDoctors = () => {
 
 
   
-  // useEffect(() => {
-  //   doctorsData()
-  // }, [doctors, setdoctors])
+  useEffect(() => {
+    doctorsData()
+  }, [doctors, setdoctors])
   
   return (
     <section className="py-16 px-6 md:px-20 bg-white">
