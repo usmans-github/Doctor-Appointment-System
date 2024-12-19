@@ -22,7 +22,7 @@ const login = async (req, res) => {
     
   } catch (error) {
     console.log(error);
-    res.status(401).send({ success: false, message: error.message })
+    res.status(201).send({ success: false, message: error.message })
     
   }
  
@@ -34,20 +34,20 @@ const login = async (req, res) => {
         const { name, email, password, phone, specialization, experience, fee }  = req.body
         const imageFile = req.file
         if(!imageFile){
-            return res.status(400).send({success: false, message: "Please upload a file"})
+            return res.status(201).send({success: false, message: "Please upload a file"})
         }
         // console.log({name, email, password, phone, specialization, experience, fee}, imageFile)
         const exists  = await doctorModel.findOne({email:email, password:password})
         if(exists) {
-            return res.status(400).send({success: false, message: "Doctor already exists"})
+            return res.status(201).send({success: false, message: "Doctor already exists"})
         }
         const imageLocalPath = req.file?.path;
         if(!imageLocalPath){
-            return res.status(400).send("Picture file is required")
+            return res.status(201).send({success: false, message:"Picture file is required"})
         }
         const picture = await uploadOnCloudinary(imageLocalPath)
         if(!picture) {
-            return res.status(500).send({success: false, message: "Try Again, Cloudinary issue"})
+            return res.status(201).send({success: false, message: "Try Again, Cloudinary issue"})
         }
         
             //Otherwise 
@@ -59,7 +59,6 @@ const login = async (req, res) => {
                 specialization,
                 experience,
                 fee,
-                slots_booked,
                 picture: picture.secure_url 
 
             })

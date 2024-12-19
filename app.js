@@ -23,7 +23,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 
 
-//routes
+//user routes
 app.use("/api/user", require("./routes/user-route"));
 
 //admin routes

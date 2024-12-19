@@ -4,7 +4,17 @@ import { AppContext } from "../context/AppContext";
 
 
 const TopDoctors = () => {
-  const {doctors, setdoctors} = useContext(AppContext)
+  const {doctors, setdoctors, doctorsData} = useContext(AppContext)
+
+
+
+
+
+
+  
+  // useEffect(() => {
+  //   doctorsData()
+  // }, [doctors, setdoctors])
   
   return (
     <section className="py-16 px-6 md:px-20 bg-white">

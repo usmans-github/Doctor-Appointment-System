@@ -35,8 +35,8 @@ const AppContextProvider = (props) => {
             
             
         } catch (error) {
-            toast.error(error.message)
-            console.log(error.nessage);
+            toast.error(error)
+            console.log(error);
             
         }
     

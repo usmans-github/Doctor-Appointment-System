@@ -37,7 +37,6 @@ const AddDoctor = () => {
     try {
       // console.log("form data is:", formData.data);
       setloading(true)
-      console.log(loading)
       const res = await axios.post(
         "/server/api/admin/add-doctor",
         formData);

@@ -31,6 +31,7 @@ function App() {
             <Route path="/admin/add-doctor" element={<AddDoctor />} />
             <Route path="/admin/doctors" element={<Doctors />} />
             <Route path="/admin/dashboard" element={<Page />} />
+
           </Routes>
        
       

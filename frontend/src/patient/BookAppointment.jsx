@@ -1,7 +1,7 @@
 "use client"
 import React, { useContext, useEffect, useState } from 'react'
 import { useForm } from "react-hook-form";
- import { Bounce, toast, ToastContainer } from 'react-toastify';
+import { Bounce, toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AppContext } from '../context/AppContext';
 import { Link } from 'react-router-dom';
@@ -23,9 +23,9 @@ const BookAppointment = () => {
         // console.log(doctors);
         
 
-        const [docslots, setdocslots] = useState([])
-        const [slotId, setslotId] = useState(0)
-        const [timeslot, settimeslot] = useState("")
+        // const [docslots, setdocslots] = useState([])
+        // const [slotId, setslotId] = useState(0)
+        // const [timeslot, settimeslot] = useState("")
 
         const {
           register,
@@ -39,12 +39,14 @@ const BookAppointment = () => {
 
           const onSubmit  = async (data) => {
             try {
+              // console.log(data);
               setloading(true)
-              console.log(data);
-              const res = await axios.post("/server/api/user/book-new-appointment",  )
+              const  res  = await axios.post("/server/api/user/book-new-appointment",  data)
+              console.log(res.data.message)
               if(res.data.success){
-              console.log(res.data)
-              return toast.success(res.data.message)
+              toast.success(res.data.message)
+            }else{
+              toast.error(res.data.message)
             }
             } catch (error) {
               console.log(error.message)
@@ -53,13 +55,14 @@ const BookAppointment = () => {
               setloading(false)
             }
             
+            
           }     
 
-          useEffect(() => {
-            doctorsData()
-          }, [doctors, setDoctors, doctorsData])
+          // useEffect(() => {
+          //   doctorsData()
+          // }, [doctors, setDoctors, doctorsData])
     
-  if(user_token) return (
+  if(user_token) { return (
     <>
       <ToastContainer
         position="top-center"
@@ -111,20 +114,20 @@ const BookAppointment = () => {
 
                     </select>
                     </div>
-                    {/* Appointment Date */}
+                    {/* Appointment date */}
                     <div> 
                       <label
-                        htmlFor="slotDate"
+                        htmlFor="slotdate"
                         className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                       >
                         Appointment Date
                       </label>
                       <input
                         defaultValue=""
-                        {...register("slotDate")}
+                        {...register("slotdate")}
                         type="date"
-                        name="slotDate"
-                        id="slotDate"
+                        name="slotdate"
+                        id="slotdate"
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="name@company.com"
                         required={true}
@@ -133,15 +136,15 @@ const BookAppointment = () => {
                     {/* Time */}
                     <div>
                       <label
-                        htmlFor="slotTime"
+                        htmlFor="slottime"
                         className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                       >
                         Appointment Time
                       </label>
                       <select
-                     name="slotTime"
-                     id="slotTime"
-                     {...register("slotTime")}
+                     name="slottime"
+                     id="slottime"
+                     {...register("slottime")}
                      className='w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
                     >
                       <option value="">Select a time slot</option>
@@ -197,7 +200,7 @@ const BookAppointment = () => {
        
     
     </>
-  )
+  )}
 }
 
 export default BookAppointment

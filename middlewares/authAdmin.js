@@ -18,7 +18,7 @@ try {
     
 } catch (error) {
     console.log(error);
-    res.status(401).send({ message: "Auth failed!", success: false });
+    res.status(201).send({ message: "Auth failed!", success: false });
     
 }
 }

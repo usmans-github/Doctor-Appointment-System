@@ -25,17 +25,18 @@ const appointmentSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    status : {
+    Status : {
         type: String,
         required: true,
         default: "pending"
     },
     amount : {
         type: Number,
-        required: true
+        required: true,
+        default: 0
     },
     date: {
-        type: Number,
+        type: String,
         required: true
     },
     cancelled: {

@@ -36,7 +36,7 @@ const register = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
-    res.status(500).send({
+    res.status(201).send({
       success: false,
       message: `Error in Register controller ${error.message}`,
     });
@@ -68,23 +68,22 @@ const login = async (req, res) => {
   } catch (error) {
     console.log(error);
     res
-      .status(500)
-      .send({ message: `Error in Login controller ${error.message}` });
+      .status(201)
+      .send({success:false, message: `Error in Login controller ${error.message}` });
   }
 };
 
 
-//user data 
+//user profile data 
 const getUserProfile = async(req, res) => {
   try {
     
     const { userId } = req.body
-    console.log(req.body);
     const userData = await userModel.findById(userId).select("-password")
     res.status(200).send({success: true, userData})
   } catch (error) {
     console.log(error);
-    res.status(401).send({ success: false, message: error.message })
+    res.status(201).send({ success: false, message: error.message })
   }
 }
 
@@ -93,12 +92,12 @@ const getDoctorsData = async (req, res) => {
   try {
     const doctors = await doctorModel.find({})
     if(!doctors) {
-      return res.status(400).send({success: false, message: "Failed loading doctors"})
+      return res.status(201).send({success: false, message: "Failed loading doctors"})
     }
     return res.status(200).send({success: true, message: "Doctors loaded successfully", doctors})
   } catch (error) {
     console.log("user controller getData error", error);
-    res.status(400).send({success: false, message:"error.message"})
+    res.status(201).send({success: false, message:"error.message"})
     
   }
 }
@@ -106,54 +105,52 @@ const getDoctorsData = async (req, res) => {
 //Api to book appointment
 const bookAppointment = async (req, res) => {
   try {
-    const { userId, docId, slotDate, slotTime } = req.body
+    const { userId, docId, slotdate, slottime } = req.body
+    // console.log({ userId, docId, slotdate, slottime })
     const docData = await doctorModel.findById(docId).select("-password")
-    // if(!docData.available){
-    //   return res.status(201).send({succes: false, message: "Doctor not available"})
-    // }
-    let slots_booked = docData.slots_booked
-    //Check for available slot
-    if(slots_booked[slotDate]){
-      if(slots_booked[slotDate].includes(slotTime)){
-        return res.status(201).send({succes: false, message: "Slot not available"})
-      }else { 
-        slots_booked[slotDate].push(slotTime) 
-      }
-    }else{  
-      slots_booked[slotDate] = []
-      slots_booked[slotDate].push(slotTime)
+    if(!docData){
+      return res.status(201).send({success: false, message: "Doctor not available"})
     }
 
-    const userData = await userModel.findById(userId).select("-password")
-      
-    // delete docData.slots_booked
-
-    const appointmentData = {
+     //Check for available slot 
+    const isSlotBooked = docData.slots_booked.some((slot)=> slot.slotDate === slotdate && slot.slotTime === slottime);
+    if(isSlotBooked){
+      return res.status(200).send({success: false, message: "This slot is already booked"})
+    }
+     
+     // Get userData 
+     const userData = await userModel.findById(userId).select("-password")
+     const appointmentData = {
       userId,
       docId,
+      slotDate: slotdate,
+      slotTime: slottime,
       userData,
-      // available: docData.available,
-      amount: docData.fee,
-      slotTime,
-      slotDate,
-      date: Date.now()
-    }
+      docData,
+      date:slotdate
+      // Status,
+      // cancelled,
+      // isCompleted,
+     }
+     const newAppointment = await appointmentModel.create(appointmentData)
+     await newAppointment.save()
 
-    const newAppointment  = await appointmentModel.create(appointmentData)
-    await newAppointment.save()
+     //Save new slotdata in docData
 
-    //Save  new slotData in docData
-    await doctorModel.findByIdAndUpdate(docId, {slots_booked})
-    res.status(200).send({success: true, message: "Appointment Booked"})
+    docData.slots_booked.push({slotDate: slotdate, slotTime: slottime})
+    docData.save()
+    console.log(docData)
+     res.status(200).send({success: true, message: "Appointment Booked successfuly!"})
+
+     
+
 
   } catch (error) {
     console.log(error);
-    res.send({success: false, message: error.message})
+    res.status(201).send({success: false, message: error.message})
   }
 }
 
-//But in database i amstoring doctor like this 
-// slots_booked : { type: Object, default: {}},
 
 module.exports = {
   register,
