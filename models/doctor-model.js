@@ -43,7 +43,6 @@ const doctorSchema = new mongoose.Schema({
         ref: "appointments"
     }]
 },
-{timestamps: true}
-)
+{minimize: false})
 
 module.exports = mongoose.model("doctors", doctorSchema)
