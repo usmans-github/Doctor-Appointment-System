@@ -66,12 +66,12 @@ export default function Header() {
             <Link  to="/patient/profile">
             
             <img
-              src="https://www.shutterstock.com/image-vector/young-smiling-man-avatar-brown-600nw-2261401207.jpg"
+              src="/avatar.webp"
               alt="User"
               width={40}
               height={40}
               className="rounded-full"
-              /></Link>
+              /></Link> 
             {/* <ChevronDown className="w-4 h-4 text-white" /> */}
           </div>
           : <Link to="/login"><button
