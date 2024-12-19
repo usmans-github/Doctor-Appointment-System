@@ -78,7 +78,8 @@ const getStats = async (req, res) => {
         const doctorsData = await doctorModel.find({})
         const usersData = await userModel.find({})
         const appointmentData = await appointmentModel.find({})
-    res.status(201).send({success: true, message: "All data loaded successfuly", doctorsData, usersData, appointmentData})
+        const reverseData = appointmentData.reverse()
+    res.status(201).send({success: true, message: "All data loaded successfuly", doctorsData, usersData, reverseData})
     } catch (error) {
         console.log(error);
         

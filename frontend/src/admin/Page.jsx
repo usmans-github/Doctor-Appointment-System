@@ -4,22 +4,22 @@ import {
   Bars3Icon as MenuIcon,
   XMarkIcon as XIcon
 } from '@heroicons/react/24/solid'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { AdminContext } from '../context/AdminContext'
 
 
-const mockAppointments = [
-  { id: 1, patient: 'John Doe', doctor: 'Dr. Smith', time: '09:00 AM', status: 'Confirmed' },
-  { id: 2, patient: 'Jane Smith', doctor: 'Dr. Johnson', time: '10:30 AM', status: 'Pending' },
-  { id: 3, patient: 'Bob Brown', doctor: 'Dr. Williams', time: '02:00 PM', status: 'Completed' },
-]
+// const mockAppointments = [
+//   { id: 1, patient: 'John Doe', doctor: 'Dr. Smith', time: '09:00 AM', status: 'Confirmed' },
+//   { id: 2, patient: 'Jane Smith', doctor: 'Dr. Johnson', time: '10:30 AM', status: 'Pending' },
+//   { id: 3, patient: 'Bob Brown', doctor: 'Dr. Williams', time: '02:00 PM', status: 'Completed' },
+// ]
 
 const Page = () => {
-
+  
   const navigate = useNavigate()
   const { admin_token, setadmin_token, stats, setstats, getStats } = useContext(AdminContext)
   const [sidebarOpen, setSidebarOpen] = useState(false)
-
+  console.log(stats)
   //  const Stats = [
   //   { name: 'Total Patients', value: 1 },
   //   { name: 'Total Doctors', value: 2},
@@ -29,11 +29,11 @@ const Page = () => {
   const Stats = [
     { name: 'Total Patients', value: stats.usersData.length },
     { name: 'Total Doctors', value: stats.doctorsData.length},
-    { name: 'Appointments', value: stats.appointmentData.length}
+    { name: 'Appointments', value: stats.reverseData.length}
   ] 
     useEffect(() => {
-        getStats()
-    }, [stats.doctorsData, stats.usersData, stats.appointmentData ])
+        setstats
+    }, [stats])
 
   if(admin_token) {return  (
     <div className="flex h-screen bg-gray-100">
@@ -101,18 +101,18 @@ const Page = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {mockAppointments.map((appointment) => (
-                      <tr key={appointment.id} className="border-b last:border-b-0">
-                        <td className="py-3">{appointment.patient}</td>
-                        <td className="py-3">{appointment.doctor}</td>
-                        <td className="py-3">{appointment.time}</td>
+                    {stats.reverseData.map((appointment) => (
+                      <tr key={appointment._id} className="border-b last:border-b-0">
+                        <td className="py-3">{appointment.userData.name}</td>
+                        <td className="py-3">{appointment.docData.name}</td>
+                        <td className="py-3">{appointment.slotTime}</td>
                         <td className="py-3">
                           <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                            appointment.status === 'Confirmed' ? 'bg-green-100 text-green-800' :
-                            appointment.status === 'Pending' ? 'bg-yellow-100 text-yellow-800' :
+                            appointment.Status === 'Confirmed' ? 'bg-green-100 text-green-800' :
+                            appointment.Status === 'Pending' ? 'bg-yellow-100 text-yellow-800' :
                             'bg-blue-100 text-blue-800'
                           }`}>
-                            {appointment.status}
+                            {appointment.Status}
                           </span>
                         </td>
                       </tr>
@@ -133,12 +133,13 @@ const Page = () => {
                 Add New Doctor
               </button>
               </Link>
-              <Link>
+              <Link to="/admin/add-doctor">
               <button className="flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md
                text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
                 Total Patients
               </button>
               </Link>
+              
               <Link>
               <button className="flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md
                text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
