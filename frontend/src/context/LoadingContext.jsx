@@ -6,17 +6,17 @@ export const LoadingContext =createContext()
 
  const LoadingContextProvider = (props) => {
     const [loading, setloading] = useState(false)
-    if(loading){
-      <Spinner />
-    }
     const value = {
       loading,
       setloading
     }
   return (
+    <>
+    {loading && <Spinner />}
     <LoadingContext.Provider value={value}>
         {props.children}
     </LoadingContext.Provider>
+    </>
   )
 }
 

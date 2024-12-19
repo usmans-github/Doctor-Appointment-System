@@ -22,7 +22,7 @@ const TopDoctors = () => {
               <img
                 src={doctor.picture}
                 alt={doctor.name}
-                className="object-cover overflow-hidden rounded-lg"
+                className="object-cover w-full h-52 overflow-hidden rounded-lg"
               />
             </div>
             <div className="flex items-center gap-2">

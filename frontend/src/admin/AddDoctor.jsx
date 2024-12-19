@@ -10,10 +10,9 @@ import { LoadingContext } from "../context/LoadingContext";
 
 
 
-
 const AddDoctor = () => {
+  const { loading, setloading } = useContext(LoadingContext)
   const { admin_token, setadmin_token } = useContext(AdminContext)
-  const { loading, setloading } = useContext(LoadingContext);
   const navigate = useNavigate();
 
   const {
@@ -33,20 +32,20 @@ const AddDoctor = () => {
     formData.append("experience", data.experience);
     formData.append("fee", data.fee);
     formData.append("file", data.file[0]);
+
+
     try {
       // console.log("form data is:", formData.data);
+      setloading(true)
+      console.log(loading)
       const res = await axios.post(
-        "/server/api/admin/add-doctor", {Headers:admin_token},
+        "/server/api/admin/add-doctor",
         formData);
-      setloading(false);
       if (res.data.success) {
         console.log("Doctor addded successfuly", res.data.message);
-        
+        toast.success(res.data.message);
         setTimeout(() => {
-          setloading(true);
-          toast.success(res.data.message);
           navigate("/admin/dashboard");
-          setloading(false);
         }, 1000);
       } else {
         toast.error(res.data.message);
@@ -54,8 +53,9 @@ const AddDoctor = () => {
       }
     } catch (error) {
       toast.error(error.message)
-      setloading(false);
       console.log(error);
+    }finally{
+      setloading(false)
     }
   };
   

@@ -4,7 +4,7 @@ module.exports = async (req, res, next ) => {
 try {
 
     
-    const  admin_token  = req.body.admin_token
+    const  {admin_token}  = req.cookies
     console.log(admin_token);
     
     if(!admin_token)  {
