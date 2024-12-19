@@ -12,10 +12,12 @@ export default function Doctors() {
 
 
 
-  // const filteredDoctors = stats.doctorsData.filter(doctor =>
-  //   doctor.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-  //   doctor.specialization.toLowerCase().includes(searchTerm.toLowerCase())
-  // )
+  const filteredDoctors = stats.doctorsData.filter(doctor =>
+    doctor.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    doctor.specialization.toLowerCase().includes(searchTerm.toLowerCase())
+  )
+
+
   useEffect(() => {
       getStats()
   }, [stats.doctorsData])
@@ -68,7 +70,7 @@ export default function Doctors() {
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            {stats.doctorsData.map((doctor) => (
+            {filteredDoctors.map((doctor) => (
               <tr key={doctor._id}>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <div className="text-sm font-medium text-gray-900">{doctor.name}</div>
@@ -97,7 +99,7 @@ export default function Doctors() {
 
         {/* Card layout for smaller screens */}
         <div className="sm:hidden">
-          {stats.doctorsData.map((doctor) => (
+          {filteredDoctors.map((doctor) => (
             <div key={doctor._id} className="border-b last:border-none py-4 px-4">
               <div className="flex justify-between">
                 <div>
