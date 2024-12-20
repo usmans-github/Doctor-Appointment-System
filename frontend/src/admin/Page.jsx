@@ -15,11 +15,9 @@ import { AdminContext } from '../context/AdminContext'
 // ]
 
 const Page = () => {
-  
-  const navigate = useNavigate()
   const { admin_token, setadmin_token, stats, setstats, getStats } = useContext(AdminContext)
-  const [sidebarOpen, setSidebarOpen] = useState(false)
   console.log(stats)
+  const [sidebarOpen, setSidebarOpen] = useState(false)
   //  const Stats = [
   //   { name: 'Total Patients', value: 1 },
   //   { name: 'Total Doctors', value: 2},
@@ -33,8 +31,7 @@ const Page = () => {
   ] 
     useEffect(() => {
       getStats()
-        setstats(stats)
-    }, [stats])
+    }, [ setstats])
 
   if(admin_token) {
     return (
@@ -99,6 +96,7 @@ const Page = () => {
                     <tr className="text-left text-gray-500 border-b">
                       <th className="pb-3 font-medium">Patient</th>
                       <th className="pb-3 font-medium">Doctor</th>
+                      <th className="pb-3 font-medium">Date</th>
                       <th className="pb-3 font-medium">Time</th>
                       <th className="pb-3 font-medium">Status</th>
                     </tr>
@@ -108,6 +106,7 @@ const Page = () => {
                       <tr key={appointment._id} className="border-b last:border-b-0">
                         <td className="py-3">{appointment.userData.name}</td>
                         <td className="py-3">{appointment.docData.name}</td>
+                        <td className="py-3">{appointment.slotDate}</td>
                         <td className="py-3">{appointment.slotTime}</td>
                         <td className="py-3">
                           <span className={`px-2 py-1 rounded-full text-xs font-medium ${
