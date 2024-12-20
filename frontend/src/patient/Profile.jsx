@@ -16,7 +16,6 @@ const PatientData = {
 
 const Profile = () => {
   const [userappointments, setuserappointments] = useState([])
-  const { loading, setloading } = useContext(LoadingContext)
   const { user_token, setuser_token } = useContext(AppContext)
   const { userData, setUserData, userProfileData } = useContext(AppContext)
   const [activeTab, setActiveTab] = useState('personal')
@@ -50,7 +49,7 @@ const Profile = () => {
   useEffect(() => {
     userProfileData()
     upComingAppointments()
-  }, [activeTab])
+  }, [userData, setUserData, activeTab])
   
   if(user_token){ return  ( 
     <>

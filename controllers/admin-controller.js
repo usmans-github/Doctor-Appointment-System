@@ -87,12 +87,30 @@ const getStats = async (req, res) => {
     
 }
 
+//Api to update the appointments
+const updateAppointments = async (req, res) => {
+    const  data  = req.body
+    if(!data){
+        return res.status(201).send({success: true, message: "No Appointment found"});
+    }   
+    const appointmentstatus = await appointmentModel.findById({_id: data.appointmentId});
+    console.log(appointmentstatus.Status);
+    if(appointmentstatus.Status !== "confirmed"){
+        const appointment = await appointmentModel.findByIdAndUpdate({_id: data.appointmentId}, {Status: "confirmed"})
+        appointment.save()
+    }else{
+        const appointment = await appointmentModel.findByIdAndUpdate({_id: data.appointmentId}, {Status: "cancelled"})
+        appointment.save()
+    }
 
+    return res.status(200).send({success: true, message: "Appointments updated"})
+}
 
 
 
 module.exports = {
     login,
     addDoctor,
-    getStats
+    getStats,
+    updateAppointments
 }

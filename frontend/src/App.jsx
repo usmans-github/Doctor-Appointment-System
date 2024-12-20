@@ -12,6 +12,7 @@ import AllDoctors from "./pages/AllDoctors";
 import Profile from "./patient/Profile";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Doctors from "./admin/Doctors";
+import AllAppointments from "./admin/AllAppointments";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <Route path="/all-doctors" element={<AllDoctors />} />
             <Route path="/doctor-login" element={<DoctorLogin />} />
             <Route path="/admin-login" element={<AdminLogin />} />
+            <Route path="/admin/appointments" element={<AllAppointments />} />
             <Route path="/admin/add-doctor" element={<AddDoctor />} />
             <Route path="/admin/doctors" element={<Doctors />} />
             <Route path="/admin/dashboard" element={<Page />} />

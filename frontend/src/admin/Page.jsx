@@ -4,7 +4,7 @@ import {
   Bars3Icon as MenuIcon,
   XMarkIcon as XIcon
 } from '@heroicons/react/24/solid'
-import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { AdminContext } from '../context/AdminContext'
 
 
@@ -32,10 +32,13 @@ const Page = () => {
     { name: 'Appointments', value: stats.reverseData.length}
   ] 
     useEffect(() => {
-        setstats
+      getStats()
+        setstats(stats)
     }, [stats])
 
-  if(admin_token) {return  (
+  if(admin_token) {
+    return (
+    
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar */}
       <div className={`${sidebarOpen ? 'block' : 'hidden'} fixed inset-y-0 left-0 z-50 w-64 bg-white  text-black transition-all duration-300 lg:relative lg:block`}>
@@ -49,7 +52,7 @@ const Page = () => {
           <Link to="/admin/dashboard" className="block py-2 px-4 text-black hover:bg-indigo-500 hover:text-white">Dashboard</Link>
           <Link to="/admin/doctors" className="block py-2 px-4 text-black hover:bg-indigo-500 hover:text-white">Doctors</Link>
           <Link to="#" className="block py-2 px-4 text-black hover:bg-indigo-500 hover:text-white">Patients</Link>
-          <Link to="#" className="block py-2 px-4 text-black hover:bg-indigo-500 hover:text-white">Appointments</Link>
+          <Link to="/admin/appointments" className="block py-2 px-4 text-black hover:bg-indigo-500 hover:text-white">Appointments</Link>
           <Link to="#" className="block py-2 px-4 text-black hover:bg-indigo-500 hover:text-white">Settings</Link>
         </nav>
       </div>
@@ -108,8 +111,8 @@ const Page = () => {
                         <td className="py-3">{appointment.slotTime}</td>
                         <td className="py-3">
                           <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                            appointment.Status === 'Confirmed' ? 'bg-green-100 text-green-800' :
-                            appointment.Status === 'Pending' ? 'bg-yellow-100 text-yellow-800' :
+                            appointment.Status === 'confirmed' ? 'bg-green-100 text-green-800' :
+                            appointment.Status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
                             'bg-blue-100 text-blue-800'
                           }`}>
                             {appointment.Status}
@@ -157,7 +160,8 @@ const Page = () => {
         </main>
       </div>
     </div>
-  )}
+  )
+} 
 }
 
 export default Page
