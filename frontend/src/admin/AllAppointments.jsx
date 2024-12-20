@@ -106,7 +106,7 @@ const AllAppointments = () => {
                             : appointment.Status === "pending"
                             ? "bg-yellow-100 text-yellow-800"
                             : appointment.Status === "cancelled"
-                            ? "bg-yellow-100 text-red-500"
+                            ? "bg-red-100 text-red-800"
                             : "bg-blue-100 text-blue-800"
                         }`}
                       >
