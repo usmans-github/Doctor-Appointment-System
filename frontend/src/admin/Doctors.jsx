@@ -6,9 +6,7 @@ import { AdminContext } from "../context/AdminContext";
 
 const Doctors = () => {
   const { admin_token, setadmin_token, stats, setstats, getStats } = useContext(AdminContext)
-  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  console.log(stats);
 
   const filteredDoctors = stats.doctorsData.filter(
     (doctor) =>
@@ -17,8 +15,8 @@ const Doctors = () => {
   );
 
   useEffect(() => {
-    
-  }, [])
+    getStats()
+  }, [setstats])
   
 
   if (admin_token) {
@@ -79,8 +77,9 @@ const Doctors = () => {
                   Phone
                 </th>
                 <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Actions
+                  Fee
                 </th>
+                
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
@@ -99,12 +98,7 @@ const Doctors = () => {
                     <div className="text-sm text-gray-500">{doctor.phone}</div>
                   </td>
                   <td className="px-4 py-3 flex gap-2">
-                    <button className="text-indigo-600 hover:text-indigo-900">
-                      <PencilIcon className="h-5 w-5" />
-                    </button>
-                    <button className="text-red-600 hover:text-red-900">
-                      <TrashIcon className="h-5 w-5" />
-                    </button>
+                  <div className="text-sm text-gray-500">Rs: {doctor.fee}</div>
                   </td>
                 </tr>
               ))}
@@ -120,14 +114,7 @@ const Doctors = () => {
                     <h3 className="text-lg font-medium text-gray-900">{doctor.name}</h3>
                     <p className="text-sm text-gray-500">{doctor.specialization}</p>
                   </div>
-                  <div className="flex gap-4">
-                    <button className="text-indigo-600 hover:text-indigo-900">
-                      <PencilIcon className="h-5 w-5" />
-                    </button>
-                    <button className="text-red-600 hover:text-red-900">
-                      <TrashIcon className="h-5 w-5" />
-                    </button>
-                  </div>
+                  <p className="text-sm text-gray-500">Rs: {doctor.fee}</p>
                 </div>
                 <p className="text-sm text-gray-500">{doctor.email}</p>
                 <p className="text-sm text-gray-500">{doctor.phone}</p>

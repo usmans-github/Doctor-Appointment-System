@@ -34,7 +34,7 @@ export default function Header() {
           <button
               type="button"
               className="text-white hover:text-indigo-500 border border-white hover:bg-indigo-50 focus:ring-4 focus:ring-indigo-300
-              font-medium rounded-lg text-sm px-5 py-2.5"
+              font-medium rounded-lg text-sm px-4 py-2"
             >
               Admin
             </button>

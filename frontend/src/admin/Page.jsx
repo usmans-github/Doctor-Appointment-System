@@ -46,15 +46,13 @@ const Page = () => {
         </div>
         <nav className="mt-8">
           <Link to="/admin/dashboard" className="block py-2 px-4 text-black hover:bg-indigo-500 hover:text-white">Dashboard</Link>
-          <Link to="/admin/doctors" className="block py-2 px-4 text-black hover:bg-indigo-500 hover:text-white">Doctors</Link>
-          <Link to="#" className="block py-2 px-4 text-black hover:bg-indigo-500 hover:text-white">Patients</Link>
           <Link to="/admin/appointments" className="block py-2 px-4 text-black hover:bg-indigo-500 hover:text-white">Appointments</Link>
+          <Link to="/admin/doctors" className="block py-2 px-4 text-black hover:bg-indigo-500 hover:text-white">Doctors</Link>
         </nav>
       </div>
 
       {/* Main Content */}
       <div className="flex-1 overflow-x-hidden overflow-y-auto">
-        {/* Top bar */}
         {/* <header className="bg-white shadow-sm"> */}
           <div className="flex items-center justify-between px-4 py-3">
             <button onClick={() => setSidebarOpen(true)} className="text-gray-500 focus:outline-none focus:text-gray-700 lg:hidden">

@@ -19,9 +19,9 @@ const Hero = () => {
               Book Now
             </button>
           </Link>
-          <Link to="/about">
+          <Link to="/register">
             <button className="bg-transparent border-2 border-white text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-white hover:text-indigo-500 transition duration-300">
-              Learn More
+              Create Account
             </button>
           </Link>
         </div>

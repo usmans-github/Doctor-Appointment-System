@@ -10,7 +10,7 @@ const AllAppointments = () => {
 
   useEffect(() => {
    getStats()
-  }, [stats, setstats])
+  }, [ setstats])
   
   if (admin_token)
     return (
@@ -29,7 +29,7 @@ const AllAppointments = () => {
         transition={Bounce} 
       />
         {/* All Appointments */}
-        <div className="max-w-4xl mt-6 mx-auto">
+        <div className="max-w-5xl mt-6 mx-auto">
           <h1 className="text-2xl sm:text-3xl font-semibold text-white mb-6 text-center">
             ALL APPOINTMENTS
           </h1>
@@ -56,6 +56,9 @@ const AllAppointments = () => {
                     PATIENT
                   </th>
                   <th className="px-4 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
+                    PATIENT EMAIL
+                  </th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                     DOCTOR
                   </th>
                   <th className="px-4 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
@@ -75,14 +78,20 @@ const AllAppointments = () => {
                   </th>
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
+              <tbody className="bg-white divide-y divide-gray-200 ">
                 {Appointments.map((appointment) => (
                   <tr key={appointment._id}>
                     <td className="px-4 py-3">
                       <div className="text-sm font-medium text-gray-900">
-                        {appointment.userData.name}
+                       {appointment.userData.name}
                       </div>
                     </td>
+                    <td className="px-4 py-3">
+                      <div className="text-sm font-medium text-gray-900">
+                       {appointment.userData.email}
+                      </div>
+                    </td>
+                    
                     <td className="px-4 py-3">
                       <div className="text-sm text-black">
                         {appointment.docData.name}
@@ -115,7 +124,7 @@ const AllAppointments = () => {
                     </td>   
                     <td className="px-4 py-3">
                       <div className="text-sm text-black">
-                        {appointment.amount}
+                        Rs: {appointment.amount}
                       </div>
                     </td>
                     <td className="px-4 py-3 text-center">
@@ -174,7 +183,7 @@ const AllAppointments = () => {
                     {appointment.Status}
                   </div>
                   <p className="text-sm  text-center text-black">
-                    {appointment.amount}
+                    Rs: {appointment.amount}
                   </p>
                   <div className="flex justify-center items-center mt-2 text-sm text-black">
                     <button
