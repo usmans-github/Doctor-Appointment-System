@@ -4,7 +4,7 @@ import {
   Bars3Icon as MenuIcon,
   XMarkIcon as XIcon
 } from '@heroicons/react/24/solid'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { AdminContext } from '../context/AdminContext'
 
 
@@ -16,7 +16,6 @@ import { AdminContext } from '../context/AdminContext'
 
 const Page = () => {
   const { admin_token, setadmin_token, stats, setstats, getStats } = useContext(AdminContext)
-  console.log(stats)
   const [sidebarOpen, setSidebarOpen] = useState(false)
   //  const Stats = [
   //   { name: 'Total Patients', value: 1 },
@@ -31,7 +30,7 @@ const Page = () => {
   ] 
     useEffect(() => {
       getStats()
-    }, [ setstats])
+    }, [setstats])
 
   if(admin_token) {
     return (
@@ -127,7 +126,7 @@ const Page = () => {
           {/* Quick Actions */}
           <div className="bg-white rounded-lg shadow-sm p-6">
             <h2 className="text-xl font-semibold text-gray-800 mb-4">Quick Actions</h2>
-            <div className="grid grid-cols-2 gap-4  sm:grid-cols-2 lg:grid-cols-4">
+            <div className="grid grid-cols-2 gap-4  sm:grid-cols-2 lg:grid-cols-3">
               <Link to="/admin/add-doctor">
               <button className="flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md
                text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2
@@ -135,13 +134,7 @@ const Page = () => {
                 Add New Doctor
               </button>
               </Link>
-              <Link to="/admin/add-doctor">
-              <button className="flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md
-               text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2
-                focus:ring-purple-500">
-                Total Patients
-              </button>
-              </Link>
+          
               
               <Link to="/admin/appointments">
               <button className="flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md

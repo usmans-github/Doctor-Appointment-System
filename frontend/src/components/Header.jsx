@@ -1,11 +1,9 @@
 import { useContext, useState } from "react";
-import { ChevronDown, Menu, X } from "lucide-react";
+import {  Menu, X } from "lucide-react";
 import { AppContext } from "../context/AppContext";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Header() {
-  const navigate = useNavigate()
-  
   const { user_token, setuser_token } = useContext(AppContext)
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
@@ -31,12 +29,6 @@ export default function Header() {
           </Link>
           <Link to="/all-doctors" className="text-sm font-medium">
             ALL DOCTORS
-          </Link>
-          <Link to="/about" className="text-sm font-medium">
-            ABOUT
-          </Link>
-          <Link to="/contact" className="text-sm font-medium">
-            CONTACT
           </Link>
           <Link to="/admin-login" className="text-sm font-medium">
           <button
