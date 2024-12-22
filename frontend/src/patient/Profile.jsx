@@ -53,7 +53,7 @@ const Profile = () => {
   
   if(user_token){ return  ( 
     <>
-    <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-indigo-500 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto">
         <div className="bg-white shadow overflow-hidden sm:rounded-lg">
           <div className="px-4 py-5 sm:px-6 flex justify-between items-center">

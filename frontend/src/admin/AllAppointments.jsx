@@ -10,7 +10,7 @@ const AllAppointments = () => {
 
   useEffect(() => {
    getStats()
-  }, [ setstats])
+  }, [stats, setstats])
   
   if (admin_token)
     return (

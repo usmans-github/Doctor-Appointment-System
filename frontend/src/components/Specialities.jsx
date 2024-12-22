@@ -1,9 +1,13 @@
-import { User, UserPlus, Heart, Baby, Brain, Activity } from 'lucide-react'
+import { User, UserPlus, Heart, Baby, Brain,  Sparkle,  ArrowRightIcon } from 'lucide-react'
 
 const specialties = [
   {
     icon: <User className="w-8 h-8" />,
     name: 'General physician',
+  },
+  {
+    icon: <Baby className="w-8 h-8" />,
+    name: 'Pediatrician',
   },
   {
     icon: <UserPlus className="w-8 h-8" />,
@@ -22,30 +26,51 @@ const specialties = [
     name: 'Neurologist',
   },
   {
-    icon: <Activity className="w-8 h-8" />,
-    name: 'Gastroenterologist',
+    icon: <User className="w-8 h-8" />,
+    name: 'General physician',
+  },
+  {
+    icon: <Heart className="w-8 h-8" />,
+    name: 'Dermatologist',
   },
 ]
 
 export default function Specialties() {
   return (
-    <section className="py-16  px-6 md:px-20">
-      <div className="text-center mb-12">
-        <h2 className="text-4xl font-bold mb-2 text-white">Specialized In</h2>
-        <p className="text-white text-lg">
-          Simply browse through our extensive list of trusted doctors, schedule your appointments hassle-free.
+    <section className="py-14 mt-16 rounded-[2.5rem] flex justify-center items-center flex-col px-6 bg-[#f0f0f0]">
+      <div className="text-center mb-12 w-full md:w-[40vw]">
+        <div className="flex justify-center items-center gap-1 text-indigo-500">
+        <Sparkle size={40}  />
+        <h2 className="md:text-5xl text-4xl text-center md:text-start font-extrabold mb-4 ">Specialities</h2>
+        </div>
+       
+        <p className="text-zinc-900 text-lg font-semibold mt-4">
+         Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam ipsa sed error eum distinctio illo libero autem doloremque 
         </p>
       </div>
       
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+
+
+      <div className="grid grid-cols-2 md:grid-cols-4  gap-8">
         {specialties.map((specialty, index) => (
-          <div key={index} className=" flex flex-col h-40 pt-5 w-40 items-center rounded-lg bg-indigo-100">
-            <div className="w-20 h-20 bg-indigo-200  rounded-full flex items-center justify-center mb-3">
-              <div className="text-indigo-500">
-                {specialty.icon}
+          <div key={index} className="group cursor-pointer flex flex-col w-full h-[40vh] md:h-[45vh] md:w-[20vw] pt-5 bg-indigo-500 border items-center rounded-[2.5rem]">
+            <div  className="size-16  bg-indigo-200   rounded-full flex items-center justify-center mb-3">
+              <div className=" text-indigo-500 group-hover:text-zinc-900 ">
+                {specialty.icon}  
               </div>    
             </div>
-            <span className="text-sm font-semibold text-center text-indigo-700 ">{specialty.name}</span>
+            <span className="text-2xl font-semibold text-center group-hover:text-zinc-900 text-white mb-2">{specialty.name}</span>
+
+            <span className='text-lg font-normal text-[#f0f0f0] mx-3 text-center mt-5'>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</span>
+            <div className='flex justify-center items-center group-hover:text-zinc-900 group-hover:gap-2 transition-all gap-1 mt-5  text-xl font-semibold text-center text-white'>
+            <span>
+              Learn more 
+            </span> 
+
+              <ArrowRightIcon className='mt-1'/>
+            </div>
+         
+          
           </div>
         ))}
       </div>

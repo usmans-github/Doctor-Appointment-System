@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { AppContext } from "../context/AppContext";
 import { Link } from "react-router-dom";
+import { MoveRight, Sparkle } from "lucide-react";
 
 
 
@@ -8,58 +9,61 @@ const TopDoctors = () => {
   const {doctors, setdoctors, doctorsData} = useContext(AppContext)
 
 
-  
 
-
-
-  
   useEffect(() => {
     doctorsData()
-  }, [ setdoctors])
+  }, [doctors, setdoctors])
   
   return (
-    <section className="py-16 px-6 md:px-20 bg-indigo-500 ">
-      <div className="text-center mb-12">
-        <h2 className="text-4xl font-extrabold mb-4 text-white drop-shadow-md">
-          Top Doctors to Book
-        </h2>
-        <p className="text-indigo-100 font-medium text-lg">
-          Browse through our extensive list of trusted doctors.
-        </p>
+    <section className="mt-20 py-16 bg-[#f0f0f0] border rounded-t-[2.5rem] pl-14 md:px-16   rounded-b-[2.5rem]">
+      <div className=" mb-12 flex flex-col justify-center items-center">
+      <h2 className="md:text-5xl text-4xl text-indigo-500 text-center md:text-start font-extrabold mb-4 ">Top Doctors to Book</h2>
+          <span className='text-2xl font-semibold text-zinc-900 mx-3 text-center mt-4 '>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</span>
+
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-4 gap-8 w-full ">
         {doctors.map((doctor, index) => (
           <div
             key={index}
-            className="bg-white rounded-xl p-6 shadow-lg transform transition-transform hover:scale-105"
+            className="bg-indigo-500 group cursor-pointer  w-[80vw] md:w-[24vw] border rounded-[2rem] "
           >
-            <div className="relative w-full h-60 mb-4">
+            <div className="relative h-[35vh] md:h-[40vh] ">
               <img
                 src={doctor.picture}
                 alt={doctor.name}
-                className="object-cover w-full h-full rounded-lg"
+                className="object-cover object-center w-full h-full rounded-t-[1.5rem]"
               />
-              <div className="absolute top-2 left-2 bg-green-500 text-white text-xs font-semibold px-2 py-1 rounded-full">
+              <div className="absolute top-2 left-2 group-hover:bg-black bg-indigo-500 text-white text-xs font-semibold px-2 py-1 rounded-full">
                 Available
               </div>
             </div>
-
-            <h3 className="text-xl font-semibold text-indigo-800 mb-2">
+            <div className="below p-6">
+            <div className="flex justify-between items-center">
+            <h3 className="text-xl font-bold text-white mb-2">
               {doctor.name}
             </h3>
-
-            <p className="text-sm text-indigo-600 mb-3">
-              {doctor.specialization}
+            <p className="flex justify-center gap-1 items-center text-md  text-white mb-2">
+              <Sparkle size={16} className="group-hover:text-black transition-all" />{doctor.specialization}
             </p>
-            <p className="text-sm text-indigo-600 mb-3">
+            </div>
+           <div className="flex justify-between">
+           <span className="text-lg text-white mb-3">
+              {/* Experiance: {doctor.experience} */}
+              Lorem ipsum dolor sit.
+            </span>
+            <span className="text-lg text-white mb-3">
               Fee : {doctor.fee}
-            </p>
+            </span>
+           </div>
             <Link to="/register">
-            <button className="w-full py-2 mt-4 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300">
-              Book Now
+            <button className=" font-semibold gap-2 group-hover:gap-4 transition-all text-lg flex justify-center items-center text-center w-full py-3 bg-[#f0f0f0] rounded-[1.5rem] self-center ">
+              <span>Book Appointment</span>
+             <MoveRight />
             </button>
             </Link>
+            </div>
+           
           </div>
         ))}
       </div>

@@ -30,32 +30,31 @@ const Page = () => {
   ] 
     useEffect(() => {
       getStats()
-    }, [setstats])
+    }, [stats, setstats])
 
   if(admin_token) {
     return (
     
-    <div className="flex h-screen bg-gray-100">
+    <div className="flex h-screen bg-indigo-500">
       {/* Sidebar */}
-      <div className={`${sidebarOpen ? 'block' : 'hidden'} fixed inset-y-0 left-0 z-50 w-64 bg-white  text-black transition-all duration-300 lg:relative lg:block`}>
+      <div className={`${sidebarOpen ? 'block' : 'hidden'} fixed inset-y-0 left-0 z-50 w-64 bg-indigo-500  text-white transition-all duration-300 lg:relative lg:block`}>
         <div className="flex items-center justify-between p-4">
-          <h2 className="text-2xl font-semibold">Admin Dashboard</h2>
+          <h2 className="text-2xl text-white font-semibold">Admin Dashboard</h2>
           <button onClick={() => setSidebarOpen(false)} className="lg:hidden">
             <XIcon className="h-6 w-6" />
           </button>
         </div>
         <nav className="mt-8">
-          <Link to="/admin/dashboard" className="block py-2 px-4 text-black hover:bg-indigo-500 hover:text-white">Dashboard</Link>
-          <Link to="/admin/appointments" className="block py-2 px-4 text-black hover:bg-indigo-500 hover:text-white">Appointments</Link>
-          <Link to="/admin/doctors" className="block py-2 px-4 text-black hover:bg-indigo-500 hover:text-white">Doctors</Link>
+          <Link to="/admin/dashboard" className="block py-2 px-4 text-black  hover:text-white">Dashboard</Link>
+          <Link to="/admin/appointments" className="block py-2 px-4 text-black  hover:text-white">Appointments</Link>
+          <Link to="/admin/doctors" className="block py-2 px-4 text-black  hover:text-white">Doctors</Link>
         </nav>
       </div>
 
       {/* Main Content */}
       <div className="flex-1 overflow-x-hidden overflow-y-auto">
-        {/* <header className="bg-white shadow-sm"> */}
           <div className="flex items-center justify-between px-4 py-3">
-            <button onClick={() => setSidebarOpen(true)} className="text-gray-500 focus:outline-none focus:text-gray-700 lg:hidden">
+            <button onClick={() => setSidebarOpen(true)} className="text-white  lg:hidden">
               <MenuIcon className="h-6 w-6" />
             </button>
          
@@ -63,7 +62,7 @@ const Page = () => {
 
         {/* Dashboard content */}
         <main className="p-6">
-          <h1 className="text-3xl font-semibold text-gray-800 mb-6">Dashboard Overview</h1>
+          <h1 className="text-3xl font-semibold text-white mb-6">Dashboard Overview</h1>
           
          {/*  Stats */}
           <div className="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-3">
@@ -74,8 +73,8 @@ const Page = () => {
                     <MenuIcon className="h-8 w-8 text-white" />
                   </div>
                   <div className="ml-4">
-                    <p className="mb-2 text-sm font-medium text-gray-600">{stat.name}</p>
-                    <p className="text-lg font-semibold text-gray-700">{stat.value}</p>
+                    <p className="mb-2 text-sm font-medium text-black">{stat.name}</p>
+                    <p className="text-lg font-semibold text-black">{stat.value}</p>
                   </div>
                 </div>
               </div>
@@ -85,11 +84,11 @@ const Page = () => {
           {/* Recent Appointments */}
           <div className="bg-white rounded-lg shadow-sm mb-6">
             <div className="p-6">
-              <h2 className="text-xl font-semibold text-gray-800 mb-4">Recent Appointments</h2>
+              <h2 className="text-xl font-semibold text-black mb-4">Recent Appointments</h2>
               <div className="overflow-x-auto">
                 <table className="w-full">
                   <thead>
-                    <tr className="text-left text-gray-500 border-b">
+                    <tr className="text-left text-black border-b">
                       <th className="pb-3 font-medium">Patient</th>
                       <th className="pb-3 font-medium">Doctor</th>
                       <th className="pb-3 font-medium">Date</th>
@@ -123,12 +122,11 @@ const Page = () => {
 
           {/* Quick Actions */}
           <div className="bg-white rounded-lg shadow-sm p-6">
-            <h2 className="text-xl font-semibold text-gray-800 mb-4">Quick Actions</h2>
+            <h2 className="text-xl font-semibold text-black mb-4">Quick Actions</h2>
             <div className="grid grid-cols-2 gap-4  sm:grid-cols-2 lg:grid-cols-3">
               <Link to="/admin/add-doctor">
               <button className="flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md
-               text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2
-                focus:ring-purple-500">
+               text-white bg-indigo-500">
                 Add New Doctor
               </button>
               </Link>
@@ -136,15 +134,13 @@ const Page = () => {
               
               <Link to="/admin/appointments">
               <button className="flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md
-               text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2
-                focus:ring-purple-500">
+               text-white bg-indigo-500">
                 View Appointments 
               </button>
               </Link>
               <Link to="/admin/doctors">
               <button className="flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md
-               text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2
-                focus:ring-purple-500">
+               text-white bg-indigo-500">
                 All Doctors
               </button>
               </Link>

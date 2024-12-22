@@ -1,41 +1,51 @@
 import { useContext, useState } from "react";
-import {  Menu, X } from "lucide-react";
+import {  Diamond, House, Menu, UserRound, X } from "lucide-react";
 import { AppContext } from "../context/AppContext";
 import { Link } from "react-router-dom";
 
-export default function Header() {
+export default function Header() {  
   const { user_token, setuser_token } = useContext(AppContext)
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   
 
   return (
-    <header className="bg-indigo-500 rounded-b-[2.5rem]">
+    <header className="bg-[#f0f0f0] border rounded-b-[2.5rem]">
+   
       <nav className="py-4 px-6 md:px-20  flex justify-between items-center">
         {/* Logo */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center justify-center gap-2">
          
           <Link to="/">
-            <span className="text-2xl cursor-pointer text-white font-bold">
-              HealthCare
+          <div className="flex">
+          <span><img src="https://framerusercontent.com/images/x3QCVpPBf6SGXasG60eshYXj2s.svg" alt="" /></span>
+            <span className="text-3xl cursor-pointer text-indigo-500 font-bold">
+              Healthcare
             </span>
+          </div>
+         
           </Link>
         </div>
-
+      
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-8 text-white">
-          <Link to="/" className="text-sm font-medium">
-            HOME
+        <div className="hidden md:flex items-center gap-8 text-black">
+          <Link to="/">
+          <button  className="flex justify-center items-center gap-1 focus:text-indigo-500 px-3 py-1 rounded-xl  text-sm font-medium">
+          <House size={16} />
+            Home
+          </button>
           </Link>
-          <Link to="/all-doctors" className="text-sm font-medium">
-            ALL DOCTORS
+          <Link to="/all-doctors">
+          <button  className="flex justify-center items-center gap-1 focus:text-indigo-500  text-sm font-medium">
+          <UserRound size={16}  />
+            Doctors 
+          </button>
           </Link>
           <Link to="/admin-login" className="text-sm font-medium">
           <button
-              type="button"
-              className="text-white hover:text-indigo-500 border border-white hover:bg-indigo-50 focus:ring-4 focus:ring-indigo-300
-              font-medium rounded-lg text-sm px-4 py-2"
+             className="flex justify-center items-center gap-1 focus:text-indigo-500  text-sm font-medium"
             >
+              <Diamond  size={16} />
               Admin
             </button>
           </Link>
@@ -45,11 +55,10 @@ export default function Header() {
         <div className="flex items-center gap-2">
           <Link to="/register" className="hidden md:inline">
             <button
-              type="button"
-              className="text-indigo-500 bg-white hover:bg-indigo-50 focus:ring-4 focus:ring-indigo-300
+              className="text-indigo-500 border border-indigo-500 hover:bg-indigo-50 
               font-medium rounded-lg text-sm px-5 py-2.5"
             >
-              Create account
+             Book Appointment
             </button>
           </Link>
           {/* //User logged in  */}
@@ -64,19 +73,17 @@ export default function Header() {
               height={40}
               className="rounded-full"
               /></Link> 
-            {/* <ChevronDown className="w-4 h-4 text-white" /> */}
           </div>
           : <Link to="/login"><button
-            className="w-full text-white bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:outline-none
-             focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600
-              dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+            className="w-full text-white hidden md:inline lg:inline   bg-indigo-500 hover:bg-indigo-600 
+           font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600"
           >
            Login
           </button></Link>}
 
           {/* Hamburger Menu */}
           <button
-            className="md:hidden text-white focus:outline-none"
+            className="md:hidden text-indigo-500 focus:outline-none"
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
           >
             <Menu className="w-6 h-6" />
@@ -98,34 +105,57 @@ export default function Header() {
         <div className="flex items-center justify-between px-6 py-4 bg-indigo-600">
           <span className="text-2xl font-bold">Healthcare</span>
           <button onClick={() => setIsSidebarOpen(false)}>
-            <X className="w-6 h-6 text-white" />
+            <X className="w-6 h-6 text-" />
           </button>
         </div>
 
         {/* Sidebar Links */}
         <div className="flex flex-col px-6 space-y-4 mt-4">
-          <Link to="/" className="text-sm font-medium hover:text-indigo-300">
-            HOME
+        <Link to="/">
+          <button  className="flex justify-center items-center gap-1 focus:text-indigo-500  text-sm font-medium">
+          <House size={16} />
+            Home
+          </button>
           </Link>
-          <Link to="/all-doctors" className="text-sm font-medium hover:text-indigo-300">
-            ALL DOCTORS
+          <Link to="/all-doctors">
+          <button  className="flex justify-center items-center gap-1 focus:text-indigo-500  text-sm font-medium">
+          <UserRound size={16}  />
+            Doctors 
+          </button>
           </Link>
-          <Link to="/about" className="text-sm font-medium hover:text-indigo-300">
-            ABOUT
+          <Link to="/admin-login" className="text-sm font-medium">
+          <button
+             className="flex justify-center items-center gap-1 focus:text-indigo-500  text-sm font-medium"
+            >
+              <Diamond  size={16} />
+              Admin
+            </button>
           </Link>
-          <Link to="/contact" className="text-sm font-medium hover:text-indigo-300">
-            CONTACT
-          </Link>
-          <Link to="/admin-login" className="text-sm font-medium hover:text-indigo-300">
-            Admin Panel
-          </Link>
+          {user_token  ? 
+          <div className=" sm:flex md:flex items-center text-white gap-2 cursor-pointer">
+            <Link  to="/patient/profile">
+            <img
+              src="/avatar.webp"
+              alt="User"
+              width={40}
+              height={40}
+              className="rounded-full"
+              /></Link> 
+          </div>
+          : <Link to="/login"><button
+            className=" text-white  bg-indigo-500 hover:bg-indigo-600 
+           font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600"
+          >
+           Login
+          </button></Link>}
+
           <Link to="/register">
             <button
               type="button"
               className="w-full text-indigo-500 bg-white hover:bg-indigo-50 focus:ring-4 focus:ring-indigo-300 
-              font-medium rounded-lg text-sm px-5 py-2.5 mt-4"
+              font-medium rounded-lg text-sm px-5 py-2.5 mt-1"
             >
-              Create account
+              Book Appointment
             </button>
           </Link>
         </div>
