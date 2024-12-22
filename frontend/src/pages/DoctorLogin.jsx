@@ -1,20 +1,13 @@
 "use client";
 import React from "react";
-import axios from "axios";
-import Cookies from "js-cookie";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
 import { Bounce, toast, ToastContainer } from "react-toastify";
 
 
 const DoctorLogin = () => {
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
     const { register,  handleSubmit } = useForm();
     
         const onSubmit =  () => {
-          console.log("dkned");
-          
         }
 
   return (

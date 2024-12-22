@@ -43,7 +43,7 @@ const BookAppointment = () => {
               // console.log(data);
               setloading(true)
               const  res  = await axios.post("/server/api/user/book-new-appointment",  data)
-              console.log(res.data.message)
+              // console.log(res.data.message)
               if(res.data.success){
               toast.success(res.data.message)
               setTimeout(() => {

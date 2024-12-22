@@ -10,8 +10,8 @@ export default function Header() {
   
 
   return (
-    <header className="bg-indigo-500">
-      <nav className="py-4 px-6 md:px-20 flex justify-between items-center">
+    <header className="bg-indigo-500 rounded-b-[2.5rem]">
+      <nav className="py-4 px-6 md:px-20  flex justify-between items-center">
         {/* Logo */}
         <div className="flex items-center gap-2">
          
@@ -84,7 +84,11 @@ export default function Header() {
         </div>
       </nav>
 
-      {/* Sidebar */}
+
+
+
+
+      {/* Sidebar for mobile devices */}
       <div
         className={`fixed top-0 left-0 h-full w-64 bg-indigo-600 text-white transform ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"

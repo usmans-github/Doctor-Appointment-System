@@ -22,7 +22,7 @@ const AdminLogin =  () => {
         data,admin_token
       );
       if (res.data.success) {
-        console.log(res.data.message);
+        // console.log(res.data.message);
         toast.success(res.data.message);
         setTimeout(() => {
           // Set the cookie
@@ -31,7 +31,7 @@ const AdminLogin =  () => {
           navigate("/admin/dashboard");
         }, 1000);
       } else {
-        console.log(res.data.message);
+        // console.log(res.data.message);
         toast.error(res.data.message);
       }
     } catch (error) {

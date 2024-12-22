@@ -24,7 +24,7 @@ const Login = () => {
         data
       );
       if (res.data.success) {
-        console.log("Login successfuly");
+        // console.log(res.data.message);
         toast.success("Login successfuly!");
         setTimeout(() => {
           // setloading(true)
@@ -33,7 +33,7 @@ const Login = () => {
           navigate("/patient/profile");
       }, 1000); 
       } else {
-        console.log(res.data.message);
+        // console.log(res.data.message);
         toast.error(res.data.message);
       reset()
       }

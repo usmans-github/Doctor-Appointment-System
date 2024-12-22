@@ -13,6 +13,7 @@ import Profile from "./patient/Profile";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Doctors from "./admin/Doctors";
 import AllAppointments from "./admin/AllAppointments";
+import Specialties from "./components/Specialities";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Routes>
 
             <Route path="/" element={<HomePage />} />
+            {/* <Route path="/specialities" element={<Specialties />} /> */}
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/patient/profile" element={<ProtectedRoute element={<Profile />} />} />

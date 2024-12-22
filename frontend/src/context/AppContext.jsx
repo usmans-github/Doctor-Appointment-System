@@ -18,7 +18,8 @@ const AppContextProvider = (props) => {
             if(data.success){
                 setuserData(data.userData)
             }else{
-                console.log(data.data.message)
+                toast.error(data.message)
+                // console.log(data.message)
             }
         } catch (error) {
             toast.error(error.message)

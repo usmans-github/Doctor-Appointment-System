@@ -41,14 +41,14 @@ const AddDoctor = () => {
         "/server/api/admin/add-doctor",
         formData);
       if (res.data.success) {
-        console.log("Doctor addded successfuly", res.data.message);
+        // console.log("Doctor addded successfuly", res.data.message);
         toast.success(res.data.message);
         setTimeout(() => {
           navigate("/admin/dashboard");
         }, 1000);
       } else {
         toast.error(res.data.message);
-        console.log(res.data.message);
+        // console.log(res.data.message);
       }
     } catch (error) {
       toast.error(error.message)

@@ -28,14 +28,14 @@ const Register = () => {
           const res = await axios.post("/server/api/user/register", data)
           console.log(res.data.success);
           if(res.data.success) {
-            console.log("Registered succcessfuly and response.message is ", res.data.message); 
+            // console.log("Registered succcessfuly and response.message is ", res.data.message); 
             toast.success(res.data.message);
               setTimeout(() => {
                navigate("/login")
               }, 1000);
           } else {
             toast.error(res.data.message);
-            console.log("user already exists", res.data);
+            // console.log("user already exists", res.data);
             reset()
           }
         } catch (error) {
