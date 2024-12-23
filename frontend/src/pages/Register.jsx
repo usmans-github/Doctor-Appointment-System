@@ -64,7 +64,7 @@ const Register = () => {
     transition={Bounce}
   />
   
-  <section className="">
+  <section className="py-16">
   <div className="flex flex-col items-center justify-center px-6 py-4 mx-auto lg:py-0">
     <div className="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-3xl xl:p-0">
       <div className="p-6 md:p-8 space-y-4">
