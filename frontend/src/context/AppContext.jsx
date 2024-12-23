@@ -19,7 +19,7 @@ const AppContextProvider = (props) => {
                 setuserData(data.userData)
             }else{
                 toast.error(data.message)
-                // console.log(data.message)
+                console.log(data.message)
             }
         } catch (error) {
             toast.error(error.message)
@@ -46,9 +46,7 @@ const AppContextProvider = (props) => {
 
 
     
-    useEffect(() => { 
-     userProfileData()
-    }, [])
+    
 
 
     useEffect(() => { 
