@@ -156,7 +156,8 @@ const bookAppointment = async (req, res) => {
   const upComingAppointments = async (req, res) => {
     try {
     const { userId } = req.body
-    const userappointments = await appointmentModel.find({userId});
+    const userAppointments = await appointmentModel.find({userId});
+    const userappointments = userAppointments.reverse()
     return res.status(200).send({success: true, message: "userappointments loaded successfuly", userappointments})
     } catch (error) {
       console.log(error.message)
