@@ -48,7 +48,7 @@ MONGO_URI=ADD_YOUR_MONGO_URI_HERE
 JWT_SECRET=ADD_YOUR_JWT_SECRET_HERE 
 ADMIN_EMAIL=admin@healthcare.com
 ADMIN_PASSWORD=admin@healthcare
-CLOUDINARY_CLOUD_NAME=ADD_YOUR_CLOUDINARY_CLOUD_NAMe
+CLOUDINARY_CLOUD_NAME=ADD_YOUR_CLOUDINARY_CLOUD_NAME
 CLOUDINARY_API_KEY=ADD_YOUR_CLOUDINARY_API_KEY
 CLOUDINARY_API_SECRET=ADD_YOUR_CLOUDINARY_API_SECRET
 ```
@@ -86,4 +86,8 @@ npm run dev
 - Password:  ``admin``
 
 
+<<<<<<< HEAD
 Feel free to customize the appointments as admin and book the appointments as Patient !
+=======
+Feel free to customize the appointments as admin and book the appointments as Patient  
+>>>>>>> cba5a0f62c6222267bedeb3b25d18126728ad588
