@@ -5,8 +5,7 @@ A full-stack web application to simplify and enhance the appointment booking pro
 ## Features
 
 - **Admin Panel**: Full control over doctors, patients, and appointments.
-- **Doctor Management**: Add, update, or remove doctor profiles.
-- **Patient Management**: View and manage patient records and appointment history.
+- **Patient Profile**: Patient can book an appointment and view the appointment's status.
 - **Appointment Booking**: Simplified and user-friendly process for patients.
 - **Responsive UI**: Built with modern design principles for seamless experience across devices.
 
@@ -25,7 +24,8 @@ A full-stack web application to simplify and enhance the appointment booking pro
 - **JWT** for secure authentication
 - **Axios** for API requests
 - **Bcrypt** for password encryption
-- **Cloudinary** for images uploading
+- **Multer** for file uploading 
+- **Cloudinary** for images optimization
 ## Installation
 
 1. Clone the repository:
