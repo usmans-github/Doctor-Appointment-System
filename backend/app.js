@@ -31,8 +31,8 @@ app.use("/api/admin", require("./routes/admin-route"));
 
 
  
-app.get("/",  async(req, res) => {
-  res.send("Hello World!");
+app.get("/",  (req, res) => {
+   return  res.json(200).send("Hello from the server!");
   })
 
 
