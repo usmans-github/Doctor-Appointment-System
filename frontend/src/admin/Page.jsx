@@ -30,7 +30,7 @@ const Page = () => {
   ] 
     useEffect(() => {
       getStats()
-    }, [admin_token, setadmin_token, stats, setstats])
+    }, [ stats, setstats])
 
   if(admin_token) {
     return (

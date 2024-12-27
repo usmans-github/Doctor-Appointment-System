@@ -32,7 +32,7 @@ const TopDoctors = () => {
               <img
                 src={doctor.picture}
                 alt={doctor.name}
-                className="object-cover object-center w-full h-full rounded-t-[1.5rem]"
+                className="object-cover object-top w-full h-full rounded-t-[1.5rem]"
               />
               <div className="absolute top-2 left-2 group-hover:bg-black bg-indigo-500 text-white text-xs font-semibold px-2 py-1 rounded-full">
                 Available
