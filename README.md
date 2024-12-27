@@ -86,8 +86,4 @@ npm run dev
 - Password:  ``admin``
 
 
-<<<<<<< HEAD
 Feel free to customize the appointments as admin and book the appointments as Patient !
-=======
-Feel free to customize the appointments as admin and book the appointments as Patient  
->>>>>>> cba5a0f62c6222267bedeb3b25d18126728ad588
