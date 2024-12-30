@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/server" : {
-        target: "https://doctor-appointment-system-tau-tan.vercel.app",
+        target: "http://localhost:3000",
         rewrite: (path) => path.replace(/^\/server/, ""),
         secure: true,
       }
