@@ -31,10 +31,10 @@ const AppContextProvider = (props) => {
     const [doctors, setdoctors] = useState([])
     const doctorsData = async () => {
         try {
-            const res = await axios.get("/server/api/user/getData")
+            const res = await axios.get("https://doctor-appointment-system-tau-tan.vercel.app/api/user/getData")
             setdoctors(res.data.doctors)
             
-            
+                
         } catch (error) {
             toast.error(error)
             console.log(error);

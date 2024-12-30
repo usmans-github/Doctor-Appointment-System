@@ -16,7 +16,7 @@ connectDb();
 
 //Middlewares
 app.use(express.json());
-app.use(cors());
+app.use(cors());  
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
@@ -32,7 +32,7 @@ app.use("/api/admin", require("./routes/admin-route"));
 
  
 app.get("/",  (req, res) => {
-   return  res.json(200).send("Hello from the server!");
+     res.status(200).send("Hello from the server!");
   })
 
 
