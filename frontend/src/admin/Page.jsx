@@ -15,7 +15,7 @@ import { AdminContext } from '../context/AdminContext'
 // ]
 
 const Page = () => {
-  const { admin_token, setadmin_token, stats, setstats, getStats } = useContext(AdminContext)
+  const { admin_token,  stats, setstats, getStats } = useContext(AdminContext)
   const [sidebarOpen, setSidebarOpen] = useState(false)
   //  const Stats = [
   //   { name: 'Total Patients', value: 1 },

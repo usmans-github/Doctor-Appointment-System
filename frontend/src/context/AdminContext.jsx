@@ -11,7 +11,7 @@ const AdminContextProvider = (props) => {
   const [stats, setstats] = useState([])
   const getStats = async () => {
     try {
-      const stats = await axios.get("/server/api/admin/getStats", admin_token)
+      const stats = await axios.get( `/server/api/admin/getStats`, admin_token)
       setstats(stats.data)
     } catch (error) {
       console.log(error.message);

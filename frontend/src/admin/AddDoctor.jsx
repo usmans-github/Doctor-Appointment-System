@@ -38,7 +38,7 @@ const AddDoctor = () => {
       // console.log("form data is:", formData.data);
       setloading(true)
       const res = await axios.post(
-          `${import.meta.env.BACKEND_URL}/api/admin/add-doctor`,
+          `/server/api/admin/add-doctor`,
         formData);
       if (res.data.success) {
         // console.log("Doctor addded successfuly", res.data.message);
