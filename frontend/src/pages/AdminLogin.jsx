@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Bounce, toast, ToastContainer } from "react-toastify";
 import { AdminContext } from "../context/AdminContext";
 import { LoadingContext } from "../context/LoadingContext";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const AdminLogin = () => {
   const { loading, setloading } = useContext(LoadingContext);
@@ -38,6 +39,7 @@ const AdminLogin = () => {
 
   return (
     <div>
+      {loading && <LoadingSpinner />}
       <ToastContainer
         position="bottom-right"
         autoClose={5000}

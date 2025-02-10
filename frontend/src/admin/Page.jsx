@@ -6,21 +6,12 @@ import {
 } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
 import { AdminContext } from "../context/AdminContext";
-
-// const mockAppointments = [
-//   { id: 1, patient: 'John Doe', doctor: 'Dr. Smith', time: '09:00 AM', status: 'Confirmed' },
-//   { id: 2, patient: 'Jane Smith', doctor: 'Dr. Johnson', time: '10:30 AM', status: 'Pending' },
-//   { id: 3, patient: 'Bob Brown', doctor: 'Dr. Williams', time: '02:00 PM', status: 'Completed' },
-// ]
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const Page = () => {
   const { admin_token, stats, setstats, getStats } = useContext(AdminContext);
+  const { loading, setloading } = useContext(LoadingContext);
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  //  const Stats = [
-  //   { name: 'Total Patients', value: 1 },
-  //   { name: 'Total Doctors', value: 2},
-  //   { name: 'Appointments', value: 3}
-  // ]
 
   const Stats = [
     { name: "Total Patients", value: stats.usersData ? stats.usersData.length : 0 },
@@ -30,7 +21,8 @@ const Page = () => {
 
   useEffect(() => {
     console.log("Fetching stats...");
-    getStats();
+    setloading(true);
+    getStats().finally(() => setloading(false));
   }, []);
 
   useEffect(() => {
@@ -41,33 +33,33 @@ const Page = () => {
     console.log("Admin token:", admin_token);
     return (
       <div className="flex h-screen bg-indigo-500">
+        {loading && <LoadingSpinner />}
         {/* Sidebar */}
         <div
           className={`${
             sidebarOpen ? "block" : "hidden"
-          } fixed inset-y-0 left-0 z-50 w-64 
-           transition-all duration-300 lg:relative lg:block `}>
+          } fixed inset-y-0 left-0 z-50 w-64 bg-indigo-700 text-white transition-all duration-300 lg:relative lg:block`}>
           <div className="flex items-center justify-between p-4">
             <button onClick={() => setSidebarOpen(false)} className="lg:hidden">
-              <XIcon className="h-6 w-6  hover:text-red-500 transition-colors" />
+              <XIcon className="h-6 w-6 hover:text-red-500 transition-colors" />
             </button>
           </div>
           <nav className="mt-6 space-y-2">
             <Link
               to="/admin/dashboard"
-              className="block py-2 px-4 hover:text-black text-white text-xl font-semibold   transition-colors"
+              className="block py-2 px-4 rounded-xl hover:bg-indigo-600 transition-colors"
             >
               Dashboard
             </Link>
             <Link
               to="/admin/appointments"
-              className="block py-2 px-4 hover:text-black text-white text-xl font-semibold transition-colors"
+              className="block py-2 px-4 rounded-xl hover:bg-indigo-600 transition-colors"
             >
               Appointments
             </Link>
             <Link
               to="/admin/doctors"
-              className="block py-2 px-4 hover:text-black text-white text-xl font-semibold  transition-colors"
+              className="block py-2 px-4 rounded-xl hover:bg-indigo-600 transition-colors"
             >
               Doctors
             </Link>
@@ -76,10 +68,10 @@ const Page = () => {
 
         {/* Main Content */}
         <div className="flex-1 overflow-x-hidden overflow-y-auto">
-          <div className="flex items-center justify-between px-4 py-3">
+          <div className="flex items-center justify-between px-4 py-3 bg-indigo-700 lg:bg-transparent">
             <button
               onClick={() => setSidebarOpen(true)}
-              className="text-white  lg:hidden"
+              className="text-white lg:hidden"
             >
               <MenuIcon className="h-6 w-6" />
             </button>
@@ -91,8 +83,8 @@ const Page = () => {
               Dashboard Overview
             </h1>
 
-            {/*  Stats */}
-            <div className="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-3">
+            {/* Stats */}
+            <div className="grid grid-cols-1 gap-6 mb-6 sm:grid-cols-2 lg:grid-cols-3">
               {Stats.map((stat, index) => (
                 <div key={index} className="bg-white rounded-lg shadow-sm p-6">
                   <div className="flex items-center">
@@ -165,12 +157,11 @@ const Page = () => {
               <h2 className="text-xl font-semibold text-black mb-4">
                 Quick Actions
               </h2>
-              <div className="grid grid-cols-2 gap-4  sm:grid-cols-2 lg:grid-cols-3">
+              <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 <Link to="/admin/add-doctor">
                   <button
                     className="flex items-center justify-center px-4 py-2 border border-transparent
-               text-sm font-medium rounded-md
-               text-white bg-indigo-500"
+               text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600 transition-colors"
                   >
                     Add New Doctor
                   </button>
@@ -179,8 +170,7 @@ const Page = () => {
                 <Link to="/admin/appointments">
                   <button
                     className="flex items-center justify-center px-4 py-2 border border-transparent
-               text-sm font-medium rounded-md
-               text-white bg-indigo-500"
+               text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600 transition-colors"
                   >
                     View Appointments
                   </button>
@@ -188,7 +178,8 @@ const Page = () => {
                 <Link to="/admin/doctors">
                   <button
                     className="flex items-center justify-center px-4 py-2 border border-transparent
-                    text-sm font-medium rounded-md text-white bg-indigo-500">
+               text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600 transition-colors"
+                  >
                     All Doctors
                   </button>
                 </Link>
