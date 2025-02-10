@@ -40,7 +40,7 @@ const HomePage = () => {
             </div>
           </div>
 
-          <div className="mx-auto mt-[4vh] flex items-center mb-[4vh] justify-center md:h-[90vh]  md:w-[40vw] md:rounded-[2.5rem] ">
+          <div className="mx-auto mt-16 flex items-center  justify-center md:h-[90vh]  md:w-[40vw] md:rounded-[2.5rem] ">
             <img
               src="hero.avif"
               alt="healthcare"

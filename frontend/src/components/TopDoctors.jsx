@@ -11,7 +11,7 @@ const TopDoctors = () => {
   }, [setdoctors]);
 
   return (
-    <section className="mt-20 py-16 bg-[#f0f0f0] border rounded-t-[2.5rem]  md:px-16  rounded-b-[2.5rem]">
+    <section className="mt-16 py-16 bg-[#f0f0f0] border rounded-t-[2.5rem]  md:px-16  rounded-b-[2.5rem]">
       <div className=" mb-12 flex flex-col justify-center items-center">
         <h2 className="md:text-5xl text-4xl text-indigo-500 text-center md:text-start font-extrabold mb-4 ">
           Top Doctors to Book
