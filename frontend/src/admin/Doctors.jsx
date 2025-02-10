@@ -23,7 +23,7 @@ const Doctors = () => {
     return (
       <>
       {/* Back to Dashboard Button */}
-      <div className="mb-4 max-w-4xl mx-auto">
+      <div className="mb-4 max-w-[80vw] mx-auto">
        
       </div>
     

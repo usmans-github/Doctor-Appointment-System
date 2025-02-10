@@ -188,9 +188,7 @@ const Page = () => {
                 <Link to="/admin/doctors">
                   <button
                     className="flex items-center justify-center px-4 py-2 border border-transparent
-               text-sm font-medium rounded-md
-               text-white bg-indigo-500"
-                  >
+                    text-sm font-medium rounded-md text-white bg-indigo-500">
                     All Doctors
                   </button>
                 </Link>
