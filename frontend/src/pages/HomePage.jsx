@@ -11,7 +11,8 @@ const HomePage = () => {
       {/* Hero */}
       <section className="container mx-auto min-h-screen ">
         <div className=" justify-center md:h-[42vh] grid grid-cols-1 md:grid-cols-2">
-          <div className="mx-auto flex flex-col justify-center items-center gap-4 md:gap-2 md:items-start md:space-y-5 mt-[4vh] md:w-[42vw]">
+          <div className="mx-auto flex flex-col justify-center items-center gap-4 md:gap-2 md:items-start
+           md:space-y-5 mt-[4vh] md:w-[42vw]">
             <p className="md:text-xl text-lg font-semibold text-[#F9FAFB]">
               Lorem ipsum dolor,
             </p>
