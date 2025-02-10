@@ -6,9 +6,9 @@ const Featured = () => {
     <section className='group  bg-[#f0f0f0] mt-16 border rounded-3xl md:rounded-[2.5rem] mx-2 md:mx-16'>
         <div className='grid grid-cols-2 gap-0'>
             {/* Image */}
-            <div className=" md:p-10 p-6 ">
-            <img src="doctors.png" alt="doctors" className='group-hover:scale-110 transition-all 
-              md:w-full object -cover object-center bg-indigo-500  border rounded-xl md:rounded-[2.5rem]' />    
+            <div className="p-6 ">
+            <img src="doctors.png" alt="doctors" className='md:h-[50vh] group-hover:scale-110 transition-all 
+               object -cover object-center bg-indigo-500  border rounded-[2.5rem]' />    
             </div>
             {/* text */}
             <div className='flex flex-col items-start text-sm gap-0  md:gap-4 md:h-[60vh] justify-center'>
