@@ -55,19 +55,19 @@ const Page = () => {
           <nav className="mt-6 space-y-2">
             <Link
               to="/admin/dashboard"
-              className="block py-2 px-4 rounded-xl bg-[#f0f0f0]   transition-colors"
+              className="block py-2 px-4 hover:text-black text-white text-xl font-semibold   transition-colors"
             >
               Dashboard
             </Link>
             <Link
               to="/admin/appointments"
-              className="block py-2 px-4 rounded-md transition-colors"
+              className="block py-2 px-4 hover:text-black text-white text-xl font-semibold transition-colors"
             >
               Appointments
             </Link>
             <Link
               to="/admin/doctors"
-              className="block py-2 px-4 rounded-md  transition-colors"
+              className="block py-2 px-4 hover:text-black text-white text-xl font-semibold  transition-colors"
             >
               Doctors
             </Link>

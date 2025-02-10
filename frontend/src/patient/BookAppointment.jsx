@@ -69,7 +69,7 @@ const BookAppointment = () => {
   if(user_token) { return (
     <>
       <ToastContainer
-        position="top-center"
+        position="bottom-right"
         autoClose={1000}
         hideProgressBar
         newestOnTop={false}
