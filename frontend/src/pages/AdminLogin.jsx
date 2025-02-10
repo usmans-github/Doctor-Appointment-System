@@ -38,7 +38,6 @@ const AdminLogin = () => {
 
   return (
     <div>
-      {loading && <LoadingSpinner />}
       <ToastContainer
         position="bottom-right"
         autoClose={5000}

@@ -11,7 +11,7 @@ const AdminContextProvider = (props) => {
   const [admin_token, setadmin_token] = useState("")
   //All data for admin
   const [stats, setstats] = useState([])
-  const getStats = async () => {
+  const getStats = async () => {    
     try {
       setloading(true);
       const stats = await axios.get( `/server/api/admin/getStats`, admin_token)
@@ -28,7 +28,6 @@ const AdminContextProvider = (props) => {
   //Api to cancel & approve  the appointment
   const updateAppointments = async(appointmentId) => {
     try {
-      setloading(true);
       const res = await axios.post("/server/api/admin/update-appointment", {appointmentId: appointmentId})
       if(res.data.success){
         toast.success(res.data.message)
@@ -37,8 +36,6 @@ const AdminContextProvider = (props) => {
       }
     } catch (error) {
       console.log(error);
-    }finally{
-      setloading(false);
     }
     
   }

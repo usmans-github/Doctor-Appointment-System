@@ -4,30 +4,29 @@ import { Link } from "react-router-dom";
 import { Bounce, ToastContainer } from "react-toastify";
 
 const AllAppointments = () => {
-  const { admin_token, setadmin_token, stats, setstats, getStats, updateAppointments } = useContext(AdminContext);
+  const { admin_token, stats, setstats, getStats, updateAppointments } = useContext(AdminContext);
   const Appointments = stats.reverseData;
 
-
   useEffect(() => {
-   getStats()
-  }, [stats, setstats])
-  
+    getStats();
+  }, [setstats]); // Remove unnecessary dependencies
+
   if (admin_token)
     return (
       <>
-       <ToastContainer
-        position="bottom-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-        transition={Bounce} 
-      />
+        <ToastContainer
+          position="bottom-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+          transition={Bounce}
+        />
         {/* All Appointments */}
         <div className="max-w-[80vw] mt-6 mx-auto">
           <h1 className="text-2xl sm:text-3xl font-semibold text-white mb-6 text-center">
@@ -83,15 +82,15 @@ const AllAppointments = () => {
                   <tr key={appointment._id}>
                     <td className="px-4 py-3">
                       <div className="text-sm font-medium text-gray-900">
-                       {appointment.userData.name}
+                        {appointment.userData.name}
                       </div>
                     </td>
                     <td className="px-4 py-3">
                       <div className="text-sm font-medium text-gray-900">
-                       {appointment.userData.email}
+                        {appointment.userData.email}
                       </div>
                     </td>
-                    
+
                     <td className="px-4 py-3">
                       <div className="text-sm text-black">
                         {appointment.docData.name}
@@ -121,7 +120,7 @@ const AllAppointments = () => {
                       >
                         {appointment.Status}
                       </div>
-                    </td>   
+                    </td>
                     <td className="px-4 py-3">
                       <div className="text-sm text-black">
                         Rs: {appointment.amount}
@@ -129,7 +128,7 @@ const AllAppointments = () => {
                     </td>
                     <td className="px-4 py-3 text-center">
                       <button
-                        onClick={()=>updateAppointments(appointment._id)}
+                        onClick={() => updateAppointments(appointment._id)}
                         type="button"
                         className="text-white mr-4 hover:text-indigo-500 bg-indigo-500  border hover:border-indigo-500
                     hover:bg-indigo-50 focus:ring-4 focus:ring-indigo-300
@@ -138,7 +137,7 @@ const AllAppointments = () => {
                         confirm
                       </button>
                       <button
-                        onClick={()=>updateAppointments(appointment._id)}
+                        onClick={() => updateAppointments(appointment._id)}
                         type="button"
                         className="text-white hover:text-indigo-500 bg-red-500  border hover:border-indigo-500
                     hover:bg-indigo-50 focus:ring-4 focus:ring-indigo-300
@@ -187,7 +186,6 @@ const AllAppointments = () => {
                   </p>
                   <div className="flex justify-center items-center mt-2 text-sm text-black">
                     <button
-                      
                       type="button"
                       className="text-white mr-4 hover:text-indigo-500 bg-indigo-500  border hover:border-indigo-500
                     hover:bg-indigo-50 focus:ring-4 focus:ring-indigo-300
