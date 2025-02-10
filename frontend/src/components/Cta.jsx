@@ -13,7 +13,7 @@ const Cta = () => {
                 Healthcare
               </h3>
             </Link>
-            <p className="text-base">
+            <p className="space-y-1 text-base font-medium ">
               Providing quality healthcare services and medical solutions for a
               better tomorrow.
             </p>
@@ -27,24 +27,24 @@ const Cta = () => {
             </h3>
             <ul className="space-y-1 text-base font-medium ">
               <li>
-                <a href="#" className="hover:text-black transition-colors">
+                <Link to="/all-doctors" className="hover:text-black transition-colors">
                   Find a Doctor
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-black transition-colors">
+                <Link to="/register" className="hover:text-black transition-colors">
                   Book Appointment
+                </Link>
+              </li>
+              <li>
+                <a href="/" className="hover:text-black transition-colors">
+                 Healthy Blogs
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-black transition-colors">
-                  Our Services
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-black transition-colors">
-                  Health Tips
-                </a>
+                <Link to="/admin-login" className="hover:text-black transition-colors">
+                  Admin
+                </Link>
               </li>
             </ul>
           </div>
@@ -54,7 +54,7 @@ const Cta = () => {
             <h3 className="text-2xl font-bold  text-white mb-2" >
               Contact
             </h3>
-            <ul className="space-y-1 text-base font ">
+            <ul className="space-y-1 text-base font-medium ">
               <li>123 Medical Center Drive</li>
               <li>New York, NY 10001</li>
               <li>Phone: (555) 123-4567</li>
@@ -68,7 +68,7 @@ const Cta = () => {
               className="text-2xl font-bold  text-white mb-2"  >
               Working Hours
             </h3>
-            <ul className="space-y-1 text-base font ">
+            <ul className="space-y-1 text-base font-medium ">
               <li>Monday - Friday: 8:00 AM - 8:00 PM</li>
               <li>Saturday: 9:00 AM - 5:00 PM</li>
               <li>Sunday: Emergency Only</li>

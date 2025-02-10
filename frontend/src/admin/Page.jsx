@@ -23,15 +23,22 @@ const Page = () => {
   // ]
 
   const Stats = [
-    { name: "Total Patients", value: stats.usersData.length },
-    { name: "Total Doctors", value: stats.doctorsData.length },
-    { name: "Appointments", value: stats.reverseData.length },
+    { name: "Total Patients", value: stats.usersData ? stats.usersData.length : 0 },
+    { name: "Total Doctors", value: stats.doctorsData ? stats.doctorsData.length : 0 },
+    { name: "Appointments", value: stats.reverseData ? stats.reverseData.length : 0 },
   ];
+
   useEffect(() => {
+    console.log("Fetching stats...");
     getStats();
-  }, [stats, setstats]);
+  }, []);
+
+  useEffect(() => {
+    console.log("Stats updated:", stats);
+  }, [stats]);
 
   if (admin_token) {
+    console.log("Admin token:", admin_token);
     return (
       <div className="flex h-screen bg-indigo-500">
         {/* Sidebar */}
@@ -123,7 +130,7 @@ const Page = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {stats.reverseData.map((appointment) => (
+                      {stats.reverseData && stats.reverseData.map((appointment) => (
                         <tr
                           key={appointment._id}
                           className="border-b last:border-b-0"

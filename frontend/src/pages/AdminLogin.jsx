@@ -8,36 +8,31 @@ import { Bounce, toast, ToastContainer } from "react-toastify";
 import { AdminContext } from "../context/AdminContext";
 import { LoadingContext } from "../context/LoadingContext";
 
-const AdminLogin =  () => { 
-      const { loading, setloading } = useContext(LoadingContext)
-      const {admin_token, setadmin_token} = useContext(AdminContext)
-      const navigate = useNavigate();
-      const { register, handleSubmit } = useForm();
+const AdminLogin = () => {
+  const { loading, setloading } = useContext(LoadingContext);
+  const { admin_token, setadmin_token } = useContext(AdminContext);
+  const navigate = useNavigate();
+  const { register, handleSubmit } = useForm();
 
   const onSubmit = async (data) => {
     try {
-      setloading(true)
-      const res = await axios.post(
-        "/server/api/admin/login",
-        data,admin_token
-      );
+      setloading(true);
+      const res = await axios.post("/server/api/admin/login", data);
+      console.log(res.data); // Add this line to check the response data
       if (res.data.success) {
-        // console.log(res.data.message);
         toast.success(res.data.message);
         setTimeout(() => {
-          // Set the cookie
           Cookies.set("admin_token", res.data.admin_token);
-          setadmin_token(res.data.admin_token)
+          setadmin_token(res.data.admin_token);
           navigate("/admin/dashboard");
         }, 1000);
       } else {
-        // console.log(res.data.message);
         toast.error(res.data.message);
       }
     } catch (error) {
-      toast.error(error.message)
-    }finally{
-      setloading(false)
+      toast.error(error.message);
+    } finally {
+      setloading(false);
     }
   };
 
@@ -54,12 +49,14 @@ const AdminLogin =  () => {
         draggable
         pauseOnHover
         theme="light"
-      transition={Bounce}
+        transition={Bounce}
       />
       <section className="bg-indigo-500">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-[70vh] lg:py-0">
-          <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0
-           dark:bg-gray-800 dark:border-gray-700">
+          <div
+            className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0
+           dark:bg-gray-800 dark:border-gray-700"
+          >
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                 Login as Admin
