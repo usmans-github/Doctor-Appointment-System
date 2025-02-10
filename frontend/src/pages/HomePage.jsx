@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Specialities from "../components/Specialities";
 import TopDoctors from "../components/TopDoctors";
@@ -6,6 +6,7 @@ import Cta from "../components/Cta";
 import Featured from "../components/Featured";
 
 const HomePage = () => {
+
   return (
     <>
       {/* Hero */}

@@ -6,7 +6,7 @@ import {
 } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
 import { AdminContext } from "../context/AdminContext";
-import LoadingSpinner from "../components/LoadingSpinner";
+import { LoadingContext } from "../context/LoadingContext";
 
 const Page = () => {
   const { admin_token, stats, setstats, getStats } = useContext(AdminContext);
@@ -14,9 +14,18 @@ const Page = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const Stats = [
-    { name: "Total Patients", value: stats.usersData ? stats.usersData.length : 0 },
-    { name: "Total Doctors", value: stats.doctorsData ? stats.doctorsData.length : 0 },
-    { name: "Appointments", value: stats.reverseData ? stats.reverseData.length : 0 },
+    {
+      name: "Total Patients",
+      value: stats.usersData ? stats.usersData.length : 0,
+    },
+    {
+      name: "Total Doctors",
+      value: stats.doctorsData ? stats.doctorsData.length : 0,
+    },
+    {
+      name: "Appointments",
+      value: stats.reverseData ? stats.reverseData.length : 0,
+    },
   ];
 
   useEffect(() => {
@@ -33,12 +42,12 @@ const Page = () => {
     console.log("Admin token:", admin_token);
     return (
       <div className="flex h-screen bg-indigo-500">
-        {loading && <LoadingSpinner />}
         {/* Sidebar */}
         <div
           className={`${
             sidebarOpen ? "block" : "hidden"
-          } fixed inset-y-0 left-0 z-50 w-64 bg-indigo-700 text-white transition-all duration-300 lg:relative lg:block`}>
+          } fixed inset-y-0 left-0 z-50 w-64 text-white transition-all duration-300 lg:relative lg:block`}
+        >
           <div className="flex items-center justify-between p-4">
             <button onClick={() => setSidebarOpen(false)} className="lg:hidden">
               <XIcon className="h-6 w-6 hover:text-red-500 transition-colors" />
@@ -47,19 +56,19 @@ const Page = () => {
           <nav className="mt-6 space-y-2">
             <Link
               to="/admin/dashboard"
-              className="block py-2 px-4 rounded-xl hover:bg-indigo-600 transition-colors"
+              className="block py-2 px-4 text-lg font-semibold hover:text-black transition-colors"
             >
               Dashboard
             </Link>
             <Link
               to="/admin/appointments"
-              className="block py-2 px-4 rounded-xl hover:bg-indigo-600 transition-colors"
+              className="block py-2 px-4 text-lg font-semibold hover:text-black transition-colors"
             >
               Appointments
             </Link>
             <Link
               to="/admin/doctors"
-              className="block py-2 px-4 rounded-xl hover:bg-indigo-600 transition-colors"
+              className="block py-2 px-4 text-lg font-semibold hover:text-black transition-colors"
             >
               Doctors
             </Link>
@@ -122,30 +131,33 @@ const Page = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {stats.reverseData && stats.reverseData.map((appointment) => (
-                        <tr
-                          key={appointment._id}
-                          className="border-b last:border-b-0"
-                        >
-                          <td className="py-3">{appointment.userData.name}</td>
-                          <td className="py-3">{appointment.docData.name}</td>
-                          <td className="py-3">{appointment.slotDate}</td>
-                          <td className="py-3">{appointment.slotTime}</td>
-                          <td className="py-3">
-                            <span
-                              className={`px-2 py-1 rounded-full text-xs font-medium ${
-                                appointment.Status === "confirmed"
-                                  ? "bg-green-100 text-green-800"
-                                  : appointment.Status === "pending"
-                                  ? "bg-yellow-100 text-yellow-800"
-                                  : "bg-red-100 text-red-800"
-                              }`}
-                            >
-                              {appointment.Status}
-                            </span>
-                          </td>
-                        </tr>
-                      ))}
+                      {stats.reverseData &&
+                        stats.reverseData.map((appointment) => (
+                          <tr
+                            key={appointment._id}
+                            className="border-b last:border-b-0"
+                          >
+                            <td className="py-3">
+                              {appointment.userData.name}
+                            </td>
+                            <td className="py-3">{appointment.docData.name}</td>
+                            <td className="py-3">{appointment.slotDate}</td>
+                            <td className="py-3">{appointment.slotTime}</td>
+                            <td className="py-3">
+                              <span
+                                className={`px-2 py-1 rounded-full text-xs font-medium ${
+                                  appointment.Status === "confirmed"
+                                    ? "bg-green-100 text-green-800"
+                                    : appointment.Status === "pending"
+                                    ? "bg-yellow-100 text-yellow-800"
+                                    : "bg-red-100 text-red-800"
+                                }`}
+                              >
+                                {appointment.Status}
+                              </span>
+                            </td>
+                          </tr>
+                        ))}
                     </tbody>
                   </table>
                 </div>
@@ -161,7 +173,7 @@ const Page = () => {
                 <Link to="/admin/add-doctor">
                   <button
                     className="flex items-center justify-center px-4 py-2 border border-transparent
-               text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600 transition-colors"
+               text-sm font-medium rounded-md text-white bg-indigo-500 hover:text-black transition-colors"
                   >
                     Add New Doctor
                   </button>
@@ -170,7 +182,7 @@ const Page = () => {
                 <Link to="/admin/appointments">
                   <button
                     className="flex items-center justify-center px-4 py-2 border border-transparent
-               text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600 transition-colors"
+               text-sm font-medium rounded-md text-white bg-indigo-500 hover:text-black transition-colors"
                   >
                     View Appointments
                   </button>
@@ -178,7 +190,7 @@ const Page = () => {
                 <Link to="/admin/doctors">
                   <button
                     className="flex items-center justify-center px-4 py-2 border border-transparent
-               text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600 transition-colors"
+               text-sm font-medium rounded-md text-white bg-indigo-500 hover:text-black transition-colors"
                   >
                     All Doctors
                   </button>
