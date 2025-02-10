@@ -56,19 +56,19 @@ export default function Specialties() {
       <div className="grid grid-cols-2 md:grid-cols-4  gap-8">
         {specialties.map((specialty, index) => (
           <div key={index} className="group cursor-pointer flex flex-col w-full h-[40vh] md:h-[45vh]
-           md:w-[20vw] pt-5 bg-indigo-500 border items-center rounded-3xl md:rounded-[2.5rem]">
+           md:w-[20vw] pt-3 md:pt-5 bg-indigo-500 border items-center rounded-3xl md:rounded-[2.5rem]">
             <div  className="size-16  bg-indigo-200   rounded-full flex items-center justify-center mb-3">
               <div className=" text-indigo-500 group-hover:text-zinc-900 ">
                 {specialty.icon}  
               </div>    
             </div>
-            <span className="text-2xl font-semibold text-center group-hover:text-zinc-900 text-white
+            <span className="text-xl md:text-2xl font-semibold text-center group-hover:text-zinc-900 text-white
              mb-2">{specialty.name}</span>
 
             <span className='text-lg font-normal text-[#f0f0f0] mx-3 text-center mt-5 '>Lorem ipsum,
                dolor sit amet consectetur adipisicing elit.</span>
             <div className='flex justify-center items-center group-hover:text-zinc-900 group-hover:gap-2
-             transition-all gap-1 mt-5  text-xl font-semibold text-center text-white'>
+             transition-all gap-1 mt-3 md:mt-5  text-xl font-semibold text-center text-white'>
             <span>
               Learn more 
             </span> 
