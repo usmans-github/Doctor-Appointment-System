@@ -20,9 +20,7 @@ const Page = () => {
     setloading(false);
   }, []);
 
-  useEffect(() => {
-    getStats();
-  }, [stats])
+  
   
   
   const Stats = [
@@ -45,8 +43,8 @@ const Page = () => {
       {/* Sidebar */}
       <div
         className={`${
-          sidebarOpen ? "block" : "hidden"
-        } fixed inset-y-0 left-0 z-50 w-64 text-white transition-all duration-300 lg:relative lg:block`}
+          sidebarOpen ? "translate-x-0" : "-translate-x-64"
+        } fixed inset-y-0 left-0 z-50 w-64 bg-indigo-500 text-white  transition-transform duration-300 lg:relative lg:translate-x-0`}
       >
         <div className="flex items-center justify-between p-4">
           <button onClick={() => setSidebarOpen(false)} className="lg:hidden">
@@ -77,7 +75,7 @@ const Page = () => {
 
       {/* Main Content */}
       <div className="flex-1 overflow-x-hidden overflow-y-auto">
-        <div className="flex items-center justify-between px-4 py-3 bg-indigo-700 lg:bg-transparent">
+        <div className="flex items-center justify-between px-4 py-3 bg-indigo-500">
           <button
             onClick={() => setSidebarOpen(true)}
             className="text-white lg:hidden"
@@ -101,10 +99,10 @@ const Page = () => {
                     <MenuIcon className="h-8 w-8 text-white" />
                   </div>
                   <div className="ml-4">
-                    <p className="mb-2 text-sm font-medium text-black">
+                    <p className="mb-2 text-lg font-semibold text-black">
                       {stat.name}
                     </p>
-                    <p className="text-lg font-semibold text-black">
+                    <p className="text-4xl font-semibold text-indigo-500">
                       {stat.value}
                     </p>
                   </div>

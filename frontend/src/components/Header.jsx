@@ -10,7 +10,7 @@ export default function Header() {
   
 
   return (
-    <header className="bg-[#f0f0f0] border rounded-b-[2.5rem]">
+    <header className="bg-[#f0f0f0] z-50 border rounded-b-[2.5rem]">
    
       <nav className="py-4 px-6 md:px-20  flex justify-between items-center">
         {/* Logo */}
@@ -30,20 +30,20 @@ export default function Header() {
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-8 text-black">
           <Link to="/">
-          <button  className="flex justify-center items-center gap-1 focus:text-indigo-500 px-3 py-1 rounded-xl  text-sm font-medium">
+          <button  className="flex justify-center items-center gap-1  px-3 py-1 rounded-xl  text-sm font-medium">
           <House size={16} />
             Home
           </button>
           </Link>
           <Link to="/all-doctors">
-          <button  className="flex justify-center items-center gap-1 focus:text-indigo-500  text-sm font-medium">
+          <button  className="flex justify-center items-center gap-1  text-sm font-medium">
           <UserRound size={16}  />
             Doctors 
           </button>
           </Link>
           <Link to="/admin-login" className="text-sm font-medium">
           <button
-             className="flex justify-center items-center gap-1 focus:text-indigo-500  text-sm font-medium"
+             className="flex justify-center items-center gap-1  text-sm font-medium"
             >
               <Diamond  size={16} />
               Admin
@@ -76,14 +76,14 @@ export default function Header() {
           </div>
           : <Link to="/login"><button
             className="w-full text-white hidden md:inline lg:inline   bg-indigo-500 hover:bg-indigo-600 
-           font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600"
+           font-medium rounded-lg text-sm px-5 py-2.5 text-center "
           >
            Login
           </button></Link>}
 
           {/* Hamburger Menu */}
           <button
-            className="md:hidden text-indigo-500 focus:outline-none"
+            className="md:hidden text-indigo-500"
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
           >
             <Menu className="w-6 h-6" />
@@ -112,20 +112,20 @@ export default function Header() {
         {/* Sidebar Links */}
         <div className="flex flex-col px-6 space-y-4 mt-4">
         <Link to="/">
-          <button  className="flex justify-center items-center gap-1 focus:text-indigo-500  text-sm font-medium">
+          <button  className="flex justify-center items-center gap-1  text-sm font-medium">
           <House size={16} />
             Home
           </button>
           </Link>
           <Link to="/all-doctors">
-          <button  className="flex justify-center items-center gap-1 focus:text-indigo-500  text-sm font-medium">
+          <button  className="flex justify-center items-center gap-1  text-sm font-medium">
           <UserRound size={16}  />
             Doctors 
           </button>
           </Link>
           <Link to="/admin-login" className="text-sm font-medium">
           <button
-             className="flex justify-center items-center gap-1 focus:text-indigo-500  text-sm font-medium"
+             className="flex justify-center items-center gap-1  text-sm font-medium"
             >
               <Diamond  size={16} />
               Admin
@@ -144,7 +144,7 @@ export default function Header() {
           </div>
           : <Link to="/login"><button
             className=" text-white  bg-indigo-500 hover:bg-indigo-600 
-           font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600"
+           font-medium rounded-lg text-sm px-5 py-2.5 text-center "
           >
            Login
           </button></Link>}
@@ -152,7 +152,7 @@ export default function Header() {
           <Link to="/register">
             <button
               type="button"
-              className="w-full text-indigo-500 bg-white hover:bg-indigo-50 focus:ring-4 focus:ring-indigo-300 
+              className="w-full text-indigo-500 bg-white hover:bg-indigo-50  
               font-medium rounded-lg text-sm px-5 py-2.5 mt-1"
             >
               Book Appointment
