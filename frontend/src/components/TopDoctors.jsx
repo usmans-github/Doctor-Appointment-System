@@ -17,7 +17,7 @@ const TopDoctors = () => {
           Top Doctors to Book
         </h2>
         <span className="text-2xl font-semibold text-zinc-900 mx-3 text-center mt-4">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+        Find the best doctors to meet your healthcare needs.
         </span>
       </div>
 
@@ -49,8 +49,8 @@ const TopDoctors = () => {
               </div>
               <div className="flex justify-between">
                 <span className="text-lg text-white mb-3">
-                  {/* Experiance: {doctor.experience} */}
-                  Lorem ipsum dolor sit.
+                  Experiance: {doctor.experience}
+                  {/* Lorem ipsum dolor sit. */}
                 </span>
                 <span className="text-lg text-white mb-3">
                   Fee : {doctor.fee}

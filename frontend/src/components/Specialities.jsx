@@ -46,8 +46,7 @@ export default function Specialties() {
         </div>
        
         <p className="text-zinc-900 text-lg font-semibold mt-4">
-         Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam ipsa sed error
-          eum distinctio illo libero autem doloremque 
+        Explore our wide range of medical specialties and find the right care for you and your family.
         </p>
       </div>
       
@@ -65,8 +64,7 @@ export default function Specialties() {
             <span className="text-xl md:text-2xl font-semibold text-center group-hover:text-zinc-900 text-white
              mb-2">{specialty.name}</span>
 
-            <span className='text-lg font-normal text-[#f0f0f0] mx-3 text-center mt-3'>Lorem ipsum,
-               dolor sit amet consectetur adipisicing elit.</span>
+            <span className='text-lg font-normal text-[#f0f0f0] mx-3 text-center mt-3'>Our {specialty.name} provide comprehensive healthcare services for all ages.</span>
             <div className='flex justify-center items-center group-hover:text-zinc-900 group-hover:gap-2
              transition-all gap-1 mt-3 md:mt-5  text-xl font-semibold text-center text-white'>
             <span>

@@ -58,8 +58,7 @@ export default function Blogs() {
           Featured Blogs
         </h2>
         <p className="text-2xl font-semibold text-zinc-900 mx-3 text-center mt-4">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam
-          ipsa sed error eum
+        Stay updated with the latest healthcare insights and advancements from our expert doctors.
         </p>
       </div>
 

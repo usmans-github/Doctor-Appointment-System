@@ -18,8 +18,6 @@ const Featured = () => {
               text-indigo-500 mt-2 ">
             Qualified and Experts Doctors that meet your needs
             </h1>
-            <p className='hidden md:text-lg font-semibold'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate
-               <br /> sequi officiis quo consectetur.</p>
             <div className='flex justify-center items-center group-hover:text-zinc-900 group-hover:gap-2 transition-all
              gap-1 md:mt-5  md:text-xl font-semibold  text-indigo-500'>
               <Link to='/all-doctors'>
