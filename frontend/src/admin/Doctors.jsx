@@ -1,11 +1,11 @@
 "use client";
-import React, {  useContext, useEffect, useState } from "react";
-import { PencilIcon, TrashIcon, XMarkIcon as XIcon } from "@heroicons/react/24/solid";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AdminContext } from "../context/AdminContext";
 
 const Doctors = () => {
-  const { admin_token, setadmin_token, stats, setstats, getStats } = useContext(AdminContext)
+  const { admin_token, setadmin_token, stats, setstats, getStats } =
+    useContext(AdminContext);
   const [searchTerm, setSearchTerm] = useState("");
 
   const filteredDoctors = stats.doctorsData.filter(
@@ -13,20 +13,11 @@ const Doctors = () => {
       doctor.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       doctor.specialization.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
-  useEffect(() => {
-    getStats()
-  }, [setstats])
-  
-
-  if (admin_token) {
-    return (
-      <>
+  return (
+    <>
       {/* Back to Dashboard Button */}
-      <div className="mb-4 max-w-[80vw] mx-auto">
-       
-      </div>
-    
+      <div className="mb-4 max-w-[80vw] mx-auto"></div>
+
       <div className="max-w-4xl mx-auto">
         <h1 className="text-2xl sm:text-3xl font-semibold text-white mb-6 text-center">
           Doctors Management
@@ -57,7 +48,7 @@ const Doctors = () => {
             </button>
           </Link>
         </div>
-    
+
         {/* Doctors List */}
         <div className="bg-white shadow-md rounded-lg overflow-hidden">
           {/* Table for Larger Screens */}
@@ -79,17 +70,20 @@ const Doctors = () => {
                 <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Fee
                 </th>
-                
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {filteredDoctors.map((doctor) => (
                 <tr key={doctor._id}>
                   <td className="px-4 py-3">
-                    <div className="text-sm font-medium text-gray-900">{doctor.name}</div>
+                    <div className="text-sm font-medium text-gray-900">
+                      {doctor.name}
+                    </div>
                   </td>
                   <td className="px-4 py-3">
-                    <div className="text-sm text-gray-500">{doctor.specialization}</div>
+                    <div className="text-sm text-gray-500">
+                      {doctor.specialization}
+                    </div>
                   </td>
                   <td className="px-4 py-3">
                     <div className="text-sm text-gray-500">{doctor.email}</div>
@@ -98,21 +92,27 @@ const Doctors = () => {
                     <div className="text-sm text-gray-500">{doctor.phone}</div>
                   </td>
                   <td className="px-4 py-3 flex gap-2">
-                  <div className="text-sm text-gray-500">Rs: {doctor.fee}</div>
+                    <div className="text-sm text-gray-500">
+                      Rs: {doctor.fee}
+                    </div>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
-    
+
           {/* Card Layout for Smaller Screens */}
           <div className="sm:hidden">
             {filteredDoctors.map((doctor) => (
               <div key={doctor._id} className="border-b last:border-none p-4">
                 <div className="flex justify-between">
                   <div>
-                    <h3 className="text-lg font-medium text-gray-900">{doctor.name}</h3>
-                    <p className="text-sm text-gray-500">{doctor.specialization}</p>
+                    <h3 className="text-lg font-medium text-gray-900">
+                      {doctor.name}
+                    </h3>
+                    <p className="text-sm text-gray-500">
+                      {doctor.specialization}
+                    </p>
                   </div>
                   <p className="text-sm text-gray-500">Rs: {doctor.fee}</p>
                 </div>
@@ -124,11 +124,7 @@ const Doctors = () => {
         </div>
       </div>
     </>
-    
-    
   );
-  }
-}
+};
 
-export default Doctors
-
+export default Doctors;
