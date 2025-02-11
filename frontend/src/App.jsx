@@ -17,6 +17,8 @@ import Blogs from "./pages/Blogs";
 import AllBlogs from "./pages/AllBlogs";
 import CreateBlog from "./admin/CreateBlog";
 import BlogPost from "./pages/BlogPost";
+import AdminBlogs from "./admin/AdminBlogs";
+import EditBlogPost from "./pages/EditBlogPost";
 
 function App() {
   return (
@@ -26,6 +28,7 @@ function App() {
           <Routes>
 
             <Route path="/" element={<HomePage />} />
+            <Route path="/blogpost/edit/:id" element={<EditBlogPost />} />
             <Route path="/blogpost/:id" element={<BlogPost />} />
             <Route path="/create-blog" element={<CreateBlog />} />
             <Route path="/blogs" element={<Blogs />} />
@@ -41,6 +44,8 @@ function App() {
             <Route path="/admin/appointments" element={<AllAppointments />} />
             <Route path="/admin/add-doctor" element={<AddDoctor />} />
             <Route path="/admin/doctors" element={<Doctors />} />
+            <Route path="/admin/blogs" element={<AdminBlogs />} />
+            <Route path="/admin/create-blog" element={<CreateBlog />} />
             <Route path="/admin/dashboard" element={<Page />} />
 
           </Routes>

@@ -43,7 +43,8 @@ const getBlogs = async (req, res) => {
 
 const getBlogById = async (req, res) => {
   try {
-    const blog = await blogModel.findById(req.params.id);
+    const { id } = req.params;
+    const blog = await blogModel.findById(id);
     res.status(200).send({ success: true, blog });
   } catch (error) {
     console.log(error);
@@ -56,4 +57,44 @@ const getBlogById = async (req, res) => {
   }
 };
 
-module.exports = { createBlog, getBlogs, getBlogById };
+const updateBlogById = async (req, res) => {
+  try {
+    const { title, imageUrl, content } = req.body;
+    const { id } = req.params;
+
+    const blog = await blogModel.findByIdAndUpdate(
+      id,
+      { title, imageUrl, content },
+      { new: true }
+    );
+
+    return res.status(200).send({
+      success: true,
+      message: "Blog updated successfully",
+      data: blog,
+    });
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: `Error in Update Blog controller ${error.message}`,
+    });
+  }
+}
+
+  const deleteBlogById = async (req, res) => { 
+    try {
+      const { id } = req.params;
+      await blogModel.findByIdAndDelete(id);
+      res.status(200).send({ success: true, message: "Blog deleted successfully" });
+    } catch (error) {
+      console.log(error);
+      res.status(500).send({
+        success: false,
+        message: `Error in Delete Blog controller ${error.message}`,
+      });
+    }
+  };
+
+module.exports = { createBlog, getBlogs, getBlogById, updateBlogById, deleteBlogById };

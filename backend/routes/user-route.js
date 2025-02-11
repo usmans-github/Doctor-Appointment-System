@@ -1,7 +1,7 @@
 const express = require('express');
 const { login, register, getDoctorsData, getUserProfile, bookAppointment, upComingAppointments } = require('../controllers/user-controller');
 const authUser = require('../middlewares/authUser');
-const { getBlogs, getBlogById } = require('../controllers/blog-controller');
+const { getBlogs, getBlogById, updateBlogById, deleteBlogById } = require('../controllers/blog-controller');
 
 const router = express.Router()
 
@@ -23,6 +23,12 @@ router.get("/Blogs", getBlogs)
 
 //Get Blog by ID
 router.get("/Blogs/:id", getBlogById)
+
+//Update Blog by ID
+router.put("/update/Blogs/:id", updateBlogById)
+
+//Delete Blog by ID
+router.delete("/delete/Blogs/:id", deleteBlogById)
 
 //Book new Appointment
 router.post("/book-new-appointment", authUser, bookAppointment)

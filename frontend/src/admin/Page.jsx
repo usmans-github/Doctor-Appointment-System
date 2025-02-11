@@ -66,11 +66,17 @@ const Page = () => {
             Appointments
           </Link>
           <Link
-            to="/create-blog"
+            to="/admin/blogs"
             className="block py-2 px-4 text-lg font-semibold hover:text-black transition-colors"
           >
             Blogs
           </Link>
+          {/* <Link
+            to="/create-blog"
+            className="block py-2 px-4 text-lg font-semibold hover:text-black transition-colors"
+          >
+            Blogs
+          </Link> */}
           <Link
             to="/admin/doctors"
             className="block py-2 px-4 text-lg font-semibold hover:text-black transition-colors"
