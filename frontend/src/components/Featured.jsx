@@ -1,5 +1,6 @@
 import { ArrowRightIcon } from 'lucide-react'
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Featured = () => {
   return (
@@ -21,9 +22,11 @@ const Featured = () => {
                <br /> sequi officiis quo consectetur.</p>
             <div className='flex justify-center items-center group-hover:text-zinc-900 group-hover:gap-2 transition-all
              gap-1 md:mt-5  md:text-xl font-semibold  text-indigo-500'>
+              <Link to='/all-doctors'>
             <button>
               All doctors 
             </button> 
+              </Link>
 
               <ArrowRightIcon className='mt-1'/>
             </div>

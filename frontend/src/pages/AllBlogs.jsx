@@ -1,7 +1,7 @@
 import {  ArrowRight, MoveRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const featuredBlogs = [
+const AllAll = [
   {
     title: "Latest Healthcare Insights",
     excerpt: "Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
@@ -31,7 +31,7 @@ const featuredBlogs = [
   },
 ];
 
-export default function Blogs() {
+export default function AllBlogs() {
   return (
     <section
       className="py-14 mt-16 rounded-[2.5rem] flex justify-center items-center
@@ -39,7 +39,7 @@ export default function Blogs() {
     >
       <div className="text-center mb-12 w-full md:w-[40vw]">
         <h2 className="md:text-5xl text-4xl text-indigo-500 text-center  font-extrabold mb-4 ">
-          Featured Blogs
+           All Blogs
         </h2>
         <p className="text-2xl font-semibold text-zinc-900 mx-3 text-center mt-4">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam
@@ -48,7 +48,7 @@ export default function Blogs() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {featuredBlogs.map((blog, index) => (
+        {AllAll.map((blog, index) => (
           <div
             key={index}
             className="group bg-indigo-500 text-white rounded-[2rem] overflow-hidden transition-all"
@@ -89,15 +89,7 @@ export default function Blogs() {
         ))}
       </div>
 
-      <div className="group text-center mt-12 ">
-        <Link to="/all-blogs">
-        <button className="group-hover:gap-4 group-hover:text-zinc-900 font-semibold text-white gap-2   transition-all text-lg flex justify-center
-         items-center text-center w-full py-4  bg-indigo-500 px-10 rounded-[2.5rem] self-center">
-          All blogs
-          <MoveRight />
-        </button>
-           </Link>
-      </div>
+      
     </section>
   );
 }

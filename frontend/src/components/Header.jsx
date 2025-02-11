@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import {  Diamond, House, Menu, UserRound, X } from "lucide-react";
+import {  Diamond, House, LayoutList, Menu,  SquarePen,  UserRound, X } from "lucide-react";
 import { AppContext } from "../context/AppContext";
 import { Link } from "react-router-dom";
 
@@ -30,20 +30,26 @@ export default function Header() {
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-8 text-black">
           <Link to="/">
-          <button  className="flex justify-center items-center gap-1  px-3 py-1 rounded-xl  text-sm font-medium">
+          <button  className="flex justify-center focus:text-indigo-500 items-center gap-1  px-3 py-1 rounded-xl  text-sm font-medium">
           <House size={16} />
             Home
           </button>
           </Link>
           <Link to="/all-doctors">
-          <button  className="flex justify-center items-center gap-1  text-sm font-medium">
+          <button  className="flex justify-center focus:text-indigo-500 items-center gap-1  text-sm font-medium">
           <UserRound size={16}  />
             Doctors 
           </button>
           </Link>
+          <Link to="/all-blogs">
+          <button  className="flex justify-center focus:text-indigo-500 items-center gap-1  text-sm font-medium">
+          <LayoutList size={16}  />
+            Blogs 
+          </button>
+          </Link>
           <Link to="/admin-login" className="text-sm font-medium">
           <button
-             className="flex justify-center items-center gap-1  text-sm font-medium"
+             className="flex justify-center focus:text-indigo-500 items-center gap-1  text-sm font-medium"
             >
               <Diamond  size={16} />
               Admin
@@ -76,7 +82,7 @@ export default function Header() {
           </div>
           : <Link to="/login"><button
             className="w-full text-white hidden md:inline lg:inline   bg-indigo-500 hover:bg-indigo-600 
-           font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+           font-medium rounded-lg text-sm px-5 py-2.5 text-center"
           >
            Login
           </button></Link>}

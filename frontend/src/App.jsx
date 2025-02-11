@@ -2,7 +2,6 @@ import {  Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Spinner from "./components/Spinner";
 import AdminLogin from "./pages/AdminLogin";
 import DoctorLogin from "./pages/DoctorLogin";
 import Page from "./admin/Page";
@@ -14,6 +13,8 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Doctors from "./admin/Doctors";
 import AllAppointments from "./admin/AllAppointments";
 import Specialties from "./components/Specialities";
+import Blogs from "./pages/Blogs";
+import AllBlogs from "./pages/AllBlogs";
 
 function App() {
   return (
@@ -23,6 +24,8 @@ function App() {
           <Routes>
 
             <Route path="/" element={<HomePage />} />
+            <Route path="/all-blogs" element={<AllBlogs />} />
+            <Route path="/blogs" element={<Blogs />} />
             <Route path="/specialities" element={<Specialties />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
