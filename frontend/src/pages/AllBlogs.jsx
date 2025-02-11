@@ -65,7 +65,6 @@ export default function AllBlogs() {
                 <span className="text-sm text- font-normal">
                   {blog.specialty}
                 </span>
-                <span className="text-sm ">{blog.readTime}</span>
               </div>
               <h3 className="text-xl font-bold  mb-3 group-hover:text-zinc-900 group-hover:cursor-pointer group-hover:underline">
                 {blog.title}

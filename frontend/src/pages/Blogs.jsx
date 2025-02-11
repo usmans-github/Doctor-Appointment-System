@@ -65,7 +65,6 @@ export default function Blogs() {
                 <span className="text-sm text- font-normal">
                   {blog.specialty}
                 </span>
-                <span className="text-sm ">{blog.readTime}</span>
               </div>
               <h3 className="text-xl font-bold  mb-3 group-hover:text-zinc-900 group-hover:cursor-pointer group-hover:underline">
                 {blog.title}
@@ -90,7 +89,7 @@ export default function Blogs() {
       </div>
 
       <div className="group text-center mt-12 ">
-        <Link to="/all-blogs">
+        <Link to="/all-pblogs">
         <button className="group-hover:gap-4 group-hover:text-zinc-900 font-semibold text-white gap-2   transition-all text-lg flex justify-center
          items-center text-center w-full py-4  bg-indigo-500 px-10 rounded-[2.5rem] self-center">
           All blogs
