@@ -1,18 +1,21 @@
-import React from 'react'
+import axios from 'axios'
+import { ArrowLeft } from 'lucide-react'
+import React, { useEffect, useState } from 'react'
+import { Link, useParams } from 'react-router-dom'
 
 const BlogPost = () => {
-  const [blog, setBlog] = useState<BlogPost | null>(null)
+  const [blog, setBlog] = useState([])
   const { id } = useParams()
 
   useEffect(() => {
     axios
       .get(`/server/api/user/Blogs/${id}`)
-      .then((response) => setBlog(response.data))
+      .then((response) => setBlog(response.data.blog))
       .catch((error) => console.error("Error fetching blog post:", error))
   }, [id])
 
   if (!blog) {
-    return <div className="text-center mt-20">Loading...</div>
+     return <div className="text-center mt-20">Loading...</div>
   }
 
   return (
@@ -23,18 +26,9 @@ const BlogPost = () => {
         </div>
         <div className="p-8">
           <h1 className="text-3xl md:text-4xl font-bold mb-4">{blog.title}</h1>
-          <div className="flex items-center justify-between mb-6">
-            <span className="text-lg font-semibold">By {blog.author}</span>
-            <span className="text-md">{blog.readTime}</span>
-          </div>
-          <p className="mb-6 text-lg">{blog.excerpt}</p>
-          <div className="mb-8">
-            <h2 className="text-xl font-semibold mb-2">Specialty</h2>
-            <p>{blog.specialty}</p>
-          </div>
-          <div className="mb-8">
-            <h2 className="text-xl font-semibold mb-2">Content</h2>
-            <p>{blog.content}</p>
+          <p className="mb-6 text-sm">By {blog.author}</p>
+          <div className="mb-8" dangerouslySetInnerHTML={{ __html: blog.content }}>
+           
           </div>
           <div className="flex justify-between items-center">
             <Link to="/blogs" className="group">

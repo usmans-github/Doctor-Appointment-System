@@ -3,6 +3,11 @@ import { ArrowRight, MoveRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
+const truncateText = (text, length) => {
+  if (text.length <= length) return text;
+  return text.substring(0, length) + "...";
+};
+
 const featuredBlogs = [
   {
     title: "Latest Healthcare Insights",
@@ -73,10 +78,14 @@ export default function Blogs() {
             </div>
             <div className="p-8">
               <div className="flex items-center justify-between mb-3"></div>
-              <h3 className="text-xl font-bold  mb-3 group-hover:text-zinc-900 group-hover:cursor-pointer group-hover:underline">
+              <Link to={`/blogpost/${blog._id}`}>
+              <h3 className="text-xl font-bold  mb-3 group-hover:text-zinc-900 group-hover:cursor-pointer
+               group-hover:underline">
                 {blog.title}
               </h3>
-              <p className="mb-6 text-base">{blog.excerpt}</p>
+                 </Link>
+              
+              <p className="mb-6 text-base"> {truncateText(blog.content.replace(/<[^>]+>/g, ''), 150)}</p>
               <div className="flex items-center justify-between">
                 <span className="text-md font-semibold">
                   By &nbsp;
@@ -93,7 +102,7 @@ export default function Blogs() {
                   className="flex justify-center items-center gap-2  transition-all
                   md:text-lg font-semibold"
                 >
-                  <Link to={`/blog/${blog._id}`}>
+                  <Link to={`/blogpost/${blog._id}`}>
                     <button className="flex justify-center items-center group-hover:text-zinc-900 group-hover:gap-2
                       transition-all gap-1" >
                       Learn more

@@ -2,7 +2,7 @@ import React from 'react'
 import Tiptap from '.././Tiptap'
 
 
-const Blog = () => {
+const CreateBlog = () => {
   return (
     <div className="mt-16 ">   
       <Tiptap />
@@ -10,4 +10,4 @@ const Blog = () => {
   )
 }
 
-export default Blog
+export default CreateBlog

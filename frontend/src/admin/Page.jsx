@@ -66,7 +66,7 @@ const Page = () => {
             Appointments
           </Link>
           <Link
-            to="/blog"
+            to="/create-blog"
             className="block py-2 px-4 text-lg font-semibold hover:text-black transition-colors"
           >
             Blogs

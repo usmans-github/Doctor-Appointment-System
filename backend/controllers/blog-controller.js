@@ -2,9 +2,9 @@ const blogModel = require("../models/blog-model")
 
 const createBlog = async (req, res) => {
   try {
-    const { title, imageUrl, content } = req.body;
+    const { title, imageUrl, content, author } = req.body;
 
-    const newBlog = await blogModel.create({ title, imageUrl, content });
+    const newBlog = await blogModel.create({ title, imageUrl, content, author });
 
     await newBlog.save();
 
@@ -41,10 +41,19 @@ const getBlogs = async (req, res) => {
   }
 };
 
-const loadBlog = async (blogId) => {
-  const response = await axios.get(`/server/api/blogs/${blogId}`);
-  setTitle(response.data.title);
-  editor.commands.setContent(response.data.content);
+const getBlogById = async (req, res) => {
+  try {
+    const blog = await blogModel.findById(req.params.id);
+    res.status(200).send({ success: true, blog });
+  } catch (error) {
+    console.log(error);
+    res
+      .status(201)
+      .send({
+        success: false,
+        message: `Error in Get Blog by ID controller ${error.message}`,
+      });
+  }
 };
 
-module.exports = { createBlog, getBlogs, loadBlog };
+module.exports = { createBlog, getBlogs, getBlogById };

@@ -15,7 +15,8 @@ import AllAppointments from "./admin/AllAppointments";
 import Specialties from "./components/Specialities";
 import Blogs from "./pages/Blogs";
 import AllBlogs from "./pages/AllBlogs";
-import Blog from "./admin/Blog";
+import CreateBlog from "./admin/CreateBlog";
+import BlogPost from "./pages/BlogPost";
 
 function App() {
   return (
@@ -25,7 +26,8 @@ function App() {
           <Routes>
 
             <Route path="/" element={<HomePage />} />
-            <Route path="/blog" element={<Blog />} />
+            <Route path="/blogpost/:id" element={<BlogPost />} />
+            <Route path="/create-blog" element={<CreateBlog />} />
             <Route path="/blogs" element={<Blogs />} />
             <Route path="/all-blogs" element={<AllBlogs />} />
             <Route path="/specialities" element={<Specialties />} />

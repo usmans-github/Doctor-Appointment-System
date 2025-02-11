@@ -1,7 +1,7 @@
 const express = require('express');
 const { login, register, getDoctorsData, getUserProfile, bookAppointment, upComingAppointments } = require('../controllers/user-controller');
 const authUser = require('../middlewares/authUser');
-const { getBlogs } = require('../controllers/blog-controller');
+const { getBlogs, getBlogById } = require('../controllers/blog-controller');
 
 const router = express.Router()
 
@@ -20,6 +20,9 @@ router.get("/getData", getDoctorsData)
 
 //Get Blogs Data
 router.get("/Blogs", getBlogs)
+
+//Get Blog by ID
+router.get("/Blogs/:id", getBlogById)
 
 //Book new Appointment
 router.post("/book-new-appointment", authUser, bookAppointment)
