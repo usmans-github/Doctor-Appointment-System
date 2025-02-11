@@ -12,7 +12,6 @@ import { LoadingContext } from "../context/LoadingContext";
 
 const AddDoctor = () => {
   const { loading, setloading } = useContext(LoadingContext)
-  const { admin_token, setadmin_token } = useContext(AdminContext)
   const navigate = useNavigate();
 
   const {
@@ -58,7 +57,7 @@ const AddDoctor = () => {
     }
   };
   
-  if(admin_token) {return  (
+ return  (
     <>
       <ToastContainer
         position="bottom-right"
@@ -257,7 +256,7 @@ const AddDoctor = () => {
         </div>
       </section>
     </>
-  );}
+  );
 };
 
 export default AddDoctor;
