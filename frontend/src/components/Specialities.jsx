@@ -64,7 +64,7 @@ export default function Specialties() {
             <span className="text-xl md:text-2xl font-semibold text-center group-hover:text-zinc-900 text-white
              mb-2">{specialty.name}</span>
 
-            <span className='text-lg font-normal text-[#f0f0f0] mx-3 text-center mt-3'>Our {specialty.name} provide comprehensive healthcare services for all ages.</span>
+            <span className='text-lg font-normal text-[#f0f0f0] mx-3 text-center mt-3'>Our {specialty.name} provide comprehensive {specialty.name} services for all ages.</span>
             <div className='flex justify-center items-center group-hover:text-zinc-900 group-hover:gap-2
              transition-all gap-1 mt-3 md:mt-5  text-xl font-semibold text-center text-white'>
             <span>
