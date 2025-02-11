@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const doctorModel = require("../models/doctor-model");
 const appointmentModel = require("../models/appointment-model");
+const blogModel = require("../models/blog-model");
 
 //user register
 const register = async (req, res) => {
@@ -87,7 +88,7 @@ const getUserProfile = async(req, res) => {
   }
 }
 
-//doctor data "Should be made in common route"
+//doctor data
 const getDoctorsData = async (req, res) => {
   try {
     const doctors = await doctorModel.find({})
@@ -101,6 +102,7 @@ const getDoctorsData = async (req, res) => {
     
   }
 }
+
 
 //Api to book appointment
 const bookAppointment = async (req, res) => {

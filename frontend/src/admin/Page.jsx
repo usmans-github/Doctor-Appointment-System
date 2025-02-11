@@ -44,7 +44,8 @@ const Page = () => {
       <div
         className={`${
           sidebarOpen ? "translate-x-0" : "-translate-x-64"
-        } fixed inset-y-0 left-0 z-50 w-64 bg-indigo-500 text-white  transition-transform duration-300 lg:relative lg:translate-x-0`}
+        } fixed inset-y-0 left-0 z-50 w-64 bg-indigo-500 text-white  transition-transform duration-300
+         lg:relative lg:translate-x-0`}
       >
         <div className="flex items-center justify-between p-4">
           <button onClick={() => setSidebarOpen(false)} className="lg:hidden">
@@ -63,6 +64,12 @@ const Page = () => {
             className="block py-2 px-4 text-lg font-semibold hover:text-black transition-colors"
           >
             Appointments
+          </Link>
+          <Link
+            to="/blog"
+            className="block py-2 px-4 text-lg font-semibold hover:text-black transition-colors"
+          >
+            Blogs
           </Link>
           <Link
             to="/admin/doctors"
