@@ -8,11 +8,16 @@ const Doctors = () => {
     useContext(AdminContext);
   const [searchTerm, setSearchTerm] = useState("");
 
-  const filteredDoctors = stats.doctorsData.filter(
+  useEffect(() => {
+    getStats();
+  }, []);
+
+  const filteredDoctors = stats?.doctorsData?.filter(
     (doctor) =>
       doctor.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       doctor.specialization.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  ) || [];
+
   return (
     <>
       {/* Back to Dashboard Button */}
