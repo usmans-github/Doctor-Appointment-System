@@ -10,11 +10,9 @@ const AdminContextProvider = (props) => {
   const { loading, setloading } = useContext(LoadingContext);
   const [admin_token, setadmin_token] = useState("")
   //All data for admin
-  const [stats, setstats] = useState([]);
-
+  const [stats, setstats] = useState([])
   const getStats = async () => {    
     try {
-      
       setloading(true);
       const stats = await axios.get( `/server/api/admin/getStats`, admin_token)
       setstats(stats.data)
@@ -33,7 +31,6 @@ const AdminContextProvider = (props) => {
       const res = await axios.post("/server/api/admin/update-appointment", {appointmentId: appointmentId})
       if(res.data.success){
         toast.success(res.data.message)
-        getStats()
       }else{
         toast.error(res.data.message)
       }
@@ -47,7 +44,7 @@ const AdminContextProvider = (props) => {
 
   useEffect(() => {
     getStats()
-  }, [setstats])
+  }, [])
   
   
   const value = {
