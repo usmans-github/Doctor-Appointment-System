@@ -1,37 +1,23 @@
+import axios from "axios";
 import {  ArrowRight, MoveRight } from "lucide-react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { truncateText } from "./Blogs";
 
-const AllAll = [
-  {
-    title: "Latest Healthcare Insights",
-    excerpt: "Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
-    author: "Dr. Sarah Wilson",
-    specialty: "General Medicine",
-    imageUrl:
-      "https://images.pexels.com/photos/4021775/pexels-photo-4021775.jpeg",
-    readTime: "5 min read",
-  },
-  {
-    title: "Medical Advancements 2024",
-    excerpt: "Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
-    author: "Dr. Michael Chen",
-    specialty: "Family Medicine",
-    imageUrl:
-      "https://images.pexels.com/photos/4021775/pexels-photo-4021775.jpeg",
-    readTime: "4 min read",
-  },
-  {
-    title: "Healthcare Technology",
-    excerpt: "Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
-    author: "Dr. Emily Brooks",
-    specialty: "Digital Health",
-    imageUrl:
-      "https://images.pexels.com/photos/4021775/pexels-photo-4021775.jpeg",
-    readTime: "6 min read",
-  },
-];
+
 
 export default function AllBlogs() {
+
+    const [blogs, setBlogs] = useState([]);
+  
+    useEffect(() => {
+      axios
+        .get("/server/api/user/Blogs")
+        .then((response) => setBlogs(response.data.blogs))
+        .catch((error) => console.error("Error fetching blogs:", error));
+    }, []);
+
+
   return (
     <section
       className="py-14 mt-16 rounded-[2.5rem] flex justify-center items-center
@@ -47,8 +33,8 @@ export default function AllBlogs() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {AllAll.map((blog, index) => (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {blogs.map((blog, index) => (
           <div
             key={index}
             className="group bg-indigo-500 text-white rounded-[2rem] overflow-hidden transition-all"
@@ -61,26 +47,38 @@ export default function AllBlogs() {
               />
             </div>
             <div className="p-8">
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-sm text- font-normal">
-                  {blog.specialty}
-                </span>
-              </div>
-              <h3 className="text-xl font-bold  mb-3 group-hover:text-zinc-900 group-hover:cursor-pointer group-hover:underline">
+              <div className="flex items-center justify-between mb-3"></div>
+              <Link to={`/blogpost/${blog._id}`}>
+              <h3 className="text-xl font-bold  mb-3 group-hover:text-zinc-900 group-hover:cursor-pointer
+               group-hover:underline">
                 {blog.title}
               </h3>
-              <p className="mb-6 text-base">{blog.excerpt}</p>
+                 </Link>
+              
+              <p className="mb-6 text-base"> {truncateText(blog.content.replace(/<[^>]+>/g, ''), 150)}</p>
               <div className="flex items-center justify-between">
-                <span className="text-md font-semibold">By &nbsp; 
-                   <Link to='/all-doctors'><span className="cursor-pointer group-hover:text-zinc-900 group-hover:underline">{blog.author}</span></Link>
-                   </span>
-                <div className="flex justify-center items-center gap-2  transition-all
-                  md:text-lg font-semibold">
-                <button className="flex justify-center items-center group-hover:text-zinc-900 group-hover:gap-2
-             transition-all gap-1" >
-                  Learn more
-                  <ArrowRight  />
-                </button>
+                <span className="text-md font-semibold">
+                  By &nbsp;
+                  <Link to="/all-doctors">
+                    <span
+                      className="cursor-pointer group-hover:text-zinc-900
+                    group-hover:underline"
+                    >
+                      {blog.author}
+                    </span>
+                  </Link>
+                </span>
+                <div
+                  className="flex justify-center items-center gap-2  transition-all
+                  md:text-lg font-semibold"
+                >
+                  <Link to={`/blogpost/${blog._id}`}>
+                    <button className="flex justify-center items-center group-hover:text-zinc-900 group-hover:gap-2
+                      transition-all gap-1" >
+                      Learn more
+                      <ArrowRight />
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>
