@@ -3,16 +3,9 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AppContext } from '../context/AppContext'
 import axios from 'axios'
-import { LoadingContext } from '../context/LoadingContext'
 import { toast } from 'react-toastify'
 
-// // Mock data for the patient profile
-const PatientData = {
-  upcomingAppointments: [
-    { id: 1, date: "2023-06-15", time: "10:00 AM", doctor: "Dr. Smith", department: "Cardiology", status: "Confirmed" },
-    { id: 2, date: "2023-07-02", time: "2:30 PM", doctor: "Dr. Johnson", department: "Endocrinology", status: "Pending" },
-  ],
-}
+
 
 const Profile = () => {
   const [userappointments, setuserappointments] = useState([])
@@ -55,7 +48,7 @@ const Profile = () => {
     <>
     <div className="min-h-screen bg-indigo-500 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto">
-        <div className="bg-white shadow overflow-hidden sm:rounded-lg">
+        <div className="bg-white shadow overflow-hidden rounded-[2.5rem]">
           <div className="px-4 py-5 sm:px-6 flex justify-between items-center">
             
             <div>
