@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { AdminContext } from "../context/AdminContext";
 
 const Doctors = () => {
-  const {  stats, setstats, getStats } =
+  const {  stats,  getStats } =
     useContext(AdminContext);
   const [searchTerm, setSearchTerm] = useState("");
 
