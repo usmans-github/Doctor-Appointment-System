@@ -8,36 +8,6 @@ export const truncateText = (text, length) => {
   return text.substring(0, length) + "...";
 };
 
-const featuredBlogs = [
-  {
-    title: "Latest Healthcare Insights",
-    excerpt: "Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
-    author: "Dr. Sarah Wilson",
-    specialty: "General Medicine",
-    imageUrl:
-      "https://images.pexels.com/photos/4021775/pexels-photo-4021775.jpeg",
-    readTime: "5 min read",
-  },
-  {
-    title: "Medical Advancements 2024",
-    excerpt: "Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
-    author: "Dr. Michael Chen",
-    specialty: "Family Medicine",
-    imageUrl:
-      "https://images.pexels.com/photos/4021775/pexels-photo-4021775.jpeg",
-    readTime: "4 min read",
-  },
-  {
-    title: "Healthcare Technology",
-    excerpt: "Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
-    author: "Dr. Emily Brooks",
-    specialty: "Digital Health",
-    imageUrl:
-      "https://images.pexels.com/photos/4021775/pexels-photo-4021775.jpeg",
-    readTime: "6 min read",
-  },
-];
-
 export default function Blogs() {
   const [blogs, setBlogs] = useState([]);
 

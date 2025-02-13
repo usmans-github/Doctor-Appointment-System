@@ -100,7 +100,7 @@ const Page = () => {
           {/* Stats */}
           <div className="grid grid-cols-1 gap-6 mb-6 sm:grid-cols-2 lg:grid-cols-3">
             {Stats.map((stat, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-sm p-6">
+              <div key={index} className="bg-[#f0f0f0] rounded-[1rem] shadow-sm p-6">
                 <div className="flex items-center">
                   <div className="p-3 rounded-full bg-indigo-500 bg-opacity-75">
                     <MenuIcon className="h-8 w-8 text-white" />
@@ -119,7 +119,7 @@ const Page = () => {
           </div>
 
           {/* Recent Appointments */}
-          <div className="bg-white rounded-lg shadow-sm mb-6">
+          <div className="bg-[#f0f0f0] rounded-[1rem] shadow-sm mb-6">
             <div className="p-6">
               <h2 className="text-xl font-semibold text-black mb-4">
                 Recent Appointments
@@ -168,7 +168,7 @@ const Page = () => {
           </div>
 
           {/* Quick Actions */}
-          <div className="bg-white rounded-lg shadow-sm p-6">
+          <div className="bg-[#f0f0f0] rounded-[1rem] shadow-sm p-6">
             <h2 className="text-xl font-semibold text-black mb-4">
               Quick Actions
             </h2>

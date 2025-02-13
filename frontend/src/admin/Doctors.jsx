@@ -2,9 +2,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AdminContext } from "../context/AdminContext";
+import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 
 const Doctors = () => {
-  const {  stats,  getStats } =
+  const {  stats,    getStats } =
     useContext(AdminContext);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -29,9 +30,10 @@ const Doctors = () => {
         </h1>
         <Link to="/admin/dashboard">
           <button
-            className="text-white bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:outline-none 
-              focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5"
+            className="text-white border border-[#f0f0f0] hover:bg-indigo-600 focus:ring-4 focus:outline-none 
+              focus:ring-indigo-300 flex justify-center items-center gap-2 font-medium rounded-lg text-sm px-5 py-2.5"
           >
+            <ArrowLeftIcon className="size-4" />
             Back to dashboard
           </button>
         </Link>
@@ -46,7 +48,7 @@ const Doctors = () => {
           />
           <Link to="/admin/add-doctor">
             <button
-              className="text-white bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:ring-indigo-300 
+              className="text-white border border-[#f0f0f0] hover:bg-indigo-600 focus:ring-4 focus:ring-indigo-300 
                 font-medium rounded-lg text-sm px-5 py-2.5"
             >
               Add New Doctor
@@ -55,7 +57,7 @@ const Doctors = () => {
         </div>
 
         {/* Doctors List */}
-        <div className="bg-white shadow-md rounded-lg overflow-hidden">
+        <div className="bg-white shadow-md rounded-[1rem] overflow-hidden">
           {/* Table for Larger Screens */}
           <table className="hidden sm:table w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">

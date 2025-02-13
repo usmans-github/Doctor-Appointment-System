@@ -2,9 +2,10 @@ import React, { useContext, useEffect } from "react";
 import { AdminContext } from "../context/AdminContext";
 import { Link } from "react-router-dom";
 import { Bounce, ToastContainer } from "react-toastify";
+import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 
 const AllAppointments = () => {
-  const { admin_token, stats, getStats, updateAppointments } = useContext(AdminContext);
+  const { stats, getStats, updateAppointments } = useContext(AdminContext);
 
   useEffect(() => {
  
@@ -38,26 +39,27 @@ const AllAppointments = () => {
       {/* All Appointments */}
       <div className="max-w-[80vw] mt-6 mx-auto">
         <h1 className="text-2xl sm:text-3xl font-semibold text-white mb-6 text-center">
-          ALL APPOINTMENTS
+          All Appointments
         </h1>
 
         {/* Search and Add Doctor Section */}
         <div className="mb-4 flex flex-col sm:flex-row justify-between items-center gap-4">
           <Link to="/admin/dashboard">
             <button
-              className="text-white bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:outline-none 
-              focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5"
+              className="text-white border border-[#f0f0f0] hover:bg-indigo-600 focus:ring-4 focus:outline-none 
+              focus:ring-indigo-300 flex justify-center items-center gap-2 font-medium rounded-lg text-sm px-5 py-2.5"
             >
+              <ArrowLeftIcon className="size-4" />
               Back to dashboard
             </button>
           </Link>
         </div>
 
         {/* Appointment List */}
-        <div className="bg-white shadow-md rounded-lg overflow-hidden">
+        <div className="bg-[#f0f0f0] shadow-md rounded-[1rem] overflow-hidden">
           {/* Table for Larger Screens */}
           <table className="hidden sm:table w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
+            <thead className="bg-white">
               <tr>
                 <th className="px-4 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                   PATIENT
@@ -85,7 +87,7 @@ const AllAppointments = () => {
                 </th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
+            <tbody className="bg-[#f0f0f0] divide-y divide-gray-200">
               {Appointments.map((appointment) => (
                 <tr key={appointment._id}>
                   <td className="px-4 py-3">
@@ -159,7 +161,10 @@ const AllAppointments = () => {
           {/* Card Layout for Smaller Screens */}
           <div className="sm:hidden">
             {Appointments.map((appointment) => (
-              <div key={appointment._id} className="border-b last:border-none p-4">
+              <div
+                key={appointment._id}
+                className="border-b last:border-none p-4"
+              >
                 <div className="flex justify-center">
                   <div>
                     <h3 className="text-lg font-medium text-gray-900">

@@ -9,8 +9,8 @@ import { AdminContext } from "../context/AdminContext";
 import { LoadingContext } from "../context/LoadingContext";
 
 const AdminLogin = () => {
-  const { loading, setloading } = useContext(LoadingContext);
-  const { admin_token, setadmin_token } = useContext(AdminContext);
+  const {  setloading } = useContext(LoadingContext);
+  const {  setadmin_token } = useContext(AdminContext);
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
 
@@ -54,7 +54,7 @@ const AdminLogin = () => {
       <section className="bg-indigo-500">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-[70vh] lg:py-0">
           <div
-            className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0
+            className="w-full bg-[#f0f0f0] rounded-[2.5rem] shadow dark:border md:mt-0 sm:max-w-md xl:p-0
            dark:bg-gray-800 dark:border-gray-700"
           >
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -79,7 +79,7 @@ const AdminLogin = () => {
                     type="email"
                     name="email"
                     id="email"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-indigo-600
+                    className="bg-gray-50 border border-gray-300 text-gray-900 rounded-[1rem] focus:ring-indigo-600
                      focus:border-indigo-500 block w-full p-2.5 "
                     placeholder="admin@admin.com"
                     required=""
@@ -99,7 +99,7 @@ const AdminLogin = () => {
                     name="password"
                     id="password"
                     placeholder="••••••••"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600
+                    className="bg-gray-50 border border-gray-300 text-gray-900 rounded-[1rem] focus:ring-primary-600
                      focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600
                       dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required=""
@@ -109,7 +109,7 @@ const AdminLogin = () => {
                 <button
                   type="submit"
                   className="w-full text-white bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:outline-none
-                   focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600
+                   focus:ring-primary-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-primary-600
                     dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                 >
                   Login
