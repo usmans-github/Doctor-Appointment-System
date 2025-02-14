@@ -45,7 +45,7 @@ export default function Header() {
           <Link to="/all-blogs">
             <button className="flex justify-center focus:text-indigo-500 items-center gap-1  text-sm font-medium">
               <LayoutList size={16} />
-              Patient Education
+              Public Education
             </button>
           </Link>
           <Link to="/admin-login" className="text-sm font-medium">
