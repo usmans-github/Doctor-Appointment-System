@@ -9,7 +9,7 @@ import Youtube from "@tiptap/extension-youtube";
 import Link from "@tiptap/extension-link";
 import { Bounce, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import {
   Bold,
   Italic,
@@ -25,11 +25,34 @@ import {
 import axios from "axios";
 import { AdminContext } from "./context/AdminContext";
 import { LoadingContext } from "./context/LoadingContext";
-import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const MenuBar = ({ editor }) => {
   if (!editor) return null;
 
+  <div className="control-group">
+    <div className="button-group">
+      <button
+        onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
+        className={editor.isActive("heading", { level: 1 }) ? "is-active" : ""}
+      >
+        H1
+      </button>
+      <button
+        onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
+        className={editor.isActive("heading", { level: 2 }) ? "is-active" : ""}
+      >
+        H2
+      </button>
+      <button
+        onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
+        className={editor.isActive("heading", { level: 3 }) ? "is-active" : ""}
+      >
+        H3
+      </button>
+    </div>
+  </div>;
+  
   const addImage = () => {
     const url = prompt("Enter image URL");
     if (url) {
@@ -126,22 +149,7 @@ const MenuBar = ({ editor }) => {
           {button.icon}
         </button>
       ))}
-      <div className="flex gap-2">
-        {[1, 2, 3].map((level) => (
-          <button
-            key={level}
-            onClick={() =>
-              editor.chain().focus().toggleHeading({ level }).run()
-            }
-            className={`flex items-center justify-center w-10 h-10 rounded-full text-indigo-500 ${
-              editor.isActive("heading", { level }) ? "bg-black" : "bg-white"
-            } hover:bg-black transition-colors`}
-            title={`Heading ${level}`}
-          >
-            H{level}
-          </button>
-        ))}
-      </div>
+     
     </div>
   );
 };
@@ -153,7 +161,7 @@ const extensions = [
   }),
   Color.configure({ types: [TextStyle.name, ListItem.name] }),
   TextStyle.configure({ types: [ListItem.name] }),
-  Heading.configure({ levels: [1, 2, 3] }),
+  Heading.configure({ levels: [1,2,3]} ),
   Image.configure({
     inline: true,
     allowBase64: true,
@@ -178,7 +186,10 @@ export default () => {
   const { admin_token } = useContext(AdminContext);
   const [title, setTitle] = useState("");
   const [imageUrl, setImageUrl] = useState("");
-  const { loading, setloading } = useContext(LoadingContext)  
+  const { loading, setloading } = useContext(LoadingContext);
+  const navigate = useNavigate();
+
+
   const editor = useEditor({
     extensions,
     content,
@@ -213,7 +224,7 @@ export default () => {
         }
       } catch (error) {
         console.log(error);
-      }finally{
+      } finally {
         setloading(false);
       }
     }

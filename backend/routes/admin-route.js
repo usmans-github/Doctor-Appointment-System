@@ -25,8 +25,4 @@ router.post("/blog-new", authAdmin, createBlog)
 
 
 
-
-
-
-
 module.exports = router

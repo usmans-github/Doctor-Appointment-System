@@ -7,7 +7,7 @@ try {
     const  {admin_token}  = req.cookies
     
     if(!admin_token)  {
-        return res.send({success: false, message: "Access denied. Admin token is required."})
+        return res.send({success: false, message: "Access denied."})
     }
     const decode = jwt.verify(admin_token, process.env.JWT_SECRET)
     if(decode !== process.env.ADMIN_EMAIL + process.env.ADMIN_PASSWORD){
