@@ -17,9 +17,7 @@ const AllAppointments = () => {
 
  
 
-  if (!stats) {
-    return <div className="text-center mt-20">Loading...</div>;
-  }
+  
 
   return (
     <>

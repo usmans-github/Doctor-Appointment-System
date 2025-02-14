@@ -58,7 +58,7 @@ const EditBlogPost = () => {
 
   return (
     <section className="py-14 mt-16 rounded-[2.5rem] flex justify-center items-center flex-col px-6 bg-[#f0f0f0]">
-      <div className="w-full max-w-4xl bg-indigo-[#f0f0f0] text-black rounded-[2rem] border-4 border-indigo-500 overflow-hidden transition-all">
+      <div className="w-full max-w-4xl bg-indigo-[#f0f0f0] text-black rounded-[2rem] border-2  border-indigo-500 overflow-hidden transition-all">
         <div className="relative h-64 md:h-96">
           <img src={imageUrl || "/placeholder.svg"} alt={title} className="object-cover w-full h-full" />
         </div>
@@ -85,7 +85,7 @@ const EditBlogPost = () => {
             Update Blog Post
           </button>
           <div className="flex justify-between items-center mt-4">
-            <Link to="/blogs" className="group">
+            <Link to="/admin/blogs" className="group">
               <button className="flex items-center gap-2 text-lg font-semibold group-hover:text-zinc-900 transition-all">
                 <ArrowLeft />
                 Back to Blogs

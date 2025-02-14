@@ -1,24 +1,31 @@
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { LoadingContext } from "../context/LoadingContext";
 
 const AdminBlogs = () => {
   const [blogs, setBlogs] = useState([]);
-
+  const { setloading } = useContext(LoadingContext);
+  
   useEffect(() => {
+    setloading(true)
     axios
       .get("/server/api/user/Blogs")
       .then((response) => setBlogs(response.data.blogs))
       .catch((error) => console.error("Error fetching blogs:", error));
+    setloading(false)
   }, []);
 
   const handleDelete = async (id) => {
     try {
+      setloading(true)
       await axios.delete(`/server/api/user/delete/Blogs/${id}`);
       setBlogs(blogs.filter((blog) => blog._id !== id));
     } catch (error) {
       console.error("Error deleting blog:", error);
+    }finally{
+      setloading(false)
     }
   };
 

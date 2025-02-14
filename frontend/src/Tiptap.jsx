@@ -6,6 +6,7 @@ import StarterKit from "@tiptap/starter-kit";
 import Heading from "@tiptap/extension-heading";
 import Image from "@tiptap/extension-image";
 import Youtube from "@tiptap/extension-youtube";
+import Link from "@tiptap/extension-link";
 import React, { useState, useContext } from "react";
 import {
   Bold,
@@ -18,6 +19,7 @@ import {
   Image as ImageIcon,
   HeadingIcon,
   Youtube as YoutubeIcon,
+  Link as LinkIcon,
 } from "lucide-react";
 import axios from "axios";
 import { AdminContext } from "./context/AdminContext";
@@ -39,8 +41,20 @@ const MenuBar = ({ editor }) => {
     }
   };
 
+  const addLink = () => {
+    const url = prompt("Enter URL");
+    if (url) {
+      editor
+        .chain()
+        .focus()
+        .extendMarkRange("link")
+        .setLink({ href: url })
+        .run();
+    }
+  };
+
   return (
-    <div className=" flex flex-wrap justify-center items-center gap-2 p-4 bg-indigo-500 rounded-[1.5rem]">
+    <div className="flex flex-wrap justify-center items-center gap-2 p-4 bg-indigo-500 rounded-[1.5rem]">
       {[
         {
           action: () => editor.chain().focus().toggleBold().run(),
@@ -92,12 +106,11 @@ const MenuBar = ({ editor }) => {
           label: "Insert YouTube Video",
           icon: <YoutubeIcon className="w-5 h-5" />,
         },
-        ...[1, 2, 3].map((level) => ({
-          action: () => editor.chain().focus().toggleHeading({ level }).run(),
-          active: editor.isActive("heading", { level }),
-          label: `Heading ${level}`,
-          icon: <HeadingIcon className="w-5 h-5" />,
-        })),
+        {
+          action: addLink,
+          label: "Insert Link",
+          icon: <LinkIcon className="w-5 h-5" />,
+        },
       ].map((button, index) => (
         <button
           key={index}
@@ -110,6 +123,22 @@ const MenuBar = ({ editor }) => {
           {button.icon}
         </button>
       ))}
+      <div className="flex gap-2">
+        {[1, 2, 3].map((level) => (
+          <button
+            key={level}
+            onClick={() =>
+              editor.chain().focus().toggleHeading({ level }).run()
+            }
+            className={`flex items-center justify-center w-10 h-10 rounded-full text-indigo-500 ${
+              editor.isActive("heading", { level }) ? "bg-black" : "bg-white"
+            } hover:bg-black transition-colors`}
+            title={`Heading ${level}`}
+          >
+            H{level}
+          </button>
+        ))}
+      </div>
     </div>
   );
 };
@@ -134,6 +163,9 @@ const extensions = [
     HTMLAttributes: {
       class: "rounded-lg",
     },
+  }),
+  Link.configure({
+    openOnClick: false,
   }),
 ];
 
@@ -176,25 +208,26 @@ export default () => {
   return (
     <div className="max-w-4xl mx-auto p-6 bg-[#f0f0f0] rounded-[2.5rem]">
       <h1 className="text-2xl font-bold mb-4">Write a Blog</h1>
-     
+
       <div className="flex justify-between items-center gap-8 my-8">
-      <input
-        type="text"
-        placeholder="Title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        className="w-full px-2 py-3 border border-indigo-500 rounded-[1.5rem] bg-[#f0f0f0]"
-      />
-      <input
-        type="text"
-        placeholder="Image URL"
-        value={imageUrl}
-        onChange={(e) => setImageUrl(e.target.value)}
-        className="w-full px-2 py-3 border border-indigo-500 rounded-[1.5rem] bg-[#f0f0f0]"
-      />
+        <input
+          type="text"
+          placeholder="Title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          className="w-full px-2 py-3 border border-indigo-500 rounded-[1.5rem] bg-[#f0f0f0]"
+        />
+        <input
+          type="text"
+          placeholder="Image URL"
+          value={imageUrl}
+          onChange={(e) => setImageUrl(e.target.value)}
+          className="w-full px-2 py-3 border border-indigo-500 rounded-[1.5rem] bg-[#f0f0f0]"
+        />
       </div>
-     
+
       <MenuBar editor={editor} />
+
       <EditorContent editor={editor} />
       <button
         onClick={handlePublish}
