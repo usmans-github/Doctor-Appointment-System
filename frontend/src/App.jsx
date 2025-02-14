@@ -39,7 +39,6 @@ function App() {
             <Route path="/patient/profile" element={<ProtectedRoute element={<Profile />} />} />
             <Route path="/patient/book-appointment" element={<ProtectedRoute element={<BookAppointment />} />} />
             <Route path="/all-doctors" element={<AllDoctors />} />
-            <Route path="/doctor-login" element={<DoctorLogin />} />
             <Route path="/admin-login" element={<AdminLogin />} />
             <Route path="/admin/appointments" element={<AllAppointments />} />
             <Route path="/admin/add-doctor" element={<AddDoctor />} />
