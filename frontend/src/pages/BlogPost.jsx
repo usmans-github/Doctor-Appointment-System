@@ -20,7 +20,7 @@ const BlogPost = () => {
 
   return (
     <section className="py-14 mt-16 rounded-[2.5rem] flex justify-center items-center flex-col px-6 bg-[#f0f0f0]">
-      <div className="w-full max-w-4xl border-4 border-indigo-500 rounded-[2rem] overflow-hidden transition-all">
+      <div className="w-full max-w-4xl border-2 border-indigo-500 rounded-[2rem] overflow-hidden transition-all">
         <div className="relative h-64 md:h-96">
           <img src={blog.imageUrl || "/placeholder.svg"} alt={blog.title} className="object-cover w-full h-full" />
         </div>

@@ -58,7 +58,7 @@ const EditBlogPost = () => {
 
   return (
     <section className="py-14 mt-16 rounded-[2.5rem] flex justify-center items-center flex-col px-6 bg-[#f0f0f0]">
-      <div className="w-full max-w-4xl bg-indigo-500 text-white rounded-[2rem] overflow-hidden transition-all">
+      <div className="w-full max-w-4xl bg-indigo-[#f0f0f0] text-black rounded-[2rem] border-4 border-indigo-500 overflow-hidden transition-all">
         <div className="relative h-64 md:h-96">
           <img src={imageUrl || "/placeholder.svg"} alt={title} className="object-cover w-full h-full" />
         </div>
