@@ -6,7 +6,7 @@ import { LoadingContext } from "../context/LoadingContext";
 
 const AdminBlogs = () => {
   const [blogs, setBlogs] = useState([]);
-  const { setloading } = useContext(LoadingContext);
+  const { loading, setloading } = useContext(LoadingContext);
   
   useEffect(() => {
     setloading(true)

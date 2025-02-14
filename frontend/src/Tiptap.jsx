@@ -7,7 +7,9 @@ import Heading from "@tiptap/extension-heading";
 import Image from "@tiptap/extension-image";
 import Youtube from "@tiptap/extension-youtube";
 import Link from "@tiptap/extension-link";
-import React, { useState, useContext } from "react";
+import { Bounce, ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useState, useContext } from "react";
 import {
   Bold,
   Italic,
@@ -17,12 +19,13 @@ import {
   Redo,
   Undo,
   Image as ImageIcon,
-  HeadingIcon,
   Youtube as YoutubeIcon,
   Link as LinkIcon,
 } from "lucide-react";
 import axios from "axios";
 import { AdminContext } from "./context/AdminContext";
+import { LoadingContext } from "./context/LoadingContext";
+import React from "react";
 
 const MenuBar = ({ editor }) => {
   if (!editor) return null;
@@ -175,6 +178,7 @@ export default () => {
   const { admin_token } = useContext(AdminContext);
   const [title, setTitle] = useState("");
   const [imageUrl, setImageUrl] = useState("");
+  const { loading, setloading } = useContext(LoadingContext)  
   const editor = useEditor({
     extensions,
     content,
@@ -192,51 +196,76 @@ export default () => {
       console.log(html);
       // send the HTML content to backend
       try {
-        const response = await axios.post("/server/api/admin/blog-new", {
+        setloading(true);
+        const res = await axios.post("/server/api/admin/blog-new", {
           title,
           imageUrl,
           content: html,
           admin_token,
         });
-        console.log(response.data);
+        if (res.data.success) {
+          toast.success(res.data.message);
+          setTimeout(() => {
+            navigate("/admin/blogs");
+          }, 1000);
+        } else {
+          toast.error(res.data.message);
+        }
       } catch (error) {
         console.log(error);
+      }finally{
+        setloading(false);
       }
     }
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-[#f0f0f0] rounded-[2.5rem]">
-      <h1 className="text-2xl font-bold mb-4">Write a Blog</h1>
+    <>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={1000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+      />
+      <div className="max-w-4xl mx-auto p-6 bg-[#f0f0f0] rounded-[2.5rem]">
+        <h1 className="text-2xl font-bold mb-4">Write a Blog</h1>
 
-      <div className="flex justify-between items-center gap-8 my-8">
-        <input
-          type="text"
-          placeholder="Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          className="w-full px-2 py-3 border border-indigo-500 rounded-[1.5rem] bg-[#f0f0f0]"
-        />
-        <input
-          type="text"
-          placeholder="Image URL"
-          value={imageUrl}
-          onChange={(e) => setImageUrl(e.target.value)}
-          className="w-full px-2 py-3 border border-indigo-500 rounded-[1.5rem] bg-[#f0f0f0]"
-        />
-      </div>
+        <div className="flex justify-between items-center gap-8 my-8">
+          <input
+            type="text"
+            placeholder="Title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            className="w-full px-2 py-3 border border-indigo-500 rounded-[1.5rem] bg-[#f0f0f0]"
+          />
+          <input
+            type="text"
+            placeholder="Image URL"
+            value={imageUrl}
+            onChange={(e) => setImageUrl(e.target.value)}
+            className="w-full px-2 py-3 border border-indigo-500 rounded-[1.5rem] bg-[#f0f0f0]"
+          />
+        </div>
 
-      <MenuBar editor={editor} />
+        <MenuBar editor={editor} />
 
-      <EditorContent editor={editor} />
-      <button
-        onClick={handlePublish}
-        className="group-hover:gap-4 mt-10 group-hover:text-zinc-900 font-semibold text-white gap-2
+        <EditorContent editor={editor} />
+        <button
+          onClick={handlePublish}
+          className="group-hover:gap-4 mt-10 group-hover:text-zinc-900 font-semibold text-white gap-2
         transition-all text-lg flex justify-center items-center text-center py-4 bg-indigo-500
         px-10 rounded-[2.5rem] self-center"
-      >
-        Publish Now
-      </button>
-    </div>
+        >
+          Publish Now
+        </button>
+      </div>
+    </>
   );
 };
