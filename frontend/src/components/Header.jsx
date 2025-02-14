@@ -1,12 +1,21 @@
 import { useContext, useState } from "react";
-import {  Diamond, House, LayoutList, LibraryBig, Menu,  SquarePen,  Stethoscope,  UserRound, X } from "lucide-react";
+import {
+  Diamond,
+  House,
+  LayoutList,
+  LibraryBig,
+  Menu,
+  SquarePen,
+  Stethoscope,
+  UserRound,
+  X,
+} from "lucide-react";
 import { AppContext } from "../context/AppContext";
 import { Link } from "react-router-dom";
 
-export default function Header() {  
-  const { user_token } = useContext(AppContext)
+export default function Header() {
+  const { user_token } = useContext(AppContext);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
 
   return (
     <header className="bg-[#f0f0f0] z-50 border rounded-b-[2.5rem]">
@@ -42,13 +51,13 @@ export default function Header() {
               Doctors
             </button>
           </Link>
-          <Link to="/all-blogs">
+          <Link to="/blogs">
             <button className="flex justify-center focus:text-indigo-500 items-center gap-1  text-sm font-medium">
               <LibraryBig size={16} />
               Public Education
             </button>
           </Link>
-          <Link to="/all-blogs">
+          <Link to="/medical/education">
             <button className="flex justify-center focus:text-indigo-500 items-center gap-1  text-sm font-medium">
               <Stethoscope size={16} />
               Medical Education

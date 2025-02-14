@@ -41,10 +41,18 @@ const Cta = () => {
               </li>
               <li>
                 <a
-                  href="/"
+                  href="/blogs"
                   className="hover:text-black hover:underline transition-colors"
                 >
-                  Healthy Blogs
+                  Public Education
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/medical/education"
+                  className="hover:text-black hover:underline transition-colors"
+                >
+                  Medical Education
                 </a>
               </li>
               <li>
