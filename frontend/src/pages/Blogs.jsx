@@ -25,7 +25,7 @@ export default function Blogs() {
     >
       <div className="text-center mb-12 w-full md:w-[40vw]">
         <h2 className="md:text-5xl text-4xl text-indigo-500 text-center  font-extrabold mb-4 ">
-          Featured Blogs
+          Patient Education
         </h2>
         <p className="text-2xl font-semibold text-zinc-900 mx-3 text-center mt-4">
         Stay updated with the latest healthcare insights and advancements from our expert doctors.
@@ -91,7 +91,7 @@ export default function Blogs() {
             className="group-hover:gap-4 group-hover:text-zinc-900 font-semibold text-white gap-2   transition-all text-lg flex justify-center
          items-center text-center w-full py-4  bg-indigo-500 px-10 rounded-[2.5rem] self-center"
           >
-            All blogs
+            See more
             <MoveRight />
           </button>
         </Link>

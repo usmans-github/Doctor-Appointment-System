@@ -16,7 +16,7 @@ const HomePage = () => {
           <div className="mx-auto flex flex-col justify-center items-center gap-4 md:gap-2 md:items-start
            md:space-y-5 mt-[4vh] md:w-[42vw]">
             <p className="md:text-xl text-lg font-semibold text-[#F9FAFB]">
-            Welcome to Our Healthcare System,
+            Welcome to Sehat X,
             </p>
             <h1 className="md:text-5xl text-4xl text-center md:text-start font-extrabold  text-[#F9FAFB] mt-2 ">
             Providing Quality Healthcare for You and Your Family
