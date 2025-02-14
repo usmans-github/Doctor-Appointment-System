@@ -19,6 +19,7 @@ import CreateBlog from "./admin/CreateBlog";
 import BlogPost from "./pages/BlogPost";
 import AdminBlogs from "./admin/AdminBlogs";
 import EditBlogPost from "./pages/EditBlogPost";
+import MedicalEducation from "./pages/MedicalEducation";
 
 function App() {
   return (
@@ -32,7 +33,8 @@ function App() {
             <Route path="/blogpost/:id" element={<BlogPost />} />
             <Route path="/create-blog" element={<CreateBlog />} />
             <Route path="/blogs" element={<Blogs />} />
-            <Route path="/all-blogs" element={<AllBlogs />} />
+            <Route path="/medical/education" element={<MedicalEducation />} />
+            {/* <Route path="/all-blogs" element={<AllBlogs />} /> */}
             <Route path="/specialities" element={<Specialties />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />

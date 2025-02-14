@@ -5,6 +5,7 @@ import TopDoctors from "../components/TopDoctors";
 import Cta from "../components/Cta";
 import Featured from "../components/Featured";
 import Blogs from "./Blogs";
+import MedicalEducation from "./MedicalEducation";
 
 const HomePage = () => {
 
@@ -60,7 +61,8 @@ const HomePage = () => {
       {/* Specialities */}
       {/* <Specialities /> */}
       {/* Featured */}
-      <Featured />
+      {/* <Featured /> */}
+      <MedicalEducation />
       <TopDoctors />
       <Blogs />
       <Cta />

@@ -187,6 +187,7 @@ export default () => {
   const [title, setTitle] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const { loading, setloading } = useContext(LoadingContext);
+  const [category, setCategory] = useState("Public Education");
   const navigate = useNavigate();
 
 
@@ -212,6 +213,7 @@ export default () => {
           title,
           imageUrl,
           content: html,
+          category,
           admin_token,
         });
         if (res.data.success) {
@@ -263,6 +265,17 @@ export default () => {
             onChange={(e) => setImageUrl(e.target.value)}
             className="w-full px-2 py-3 border border-indigo-500 rounded-[1.5rem] bg-[#f0f0f0]"
           />
+          <select
+            name="category"
+            id="category"
+            value={category} 
+            onChange={(e) => setCategory(e.target.value)}
+            className="w-full px-2 py-3 border border-indigo-500
+           rounded-[1.5rem] bg-[#f0f0f0]"
+          >
+            <option value="Public Education">Public Education</option>
+            <option value="Medical Education">Medical Education</option>
+          </select>
         </div>
 
         <MenuBar editor={editor} />

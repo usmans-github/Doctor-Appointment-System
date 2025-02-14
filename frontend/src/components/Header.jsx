@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import {  Diamond, House, LayoutList, Menu,  SquarePen,  UserRound, X } from "lucide-react";
+import {  Diamond, House, LayoutList, LibraryBig, Menu,  SquarePen,  Stethoscope,  UserRound, X } from "lucide-react";
 import { AppContext } from "../context/AppContext";
 import { Link } from "react-router-dom";
 
@@ -44,8 +44,14 @@ export default function Header() {
           </Link>
           <Link to="/all-blogs">
             <button className="flex justify-center focus:text-indigo-500 items-center gap-1  text-sm font-medium">
-              <LayoutList size={16} />
+              <LibraryBig size={16} />
               Public Education
+            </button>
+          </Link>
+          <Link to="/all-blogs">
+            <button className="flex justify-center focus:text-indigo-500 items-center gap-1  text-sm font-medium">
+              <Stethoscope size={16} />
+              Medical Education
             </button>
           </Link>
           <Link to="/admin-login" className="text-sm font-medium">
@@ -125,7 +131,19 @@ export default function Header() {
           <Link to="/all-doctors">
             <button className="flex justify-center items-center gap-1  text-sm font-medium">
               <UserRound size={16} />
-              Doctors
+              Team
+            </button>
+          </Link>
+          <Link to="/blogs">
+            <button className="flex justify-center items-center gap-1  text-sm font-medium">
+              <LibraryBig size={16} />
+              Public Education
+            </button>
+          </Link>
+          <Link to="/medical/blogs">
+            <button className="flex justify-center items-center gap-1  text-sm font-medium">
+              <Stethoscope size={16} />
+              Medical Education
             </button>
           </Link>
           <Link to="/admin-login" className="text-sm font-medium">
@@ -149,7 +167,7 @@ export default function Header() {
           ) : (
             <Link to="/login">
               <button
-                className=" text-white  bg-indigo-500 hover:bg-indigo-600 
+                className=" text-white w-full border  border-white hover:bg-indigo-600 
            font-medium rounded-lg text-sm px-5 py-2.5 text-center "
               >
                 Login
