@@ -97,7 +97,7 @@ const MedicalEducation = () => {
       </div>
 
       <div className="group text-center mt-12 ">
-        <Link to="/all-blogs">
+        <Link to="/medical/education">
           <button
             className="group-hover:gap-4 group-hover:text-zinc-900 font-semibold text-white gap-2   transition-all text-lg flex justify-center
          items-center text-center w-full py-4  bg-indigo-500 px-10 rounded-[2.5rem] self-center"

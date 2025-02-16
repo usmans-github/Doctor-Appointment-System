@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import {
   Diamond,
+  Hexagon,
   House,
   LayoutList,
   LibraryBig,
@@ -48,7 +49,13 @@ export default function Header() {
           <Link to="/all-doctors">
             <button className="flex justify-center focus:text-indigo-500 items-center gap-1  text-sm font-medium">
               <UserRound size={16} />
-              Doctors
+              Our Team
+            </button>
+          </Link>
+          <Link to="/about">
+            <button className="flex justify-center focus:text-indigo-500 items-center gap-1  text-sm font-medium">
+              <Hexagon size={16} />
+              Porfolio
             </button>
           </Link>
           <Link to="/blogs">

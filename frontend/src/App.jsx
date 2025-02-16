@@ -20,6 +20,7 @@ import BlogPost from "./pages/BlogPost";
 import AdminBlogs from "./admin/AdminBlogs";
 import EditBlogPost from "./pages/EditBlogPost";
 import MedicalEducation from "./pages/MedicalEducation";
+import About from "./pages/About";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
             <Route path="/create-blog" element={<CreateBlog />} />
             <Route path="/blogs" element={<Blogs />} />
             <Route path="/medical/education" element={<MedicalEducation />} />
+            <Route path="/about" element={<About />} />
             {/* <Route path="/all-blogs" element={<AllBlogs />} /> */}
             <Route path="/specialities" element={<Specialties />} />
             <Route path="/login" element={<Login />} />

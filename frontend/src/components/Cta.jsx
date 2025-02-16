@@ -40,6 +40,14 @@ const Cta = () => {
                 </Link>
               </li>
               <li>
+                <Link
+                  to="/about"
+                  className="hover:text-black hover:underline transition-colors"
+                >
+                  Portfolio
+                </Link>
+              </li>
+              <li>
                 <a
                   href="/blogs"
                   className="hover:text-black hover:underline transition-colors"
