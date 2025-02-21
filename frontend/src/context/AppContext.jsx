@@ -14,9 +14,12 @@ const AppContextProvider = (props) => {
   const [userData, setuserData] = useState({});
   const userProfileData = async () => {
     try {
-      const { data } = await axios.get("/server/api/user/get-profile", {
-        Headers: user_token,
-      });
+      const { data } = await axios.get(
+        "http://sehatx.com/api/user/get-profile",
+        {
+          Headers: user_token,
+        }
+      );
       if (data.success) {
         setuserData(data.userData);
       } else {
@@ -33,7 +36,7 @@ const AppContextProvider = (props) => {
   const [doctors, setdoctors] = useState([]);
   const doctorsData = async () => {
     try {
-      const res = await axios.get(`/server/api/user/getData`);
+      const res = await axios.get(`https://sehatx.com/api/user/getData`);
       setdoctors(res.data.doctors);
     } catch (error) {
       toast.error(error);

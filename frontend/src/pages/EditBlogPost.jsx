@@ -25,7 +25,7 @@ const EditBlogPost = () => {
 
   useEffect(() => {
     axios
-      .get(`/server/api/user/Blogs/${id}`)
+      .get(`http://sehatx.com/api/user/Blogs/${id}`)
       .then((response) => {
         const blogData = response.data.blog;
         setBlog(blogData);
@@ -40,7 +40,7 @@ const EditBlogPost = () => {
     if (editor) {
       const updatedContent = editor.getHTML();
       try {
-        await axios.put(`/server/api/user/update/Blogs/${id}`, {
+        await axios.put(`http://sehatx.com/api/user/update/Blogs/${id}`, {
           title,
           imageUrl,
           content: updatedContent,

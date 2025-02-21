@@ -1,8 +1,7 @@
 import axios from "axios";
 import { ArrowRight, MoveRight } from "lucide-react";
-import { useContext, useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { LoadingContext } from "../context/LoadingContext";
 
 export const truncateText = (text, length) => {
   if (text.length <= length) return text;
@@ -16,7 +15,7 @@ const MedicalEducation = () => {
 
   useEffect(() => {
     axios
-      .get("/server/api/user/Blogs")
+      .get("http://sehatx.com/api/user/Blogs")
       .then((response) => setBlogs(response.data.blogs))
       .catch((error) => console.error("Error fetching blogs:", error));
   }, []);

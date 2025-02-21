@@ -6,12 +6,12 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      "/server" : {
-        target: "http://localhost:3000",
+      "/server": {
+        target: "http://sehatx.com",
         rewrite: (path) => path.replace(/^\/server/, ""),
-        secure: true,
-      }
-    }
-  }
-  
-})
+        secure: false,
+        changeOrigin: true,
+      },
+    },
+  },
+});

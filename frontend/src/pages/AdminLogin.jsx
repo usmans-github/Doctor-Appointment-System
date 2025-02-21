@@ -17,7 +17,7 @@ const AdminLogin = () => {
   const onSubmit = async (data) => {
     try {
       setloading(true);
-      const res = await axios.post("/server/api/admin/login", data);
+      const res = await axios.post("http://sehatx.com/api/admin/login", data);
       console.log(res.data); // Add this line to check the response data
       if (res.data.success) {
         toast.success(res.data.message);

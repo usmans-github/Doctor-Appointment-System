@@ -11,7 +11,7 @@ const AdminBlogs = () => {
   useEffect(() => {
     setloading(true)
     axios
-      .get("/server/api/user/Blogs")
+      .get("http://sehatx.com/api/user/Blogs")
       .then((response) => setBlogs(response.data.blogs))
       .catch((error) => console.error("Error fetching blogs:", error));
     setloading(false)
@@ -20,7 +20,7 @@ const AdminBlogs = () => {
   const handleDelete = async (id) => {
     try {
       setloading(true)
-      await axios.delete(`/server/api/user/delete/Blogs/${id}`);
+      await axios.delete(`http://sehatx.com/api/user/delete/Blogs/${id}`);
       setBlogs(blogs.filter((blog) => blog._id !== id));
     } catch (error) {
       console.error("Error deleting blog:", error);

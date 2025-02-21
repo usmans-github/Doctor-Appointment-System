@@ -42,7 +42,10 @@ const BookAppointment = () => {
             try {
               // console.log(data);
               setloading(true)
-              const  res  = await axios.post("/server/api/user/book-new-appointment",  data)
+              const res = await axios.post(
+                "http://sehatx.com/api/user/book-new-appointment",
+                data
+              );
               // console.log(res.data.message)
               if(res.data.success){
               toast.success(res.data.message)

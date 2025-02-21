@@ -9,9 +9,9 @@ const BlogPost = () => {
 
   useEffect(() => {
     axios
-      .get(`/server/api/user/Blogs/${id}`)
+      .get(`http://sehatx.com/api/user/Blogs/${id}`)
       .then((response) => setBlog(response.data.blog))
-      .catch((error) => console.error("Error fetching blog post:", error))
+      .catch((error) => console.error("Error fetching blog post:", error));
   }, [id])
 
   if (!blog) {

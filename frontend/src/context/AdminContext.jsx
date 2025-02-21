@@ -14,7 +14,7 @@ const AdminContextProvider = (props) => {
   const getStats = async () => {    
     try {
       setloading(true);
-      const stats = await axios.get( `/server/api/admin/getStats`, admin_token)
+      const stats = await axios.get( `http://sehatx.com/api/admin/getStats`, admin_token)
       setstats(stats.data)
     } catch (error) {
       console.log(error.message);
@@ -28,7 +28,10 @@ const AdminContextProvider = (props) => {
   //Api to cancel & approve  the appointment
   const updateAppointments = async(appointmentId) => {
     try {
-      const res = await axios.post("/server/api/admin/update-appointment", {appointmentId: appointmentId})
+      const res = await axios.post(
+        "http://sehatx.com/api/admin/update-appointment",
+        { appointmentId: appointmentId }
+      );
       if(res.data.success){
         toast.success(res.data.message)
       }else{

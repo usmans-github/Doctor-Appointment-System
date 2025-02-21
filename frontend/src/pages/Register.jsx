@@ -25,7 +25,10 @@ const Register = () => {
         try {
           setloading(true)
           console.log(data);
-          const res = await axios.post("/server/api/user/register", data)
+          const res = await axios.post(
+            "http://sehatx.com/api/user/register",
+            data
+          );
           console.log(res.data.success);
           if(res.data.success) {
             // console.log("Registered succcessfuly and response.message is ", res.data.message); 
