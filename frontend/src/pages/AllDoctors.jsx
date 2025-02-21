@@ -32,7 +32,7 @@ const TopDoctors = () => {
             key={index}
             className="bg-indigo-500 group cursor-pointer w-full sm:w-[90%] md:w-[80%] lg:w-[24vw] border rounded-[2rem] shadow-lg"
           >
-            {/* Doctor Image */}
+            {/* Doctor Picture */}
             <div className="relative h-[35vh] md:h-[40vh]">
               <img
                 src={doctor.picture}
