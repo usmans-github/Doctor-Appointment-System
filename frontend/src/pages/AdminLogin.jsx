@@ -18,7 +18,7 @@ const AdminLogin = () => {
     try {
       setloading(true);
       const res = await axios.post("http://sehatx.com/api/admin/login", data);
-      console.log(res.data); // Add this line to check the response data
+      // console.log(res.data); // Add this line to check the response data
       if (res.data.success) {
         toast.success(res.data.message);
         setTimeout(() => {
