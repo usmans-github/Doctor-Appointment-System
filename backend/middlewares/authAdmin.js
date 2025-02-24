@@ -4,7 +4,7 @@ module.exports = async (req, res, next ) => {
 try {
 
     
-    const  {admin_token}  = req.cookies
+    const  {admin_token}  = req.cookies;
     
     if(!admin_token)  {
         return res.send({success: false, message: "Access denied."})

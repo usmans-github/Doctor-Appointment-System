@@ -15,7 +15,7 @@ const AppContextProvider = (props) => {
   const userProfileData = async () => {
     try {
       const { data } = await axios.get(
-        "http://sehatx.com/api/user/get-profile",
+        "https://sehatx.com/api/user/get-profile",
         {
           Headers: user_token,
         }

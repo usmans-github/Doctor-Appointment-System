@@ -15,7 +15,7 @@ const MedicalEducation = () => {
 
   useEffect(() => {
     axios
-      .get("http://sehatx.com/api/user/Blogs")
+      .get("https://sehatx.com/api/user/Blogs")
       .then((response) => setBlogs(response.data.blogs))
       .catch((error) => console.error("Error fetching blogs:", error));
   }, []);
@@ -29,7 +29,7 @@ const MedicalEducation = () => {
         <h2 className="md:text-5xl text-4xl text-indigo-500 text-center  font-extrabold mb-4 ">
           Medical Education
         </h2>
-        <p className="text-2xl font-semibold text-zinc-900 mx-3 text-center mt-4">
+        <p className="text-xl sm:text-2xl font-semibold text-black text-center max-w-3xl">
           Stay updated with the latest healthcare insights and advancements from
           our expert doctors.
         </p>

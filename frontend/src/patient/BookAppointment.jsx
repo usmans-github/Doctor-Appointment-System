@@ -43,7 +43,7 @@ const BookAppointment = () => {
               // console.log(data);
               setloading(true)
               const res = await axios.post(
-                "http://sehatx.com/api/user/book-new-appointment",
+                "https://sehatx.com/api/user/book-new-appointment",
                 data
               );
               // console.log(res.data.message)
