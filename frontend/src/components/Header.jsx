@@ -1,14 +1,12 @@
 import { useContext, useState } from "react";
 import {
   Diamond,
-  Hexagon,
+  GalleryHorizontal,
   House,
-  LayoutList,
   LibraryBig,
   Menu,
-  SquarePen,
   Stethoscope,
-  UserRound,
+  UsersRound,
   X,
 } from "lucide-react";
 import { AppContext } from "../context/AppContext";
@@ -20,77 +18,79 @@ export default function Header() {
 
   return (
     <header className="bg-[#f0f0f0] z-50 border rounded-b-[2.5rem]">
-      <nav className="py-4 px-6 md:px-20  flex justify-between items-center">
+      <nav className="py-4 px-6 md:px-20 flex justify-between items-center">
         {/* Logo */}
         <div className="flex items-center justify-center gap-2">
           <Link to="/">
             <div className="flex">
               <span>
                 <img
-                  src="https://framerusercontent.com/images/x3QCVpPBf6SGXasG60eshYXj2s.svg"
+                  className="h-16 w-16 bg-blue"
+                  src="/sehatx-logo.png"
                   alt="Sehat X"
                 />
               </span>
-              <span className="text-3xl cursor-pointer text-indigo-500 font-bold">
+              {/* <span className="text-3xl cursor-pointer text-indigo-500 font-bold">
                 Sehat X
-              </span>
+              </span> */}
             </div>
           </Link>
         </div>
 
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-8 text-black">
+        {/* Desktop Navigation (Only for Large Screens) */}
+        <div className="hidden lg:flex items-center gap-8 text-black">
           <Link to="/">
-            <button className="flex justify-center focus:text-indigo-500 items-center gap-1  px-3 py-1 rounded-xl  text-sm font-medium">
-              <House size={16} />
+            <button className="flex justify-center items-center gap-1 focus:text-indigo-500 text-sm font-medium">
+              <House size={15} />
               Home
             </button>
           </Link>
           <Link to="/all-doctors">
-            <button className="flex justify-center focus:text-indigo-500 items-center gap-1  text-sm font-medium">
-              <UserRound size={16} />
+            <button className="flex justify-center items-center gap-1 focus:text-indigo-500 text-sm font-medium">
+              <UsersRound size={15} />
               Our Team
             </button>
           </Link>
           <Link to="/about">
-            <button className="flex justify-center focus:text-indigo-500 items-center gap-1  text-sm font-medium">
-              <Hexagon size={16} />
-              Porfolio
+            <button className="flex justify-center items-center gap-1 focus:text-indigo-500 text-sm font-medium">
+              <GalleryHorizontal size={15} />
+              Portfolio
             </button>
           </Link>
           <Link to="/blogs">
-            <button className="flex justify-center focus:text-indigo-500 items-center gap-1  text-sm font-medium">
-              <LibraryBig size={16} />
+            <button className="flex justify-center items-center gap-1 focus:text-indigo-500 text-sm font-medium">
+              <LibraryBig size={15} />
               Public Education
             </button>
           </Link>
           <Link to="/medical/education">
-            <button className="flex justify-center focus:text-indigo-500 items-center gap-1  text-sm font-medium">
-              <Stethoscope size={16} />
+            <button className="flex justify-center items-center gap-1 focus:text-indigo-500 text-sm font-medium">
+              <Stethoscope size={15} />
               Medical Education
             </button>
           </Link>
-          <Link to="/admin-login" className="text-sm font-medium">
-            <button className="flex justify-center focus:text-indigo-500 items-center gap-1  text-sm font-medium">
-              <Diamond size={16} />
-              Admin
-            </button>
+          <Link
+            to="/admin-login"
+            className="flex justify-center items-center gap-1 focus:text-indigo-500 text-sm font-medium"
+          >
+            <Diamond size={15} />
+            Admin
           </Link>
         </div>
 
-        {/* Account and User Section */}
+        {/* Account Section */}
         <div className="flex items-center gap-2">
-          <Link to="/register" className="hidden md:inline">
+          <Link to="/register" className="hidden lg:inline">
             <button
-              className="text-indigo-500 border border-indigo-500 hover:bg-indigo-50 
-              font-medium rounded-lg text-sm px-5 py-2.5"
+              className="text-indigo-500 border border-indigo-500 hover:bg-indigo-50 font-medium
+             rounded-lg text-sm px-5 py-2.5"
             >
               Book Appointment
             </button>
           </Link>
-          {/* //User logged in  */}
+
           {user_token ? (
-            <div className="hidden md:flex items-center text-white gap-2 cursor-pointer">
+            <div className="hidden lg:flex items-center text-white gap-2 cursor-pointer">
               <Link to="/patient/profile">
                 <img
                   src="/avatar.webp"
@@ -104,17 +104,17 @@ export default function Header() {
           ) : (
             <Link to="/login">
               <button
-                className="w-full text-white hidden md:inline lg:inline   bg-indigo-500 hover:bg-indigo-600 
-           font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                className="hidden lg:inline text-white bg-indigo-500 hover:bg-indigo-600 font-medium
+               rounded-lg text-sm px-5 py-2.5"
               >
                 Login
               </button>
             </Link>
           )}
 
-          {/* Hamburger Menu */}
+          {/* Hamburger Menu (Visible on Mobile & Tablets) */}
           <button
-            className="md:hidden text-indigo-500"
+            className="lg:hidden text-black"
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
           >
             <Menu className="w-6 h-6" />
@@ -122,54 +122,49 @@ export default function Header() {
         </div>
       </nav>
 
-      {/* Sidebar for mobile devices */}
+      {/* Sidebar for Mobile & Tablets */}
       <div
-        className={`fixed top-0 left-0 h-full w-64 bg-indigo-600 text-white transform ${
+        className={`fixed top-0 left-0 h-screen w-64 bg-[#f0f0f0] text-black transform ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 ease-in-out z-50`}
       >
-        {/* Sidebar Header */}
-        <div className="flex items-center justify-between px-6 py-4 bg-indigo-600">
-          <span className="text-2xl font-bold">sehatx</span>
+        <div className="flex items-center justify-between px-6 py-4 ">
+          <span className="text-2xl font-bold">Sehat X</span>
           <button onClick={() => setIsSidebarOpen(false)}>
-            <X className="w-6 h-6 text-" />
+            <X className="w-6 h-6 text-black" />
           </button>
         </div>
 
-        {/* Sidebar Links */}
-        <div className="flex flex-col px-6 space-y-4 mt-4">
+        <div className="flex flex-col px-6 space-y-6 mt-6">
           <Link to="/">
-            <button className="flex justify-center items-center gap-1  text-sm font-medium">
-              <House size={16} />
+            <button className="flex justify-center items-center gap-1 text-sm font-medium">
+              <House size={15} />
               Home
             </button>
           </Link>
           <Link to="/all-doctors">
-            <button className="flex justify-center items-center gap-1  text-sm font-medium">
-              <UserRound size={16} />
-              Team
+            <button className="flex justify-center items-center gap-1 text-sm font-medium">
+              <UsersRound size={15} /> Our Team
             </button>
           </Link>
           <Link to="/blogs">
-            <button className="flex justify-center items-center gap-1  text-sm font-medium">
-              <LibraryBig size={16} />
-              Public Education
+            <button className="flex justify-center items-center gap-1 text-sm font-medium">
+              <LibraryBig size={15} /> Public Education
             </button>
           </Link>
-          <Link to="/medical/blogs">
-            <button className="flex justify-center items-center gap-1  text-sm font-medium">
-              <Stethoscope size={16} />
-              Medical Education
+          <Link to="/medical/education">
+            <button className="flex justify-center items-center gap-1 text-sm font-medium">
+              <Stethoscope size={15} /> Medical Education
             </button>
           </Link>
-          <Link to="/admin-login" className="text-sm font-medium">
-            <button className="flex justify-center items-center gap-1  text-sm font-medium">
-              <Diamond size={16} />
-              Admin
+          <Link to="/admin-login">
+            <button className="flex justify-center items-center gap-1 text-sm font-medium">
+              <Diamond size={15} /> Admin
             </button>
           </Link>
+
           {user_token ? (
-            <div className=" sm:flex md:flex items-center text-white gap-2 cursor-pointer">
+            <div className="flex items-center text-white gap-2 cursor-pointer">
               <Link to="/patient/profile">
                 <img
                   src="/avatar.webp"
@@ -183,8 +178,8 @@ export default function Header() {
           ) : (
             <Link to="/login">
               <button
-                className=" text-white w-full border  border-white hover:bg-indigo-600 
-           font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+                className="w-full text-indigo-500 border border-indigo-500  font-medium
+               rounded-lg text-sm px-5 py-2.5 text-center"
               >
                 Login
               </button>
@@ -193,9 +188,8 @@ export default function Header() {
 
           <Link to="/register">
             <button
-              type="button"
-              className="w-full text-indigo-500 bg-white hover:bg-indigo-50  
-              font-medium rounded-lg text-sm px-5 py-2.5 mt-1"
+              className="w-full text-white border bg-indigo-500 font-medium
+             rounded-lg text-sm px-5 py-2.5"
             >
               Book Appointment
             </button>
@@ -203,7 +197,6 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Overlay (for closing the sidebar) */}
       {isSidebarOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 z-40"

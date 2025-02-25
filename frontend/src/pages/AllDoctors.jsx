@@ -3,69 +3,67 @@ import { AppContext } from "../context/AppContext";
 import { Link } from "react-router-dom";
 import { MoveRight, Sparkle } from "lucide-react";
 
-
-
 const TopDoctors = () => {
-  const {doctors, setdoctors, doctorsData} = useContext(AppContext)
-
-
+  const { doctors, setdoctors, doctorsData } = useContext(AppContext);
 
   useEffect(() => {
-    doctorsData()
-  }, [doctors, setdoctors])
-  
+    doctorsData();
+  }, [doctors, setdoctors]);
+
   return (
-    <section className="mt-20 py-16 bg-[#f0f0f0] border rounded-t-[2.5rem] pl-14 md:px-16   rounded-b-[2.5rem]">
-      <div className=" mb-12 flex flex-col justify-center items-center">
-        <h2 className="md:text-5xl text-4xl text-indigo-500 text-center md:text-start font-extrabold mb-4 ">
-          Our team
+    <section className="mt-16 py-16 bg-[#f0f0f0] border rounded-t-[2.5rem] rounded-b-[2.5rem] px-4 sm:px-8 md:px-16">
+      <div className="mb-12 flex flex-col justify-center items-center">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl text-indigo-500 text-center font-extrabold mb-4">
+          Our Team
         </h2>
-        <span className="text-2xl font-semibold text-zinc-900 mx-3 text-center mt-4 ">
+        <span className="text-xl sm:text-2xl font-semibold text-zinc-900 text-center mt-4 max-w-3xl">
           Meet our team of highly qualified doctors who are always there for you
         </span>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-4 gap-8 w-full ">
+      {/* Doctors Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
         {doctors.map((doctor, index) => (
           <div
             key={index}
-            className="bg-indigo-500 group cursor-pointer  w-[80vw] md:w-[24vw] border rounded-[2rem] "
+            className=" border-indigo-500 group cursor-pointer w-full max-w-sm mx-auto border-[1px] rounded-[2rem] overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
           >
-            <div className="relative h-[35vh] md:h-[40vh] ">
+            {/* Doctor Picture */}
+            <div className="relative h-64 sm:h-72 md:h-80">
               <img
-                src={doctor.picture}
+                src={doctor.picture || "/placeholder.svg"}
                 alt={doctor.name}
-                className="object-cover object-top w-full h-full rounded-t-[1.5rem]"
+                className="w-full h-full object-cover rounded-t-[1.5rem]"
               />
               <div className="absolute top-2 left-2 group-hover:bg-black bg-indigo-500 text-white text-xs font-semibold px-2 py-1 rounded-full">
                 Available
               </div>
             </div>
-            <div className="below p-6">
-              <div className="flex justify-between items-center">
-                <h3 className="text-xl font-bold text-white mb-2">
+
+            {/* Doctor Info */}
+            <div className="p-6">
+              <div className="flex flex-col justify-between items-start mb-4">
+                <h3 className="text-xl font-bold text-indigo-500 group-hover:text-black mb-2">
                   {doctor.name}
                 </h3>
-                <p className="flex justify-center gap-1 items-center text-md  text-white mb-2">
-                  <Sparkle
-                    size={16}
-                    className="group-hover:text-black transition-all"
-                  />
+                <p className="text-sm font-medium text-black mb-2">
                   {doctor.specialization}
                 </p>
               </div>
-              <div className="flex justify-between">
-                <span className="text-lg text-white mb-3">
-                  Experiance: {doctor.experience}
+              <div className="flex flex-col justify-between mb-4">
+                <span className="text-sm font-medium text-black mb-1">
+                  Experience: {doctor.experience}
                 </span>
-                <span className="text-lg text-white mb-3">
-                  Fee : {doctor.fee}
+                <span className="text-sm font-medium text-black">
+                  Fee: Rs. {doctor.fee}
                 </span>
               </div>
-              <Link to="/register">
-                <button className=" font-semibold gap-2 group-hover:gap-4 transition-all text-lg flex justify-center items-center text-center w-full py-3 bg-[#f0f0f0] rounded-[1.5rem] self-center ">
+
+              {/* Appointment Button */}
+              <Link to="/register" className="block">
+                <button className="font-semibold gap-2 group-hover:gap-4 transition-all text-base sm:text-lg flex justify-center items-center text-center w-full py-3 text-white group-hover:text-black bg-indigo-500 rounded-[1.5rem] self-center">
                   <span>Book Appointment</span>
-                  <MoveRight />
+                  <MoveRight className="w-4 h-4" />
                 </button>
               </Link>
             </div>
@@ -76,4 +74,4 @@ const TopDoctors = () => {
   );
 };
 
-export default TopDoctors
+export default TopDoctors;

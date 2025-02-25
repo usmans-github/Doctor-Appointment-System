@@ -1,101 +1,94 @@
-import axios from 'axios';
-import { ArrowLeft } from 'lucide-react';
-import React, { useEffect, useState } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom';
-import { useEditor, EditorContent } from '@tiptap/react';
-import StarterKit from '@tiptap/starter-kit';
-import Image from '@tiptap/extension-image';
-import Youtube from '@tiptap/extension-youtube';
+import axios from "axios";
+import { ArrowRight, MoveRight } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
-const EditBlogPost = () => {
-  const [blog, setBlog] = useState(null);
-  const [title, setTitle] = useState('');
-  const [imageUrl, setImageUrl] = useState('');
-  const { id } = useParams();
-  const navigate = useNavigate();
+export const truncateText = (text, length) => {
+  if (text.length <= length) return text;
+  return text.substring(0, length) + "...";
+};
 
-  const editor = useEditor({
-    extensions: [
-      StarterKit,
-      Image,
-      Youtube,
-    ],
-    content: '',
-  });
+export default function Blogs() {
+  const [blogs, setBlogs] = useState([]);
+
+  const publicBlogs = blogs.filter(
+    (blog) => blog.category === "Public Education"
+  );
 
   useEffect(() => {
     axios
-      .get(`https://sehatx.com/api/user/Blogs/${id}`)
-      .then((response) => {
-        const blogData = response.data.blog;
-        setBlog(blogData);
-        setTitle(blogData.title);
-        setImageUrl(blogData.imageUrl);
-        editor.commands.setContent(blogData.content);
-      })
-      .catch((error) => console.error("Error fetching blog post:", error));
-  }, [id, editor]);
-
-  const handleUpdate = async () => {
-    if (editor) {
-      const updatedContent = editor.getHTML();
-      try {
-        await axios.put(`https://sehatx.com/api/user/update/Blogs/${id}`, {
-          title,
-          imageUrl,
-          content: updatedContent,
-        });
-        navigate(`/blogpost/${id}`);
-      } catch (error) {
-        console.error("Error updating blog post:", error);
-      }
-    }
-  };
-
-  if (!blog) {
-    return <div className="text-center mt-20">Loading...</div>;
-  }
+      .get("https://sehatx.com/api/user/Blogs")
+      .then((response) => setBlogs(response.data.blogs))
+      .catch((error) => console.error("Error fetching blogs:", error));
+  }, []);
 
   return (
     <section className="py-14 mt-16 rounded-[2.5rem] flex justify-center items-center flex-col px-6 bg-[#f0f0f0]">
-      <div className="w-full max-w-4xl bg-indigo-[#f0f0f0] text-black rounded-[2rem] border-2  border-indigo-500 overflow-hidden transition-all">
-        <div className="relative h-64 md:h-96">
-          <img src={imageUrl || "/placeholder.svg"} alt={title} className="object-cover w-full h-full" />
-        </div>
-        <div className="p-8 fles flex-col gap-4">
-          <input
-            type="text"
-            placeholder="Title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            className="mb-8 w-full px-2 py-3 border border-indigo-500 rounded-[1.5rem] text-black bg-[#f0f0f0]"
-          />
-          <input
-            type="text"
-            placeholder="Image URL"
-            value={imageUrl}
-            onChange={(e) => setImageUrl(e.target.value)}
-            className="mb-8 w-full px-2 py-3 border border-indigo-500 rounded-[1.5rem] text-black bg-[#f0f0f0]"
-          />
-          <EditorContent editor={editor} />
-          <button
-            onClick={handleUpdate}
-            className="mt-4 bg-white text-indigo-500 font-medium rounded-lg text-sm px-5 py-2.5"
+      <div className="text-center mb-12 w-full md:w-[40vw]">
+        <h2 className="md:text-5xl text-4xl text-indigo-500 text-center font-extrabold mb-4 mt-8">
+          Public Education
+        </h2>
+        <p className="text-xl sm:text-2xl font-semibold text-black text-center max-w-3xl">
+          Stay updated with the latest healthcare insights and advancements from
+          our expert doctors.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {publicBlogs.map((blog, index) => (
+          <div
+            key={index}
+            className="group bg-indigo-500 text-white rounded-[2rem] overflow-hidden transition-all"
           >
-            Update Blog Post
-          </button>
-          <div className="flex justify-between items-center mt-4">
-            <Link to="/admin/blogs" className="group">
-              <button className="flex items-center gap-2 text-lg font-semibold group-hover:text-zinc-900 transition-all">
-                <ArrowLeft />
-                Back to Blogs
-              </button>
-            </Link>
+            <div className="relative h-48">
+              <img
+                src={blog.imageUrl || "/placeholder.svg"}
+                alt={blog.title}
+                className="object-cover h-[30vh] w-full"
+              />
+            </div>
+            <div className="p-8">
+              <div className="flex items-center justify-between mb-3"></div>
+              <Link to={`/blogpost/${blog._id}`}>
+                <h3 className="text-xl font-bold mb-3 group-hover:text-zinc-900 group-hover:cursor-pointer group-hover:underline">
+                  {blog.title}
+                </h3>
+              </Link>
+
+              <p className="mb-6 text-base">
+                {truncateText(blog.content.replace(/<[^>]+>/g, ""), 150)}
+              </p>
+              <div className="flex items-center justify-between">
+                <span className="text-md font-semibold">
+                  By &nbsp;
+                  <Link to="/all-doctors">
+                    <span className="cursor-pointer group-hover:text-zinc-900 group-hover:underline">
+                      {blog.author}
+                    </span>
+                  </Link>
+                </span>
+                <div className="flex justify-center items-center gap-2 transition-all md:text-lg font-semibold">
+                  <Link to={`/blogpost/${blog._id}`}>
+                    <button className="flex justify-center items-center group-hover:text-zinc-900 group-hover:gap-2 transition-all gap-1">
+                      Learn more
+                      <ArrowRight />
+                    </button>
+                  </Link>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
+        ))}
+      </div>
+
+      <div className="group text-center mt-12">
+        <Link to="/blogs">
+          <button className="group-hover:gap-4 group-hover:text-zinc-900 font-semibold text-white gap-2 transition-all text-lg flex justify-center items-center text-center w-full py-4 bg-indigo-500 px-10 rounded-[2.5rem] self-center">
+            See more
+            <MoveRight />
+          </button>
+        </Link>
       </div>
     </section>
   );
-};
-
-export default EditBlogPost;
+}

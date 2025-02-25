@@ -52,7 +52,7 @@ const MenuBar = ({ editor }) => {
       </button>
     </div>
   </div>;
-  
+
   const addImage = () => {
     const url = prompt("Enter image URL");
     if (url) {
@@ -149,7 +149,6 @@ const MenuBar = ({ editor }) => {
           {button.icon}
         </button>
       ))}
-     
     </div>
   );
 };
@@ -161,7 +160,7 @@ const extensions = [
   }),
   Color.configure({ types: [TextStyle.name, ListItem.name] }),
   TextStyle.configure({ types: [ListItem.name] }),
-  Heading.configure({ levels: [1,2,3]} ),
+  Heading.configure({ levels: [1, 2, 3] }),
   Image.configure({
     inline: true,
     allowBase64: true,
@@ -180,7 +179,7 @@ const extensions = [
   }),
 ];
 
-const content = `Create a blog post here...`;
+const content = ``;
 
 export default () => {
   const { admin_token } = useContext(AdminContext);
@@ -189,7 +188,6 @@ export default () => {
   const { loading, setloading } = useContext(LoadingContext);
   const [category, setCategory] = useState("Public Education");
   const navigate = useNavigate();
-
 
   const editor = useEditor({
     extensions,
@@ -250,7 +248,9 @@ export default () => {
       <div className="max-w-4xl mx-auto p-6 bg-[#f0f0f0] rounded-[2.5rem]">
         <h1 className="text-2xl font-bold mb-4">Write a Blog</h1>
 
-        <div className="flex justify-between items-center gap-8 my-8">
+        {/* Responsive Flex Container */}
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 md:gap-8 my-8">
+          {/* Title Input */}
           <input
             type="text"
             placeholder="Title"
@@ -258,6 +258,8 @@ export default () => {
             onChange={(e) => setTitle(e.target.value)}
             className="w-full px-2 py-3 border border-indigo-500 rounded-[1.5rem] bg-[#f0f0f0]"
           />
+
+          {/* Image URL Input */}
           <input
             type="text"
             placeholder="Image URL"
@@ -265,27 +267,28 @@ export default () => {
             onChange={(e) => setImageUrl(e.target.value)}
             className="w-full px-2 py-3 border border-indigo-500 rounded-[1.5rem] bg-[#f0f0f0]"
           />
+
+          {/* Category Select */}
           <select
             name="category"
             id="category"
-            value={category} 
+            value={category}
             onChange={(e) => setCategory(e.target.value)}
-            className="w-full px-2 py-3 border border-indigo-500
-           rounded-[1.5rem] bg-[#f0f0f0]"
+            className="w-full px-2 py-3 border border-indigo-500 rounded-[1.5rem] bg-[#f0f0f0]"
           >
             <option value="Public Education">Public Education</option>
             <option value="Medical Education">Medical Education</option>
           </select>
         </div>
 
+        {/* MenuBar and EditorContent */}
         <MenuBar editor={editor} />
-
         <EditorContent editor={editor} />
+
+        {/* Publish Button */}
         <button
           onClick={handlePublish}
-          className="group-hover:gap-4 mt-10 group-hover:text-zinc-900 font-semibold text-white gap-2
-        transition-all text-lg flex justify-center items-center text-center py-4 bg-indigo-500
-        px-10 rounded-[2.5rem] self-center"
+          className="mt-10 font-semibold text-white gap-2 transition-all text-lg flex justify-center items-center text-center py-4 bg-indigo-500 px-10 rounded-[2.5rem] hover:bg-indigo-600"
         >
           Publish Now
         </button>

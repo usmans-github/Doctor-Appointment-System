@@ -1,7 +1,7 @@
 "use client";
 import React, { useContext } from "react";
 import axios from "axios";
-import Cookies from "js-cookie";
+// import Cookies from "js-cookie";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { Bounce, toast, ToastContainer } from "react-toastify";
@@ -9,8 +9,8 @@ import { AdminContext } from "../context/AdminContext";
 import { LoadingContext } from "../context/LoadingContext";
 
 const AdminLogin = () => {
-  const {  setloading } = useContext(LoadingContext);
-  const {  setadmin_token } = useContext(AdminContext);
+  const { setloading } = useContext(LoadingContext);
+  const { admin_token, setadmin_token } = useContext(AdminContext);
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
 
@@ -22,7 +22,7 @@ const AdminLogin = () => {
       if (res.data.success) {
         toast.success(res.data.message);
         setTimeout(() => {
-          Cookies.set("admin_token", res.data.admin_token);
+          localStorage.setItem("admin_token", res.data.admin_token);
           setadmin_token(res.data.admin_token);
           navigate("/admin/dashboard");
         }, 1000);

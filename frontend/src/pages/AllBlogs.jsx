@@ -1,22 +1,18 @@
 import axios from "axios";
-import {  ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { truncateText } from "./Blogs";
 
-
-
 export default function AllBlogs() {
+  const [blogs, setBlogs] = useState([]);
 
-    const [blogs, setBlogs] = useState([]);
-  
-    useEffect(() => {
-      axios
-        .get("https://sehatx.com/api/user/Blogs")
-        .then((response) => setBlogs(response.data.blogs))
-        .catch((error) => console.error("Error fetching blogs:", error));
-    }, []);
-
+  useEffect(() => {
+    axios
+      .get("https://sehatx.com/api/user/Blogs")
+      .then((response) => setBlogs(response.data.blogs))
+      .catch((error) => console.error("Error fetching blogs:", error));
+  }, []);
 
   return (
     <section
@@ -25,7 +21,7 @@ export default function AllBlogs() {
     >
       <div className="text-center mb-12 w-full md:w-[40vw]">
         <h2 className="md:text-5xl text-4xl text-indigo-500 text-center  font-extrabold mb-4 ">
-        Public Education
+          Public Education
         </h2>
         <p className="text-2xl font-semibold text-zinc-900 mx-3 text-center mt-4">
           Stay updated with the latest healthcare insights and advancements from
