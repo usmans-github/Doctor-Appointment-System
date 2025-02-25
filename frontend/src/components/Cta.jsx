@@ -48,20 +48,20 @@ const Cta = () => {
                 </Link>
               </li>
               <li>
-                <a
-                  href="/blogs"
+                <Link
+                  to="/blogs"
                   className="hover:text-black hover:underline transition-colors"
                 >
                   Public Education
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/medical/education"
+                <Link
+                  to="/medical/education"
                   className="hover:text-black hover:underline transition-colors"
                 >
                   Medical Education
-                </a>
+                </Link>
               </li>
               <li>
                 <Link
