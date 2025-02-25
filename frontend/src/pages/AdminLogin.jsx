@@ -20,7 +20,7 @@ const AdminLogin = () => {
       const res = await axios.post("https://sehatx.com/api/admin/login", data);
       console.log(res.data); // Add this line to check the response data
       if (res.data.success) {
-        Cookies.set("admin_token", admin_token)
+        Cookies.set("admin_token", res.data.admin_token)
         toast.success(res.data.message);
         setTimeout(() => {
           setadmin_token(res.data.admin_token);
