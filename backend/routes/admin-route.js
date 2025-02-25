@@ -12,16 +12,16 @@ const router = express.Router()
 router.post("/login", login)
 
 //Admin Add Doctor
-router.post("/add-doctor", authAdmin, upload.single("file"),  addDoctor)
+router.post("/add-doctor",  upload.single("file"),  addDoctor)
 
 //Get All Data Stats
-router.get("/getStats",  authAdmin, getStats)
+router.get("/getStats",   getStats)
 
 //Api to Update the appointments
-router.post("/update-appointment", authAdmin, updateAppointments)
+router.post("/update-appointment",  updateAppointments)
 
 //Create a new blog
-router.post("/blog-new", authAdmin, createBlog)
+router.post("/blog-new",  createBlog)
 
 
 
