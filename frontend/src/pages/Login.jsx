@@ -19,7 +19,10 @@ const Login = () => {
   const onSubmit = async (data) => {
     try {
       setloading(true);
-      const res = await axios.post("https://sehatx.com/api/user/login", data);
+      const res = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/api/user/login `,
+        data
+      );
       if (res.data.success) {
         // console.log(res.data.message);
         toast.success("Login successfuly!");

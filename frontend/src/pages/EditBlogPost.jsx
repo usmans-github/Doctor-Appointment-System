@@ -17,7 +17,7 @@ export default function Blogs() {
 
   useEffect(() => {
     axios
-      .get(`https://sehatx.com/api/user/Blogs/${id}`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/user/Blogs/${id}`)
       .then((response) => {
         const blogData = response.data.blog;
         setBlog(blogData);
@@ -32,11 +32,14 @@ export default function Blogs() {
     if (editor) {
       const updatedContent = editor.getHTML();
       try {
-        await axios.put(`https://sehatx.com/api/user/update/Blogs/${id}`, {
-          title,
-          imageUrl,
-          content: updatedContent,
-        });
+        await axios.put(
+          `${import.meta.env.VITE_BACKEND_URL}/api/user/update/Blogs/${id}`,
+          {
+            title,
+            imageUrl,
+            content: updatedContent,
+          }
+        );
         navigate(`/blogpost/${id}`);
       } catch (error) {
         console.error("Error updating blog post:", error);

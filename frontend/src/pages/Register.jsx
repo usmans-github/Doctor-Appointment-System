@@ -26,7 +26,7 @@ const Register = () => {
           setloading(true)
           console.log(data);
           const res = await axios.post(
-            "https://sehatx.com/api/user/register",
+            `${import.meta.env.VITE_BACKEND_URL}/api/user/register`,
             data
           );
           console.log(res.data.success);

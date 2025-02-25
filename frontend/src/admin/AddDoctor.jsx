@@ -28,7 +28,7 @@ const AddDoctor = () => {
       // console.log("form data is:", formData.data);
       setloading(true);
       const res = await axios.post(
-        `https://sehatx.com/api/admin/add-doctor`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/admin/add-doctor`,
         formData
       );
       if (res.data.success) {

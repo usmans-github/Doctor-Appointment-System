@@ -17,7 +17,10 @@ const AdminLogin = () => {
   const onSubmit = async (data) => {
     try {
       setloading(true);
-      const res = await axios.post("https://sehatx.com/api/admin/login", data);
+      const res = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/api/admin/login`,
+        data
+      );
       console.log(res.data); // Add this line to check the response data
       if (res.data.success) {
         Cookies.set("admin_token", res.data.admin_token)

@@ -9,7 +9,7 @@ const BlogPost = () => {
 
   useEffect(() => {
     axios
-      .get(`https://sehatx.com/api/user/Blogs/${id}`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/user/Blogs/${id}`)
       .then((response) => setBlog(response.data.blog))
       .catch((error) => console.error("Error fetching blog post:", error));
   }, [id])

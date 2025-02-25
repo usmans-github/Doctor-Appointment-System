@@ -207,13 +207,16 @@ export default () => {
       // send the HTML content to backend
       try {
         setloading(true);
-        const res = await axios.post("https://sehatx.com/api/admin/blog-new", {
-          title,
-          imageUrl,
-          content: html,
-          category,
-          admin_token,
-        });
+        const res = await axios.post(
+          `${import.meta.env.VITE_BACKEND_URL}/api/admin/blog-new`,
+          {
+            title,
+            imageUrl,
+            content: html,
+            category,
+            admin_token,
+          }
+        );
         if (res.data.success) {
           toast.success(res.data.message);
           setTimeout(() => {

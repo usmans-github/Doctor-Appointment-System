@@ -15,7 +15,7 @@ const AppContextProvider = (props) => {
   const userProfileData = async () => {
     try {
       const { data } = await axios.get(
-        "https://sehatx.com/api/user/get-profile",
+        `${import.meta.env.VITE_BACKEND_URL}/api/user/get-profile`,
         {
           Headers: user_token,
         }
@@ -36,7 +36,9 @@ const AppContextProvider = (props) => {
   const [doctors, setdoctors] = useState([]);
   const doctorsData = async () => {
     try {
-      const res = await axios.get(`https://sehatx.com/api/user/getData`);
+      const res = await axios.get(
+        `${import.meta.env.VITE_BACKEND_URL}/api/user/getData`
+      );
       setdoctors(res.data.doctors);
     } catch (error) {
       toast.error(error);

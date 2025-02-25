@@ -9,7 +9,7 @@ export default function AllBlogs() {
 
   useEffect(() => {
     axios
-      .get("https://sehatx.com/api/user/Blogs")
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/user/Blogs`)
       .then((response) => setBlogs(response.data.blogs))
       .catch((error) => console.error("Error fetching blogs:", error));
   }, []);

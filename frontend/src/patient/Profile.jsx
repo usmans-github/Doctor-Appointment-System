@@ -17,7 +17,9 @@ const Profile = () => {
   const upComingAppointments = async () => {
     
     try {
-    const res = await axios.get("https://sehatx.com/api/user/user-appointments");
+    const res = await axios.get(
+      `${import.meta.env.VITE_BACKEND_URL}/api/user/user-appointments`
+    );
     console.log(userappointments)
     setuserappointments(res.data.userappointments) 
     } catch (error) {
