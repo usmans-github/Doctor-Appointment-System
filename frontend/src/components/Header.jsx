@@ -161,6 +161,7 @@ export default function Header() {
           </Link>
           <Link to="/admin-login">
             <button className="flex items-center justify-center gap-1 text-sm font-medium">
+              <Diamond size={15} /> Admin
             </button>
           </Link>
 
