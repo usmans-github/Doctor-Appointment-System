@@ -31,7 +31,7 @@ const BlogPost = () => {
            
           </div>
           <div className="flex justify-between items-center">
-            <Link to="/blogs" className="group">
+            <Link to="/" className="group">
               <button className="flex items-center gap-2 text-lg font-semibold group-hover:text-zinc-900 transition-all">
                 <ArrowLeft />
                 Back to Blogs

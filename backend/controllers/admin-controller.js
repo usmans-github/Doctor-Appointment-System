@@ -45,7 +45,7 @@ const login = async (req, res) => {
         if(!imageFile){
             return res.status(201).send({success: false, message: "Please upload a file"})
         }
-        // console.log({name, email, password, phone, specialization, experience, fee}, imageFile)
+        console.log({name, email, password, phone, specialization, experience, fee}, imageFile)
         const exists  = await doctorModel.findOne({email:email, password:password})
         if(exists) {
             return res.status(201).send({success: false, message: "Doctor already exists"})
