@@ -47,12 +47,8 @@ const HomePage = () => {
 
           <div
             className="mx-auto md:mt-2 mt-16 flex items-center justify-center  md:h-[90vh]
-<<<<<<< HEAD
            md:w-[45vw] md:rounded-[2.5rem]"
           >
-=======
-            md:w-[45vw] md:rounded-[2.5rem]" >
->>>>>>> ebe5a46604e13ea0c3747c2a98350f1a7bd760b7
             <video
               src="/sehatx-video.mp4"
               alt="sehatx"

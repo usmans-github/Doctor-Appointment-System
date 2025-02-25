@@ -19,11 +19,7 @@ const AdminBlogs = () => {
 
   const handleDelete = async (id) => {
     try {
-<<<<<<< HEAD
       setloading(true)
-=======
-      setloading(true);
->>>>>>> ebe5a46604e13ea0c3747c2a98350f1a7bd760b7
       await axios.delete(`https://sehatx.com/api/user/delete/Blogs/${id}`);
       setBlogs(blogs.filter((blog) => blog._id !== id));
     } catch (error) {
@@ -34,12 +30,12 @@ const AdminBlogs = () => {
   };
 
   return (
-    <section className="mt-6 flex justify-center items-center flex-col px-6">
+    <section className="flex flex-col items-center justify-center px-6 mt-6">
       <div className="max-w-[80vw]  mx-auto">
-        <h1 className="text-2xl sm:text-3xl font-semibold text-white mb-6 text-center">
+        <h1 className="mb-6 text-2xl font-semibold text-center text-white sm:text-3xl">
           Manage Blogs
         </h1>
-        <div className="flex justify-between items-center mb-6">
+        <div className="flex items-center justify-between mb-6">
           <Link to="/admin/dashboard">
             <button
               className="text-white border border-[#f0f0f0] hover:bg-indigo-600 focus:ring-4 focus:outline-none 
@@ -62,16 +58,16 @@ const AdminBlogs = () => {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                   Title
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                   Author
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                   Created At
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                   Actions
                 </th>
               </tr>
@@ -92,7 +88,7 @@ const AdminBlogs = () => {
                       {new Date(blog.createdAt).toLocaleDateString()}
                     </div>
                   </td>
-                  <td className="px-6 py-4 md:flex whitespace-nowrap text-right text-sm font-medium">
+                  <td className="px-6 py-4 text-sm font-medium text-right md:flex whitespace-nowrap">
                     <Link to={`/blogpost/edit/${blog._id}`}>
                       <button
                         type="button"
