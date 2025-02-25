@@ -17,7 +17,7 @@ export default function Blogs() {
 
   useEffect(() => {
     axios
-      .get("http://sehatx.com/api/user/Blogs")
+      .get("https://sehatx.com/api/user/Blogs")
       .then((response) => setBlogs(response.data.blogs))
       .catch((error) => console.error("Error fetching blogs:", error));
   }, []);

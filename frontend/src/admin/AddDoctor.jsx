@@ -35,7 +35,7 @@ const AddDoctor = () => {
       // console.log("form data is:", formData.data);
       setloading(true)
       const res = await axios.post(
-        `http://sehatx.com/api/admin/add-doctor`,
+        `https://sehatx.com/api/admin/add-doctor`,
         formData
       );
       if (res.data.success) {

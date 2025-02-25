@@ -26,7 +26,7 @@ const Register = () => {
           setloading(true)
           console.log(data);
           const res = await axios.post(
-            "http://sehatx.com/api/user/register",
+            "https://sehatx.com/api/user/register",
             data
           );
           console.log(res.data.success);

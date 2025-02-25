@@ -209,7 +209,7 @@ export default () => {
       // send the HTML content to backend
       try {
         setloading(true);
-        const res = await axios.post("http://sehatx.com/api/admin/blog-new", {
+        const res = await axios.post("https://sehatx.com/api/admin/blog-new", {
           title,
           imageUrl,
           content: html,
