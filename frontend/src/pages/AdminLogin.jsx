@@ -1,7 +1,7 @@
 "use client";
 import React, { useContext } from "react";
 import axios from "axios";
-// import Cookies from "js-cookie";
+import Cookies from "js-cookie";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { Bounce, toast, ToastContainer } from "react-toastify";
@@ -20,9 +20,9 @@ const AdminLogin = () => {
       const res = await axios.post("https://sehatx.com/api/admin/login", data);
       console.log(res.data); // Add this line to check the response data
       if (res.data.success) {
+        Cookies.set("admin_token", admin_token)
         toast.success(res.data.message);
         setTimeout(() => {
-          localStorage.setItem("admin_token", res.data.admin_token);
           setadmin_token(res.data.admin_token);
           navigate("/admin/dashboard");
         }, 1000);
