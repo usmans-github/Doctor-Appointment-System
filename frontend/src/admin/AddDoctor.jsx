@@ -14,6 +14,8 @@ const AddDoctor = () => {
   const { register, handleSubmit, reset, watch } = useForm();
 
   const onSubmit = async (data) => {
+   
+
     const formData = new FormData();
     formData.append("name", data.name);
     formData.append("email", data.email);
@@ -25,11 +27,16 @@ const AddDoctor = () => {
     formData.append("file", data.file[0]);
 
     try {
-      // console.log("form data is:", formData.data);
       setloading(true);
       const res = await axios.post(
         `https://sehatx.com/api/admin/add-doctor`,
-        formData
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          withCredentials: true, // Include cookies in the request
+        }
       );
       if (res.data.success) {
         // console.log("Doctor addded successfuly", res.data.message);
@@ -202,7 +209,7 @@ const AddDoctor = () => {
                     type="number"
                     id="fee"
                     className="bg-white border border-indigo-500 text-gray-900 text-sm rounded-[1rem] focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
-                    placeholder="Fee in USD"
+                    placeholder="Fee in Rs"
                     required
                   />
                 </div>

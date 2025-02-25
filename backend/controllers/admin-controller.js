@@ -10,23 +10,32 @@ const appointmentModel = require("../models/appointment-model")
 //Admin login controller
 const login = async (req, res) => {
   try {
-    const { email, password } =req.body
-    if(email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD){
-        const admin_token = jwt.sign(email+password, process.env.JWT_SECRET)
-        res.status(201).send({success: true, message: "Admin logged in successfully!", admin_token})
-        
-        
-    }else{
-        res.status(201).send({success: false, message:"Invalid Credentials"})
+    const { email, password } = req.body;
+
+    if (
+      email === process.env.ADMIN_EMAIL &&
+      password === process.env.ADMIN_PASSWORD
+    ) {
+      const payload = { email, password }; // Include email and password in the payload
+      const admin_token = jwt.sign(payload, process.env.JWT_SECRET, {
+        expiresIn: "1h",
+      }); // Add expiration time
+      res.cookie("admin_token", admin_token, { httpOnly: true }); // Set the token in a cookie
+      res
+        .status(201)
+        .send({
+          success: true,
+          message: "Admin logged in successfully!",
+          admin_token,
+        });
+    } else {
+      res.status(401).send({ success: false, message: "Invalid Credentials" });
     }
-    
   } catch (error) {
     console.log(error);
-    res.status(201).send({ success: false, message: error.message })
-    
+    res.status(500).send({ success: false, message: error.message });
   }
- 
- }
+};
 
  //Admin add doctor controller
  const addDoctor = async (req, res) => {
