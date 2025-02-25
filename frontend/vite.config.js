@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/server": {
-        target: "http://sehatx.com",
+        target: "https://sehatx.com",
         rewrite: (path) => path.replace(/^\/server/, ""),
         secure: false,
         changeOrigin: true,

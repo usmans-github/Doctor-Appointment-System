@@ -7,25 +7,29 @@ import { LoadingContext } from "../context/LoadingContext";
 const AdminBlogs = () => {
   const [blogs, setBlogs] = useState([]);
   const { loading, setloading } = useContext(LoadingContext);
-  
+
   useEffect(() => {
-    setloading(true)
+    setloading(true);
     axios
       .get("https://sehatx.com/api/user/Blogs")
       .then((response) => setBlogs(response.data.blogs))
       .catch((error) => console.error("Error fetching blogs:", error));
-    setloading(false)
+    setloading(false);
   }, []);
 
   const handleDelete = async (id) => {
     try {
+<<<<<<< HEAD
       setloading(true)
+=======
+      setloading(true);
+>>>>>>> ebe5a46604e13ea0c3747c2a98350f1a7bd760b7
       await axios.delete(`https://sehatx.com/api/user/delete/Blogs/${id}`);
       setBlogs(blogs.filter((blog) => blog._id !== id));
     } catch (error) {
       console.error("Error deleting blog:", error);
-    }finally{
-      setloading(false)
+    } finally {
+      setloading(false);
     }
   };
 

@@ -14,6 +14,8 @@ const AddDoctor = () => {
   const { register, handleSubmit, reset, watch } = useForm();
 
   const onSubmit = async (data) => {
+   
+
     const formData = new FormData();
     formData.append("name", data.name);
     formData.append("email", data.email);
@@ -26,9 +28,9 @@ const AddDoctor = () => {
 
     try {
       // console.log("form data is:", formData.data);
-      setloading(true);
+      setloading(true)
       const res = await axios.post(
-        `https://sehatx.com/api/admin/add-doctor`,
+        `http://sehatx.com/api/admin/add-doctor`,
         formData
       );
       if (res.data.success) {
@@ -66,15 +68,15 @@ const AddDoctor = () => {
       />
 
       <section className="py-16">
-        <div className="flex flex-col items-center justify-center px-4 sm:px-6 py-4 mx-auto lg:py-0 w-full">
+        <div className="flex flex-col items-center justify-center w-full px-4 py-4 mx-auto sm:px-6 lg:py-0">
           <div className="w-full max-w-3xl bg-[#f0f0f0] rounded-[2.5rem] shadow-lg sm:px-6">
-            <div className="p-6 md:p-8 space-y-4">
+            <div className="p-6 space-y-4 md:p-8">
               <h1 className="text-xl font-bold text-center text-gray-900 md:text-2xl">
                 Add a Doctor
               </h1>
               <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6"
+                className="grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-2 sm:gap-6"
                 encType="multipart/form-data"
               >
                 {/* Name */}
@@ -135,106 +137,90 @@ const AddDoctor = () => {
                   />
                 </div>
 
-                {/* Phone */}
-                <div>
-                  <label
-                    htmlFor="phone"
-                    className="block mb-2 text-sm font-medium text-gray-900"
-                  >
-                    Phone
-                  </label>
-                  <input
-                    {...register("phone")}
-                    type="tel"
-                    id="phone"
-                    className="bg-white border border-indigo-500 text-gray-900 text-sm rounded-[1rem] focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
-                    placeholder="123456789"
-                    required
-                  />
-                </div>
-
-                {/* Specialization */}
-                <div>
-                  <label
-                    htmlFor="specialization"
-                    className="block mb-2 text-sm font-medium text-gray-900"
-                  >
-                    Specialization
-                  </label>
-                  <input
-                    {...register("specialization")}
-                    type="text"
-                    id="specialization"
-                    className="bg-white border border-indigo-500 text-gray-900 text-sm rounded-[1rem] focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
-                    placeholder="Specialization"
-                    required
-                  />
-                </div>
-
-                {/* Experience */}
-                <div>
-                  <label
-                    htmlFor="experience"
-                    className="block mb-2 text-sm font-medium text-gray-900"
-                  >
-                    Experience (Years)
-                  </label>
-                  <input
-                    {...register("experience")}
-                    type="number"
-                    id="experience"
-                    className="bg-white border border-indigo-500 text-gray-900 text-sm rounded-[1rem] focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
-                    placeholder="Years of Experience"
-                    required
-                  />
-                </div>
-
-                {/* Fee */}
-                <div>
-                  <label
-                    htmlFor="fee"
-                    className="block mb-2 text-sm font-medium text-gray-900"
-                  >
-                    Consultation Fee
-                  </label>
-                  <input
-                    {...register("fee")}
-                    type="number"
-                    id="fee"
-                    className="bg-white border border-indigo-500 text-gray-900 text-sm rounded-[1rem] focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
-                    placeholder="Fee in USD"
-                    required
-                  />
-                </div>
-
-                {/* Upload Picture */}
-                <div>
-                  <label
-                    htmlFor="file"
-                    className="block mb-2 text-sm font-medium text-gray-900"
-                  >
-                    Upload Picture
-                  </label>
-                  <input
-                    {...register("file")}
-                    type="file"
-                    id="file"
-                    className="bg-white border border-indigo-500 text-gray-900 text-sm rounded-[1rem] focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
-                  />
+                {/* Right Column */}
+                <div className="space-y-4">
+                  {/* Phone */}
+                  <div>
+                    <label
+                      htmlFor="phone"
+                      className="block mb-2 text-sm font-medium text-gray-900"
+                    >
+                      Phone
+                    </label>
+                    <input
+                      {...register("phone")}
+                      type="number"
+                      id="phone"
+                      placeholder="0000000000"
+                      className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 p-2.5"
+                      required
+                    />
+                  </div>
+                  {/* Specialization */}
+                  <div>
+                    <label
+                      htmlFor="specialization"
+                      className="block mb-2 text-sm font-medium text-gray-900"
+                    >
+                      Specialization
+                    </label>
+                    <input
+                      {...register("specialization")}
+                      type="text"
+                      id="specialization"
+                      placeholder="Specialize In"
+                      className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 p-2.5"
+                      required
+                    />
+                  </div>
+                  {/* Experience */}
+                  <div>
+                    <label
+                      htmlFor="experience"
+                      className="block mb-2 text-sm font-medium text-gray-900"
+                    >
+                      Experience
+                    </label>
+                    <input
+                      {...register("experience")}
+                      type="text"
+                      id="experience"
+                      placeholder="Experience"
+                      className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 p-2.5"
+                      required
+                    />
+                  </div>
+                  {/* Fee */}
+                  <div>
+                    <label
+                      htmlFor="fee"
+                      className="block mb-2 text-sm font-medium text-gray-900"
+                    >
+                      Fee
+                    </label>
+                    <input
+                      {...register("fee")}
+                      type="number"
+                      id="fee"
+                      placeholder="0000"
+                      className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 p-2.5"
+                      required
+                    />
+                  </div>
                 </div>
 
                 {/* Submit Button */}
                 <div className="col-span-1 sm:col-span-2">
                   <button
                     type="submit"
-                    className="w-full text-white bg-indigo-500 hover:bg-indigo-600 font-medium rounded-full text-sm px-5 py-3 transition-all"
+                    className="w-full px-5 py-3 text-sm font-medium text-white transition-all bg-indigo-500 rounded-full hover:bg-indigo-600"
                   >
                     Add Doctor
                   </button>
                 </div>
 
                 {/* Back to Dashboard */}
-                <div className="col-span-1 sm:col-span-2 text-center">
+                <div className="col-span-1 text-center sm:col-span-2">
                   <p className="text-sm font-normal text-gray-700">
                     Back to dashboard?
                     <Link

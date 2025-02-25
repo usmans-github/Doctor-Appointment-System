@@ -138,32 +138,47 @@ export default function Header() {
         <div className="flex flex-col px-6 space-y-6 mt-6">
           <Link to="/">
             <button className="flex justify-center items-center gap-1 text-sm font-medium">
+<<<<<<< HEAD
              
+=======
+>>>>>>> ebe5a46604e13ea0c3747c2a98350f1a7bd760b7
               <House size={15} />
               Home
             </button>
           </Link>
           <Link to="/all-doctors">
             <button className="flex justify-center items-center gap-1 text-sm font-medium">
+<<<<<<< HEAD
              
+=======
+>>>>>>> ebe5a46604e13ea0c3747c2a98350f1a7bd760b7
               <UsersRound size={15} /> Our Team
             </button>
           </Link>
           <Link to="/blogs">
             <button className="flex justify-center items-center gap-1 text-sm font-medium">
+<<<<<<< HEAD
              
+=======
+>>>>>>> ebe5a46604e13ea0c3747c2a98350f1a7bd760b7
               <LibraryBig size={15} /> Public Education
             </button>
           </Link>
           <Link to="/medical/education">
             <button className="flex justify-center items-center gap-1 text-sm font-medium">
+<<<<<<< HEAD
              
+=======
+>>>>>>> ebe5a46604e13ea0c3747c2a98350f1a7bd760b7
               <Stethoscope size={15} /> Medical Education
             </button>
           </Link>
           <Link to="/admin-login">
             <button className="flex justify-center items-center gap-1 text-sm font-medium">
+<<<<<<< HEAD
              
+=======
+>>>>>>> ebe5a46604e13ea0c3747c2a98350f1a7bd760b7
               <Diamond size={15} /> Admin
             </button>
           </Link>

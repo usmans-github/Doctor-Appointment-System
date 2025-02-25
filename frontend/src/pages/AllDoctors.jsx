@@ -3,17 +3,13 @@ import { AppContext } from "../context/AppContext";
 import { Link } from "react-router-dom";
 import { MoveRight, Sparkle } from "lucide-react";
 
-
-
 const TopDoctors = () => {
-  const {doctors, setdoctors, doctorsData} = useContext(AppContext)
-
-
+  const { doctors, setdoctors, doctorsData } = useContext(AppContext);
 
   useEffect(() => {
-    doctorsData()
-  }, [doctors, setdoctors])
-  
+    doctorsData();
+  }, [doctors, setdoctors]);
+
   return (
     <section className="mt-16 py-16 bg-[#f0f0f0] border rounded-t-[2.5rem] rounded-b-[2.5rem] px-4 sm:px-8 md:px-16">
       <div className="mb-12 flex flex-col justify-center items-center">
@@ -78,4 +74,4 @@ const TopDoctors = () => {
   );
 };
 
-export default TopDoctors
+export default TopDoctors;

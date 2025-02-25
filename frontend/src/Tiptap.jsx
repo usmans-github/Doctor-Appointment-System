@@ -52,7 +52,7 @@ const MenuBar = ({ editor }) => {
       </button>
     </div>
   </div>;
-  
+
   const addImage = () => {
     const url = prompt("Enter image URL");
     if (url) {
@@ -149,7 +149,6 @@ const MenuBar = ({ editor }) => {
           {button.icon}
         </button>
       ))}
-     
     </div>
   );
 };
@@ -161,7 +160,7 @@ const extensions = [
   }),
   Color.configure({ types: [TextStyle.name, ListItem.name] }),
   TextStyle.configure({ types: [ListItem.name] }),
-  Heading.configure({ levels: [1,2,3]} ),
+  Heading.configure({ levels: [1, 2, 3] }),
   Image.configure({
     inline: true,
     allowBase64: true,
@@ -189,7 +188,6 @@ export default () => {
   const { loading, setloading } = useContext(LoadingContext);
   const [category, setCategory] = useState("Public Education");
   const navigate = useNavigate();
-
 
   const editor = useEditor({
     extensions,

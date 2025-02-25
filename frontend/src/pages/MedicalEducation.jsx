@@ -1,6 +1,6 @@
 import axios from "axios";
 import { ArrowRight, MoveRight } from "lucide-react";
-import {  useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export const truncateText = (text, length) => {
@@ -11,7 +11,9 @@ export const truncateText = (text, length) => {
 const MedicalEducation = () => {
   const [blogs, setBlogs] = useState([]);
 
-  const medicalBlogs = blogs.filter((blog) => blog.category === "Medical Education");
+  const medicalBlogs = blogs.filter(
+    (blog) => blog.category === "Medical Education"
+  );
 
   useEffect(() => {
     axios

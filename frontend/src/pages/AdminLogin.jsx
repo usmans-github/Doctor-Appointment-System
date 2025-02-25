@@ -9,8 +9,13 @@ import { AdminContext } from "../context/AdminContext";
 import { LoadingContext } from "../context/LoadingContext";
 
 const AdminLogin = () => {
+<<<<<<< HEAD
   const {  setloading } = useContext(LoadingContext);
   const {  admin_token, setadmin_token } = useContext(AdminContext);
+=======
+  const { setloading } = useContext(LoadingContext);
+  const { admin_token, setadmin_token } = useContext(AdminContext);
+>>>>>>> ebe5a46604e13ea0c3747c2a98350f1a7bd760b7
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
 
