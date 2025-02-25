@@ -13,11 +13,8 @@ const AdminContextProvider = (props) => {
   const getStats = async () => {
     try {
       setloading(true);
-      const stats = await axios.get(
-        `https://sehatx.com/api/admin/getStats`,
-        admin_token
-      );
-      setstats(stats.data);
+      const stats = await axios.get( `https://sehatx.com/api/admin/getStats`, admin_token)
+      setstats(stats.data)
     } catch (error) {
       console.log(error.message);
     } finally {

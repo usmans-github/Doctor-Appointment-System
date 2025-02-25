@@ -17,24 +17,50 @@ export default function Blogs() {
 
   useEffect(() => {
     axios
-      .get("https://sehatx.com/api/user/Blogs")
-      .then((response) => setBlogs(response.data.blogs))
-      .catch((error) => console.error("Error fetching blogs:", error));
-  }, []);
+      .get(`https://sehatx.com/api/user/Blogs/${id}`)
+      .then((response) => {
+        const blogData = response.data.blog;
+        setBlog(blogData);
+        setTitle(blogData.title);
+        setImageUrl(blogData.imageUrl);
+        editor.commands.setContent(blogData.content);
+      })
+      .catch((error) => console.error("Error fetching blog post:", error));
+  }, [id, editor]);
+
+  const handleUpdate = async () => {
+    if (editor) {
+      const updatedContent = editor.getHTML();
+      try {
+        await axios.put(`https://sehatx.com/api/user/update/Blogs/${id}`, {
+          title,
+          imageUrl,
+          content: updatedContent,
+        });
+        navigate(`/blogpost/${id}`);
+      } catch (error) {
+        console.error("Error updating blog post:", error);
+      }
+    }
+  };
+
+  if (!blog) {
+    return <div className="mt-20 text-center">Loading...</div>;
+  }
 
   return (
     <section className="py-14 mt-16 rounded-[2.5rem] flex justify-center items-center flex-col px-6 bg-[#f0f0f0]">
       <div className="text-center mb-12 w-full md:w-[40vw]">
-        <h2 className="md:text-5xl text-4xl text-indigo-500 text-center font-extrabold mb-4 mt-8">
+        <h2 className="mt-8 mb-4 text-4xl font-extrabold text-center text-indigo-500 md:text-5xl">
           Public Education
         </h2>
-        <p className="text-xl sm:text-2xl font-semibold text-black text-center max-w-3xl">
+        <p className="max-w-3xl text-xl font-semibold text-center text-black sm:text-2xl">
           Stay updated with the latest healthcare insights and advancements from
           our expert doctors.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {publicBlogs.map((blog, index) => (
           <div
             key={index}
@@ -50,7 +76,7 @@ export default function Blogs() {
             <div className="p-8">
               <div className="flex items-center justify-between mb-3"></div>
               <Link to={`/blogpost/${blog._id}`}>
-                <h3 className="text-xl font-bold mb-3 group-hover:text-zinc-900 group-hover:cursor-pointer group-hover:underline">
+                <h3 className="mb-3 text-xl font-bold group-hover:text-zinc-900 group-hover:cursor-pointer group-hover:underline">
                   {blog.title}
                 </h3>
               </Link>
@@ -59,7 +85,7 @@ export default function Blogs() {
                 {truncateText(blog.content.replace(/<[^>]+>/g, ""), 150)}
               </p>
               <div className="flex items-center justify-between">
-                <span className="text-md font-semibold">
+                <span className="font-semibold text-md">
                   By &nbsp;
                   <Link to="/all-doctors">
                     <span className="cursor-pointer group-hover:text-zinc-900 group-hover:underline">
@@ -67,9 +93,9 @@ export default function Blogs() {
                     </span>
                   </Link>
                 </span>
-                <div className="flex justify-center items-center gap-2 transition-all md:text-lg font-semibold">
+                <div className="flex items-center justify-center gap-2 font-semibold transition-all md:text-lg">
                   <Link to={`/blogpost/${blog._id}`}>
-                    <button className="flex justify-center items-center group-hover:text-zinc-900 group-hover:gap-2 transition-all gap-1">
+                    <button className="flex items-center justify-center gap-1 transition-all group-hover:text-zinc-900 group-hover:gap-2">
                       Learn more
                       <ArrowRight />
                     </button>
@@ -81,7 +107,7 @@ export default function Blogs() {
         ))}
       </div>
 
-      <div className="group text-center mt-12">
+      <div className="mt-12 text-center group">
         <Link to="/blogs">
           <button className="group-hover:gap-4 group-hover:text-zinc-900 font-semibold text-white gap-2 transition-all text-lg flex justify-center items-center text-center w-full py-4 bg-indigo-500 px-10 rounded-[2.5rem] self-center">
             See more

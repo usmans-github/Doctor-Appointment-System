@@ -53,168 +53,180 @@ const Register = () => {
 
   return (
     <>
-  <ToastContainer
-    position="bottom-right"
-    autoClose={1000}
-    hideProgressBar
-    newestOnTop={false}
-    closeOnClick
-    rtl={false}
-    pauseOnFocusLoss
-    draggable
-    pauseOnHover
-    theme="light"
-    transition={Bounce}
-  />
-  
-  <section className="py-16">
-  <div className="flex flex-col items-center justify-center px-6 py-4 mx-auto lg:py-0">
-    <div className="w-full bg-[#f0f0f0] rounded-[2.5rem] shadow md:mt-0 sm:max-w-3xl xl:p-0">
-      <div className="p-6 md:p-8 space-y-4">
-        <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl text-center">
-          Create an account
-        </h1>
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="grid grid-cols-1 md:grid-cols-2 gap-6"
-          action="/api/user"
-        >
-          {/* Name */}
-          <div>
-            <label
-              htmlFor="name"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
-              Your name
-            </label>
-            <input
-              defaultValue=""
-              {...register("name", { required: true, minLength: 3, maxLength: 20 })}
-              type="name"
-              name="name"
-              id="name"
-              className="bg-white border border-indigo-500 text-gray-900 text-sm rounded-[1rem] focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="John Doe"
-              required
-            />
-          </div>
-          {/* Email */}
-          <div>
-            <label
-              htmlFor="email"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
-              Your email
-            </label>
-            <input
-              defaultValue=""
-              {...register("email")}
-              type="email"
-              name="email"
-              id="email"
-              className="bg-white border border-indigo-500 text-gray-900 text-sm rounded-[1rem] focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="name@company.com"
-              required
-            />
-          </div>
-          {/* Password */}
-          <div>
-            <label
-              htmlFor="password"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
-              Password
-            </label>
-            <input
-              defaultValue=""
-              {...register("password")}
-              type="password"
-              name="password"
-              id="password"
-              placeholder="••••••••"
-              className="bg-white border border-indigo-500 text-gray-900 text-sm rounded-[1rem] focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              required
-            />
-          </div>
-          {/* Phone */}
-          <div>
-            <label
-              htmlFor="phone"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
-              Phone
-            </label>
-            <input
-              defaultValue=""
-              {...register("phone")}
-              type="phone"
-              name="phone"
-              id="phone"
-              placeholder="123456789"
-              className="bg-white border border-indigo-500 text-gray-900 text-sm rounded-[1rem] focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            />
-          </div>
-          {/* Age */}
-          <div>
-            <label
-              htmlFor="age"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
-              Age
-            </label>
-            <input
-              defaultValue=""
-              {...register("age")}
-              type="number"
-              name="age"
-              id="age"
-              className="bg-white border border-indigo-500 text-gray-900 text-sm rounded-[1rem] focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            />
-          </div>
-          {/* Gender */}
-          <div>
-            <label
-              htmlFor="gender"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
-              Gender
-            </label>
-            <input
-              defaultValue=""
-              {...register("gender")}
-              type="gender"
-              name="gender"
-              id="gender"
-              className="bg-white border border-indigo-500 text-gray-900 text-sm rounded-[1rem] focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            />
-          </div>
-          <div className="col-span-2">
-            <button
-              type="submit"
-              className="w-full text-white bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-            >
-              Create an account
-            </button>
-            <p className="text-sm font-normal text-black dark:text-gray-400 text-center mt-4">
-              <Link to="/login">Already have an account?</Link>
-              <a
-                href="/login"
-                className="font-medium text-indigo-500 ml-2 hover:underline dark:text-primary-500"
-              >
-                Login here
-              </a>
-            </p>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
-    
-   
+      <ToastContainer
+        position="bottom-right"
+        autoClose={1000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+      />
 
+      <section className="py-16">
+        <div className="flex flex-col items-center justify-center px-4 sm:px-6 py-4 mx-auto lg:py-0 w-full">
+          <div className="w-full max-w-3xl bg-[#f0f0f0] rounded-[2.5rem] shadow-lg sm:px-6">
+            <div className="p-6 md:p-8 space-y-4">
+              <h1 className="text-xl font-bold text-center text-gray-900 md:text-2xl">
+                Create an account
+              </h1>
+              <form
+                onSubmit={handleSubmit(onSubmit)}
+                className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6"
+                action="/api/user"
+              >
+                {/* Name */}
+                <div>
+                  <label
+                    htmlFor="name"
+                    className="block mb-2 text-sm font-medium text-gray-900"
+                  >
+                    Your name
+                  </label>
+                  <input
+                    defaultValue=""
+                    {...register("name", {
+                      required: true,
+                      minLength: 3,
+                      maxLength: 20,
+                    })}
+                    type="text"
+                    name="name"
+                    id="name"
+                    className="bg-white border border-indigo-500 text-gray-900 text-sm rounded-[1rem] focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
+                    placeholder="John Doe"
+                    required
+                  />
+                </div>
+
+                {/* Email */}
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="block mb-2 text-sm font-medium text-gray-900"
+                  >
+                    Your email
+                  </label>
+                  <input
+                    defaultValue=""
+                    {...register("email")}
+                    type="email"
+                    name="email"
+                    id="email"
+                    className="bg-white border border-indigo-500 text-gray-900 text-sm rounded-[1rem] focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
+                    placeholder="name@company.com"
+                    required
+                  />
+                </div>
+
+                {/* Password */}
+                <div>
+                  <label
+                    htmlFor="password"
+                    className="block mb-2 text-sm font-medium text-gray-900"
+                  >
+                    Password
+                  </label>
+                  <input
+                    defaultValue=""
+                    {...register("password")}
+                    type="password"
+                    name="password"
+                    id="password"
+                    className="bg-white border border-indigo-500 text-gray-900 text-sm rounded-[1rem] focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
+                    placeholder="••••••••"
+                    required
+                  />
+                </div>
+
+                {/* Phone */}
+                <div>
+                  <label
+                    htmlFor="phone"
+                    className="block mb-2 text-sm font-medium text-gray-900"
+                  >
+                    Phone
+                  </label>
+                  <input
+                    defaultValue=""
+                    {...register("phone")}
+                    type="tel"
+                    name="phone"
+                    id="phone"
+                    className="bg-white border border-indigo-500 text-gray-900 text-sm rounded-[1rem] focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
+                    placeholder="123456789"
+                  />
+                </div>
+
+                {/* Age */}
+                <div>
+                  <label
+                    htmlFor="age"
+                    className="block mb-2 text-sm font-medium text-gray-900"
+                  >
+                    Age
+                  </label>
+                  <input
+                    defaultValue=""
+                    {...register("age")}
+                    type="number"
+                    name="age"
+                    id="age"
+                    className="bg-white border border-indigo-500 text-gray-900 text-sm rounded-[1rem] focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
+                  />
+                </div>
+
+                {/* Gender */}
+                <div>
+                  <label
+                    htmlFor="gender"
+                    className="block mb-2 text-sm font-medium text-gray-900"
+                  >
+                    Gender
+                  </label>
+                  <input
+                    defaultValue=""
+                    {...register("gender")}
+                    type="text"
+                    name="gender"
+                    id="gender"
+                    className="bg-white border border-indigo-500 text-gray-900 text-sm rounded-[1rem] focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
+                  />
+                </div>
+
+                {/* Submit Button */}
+                <div className="col-span-1 sm:col-span-2">
+                  <button
+                    type="submit"
+                    className="w-full text-white bg-indigo-500 hover:bg-indigo-600 font-medium rounded-full text-sm px-5 py-3 transition-all"
+                  >
+                    Create an account
+                  </button>
+                </div>
+
+                {/* Login Link */}
+                <div className="col-span-1 sm:col-span-2 text-center">
+                  <p className="text-sm font-normal text-gray-700">
+                    Already have an account?
+                    <a
+                      href="/login"
+                      className="ml-2 font-medium text-indigo-500 hover:underline"
+                    >
+                      Login here
+                    </a>
+                  </p>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
-  )
+  );
 }
 
 export default Register

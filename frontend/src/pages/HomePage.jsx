@@ -22,9 +22,9 @@ const HomePage = () => {
             </p>
             <h1 className="md:text-5xl text-4xl text-center md:text-start font-bold  text-[#F9FAFB] mt-2 ">
               Providing Quality Healthcare for You and Your Family
-            </h1>
+            </h1> 
             {/* Buttons  */}
-            <div className="flex items-center gap-2">
+            <div className  ="flex items-center gap-2">
               <Link to="/register" className="mt-3 ">
                 <button
                   className="text-indigo-500 border hover:bg-[#f0f0f0] bg-white 
@@ -47,7 +47,8 @@ const HomePage = () => {
 
           <div
             className="mx-auto md:mt-2 mt-16 flex items-center justify-center  md:h-[90vh]
-            md:w-[45vw] md:rounded-[2.5rem]" >
+           md:w-[45vw] md:rounded-[2.5rem]"
+          >
             <video
               src="/sehatx-video.mp4"
               alt="sehatx"

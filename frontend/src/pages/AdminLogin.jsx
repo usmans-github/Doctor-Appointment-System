@@ -9,8 +9,8 @@ import { AdminContext } from "../context/AdminContext";
 import { LoadingContext } from "../context/LoadingContext";
 
 const AdminLogin = () => {
-  const { setloading } = useContext(LoadingContext);
-  const { admin_token, setadmin_token } = useContext(AdminContext);
+  const {  setloading } = useContext(LoadingContext);
+  const {  admin_token, setadmin_token } = useContext(AdminContext);
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
 
@@ -118,7 +118,7 @@ const AdminLogin = () => {
                   User login ?
                   <Link
                     to="/login"
-                    className="text-indigo-500 ml-2 font-medium text-primary-600 hover:underline dark:text-primary-500"
+                    className="ml-2 font-medium text-indigo-500 text-primary-600 hover:underline dark:text-primary-500"
                   >
                     Click here
                   </Link>

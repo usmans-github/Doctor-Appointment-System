@@ -29,7 +29,9 @@ app.use("/api/user", require("./routes/user-route"));
 //admin routes
 app.use("/api/admin", require("./routes/admin-route"));
 
-
+// app.post("/api", (req, res) => {
+//   return console.log(req);
+// })
  
 app.get("/",  (req, res) => {
      res.status(200).send("Hello from the server!");

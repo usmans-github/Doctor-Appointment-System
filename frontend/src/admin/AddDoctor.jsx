@@ -14,8 +14,6 @@ const AddDoctor = () => {
   const { register, handleSubmit, reset, watch } = useForm();
 
   const onSubmit = async (data) => {
-   
-
     const formData = new FormData();
     formData.append("name", data.name);
     formData.append("email", data.email);
@@ -27,16 +25,11 @@ const AddDoctor = () => {
     formData.append("file", data.file[0]);
 
     try {
+      // console.log("form data is:", formData.data);
       setloading(true);
       const res = await axios.post(
         `https://sehatx.com/api/admin/add-doctor`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-          withCredentials: true, // Include cookies in the request
-        }
+        formData
       );
       if (res.data.success) {
         // console.log("Doctor addded successfuly", res.data.message);
@@ -73,15 +66,15 @@ const AddDoctor = () => {
       />
 
       <section className="py-16">
-        <div className="flex flex-col items-center justify-center px-4 sm:px-6 py-4 mx-auto lg:py-0 w-full">
+        <div className="flex flex-col items-center justify-center w-full px-4 py-4 mx-auto sm:px-6 lg:py-0">
           <div className="w-full max-w-3xl bg-[#f0f0f0] rounded-[2.5rem] shadow-lg sm:px-6">
-            <div className="p-6 md:p-8 space-y-4">
+            <div className="p-6 space-y-4 md:p-8">
               <h1 className="text-xl font-bold text-center text-gray-900 md:text-2xl">
                 Add a Doctor
               </h1>
               <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6"
+                className="grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-2 sm:gap-6"
                 encType="multipart/form-data"
               >
                 {/* Name */}
@@ -234,14 +227,14 @@ const AddDoctor = () => {
                 <div className="col-span-1 sm:col-span-2">
                   <button
                     type="submit"
-                    className="w-full text-white bg-indigo-500 hover:bg-indigo-600 font-medium rounded-full text-sm px-5 py-3 transition-all"
+                    className="w-full px-5 py-3 text-sm font-medium text-white transition-all bg-indigo-500 rounded-full hover:bg-indigo-600"
                   >
                     Add Doctor
                   </button>
                 </div>
 
                 {/* Back to Dashboard */}
-                <div className="col-span-1 sm:col-span-2 text-center">
+                <div className="col-span-1 text-center sm:col-span-2">
                   <p className="text-sm font-normal text-gray-700">
                     Back to dashboard?
                     <Link
