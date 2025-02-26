@@ -3,16 +3,15 @@ import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import { AdminContext } from "../context/AdminContext";
 import { Bounce, toast, ToastContainer } from "react-toastify";
 import { LoadingContext } from "../context/LoadingContext";
+import Cookies from "js-cookie";
 
 const AddDoctor = () => {
   const { loading, setloading } = useContext(LoadingContext);
   const navigate = useNavigate();
 
   const { register, handleSubmit, reset, watch } = useForm();
-
   const onSubmit = async (data) => {
     const formData = new FormData();
     formData.append("name", data.name);
@@ -25,12 +24,24 @@ const AddDoctor = () => {
     formData.append("file", data.file[0]);
 
     try {
-      // console.log("form data is:", formData.data);
+      // for (let [key, value] of formData.entries()) {
+      //   console.log(`${key}:`, value);
+      // }
       setloading(true);
+      const admin_token = Cookies.get("admin_token");
+
       const res = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/admin/add-doctor`,
-        formData
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${admin_token}`,
+          },
+          withCredentials: true,
+        }
       );
+
       if (res.data.success) {
         // console.log("Doctor addded successfuly", res.data.message);
         toast.success(res.data.message);

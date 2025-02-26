@@ -15,10 +15,6 @@ const AllAppointments = () => {
 
   const Appointments = stats?.reverseData || [];
 
- 
-
-  
-
   return (
     <>
       <ToastContainer

@@ -26,10 +26,10 @@ const Login = () => {
       if (res.data.success) {
         // console.log(res.data.message);
         toast.success("Login successfuly!");
+          setuser_token(res.data.user_token);
+          Cookies.set("user_token", res.data.user_token);
         setTimeout(() => {
           // setloading(true)
-          setuser_token(res.data.user_token)
-          Cookies.set("user_token", res.data.user_token);
           navigate("/patient/profile");
       }, 1000); 
       } else {

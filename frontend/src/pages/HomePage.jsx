@@ -21,7 +21,7 @@ const HomePage = () => {
               Welcome to Sehat X,
             </p>
             <h1 className="md:text-5xl text-4xl text-center md:text-start font-bold  text-[#F9FAFB] mt-2 ">
-              Providing Quality Healthcare for You and Your Family
+              Providing Quality Healthcare for You and &nbsp; Your Family
             </h1> 
             {/* Buttons  */}
             <div className  ="flex items-center gap-2">

@@ -16,7 +16,12 @@ connectDb();
 
 //Middlewares
 app.use(express.json());
-app.use(cors({credentials: true}));  
+app.use(
+  cors({
+    origin: "http://localhost:5173", 
+    credentials: true,
+  })
+);
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
@@ -29,16 +34,27 @@ app.use("/api/user", require("./routes/user-route"));
 //admin routes
 app.use("/api/admin", require("./routes/admin-route"));
 
-// app.post("/api", (req, res) => {
-//   return console.log(req);
-// })
+
+
+app.post("/api", (req, res) => {
+  const { name, email, password, phone, specialization, experience, fee } =
+    req.body;
+  console.log(req.cookies)
+   console.log(name)
+   console.log(email)
+   console.log(password)
+   console.log(phone)
+   console.log(specialization);
+   console.log(experience)
+   console.log(fee)
+})
  
+
+
+
 app.get("/",  (req, res) => {
      res.status(200).send("Hello from the server!");
   })
-
-
-
 
 
 

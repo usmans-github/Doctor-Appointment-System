@@ -16,11 +16,9 @@ const login = async (req, res) => {
       email === process.env.ADMIN_EMAIL &&
       password === process.env.ADMIN_PASSWORD
     ) {
-      const payload = { email, password }; // Include email and password in the payload
-      const admin_token = jwt.sign(payload, process.env.JWT_SECRET, {
-        expiresIn: "1h",
-      }); // Add expiration time
-      res.cookie("admin_token", admin_token, { httpOnly: true }); // Set the token in a cookie
+      const payload = { email, password };
+      const admin_token = jwt.sign(payload, process.env.JWT_SECRET);
+      res.cookie("admin_token", admin_token, { httpOnly: true }); 
       res
         .status(201)
         .send({
@@ -75,8 +73,29 @@ const login = async (req, res) => {
             return res.status(200).send({success: true, message: "Doctor added successfully!" })
        
     } catch (error) {
-        console.log("admin controller addDoctor Error: ", error);
+        console.log("admin controller addDoctor Error: ", error.message);
         
+    }
+ }
+
+ //Admin delete a doctor 
+ const deleteDoctor = async (req, res) => {
+    try {
+        
+    const { id } = req.body;
+    console.log(id)
+
+    //find doctor by id ;
+    const doctor = await doctorModel.findById(id);
+
+    if (!doctor) return res.status(501).send({ success: false, message: "Doctor Not found" });
+
+    doctor.deleteOne();
+
+    return res.status(200).send({success:false, message: "Doctor deleted successfully"})
+
+    } catch (error) {
+        console.log(error.message)
     }
  }
 
@@ -120,6 +139,7 @@ const updateAppointments = async (req, res) => {
 module.exports = {
     login,
     addDoctor,
+    deleteDoctor,
     getStats,
     updateAppointments
 }

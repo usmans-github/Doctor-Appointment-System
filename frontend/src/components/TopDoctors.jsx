@@ -51,7 +51,7 @@ const TopDoctors = () => {
               </div>
               <div className="flex flex-col justify-between mb-4">
                 <span className="text-sm font-medium text-black mb-1">
-                  Experience: {doctor.experience}
+                  Experience: {doctor.experience} years
                 </span>
                 <span className="text-sm font-medium text-black">
                   Fee: Rs. {doctor.fee}

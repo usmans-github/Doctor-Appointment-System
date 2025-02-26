@@ -15,7 +15,12 @@ const AdminContextProvider = (props) => {
       setloading(true);
       const stats = await axios.get(
         `${import.meta.env.VITE_BACKEND_URL}/api/admin/getStats`,
-        admin_token
+        {
+          headers: {
+            Authorization: `Bearer ${admin_token}`, 
+          },
+          withCredentials: true, 
+        }
       );
       setstats(stats.data)
     } catch (error) {
@@ -30,7 +35,13 @@ const AdminContextProvider = (props) => {
     try {
       const res = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/admin/update-appointment`,
-        { appointmentId: appointmentId }
+        { appointmentId: appointmentId },
+        {
+          headers: {
+            Authorization: `Bearer ${admin_token}`, 
+          },
+          withCredentials: true, 
+        }
       );
       if (res.data.success) {
         toast.success(res.data.message);
