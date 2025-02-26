@@ -34,8 +34,7 @@ const Doctors = () => {
       setloading(true);
       const admin_token = Cookies.get("admin_token");
       const res = await axios.delete(
-        `${import.meta.env.VITE_BACKEND_URL}/api/admin/delete-doctor`,
-        id,
+        `${import.meta.env.VITE_BACKEND_URL}/api/admin/delete-doctor?id=${id}`,
         {
           headers: {
             Authorization: `Bearer ${admin_token}`,

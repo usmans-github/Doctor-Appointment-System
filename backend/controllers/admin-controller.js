@@ -79,25 +79,34 @@ const login = async (req, res) => {
  }
 
  //Admin delete a doctor 
- const deleteDoctor = async (req, res) => {
-    try {
-        
-    const { id } = req.body;
-    console.log(id)
+const deleteDoctor = async (req, res) => {
+  try {
+    const { id } = req.query; 
 
-    //find doctor by id ;
-    const doctor = await doctorModel.findById(id);
-
-    if (!doctor) return res.status(501).send({ success: false, message: "Doctor Not found" });
-
-    doctor.deleteOne();
-
-    return res.status(200).send({success:false, message: "Doctor deleted successfully"})
-
-    } catch (error) {
-        console.log(error.message)
+    if (!id) {
+      return res
+        .status(400)
+        .send({ success: false, message: "Doctor ID is required" });
     }
- }
+
+    const doctor = await doctorModel.findById(id);
+    if (!doctor) {
+      return res
+        .status(404)
+        .send({ success: false, message: "Doctor Not found" });
+    }
+
+    await doctor.deleteOne(); 
+
+    return res
+      .status(200)
+      .send({ success: true, message: "Doctor deleted successfully" });
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send({ success: false, message: "Server error" });
+  }
+};
+
 
 //Get Stats 
 
