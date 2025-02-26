@@ -97,7 +97,8 @@ const Register = () => {
                     type="text"
                     name="name"
                     id="name"
-                    className="bg-white border border-indigo-500 text-gray-900 text-sm rounded-[1rem] focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
+                    className="bg-white border border-indigo-500 text-gray-900 text-sm rounded-[1rem]
+                     focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
                     placeholder="John Doe"
                     required
                   />
@@ -117,7 +118,8 @@ const Register = () => {
                     type="email"
                     name="email"
                     id="email"
-                    className="bg-white border border-indigo-500 text-gray-900 text-sm rounded-[1rem] focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
+                    className="bg-white border border-indigo-500 text-gray-900 text-sm rounded-[1rem]
+                     focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
                     placeholder="name@company.com"
                     required
                   />
@@ -137,7 +139,8 @@ const Register = () => {
                     type="password"
                     name="password"
                     id="password"
-                    className="bg-white border border-indigo-500 text-gray-900 text-sm rounded-[1rem] focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
+                    className="bg-white border border-indigo-500 text-gray-900 text-sm rounded-[1rem]
+                     focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
                     placeholder="••••••••"
                     required
                   />
@@ -157,7 +160,8 @@ const Register = () => {
                     type="tel"
                     name="phone"
                     id="phone"
-                    className="bg-white border border-indigo-500 text-gray-900 text-sm rounded-[1rem] focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
+                    className="bg-white border border-indigo-500 text-gray-900 text-sm rounded-[1rem]
+                     focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
                     placeholder="123456789"
                   />
                 </div>
@@ -176,7 +180,8 @@ const Register = () => {
                     type="number"
                     name="age"
                     id="age"
-                    className="bg-white border border-indigo-500 text-gray-900 text-sm rounded-[1rem] focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
+                    className="bg-white border border-indigo-500 text-gray-900 text-sm rounded-[1rem]
+                     focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
                   />
                 </div>
 
@@ -194,7 +199,8 @@ const Register = () => {
                     type="text"
                     name="gender"
                     id="gender"
-                    className="bg-white border border-indigo-500 text-gray-900 text-sm rounded-[1rem] focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
+                    className="bg-white border border-indigo-500 text-gray-900 text-sm rounded-[1rem]
+                     focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
                   />
                 </div>
 
@@ -202,7 +208,8 @@ const Register = () => {
                 <div className="col-span-1 sm:col-span-2">
                   <button
                     type="submit"
-                    className="w-full text-white bg-indigo-500 hover:bg-indigo-600 font-medium rounded-full text-sm px-5 py-3 transition-all"
+                    className="w-full text-white bg-indigo-500 hover:bg-indigo-600 font-medium
+                     rounded-full text-sm px-5 py-3 transition-all"
                   >
                     Create an account
                   </button>
@@ -212,12 +219,12 @@ const Register = () => {
                 <div className="col-span-1 sm:col-span-2 text-center">
                   <p className="text-sm font-normal text-gray-700">
                     Already have an account?
-                    <a
-                      href="/login"
+                    <Link
+                      to="/login"
                       className="ml-2 font-medium text-indigo-500 hover:underline"
                     >
                       Login here
-                    </a>
+                    </Link>
                   </p>
                 </div>
               </form>
