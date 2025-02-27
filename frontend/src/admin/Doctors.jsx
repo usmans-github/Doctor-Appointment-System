@@ -1,3 +1,4 @@
+"use client";
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AdminContext } from "../context/AdminContext";
@@ -78,12 +79,14 @@ const Doctors = () => {
         <h1 className="text-2xl sm:text-3xl font-semibold text-white mb-6 text-center">
           Doctors Management
         </h1>
-        <Link to="/admin/dashboard">
-          <button className="text-white border border-[#f0f0f0] hover:bg-indigo-600 focus:ring-4 focus:outline-none focus:ring-indigo-300 flex justify-center items-center gap-2 font-medium rounded-lg text-sm px-5 py-2.5">
-            <ArrowLeftIcon className="size-4" />
-            Back to dashboard
-          </button>
-        </Link>
+      <Link to="/admin/dashboard">
+            <button
+              className="text-white hover:text-black flex justify-center items-center gap-2 font-medium rounded-lg text-sm px-5 py-2.5"
+            >
+              <ArrowLeftIcon className="size-4" />
+              Back to dashboard
+            </button>
+          </Link>
 
         {/* Search and Add Doctor Section */}
         <div className="mt-4 mb-4 flex flex-col sm:flex-row justify-between items-center gap-4">

@@ -6,6 +6,7 @@ import { AppContext } from '../context/AppContext';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { LoadingContext } from '../context/LoadingContext';
+import Cookies from "js-cookie";
 
 
 
@@ -23,9 +24,9 @@ const BookAppointment = () => {
         // console.log(doctors);
         
 
-        // const [docslots, setdocslots] = useState([])
-        // const [slotId, setslotId] = useState(0)
-        // const [timeslot, settimeslot] = useState("")
+        const [docslots, setdocslots] = useState([])
+        const [slotId, setslotId] = useState(0)
+        const [timeslot, settimeslot] = useState("")
 
         const {
           register,
@@ -39,11 +40,19 @@ const BookAppointment = () => {
 
           const onSubmit  = async (data) => {
             try {
-              // console.log(data);
+              const user_token =  Cookies.get('user_token');
               setloading(true)
               const res = await axios.post(
-                `${import.meta.env.VITE_BACKEND_URL}/api/user/book-new-appointment`,
-                data
+                `${
+                  import.meta.env.VITE_BACKEND_URL
+                }/api/user/book-new-appointment`,
+                data,
+                {
+                  headers: {
+                    Authorization: `Bearer ${user_token}`,
+                  },
+                  withCredentials: true,
+                }
               );
               // console.log(res.data.message)
               if(res.data.success){
@@ -64,9 +73,9 @@ const BookAppointment = () => {
             
           }     
 
-          // useEffect(() => {
-          //   doctorsData()
-          // }, [doctors, setDoctors, doctorsData])
+          useEffect(() => {
+            doctorsData()
+          }, [doctors, setDoctors, doctorsData])
     
   if(user_token) { return (
     <>

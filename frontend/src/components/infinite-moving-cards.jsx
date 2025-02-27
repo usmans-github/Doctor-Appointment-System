@@ -63,7 +63,7 @@ export const InfiniteMovingCards = ({
       >
         {items.map((item, idx) => (
           <li
-            className="group bg-indigo-500 text-white rounded-[2rem] overflow-hidden flex-shrink-0 transition-all w-[350px] md:w-[450px]"
+            className="group bg-indigo-500 text-white rounded-[2rem] overflow-hidden flex-shrink-0 transition-all w-[300px] sm:w-[350px] md:w-[450px] flex flex-col"
             key={idx}
           >
             {/* Blog Image */}
@@ -78,14 +78,14 @@ export const InfiniteMovingCards = ({
             </Link>
 
             {/* Blog Content */}
-            <div className="p-6">
+            <div className="p-6 flex flex-col flex-grow">
               <Link to={item.link} className="block">
-                <h3 className="text-xl font-bold mb-3 group-hover:text-zinc-900 group-hover:cursor-pointer group-hover:underline">
+                <h3 className="text-xl font-bold mb-3 group-hover:text-zinc-900 group-hover:cursor-pointer group-hover:underline line-clamp-2">
                   {item.name}
                 </h3>
               </Link>
-              <p className="mb-6 text-base">{item.quote}</p>
-              <div className="flex items-center justify-between">
+              <p className="mb-6 text-base line-clamp-3">{item.quote}</p>
+              <div className="flex items-center justify-between mt-auto">
                 <span className="text-md font-semibold">
                   By &nbsp;
                   <Link to="/all-doctors">

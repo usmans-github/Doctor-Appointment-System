@@ -36,22 +36,6 @@ app.use("/api/admin", require("./routes/admin-route"));
 
 
 
-app.post("/api", (req, res) => {
-  const { name, email, password, phone, specialization, experience, fee } =
-    req.body;
-  console.log(req.cookies)
-   console.log(name)
-   console.log(email)
-   console.log(password)
-   console.log(phone)
-   console.log(specialization);
-   console.log(experience)
-   console.log(fee)
-})
- 
-
-
-
 app.get("/",  (req, res) => {
      res.status(200).send("Hello from the server!");
   })

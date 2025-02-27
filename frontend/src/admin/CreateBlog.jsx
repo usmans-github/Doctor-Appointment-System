@@ -4,7 +4,7 @@ import Tiptap from '.././Tiptap'
 
 const CreateBlog = () => {
   return (
-    <div className="mt-16 ">   
+    <div className="mt-16">   
       <Tiptap />
     </div>
   )

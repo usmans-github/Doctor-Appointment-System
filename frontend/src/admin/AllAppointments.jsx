@@ -5,12 +5,10 @@ import { Bounce, ToastContainer } from "react-toastify";
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 
 const AllAppointments = () => {
-  const { stats, getStats, updateAppointments } = useContext(AdminContext);
+  const { stats,  getStats, updateAppointments } = useContext(AdminContext);
 
   useEffect(() => {
- 
-      getStats();
-    
+    getStats();
   }, []);
 
   const Appointments = stats?.reverseData || [];
@@ -38,10 +36,9 @@ const AllAppointments = () => {
 
         {/* Search and Add Doctor Section */}
         <div className="mb-4 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <Link to="/admin/dashboard">
+         <Link to="/admin/dashboard">
             <button
-              className="text-white border border-[#f0f0f0] hover:bg-indigo-600 focus:ring-4 focus:outline-none 
-              focus:ring-indigo-300 flex justify-center items-center gap-2 font-medium rounded-lg text-sm px-5 py-2.5"
+              className="text-white hover:text-black flex justify-center items-center gap-2 font-medium rounded-lg text-sm px-5 py-2.5"
             >
               <ArrowLeftIcon className="size-4" />
               Back to dashboard

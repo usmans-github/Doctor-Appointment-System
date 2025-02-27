@@ -32,9 +32,10 @@ const TopDoctors = () => {
               <img
                 src={doctor.picture || "/placeholder.svg"}
                 alt={doctor.name}
-                className="w-full h-full object-cover rounded-t-[2rem]"
+                className="w-full h-full  object-cover rounded-t-[2rem]"
               />
-              <div className="absolute top-2 left-2 group-hover:bg-black bg-indigo-500 text-white text-xs font-semibold px-2 py-1 rounded-full">
+              <div className="absolute top-2 left-2 group-hover:bg-black bg-indigo-500
+               text-white text-xs font-semibold px-2 py-1 rounded-full">
                 Available
               </div>
             </div>

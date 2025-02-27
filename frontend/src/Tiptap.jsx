@@ -3,7 +3,6 @@ import ListItem from "@tiptap/extension-list-item";
 import TextStyle from "@tiptap/extension-text-style";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import Heading from "@tiptap/extension-heading";
 import Image from "@tiptap/extension-image";
 import Youtube from "@tiptap/extension-youtube";
 import Link from "@tiptap/extension-link";
@@ -21,16 +20,12 @@ import {
   Image as ImageIcon,
   Youtube as YoutubeIcon,
   Link as LinkIcon,
+  ArrowLeftIcon,
 } from "lucide-react";
 import axios from "axios";
-import { AdminContext } from "./context/AdminContext";
 import { LoadingContext } from "./context/LoadingContext";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
-
-
-
-
 
 
 
@@ -168,7 +163,6 @@ const extensions = [
   }),
   Color.configure({ types: [TextStyle.name, ListItem.name] }),
   TextStyle.configure({ types: [ListItem.name] }),
-  Heading.configure({ levels: [1, 2, 3] }),
   Image.configure({
     inline: true,
     allowBase64: true,
@@ -186,6 +180,7 @@ const extensions = [
     openOnClick: false,
   }),
 ];
+
 
 const content = ``;
 
@@ -291,7 +286,7 @@ export default () => {
             id="category"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
-            className="w-full px-2 py-3 border border-indigo-500 rounded-[1.5rem] bg-[#f0f0f0]"
+            className="cursor-pointer w-full px-2 py-3 border border-indigo-500 rounded-[1.5rem] bg-[#f0f0f0]"
           >
             <option value="Public Education">Public Education</option>
             <option value="Medical Education">Medical Education</option>
