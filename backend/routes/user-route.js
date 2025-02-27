@@ -18,6 +18,12 @@ router.get("/get-profile", authUser, getUserProfile)
 //Get Doctors Data
 router.get("/getData", getDoctorsData)
 
+//Book new Appointment
+router.post("/book-new-appointment", authUser, bookAppointment)
+    
+//Get Upcoming appointments for user
+router.get("/user-appointments", authUser, upComingAppointments)
+
 //Get Blogs Data
 router.get("/Blogs", getBlogs)
 
@@ -29,11 +35,5 @@ router.put("/update/Blogs/:id", updateBlogById)
 
 //Delete Blog by ID
 router.delete("/delete/Blogs/:id", deleteBlogById)
-
-//Book new Appointment
-router.post("/book-new-appointment", authUser, bookAppointment)
-    
-//Get Upcoming appointments for user
-router.get("/user-appointments", authUser, upComingAppointments)
 
 module.exports = router

@@ -2,30 +2,32 @@ import axios from "axios";
 import { ArrowRight, MoveRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { InfiniteMovingCards } from "../components/infinite-moving-cards.jsx";
 
 export const truncateText = (text, length) => {
+  if (!text) return "No content available"; // Handle empty text safely
   if (text.length <= length) return text;
   return text.substring(0, length) + "...";
 };
 
-export default function Blogs() {
+const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
-
-  const publicBlogs = blogs.filter(
-    (blog) => blog.category === "Public Education"
-  );
 
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/api/user/Blogs`)
-      .then((response) => setBlogs(response.data.blogs))
+      .then((response) => setBlogs(response.data.blogs || []))
       .catch((error) => console.error("Error fetching blogs:", error));
   }, []);
 
+       const PublicBlogs = blogs.filter(
+         (blog) => blog.category === "Public Education"
+       );
+
   return (
-    <section className="py-14 mt-16 rounded-[2.5rem] flex justify-center items-center flex-col px-6 bg-[#f0f0f0]">
+    <section className="py-14 mt-16 flex flex-col justify-center items-center px-6 bg-[#f0f0f0] rounded-[2.5rem]">
       <div className="text-center mb-12 w-full md:w-[40vw]">
-        <h2 className="md:text-5xl text-4xl text-indigo-500 text-center font-extrabold mb-4 mt-8">
+        <h2 className="md:text-5xl text-4xl text-indigo-500 font-extrabold mb-4">
           Public Education
         </h2>
         <p className="text-xl sm:text-2xl font-semibold text-black text-center max-w-3xl">
@@ -34,56 +36,31 @@ export default function Blogs() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {publicBlogs.map((blog, index) => (
-          <div
-            key={index}
-            className="group bg-indigo-500 text-white rounded-[2rem] overflow-hidden transition-all"
-          >
-            <div className="relative h-48">
-              <img
-                src={blog.imageUrl || "/placeholder.svg"}
-                alt={blog.title}
-                className="object-cover h-[30vh] w-full"
-              />
-            </div>
-            <div className="p-8">
-              <div className="flex items-center justify-between mb-3"></div>
-              <Link to={`/blogpost/${blog._id}`}>
-                <h3 className="text-xl font-bold mb-3 group-hover:text-zinc-900 group-hover:cursor-pointer group-hover:underline">
-                  {blog.title}
-                </h3>
-              </Link>
-
-              <p className="mb-6 text-base">
-                {truncateText(blog.content.replace(/<[^>]+>/g, ""), 150)}
-              </p>
-              <div className="flex items-center justify-between">
-                <span className="text-md font-semibold">
-                  By &nbsp;
-                  <Link to="/all-doctors">
-                    <span className="cursor-pointer group-hover:text-zinc-900 group-hover:underline">
-                      {blog.author}
-                    </span>
-                  </Link>
-                </span>
-                <div className="flex justify-center items-center gap-2 transition-all md:text-lg font-semibold">
-                  <Link to={`/blogpost/${blog._id}`}>
-                    <button className="flex justify-center items-center group-hover:text-zinc-900 group-hover:gap-2 transition-all gap-1">
-                      Learn more
-                      <ArrowRight />
-                    </button>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
+      {/* Moving Cards Component */}
+      <div className="w-full max-w-6xl">
+        {blogs.length > 0 ? (
+          <InfiniteMovingCards
+            items={PublicBlogs.map((blog) => ({
+              name: blog.title || "Untitled",
+              quote: truncateText(
+                blog.content ? blog.content.replace(/<[^>]+>/g, "") : "",
+                100
+              ),
+              title: blog.author || "Unknown",
+              imageUrl:
+                blog.imageUrl?.trim() || "https://via.placeholder.com/300",
+              link: `/blogpost/${blog._id}`,
+            }))}
+            speed="slow"
+          />
+        ) : (
+          <p className="text-center text-gray-500">No blogs available</p>
+        )}
       </div>
 
       <div className="group text-center mt-12">
-        <Link to="/blogs">
-          <button className="group-hover:gap-4 group-hover:text-zinc-900 font-semibold text-white gap-2 transition-all text-lg flex justify-center items-center text-center w-full py-4 bg-indigo-500 px-10 rounded-[2.5rem] self-center">
+        <Link to="/blogs" className="inline-block">
+          <button className="group-hover:gap-4 group-hover:text-zinc-900 font-semibold text-white gap-2 transition-all text-lg flex justify-center items-center text-center w-full py-4 bg-indigo-500 px-10 rounded-[2.5rem]">
             See more
             <MoveRight />
           </button>
@@ -91,4 +68,6 @@ export default function Blogs() {
       </div>
     </section>
   );
-}
+};
+
+export default Blogs;

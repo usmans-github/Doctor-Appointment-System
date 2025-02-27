@@ -17,7 +17,10 @@ const AppContextProvider = (props) => {
       const { data } = await axios.get(
         `${import.meta.env.VITE_BACKEND_URL}/api/user/get-profile`,
         {
-          Headers: user_token,
+          headers: {
+            Authorization: `Bearer ${user_token}`,
+          },
+          withCredentials: true,
         }
       );
       if (data.success) {

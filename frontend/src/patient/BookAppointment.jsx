@@ -1,4 +1,3 @@
-"use client"
 import React, { useContext, useEffect, useState } from 'react'
 import { useForm } from "react-hook-form";
 import { Bounce, toast, ToastContainer } from 'react-toastify';

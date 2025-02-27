@@ -89,14 +89,14 @@ const AdminBlogs = () => {
                     </div>
                   </td>
                   <td className="px-6 py-4 text-sm font-medium text-right md:flex whitespace-nowrap">
-                    <Link to={`/blogpost/edit/${blog._id}`}>
+                    {/* <Link to={`/blogpost/edit/${blog._id}`}>
                       <button
                         type="button"
                         className="text-white bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-3 py-1.5 mr-2"
                       >
                         Edit
                       </button>
-                    </Link>
+                    </Link> */}
                     <button
                       type="button"
                       onClick={() => handleDelete(blog._id)}

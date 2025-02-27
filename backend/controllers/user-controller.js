@@ -7,42 +7,51 @@ const blogModel = require("../models/blog-model");
 
 //user register
 const register = async (req, res) => {
-  const { email, password, name, phone, age,  gender } = req.body;
+  const { email, password, name, phone, age, gender } = req.body;
+
+  if (!email || !password || !name || !phone || !age || !gender) {
+    return res.status(400).send({ success: false, message: "All fields are required" });
+  }
 
   try {
-    const existingUser = await userModel.findOne({ email: email, password: password });
-    if (existingUser)
-      return res
-        .status(200)
-        .send({ success: false, message: "User already exists" });
- 
+    const existingUser = await userModel.findOne({ email });
+    if (existingUser) {
+      return res.status(400).send({ success: false, message: "User already exists" });
+    }
+
     bcrypt.genSalt(10, function (err, salt) {
       bcrypt.hash(password, salt, async function (err, hash) {
-        // Store hash in your password DB.
-        const newUser = await userModel.create({
-          name: name,
-          email: email,
+        if (err) {
+          return res.status(500).send({ success: false, message: "Error hashing password" });
+        }
+
+        const newUser = new userModel({
+          name,
+          email,
           password: hash,
           phone,
           age,
-          gender
+          gender,
         });
-        newUser.save();
+
+        await newUser.save();
         res.status(201).send({
-          success: true,
-          message: "User registered successfully",
-          data: newUser,
-        });
+            success: true,
+            message: "User registered successfully",
+            data: newUser,
+          });
       });
     });
   } catch (error) {
     console.log(error);
-    res.status(201).send({
-      success: false,
-      message: `Error in Register controller ${error.message}`,
-    });
+    res.status(500).send({
+        success: false,
+        message: `Error in Register controller: ${error.message}`,
+      });
   }
 };
+
+
 
 //user login
 const login = async (req, res) => {
@@ -58,6 +67,7 @@ const login = async (req, res) => {
         return res
           .status(200)
           .send({ success: false, message: "Invalid Credentials" });
+          
       const user_token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
         expiresIn: "1d",
       });

@@ -3,6 +3,7 @@ const blogModel = require("../models/blog-model")
 const createBlog = async (req, res) => {
   try {
     const { title, imageUrl, content, author, category } = req.body;
+    console.log(req.body);
 
     const newBlog = await blogModel.create({ title, imageUrl, content, author, category });
 

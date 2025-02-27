@@ -1,55 +1,49 @@
-"use client"
-import React, { useContext } from 'react'
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
-import axios from "axios"; 
-import { Bounce, ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { Link, useNavigate } from "react-router-dom"
-import { LoadingContext } from '../context/LoadingContext';
+import axios from "axios";
+import { Bounce, ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Link, useNavigate } from "react-router-dom";
+import { LoadingContext } from "../context/LoadingContext";
 
 const Register = () => {
-  const { loading, setloading } = useContext(LoadingContext)
+  const { loading, setloading } = useContext(LoadingContext);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-    const {
-        register,
-        handleSubmit,
-        reset,
-        watch,
-        formState: { errors },
-      } = useForm();
-    
-    
-      const onSubmit = async(data) => {
-        try {
-          setloading(true)
-          console.log(data);
-          const res = await axios.post(
-            `${import.meta.env.VITE_BACKEND_URL}/api/user/register`,
-            data
-          );
-          console.log(res.data.success);
-          if(res.data.success) {
-            // console.log("Registered succcessfuly and response.message is ", res.data.message); 
-            toast.success(res.data.message);
-              setTimeout(() => {
-               navigate("/login")
-              }, 1000);
-          } else {
-            toast.error(res.data.message);
-            // console.log("user already exists", res.data);
-            reset()
-          }
-        } catch (error) {
-          toast.error(error.message)
-          console.log("register page error onsubmit", error);
-          reset()
-          
-      }finally{
-        setloading(false)
+  const {
+    register,
+    handleSubmit,
+    reset,
+    watch,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = async (data) => {
+    try {
+      setloading(true);
+      console.log(data);
+      const res = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/api/user/register`,
+        data
+      );
+      toast.success(res.data.message);
+      if (res.data.success) {
+        setTimeout(() => {
+          navigate("/login");
+        }, 1000);
+      } else {
+        toast.error(res.data.message);
       }
-        };
+    } catch (error) {
+      const errorMessage =
+        error.response?.data?.message || "Something went wrong!";
+      toast.error(errorMessage);
+      console.log("Register page error onSubmit:", errorMessage);
+    } finally {
+      setloading(false);
+    }
+  };
 
   return (
     <>
@@ -193,15 +187,22 @@ const Register = () => {
                   >
                     Gender
                   </label>
-                  <input
-                    defaultValue=""
-                    {...register("gender")}
-                    type="text"
+                  <select
+                    {...register("gender", { required: true })}
                     name="gender"
                     id="gender"
                     className="bg-white border border-indigo-500 text-gray-900 text-sm rounded-[1rem]
-                     focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
-                  />
+                    focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
+                    defaultValue="" // Ensures default empty selection
+                    required
+                  >
+                    <option value="" disabled>
+                      Select Gender
+                    </option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="custom">Custom</option>
+                  </select>
                 </div>
 
                 {/* Submit Button */}
@@ -234,6 +235,6 @@ const Register = () => {
       </section>
     </>
   );
-}
+};
 
-export default Register
+export default Register;

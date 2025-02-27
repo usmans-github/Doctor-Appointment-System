@@ -18,7 +18,13 @@ const Profile = () => {
     
     try {
     const res = await axios.get(
-      `${import.meta.env.VITE_BACKEND_URL}/api/user/user-appointments`
+      `${import.meta.env.VITE_BACKEND_URL}/api/user/user-appointments`,
+      {
+        headers: {
+          Authorization: `Bearer ${user_token}`,
+        },
+        withCredentials: true,
+      }
     );
     console.log(userappointments)
     setuserappointments(res.data.userappointments) 

@@ -26,6 +26,14 @@ import axios from "axios";
 import { AdminContext } from "./context/AdminContext";
 import { LoadingContext } from "./context/LoadingContext";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
+
+
+
+
+
+
+
 
 const MenuBar = ({ editor }) => {
   if (!editor) return null;
@@ -182,11 +190,11 @@ const extensions = [
 const content = ``;
 
 export default () => {
-  const { admin_token } = useContext(AdminContext);
   const [title, setTitle] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const { loading, setloading } = useContext(LoadingContext);
   const [category, setCategory] = useState("Public Education");
+
   const navigate = useNavigate();
 
   const editor = useEditor({
@@ -207,6 +215,7 @@ export default () => {
       // send the HTML content to backend
       try {
         setloading(true);
+        const admin_token = Cookies.get('admin_token')
         const res = await axios.post(
           `${import.meta.env.VITE_BACKEND_URL}/api/admin/blog-new`,
           {
@@ -214,7 +223,12 @@ export default () => {
             imageUrl,
             content: html,
             category,
-            admin_token,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${admin_token}`,
+            },
+            withCredentials: true,
           }
         );
         if (res.data.success) {
