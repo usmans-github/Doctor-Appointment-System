@@ -54,11 +54,11 @@ const AdminContextProvider = (props) => {
     }
   };
 
-  //All Patients data
+  // //All Patients data
 
-  useEffect(() => {
-    getStats();
-  }, []);
+  // useEffect(() => {
+  //   getStats();
+  // }, []);
 
   const value = {
     admin_token,
