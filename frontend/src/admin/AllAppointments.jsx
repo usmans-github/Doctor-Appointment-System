@@ -5,11 +5,11 @@ import { Bounce, ToastContainer } from "react-toastify";
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 
 const AllAppointments = () => {
-  const { stats,  getStats, updateAppointments } = useContext(AdminContext);
+  const {  updateAppointments } = useContext(AdminContext);
 
-  useEffect(() => {
-    getStats();
-  }, []);
+  // useEffect(() => {
+  //   getStats();
+  // }, []);
 
   const Appointments = stats?.reverseData || [];
 

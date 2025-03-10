@@ -43,7 +43,7 @@ const AdminContextProvider = (props) => {
           withCredentials: true, 
         }
       );
-      getStats();
+      // getStats();
       if (res.data.success) {
         toast.success(res.data.message);
       } else {

@@ -8,16 +8,16 @@ import { AdminContext } from "../context/AdminContext";
 import { LoadingContext } from "../context/LoadingContext";
 
 const Page = () => {
-  const { admin_token, stats, setstats, getStats } = useContext(AdminContext);
+  const { admin_token,  } = useContext(AdminContext);
   const { loading, setloading } = useContext(LoadingContext);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
 
-  useEffect(() => {
-    setloading(true);
-    getStats();
-    setloading(false);
-  }, []);
+  // useEffect(() => {
+  //   setloading(true);
+  //   getStats();
+  //   setloading(false);
+  // }, []);
 
   
   
