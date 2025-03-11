@@ -11,23 +11,23 @@ const AdminContextProvider = (props) => {
   //All data for admin
   const [stats, setstats] = useState([]);
   const getStats = async () => {
-    try {
-      setloading(true);
-      const stats = await axios.get(
-        `${import.meta.env.VITE_BACKEND_URL}/api/admin/getStats`,
-        {
-          headers: {
-            Authorization: `Bearer ${admin_token}`, 
-          },
-          withCredentials: true, 
-        }
-      );
-      setstats(stats.data)
-    } catch (error) {
-      console.log(error.message);
-    } finally {
-      setloading(false);
-    }
+    // try {
+    //   setloading(true);
+    //   const stats = await axios.get(
+    //     `${import.meta.env.VITE_BACKEND_URL}/api/admin/getStats`,
+    //     {
+    //       headers: {
+    //         Authorization: `Bearer ${admin_token}`, 
+    //       },
+    //       withCredentials: true, 
+    //     }
+    //   );
+    //   setstats(stats.data)
+    // } catch (error) {
+    //   console.log(error.message);
+    // } finally {
+    //   setloading(false);
+    // }
   };
 
   //Api to cancel & approve  the appointment
