@@ -10,14 +10,14 @@ import Cookies from "js-cookie";
 
 const Doctors = () => {
   const { loading, setloading } = useContext(LoadingContext);
-  // const { stats, getStats } = useContext(AdminContext);
+  const { stats, getStats } = useContext(AdminContext);
   const [searchTerm, setSearchTerm] = useState("");
 
-  // useEffect(() => {
-  //   setloading(true)
-  //   getStats();
-  //   setloading(false)
-  // }, []);
+  useEffect(() => {
+    setloading(true)
+    getStats();
+    setloading(false)
+  }, []);
 
   const filteredDoctors =
     stats?.doctorsData?.filter(

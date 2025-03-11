@@ -7,9 +7,9 @@ import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 const AllAppointments = () => {
   const {  updateAppointments } = useContext(AdminContext);
 
-  // useEffect(() => {
-  //   getStats();
-  // }, []);
+  useEffect(() => {
+    getStats();
+  }, []);
 
   const Appointments = stats?.reverseData || [];
 

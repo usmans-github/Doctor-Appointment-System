@@ -13,11 +13,11 @@ const Page = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
 
-  // useEffect(() => {
-  //   setloading(true);
-  //   getStats();
-  //   setloading(false);
-  // }, []);
+  useEffect(() => {
+    setloading(true);
+    getStats();
+    setloading(false);
+  }, []);
 
   
   
