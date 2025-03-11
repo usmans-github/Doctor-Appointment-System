@@ -5,7 +5,7 @@ import { Bounce, ToastContainer } from "react-toastify";
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 
 const AllAppointments = () => {
-  const {  updateAppointments } = useContext(AdminContext);
+  const { stats, getStats,  updateAppointments } = useContext(AdminContext);
 
   useEffect(() => {
     getStats();
