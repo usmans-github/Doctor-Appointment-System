@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   Bars3Icon as MenuIcon,
   XMarkIcon as XIcon,
@@ -9,7 +9,7 @@ import { LoadingContext } from "../context/LoadingContext";
 
 const Page = () => {
   const { stats, getStats } = useContext(AdminContext);
-  const { loading, setloading } = useContext(LoadingContext);
+  const { setloading } = useContext(LoadingContext);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
 
@@ -63,6 +63,12 @@ const Page = () => {
             className="block py-2 px-4 text-lg font-semibold hover:text-black transition-colors"
           >
             Appointments
+          </Link>
+          <Link
+            to="/admin/patients"
+            className="block py-2 px-4 text-lg font-semibold hover:text-black transition-colors"
+          >
+            Patients
           </Link>
           <Link
             to="/admin/blogs"

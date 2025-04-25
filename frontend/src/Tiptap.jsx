@@ -189,7 +189,7 @@ export default () => {
   const [imageUrl, setImageUrl] = useState("");
   const { loading, setloading } = useContext(LoadingContext);
   const [category, setCategory] = useState("Public Education");
-
+  console.log(imageUrl);
   const navigate = useNavigate();
 
   const editor = useEditor({
@@ -273,10 +273,14 @@ export default () => {
 
           {/* Image URL Input */}
           <input
-            type="text"
+            type="file"
             placeholder="Image URL"
-            value={imageUrl}
-            onChange={(e) => setImageUrl(e.target.value)}
+            onChange={(e) => {
+              const file = e.target.files[0];
+              if (file) {
+                setImageUrl(URL.createObjectURL(file));
+              }
+            }}
             className="w-full px-2 py-3 border border-indigo-500 rounded-[1.5rem] bg-[#f0f0f0]"
           />
 

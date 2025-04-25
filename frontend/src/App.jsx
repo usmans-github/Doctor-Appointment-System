@@ -18,6 +18,7 @@ import AdminBlogs from "./admin/AdminBlogs";
 import EditBlogPost from "./pages/EditBlogPost";
 import MedicalEducation from "./pages/MedicalEducation";
 import About from "./pages/About";
+import Patients from "./admin/Patients";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
         <Route path="/all-doctors" element={<AllDoctors />} />
         <Route path="/admin-login" element={<AdminLogin />} />
         <Route path="/admin/appointments" element={<AllAppointments />} />
+        <Route path="/admin/patients" element={<Patients />} />
         <Route path="/admin/add-doctor" element={<AddDoctor />} />
         <Route path="/admin/doctors" element={<Doctors />} />
         <Route path="/admin/blogs" element={<AdminBlogs />} />
